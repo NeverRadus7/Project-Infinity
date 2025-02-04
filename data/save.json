@@ -1,0 +1,29 @@
+{
+    "Nickname": "★ NeverRadus7",
+    "Location": {
+        "Star": 584405
+    },
+    "Ship": {
+        "ShipID": 2,
+        "ShipName": "BigFleet Explorer-36",
+        "Storage": [
+            {
+                "ItemID": 0,
+                "ItemCount": 2880
+            }
+        ],
+        "Fuel": 9
+    },
+    "Money": 3135378716,
+    "IntelBall": 169109,
+    "XP": 1002961,
+    "Reputation": 0,
+    "Atribution": [],
+    "Statistic": {
+        "StarInteled": 1,
+        "StarControled": 1
+    },
+    "MapSettings": {
+        "Filter": 0
+    }
+}

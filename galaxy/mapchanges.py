@@ -1,0 +1,1 @@
+CustomStars = [{'StarID': 584402, 'PlayerPinned': True, 'PlayerPinnedDesc': 'aLdgfjs'}, {'StarID': 584403, 'PlayerPinned': False, 'PlayerPinnedDesc': 'ktew'}, {'StarID': 584404, 'PlayerPinned': True, 'PlayerPinnedDesc': 'Arfdjsg'}]
