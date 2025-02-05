@@ -44,9 +44,22 @@ Ships = [
     }
 ]
 
+Fleets = [
+    {
+        "FleetID": 0,
+        "FleetModel": "Ra Min H100",
+        "FleetClass": 0,
+        "FleetMaxFuel": 100,
+        "FleetMaxHyperdrive": 1000,
+        "FleetTravelingDist": 12,
+    }
+]
+
 ItemsDB = [
     {
-        "ItemName": 'Астробак 5000мл',
+        "ItemName": 'Астробак',
+        "ItemType": "REFUEL_ITEM",
+        "ItemCategory": 0,
         "ItemCoust": 300
     },
     {

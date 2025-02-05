@@ -105,13 +105,15 @@ if CommandInput == "2":
     if StarInput == f"Флотоносець{Colore.Blue} ⊴{Colore.Reset}":
         wl.Skip()
         print(f" ▪ Флотоносець: {PlayerIs['Fleet']['FleetName']}")
-        print(f" ▪ Клас: {PlayerIs['Fleet']['FleetID']}")
-        print(f" ▪ Палива: {PlayerIs['Fleet']['Fuel']}/100")
+        print(f" ▪ Модель: {Fleets[PlayerIs['Fleet']['FleetID']]['FleetModel']}")
+        print(f" ▪ Клас: {Fleets[PlayerIs['Fleet']['FleetID']]['FleetClass']}")
+        print(f" ▪ Палива: {PlayerIs['Fleet']['Fuel']}/{Fleets[PlayerIs['Fleet']['FleetID']]['FleetMaxFuel']}")
+        print(f" ▪ Макс. дальність: {Fleets[PlayerIs['Fleet']['FleetID']]['FleetMaxHyperdrive']} св. р")
         print(f" ▪ Кораблів в сховище: {len(PlayerIs['Fleet']['Ships']):,}")
         print(f" ▪ Товарів в сховище: {len(PlayerIs['Fleet']['Storage']):,}")
         print()
 
-        FleetList = ["Галактична карта","Ангар","Грузовий відсік"]
+        FleetList = ["Галактична карта","Грузовий відсік","Ангар"]
         FleetChoice = wl.ChoiceMenu(FleetList)
 
         if FleetChoice == "Галактична карта":
@@ -133,14 +135,53 @@ if CommandInput == "2":
                 else:
                     ItemIs = PlayerIs['Fleet']['Storage'][ItemChoice]
                     if ItemsDB[ItemIs['ItemID']]['ItemName'] == ItemsDB[0]['ItemName']:
-                        #FuelMaxCapacity = Ships[PlayerIs['Fleet']['ShipID']]['ShipMaxFuel']
-                        PlayerIs['Fleet']['Fuel'] += 5
-                        #if PlayerIs['Ship']['Fuel'] > FuelMaxCapacity: PlayerIs['Ship']['Fuel'] = FuelMaxCapacity
-                        wl.Loading("Заправлення", 3)
-                        wl.InvRem(0, 1, 'Fleet')
+                        if ItemsDB[ItemIs['ItemID']]['ItemType'] == "REFUEL_ITEM":
+                            FuelMaxCapacity = Fleets[PlayerIs['Fleet']['FleetID']]['FleetMaxFuel']
+                            PlayerIs['Fleet']['Fuel'] += 25
+                            if PlayerIs['Fleet']['Fuel'] > FuelMaxCapacity: PlayerIs['Fleet']['Fuel'] = FuelMaxCapacity
+                            wl.Loading("Заправлення", 3)
+                            wl.InvRem(0, 1, 'Fleet')
 
             if StorageChoice == "Перемістити предмети":
-                pass
+                wl.Skip()
+                MoveItemChoice = wl.ChoiceMenu(["Корабель -> Флотоносець","Флотоносець -> Корабель"])
+                if MoveItemChoice == "Корабель -> Флотоносець":
+                    wl.Skip()
+                    for alli in range(len(PlayerIs['Ship']['Storage'])):
+                        ItemIs = PlayerIs['Ship']['Storage'][alli]
+                        print(f"{alli+1}. {ItemsDB[ItemIs['ItemID']]['ItemName']} ▪ Кількість: {ItemIs['ItemCount']:,}")
+                    
+                    ItemChoice = int(input("Вибрати: ")) - 1
+                    if ItemChoice+1 > len(PlayerIs['Ship']['Storage']) and ItemChoice+1 <= 0:
+                        wl.Error("Недопустиме введення")
+                    else:
+                        ItemIs = PlayerIs['Ship']['Storage'][ItemChoice]
+                        ItemCount = int(input("Скільки перемістити: "))
+                        if ItemCount > ItemIs['ItemCount']:
+                            wl.Error("Перебільшена кількість")
+                        else:
+                            wl.Loading("Переміщення товару", 3)
+                            wl.InvAdd(ItemIs['ItemID'], ItemCount, "Fleet")
+                            wl.InvRem(ItemIs['ItemID'], ItemCount, "Ship")
+
+                if MoveItemChoice == "Флотоносець -> Корабель":
+                    wl.Skip()
+                    for alli in range(len(PlayerIs['Fleet']['Storage'])):
+                        ItemIs = PlayerIs['Fleet']['Storage'][alli]
+                        print(f"{alli+1}. {ItemsDB[ItemIs['ItemID']]['ItemName']} ▪ Кількість: {ItemIs['ItemCount']:,}")
+                    
+                    ItemChoice = int(input("Вибрати: ")) - 1
+                    if ItemChoice+1 > len(PlayerIs['Fleet']['Storage']) and ItemChoice+1 <= 0:
+                        wl.Error("Недопустиме введення")
+                    else:
+                        ItemIs = PlayerIs['Fleet']['Storage'][ItemChoice]
+                        ItemCount = int(input("Скільки перемістити: "))
+                        if ItemCount > ItemIs['ItemCount']:
+                            wl.Error("Перебільшена кількість")
+                        else:
+                            wl.Loading("Переміщення товару", 3)
+                            wl.InvAdd(ItemIs['ItemID'], ItemCount, "Ship")
+                            wl.InvRem(ItemIs['ItemID'], ItemCount, "Fleet")
 
 if CommandInput == "4":
     if StarIs.get("StarCivil"):
@@ -150,6 +191,10 @@ if CommandInput == "4":
             print()
 
             StationList = ["Здати досліди", "Заправитися", "Верф", "Ринок"]
+
+            if StarIs['StarCivil']['CivilStation']['StationType'] == 2:
+                StationList.append("Верф флотоносців")
+
             StationCom = wl.ChoiceMenu(StationList)
 
             if StationCom == "Здати досліди":
@@ -239,10 +284,11 @@ if CommandInput == "5":
     if OtherCom == "Статистика":
         wl.Skip()
         print("Статистика систем")
-        print(f"Вивчено систем: {PlayerIs['Statistic']['StarInteled']:,}")
-        print(f"Систем під контролем: {PlayerIs['Statistic']['StarControled']:,}")
+        print(f" ▪ Вивчено систем: {PlayerIs['Statistic']['StarInteled']:,}")
+        print(f" ▪ Систем під контролем: {PlayerIs['Statistic']['StarControled']:,}")
         print()
-        print(f"Усього кредитів отримана з торгівлі: {PlayerIs['Statistic']['CreditsFromSelled']:,} ©")
+        print(f" ▪ Усього кредитів отримана з торгівлі: {PlayerIs['Statistic']['CreditsFromSelled']:,} ©")
+        if PlayerIs.get("Fleet"): print(f" ▪ Місце розташування флотоносця: {GenMap(PlayerIs['Fleet']['Location'])['Star']} ({GenMap(PlayerIs['Fleet']['Location'])['StarID']})")
         input()
 
     if OtherCom == "Сховище корабля":
@@ -258,11 +304,12 @@ if CommandInput == "5":
         else:
             ItemIs = PlayerIs['Ship']['Storage'][ItemChoice]
             if ItemsDB[ItemIs['ItemID']]['ItemName'] == ItemsDB[0]['ItemName']:
-                FuelMaxCapacity = Ships[PlayerIs['Ship']['ShipID']]['ShipMaxFuel']
-                PlayerIs['Ship']['Fuel'] += 5
-                if PlayerIs['Ship']['Fuel'] > FuelMaxCapacity: PlayerIs['Ship']['Fuel'] = FuelMaxCapacity
-                wl.Loading("Заправлення", 3)
-                wl.InvRem(0, 1, 'Ship')
+                if ItemsDB[ItemIs['ItemID']]['ItemType'] == "REFUEL_ITEM":
+                    FuelMaxCapacity = Ships[PlayerIs['Ship']['ShipID']]['ShipMaxFuel']
+                    PlayerIs['Ship']['Fuel'] += 5
+                    if PlayerIs['Ship']['Fuel'] > FuelMaxCapacity: PlayerIs['Ship']['Fuel'] = FuelMaxCapacity
+                    wl.Loading("Заправлення", 3)
+                    wl.InvRem(0, 1, 'Ship')
 
     if OtherCom == "Закріпленні":
         wl.Skip()
@@ -270,7 +317,7 @@ if CommandInput == "5":
             CustomStarsIs = CustomStars[absi]
             StarIs = GenMap(int(CustomStarsIs['StarID']))
             if CustomStarsIs['PlayerPinned'] == True:
-                print(f"{Colore.Yellow} ▪ {StarIs['Star']}({StarIs['StarID']}) ▪ Опис: {CustomStarsIs['PlayerPinnedDesc']}")
+                print(f"{Colore.Yellow} ▪ {StarIs['Star']} ({StarIs['StarID']}) ▪ Опис: {CustomStarsIs['PlayerPinnedDesc']}")
         input()
 
 if CommandInput == "*":

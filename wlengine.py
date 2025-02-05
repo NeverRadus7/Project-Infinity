@@ -620,6 +620,7 @@ class ProjectInfinity():
                         PlayerIs['Fleet']['Fuel'] -= 50
                         StartLoc = StarChoiceFleet
                         wl.Loading(f"Перебуваємо в гіперстрибку до {GenMap(StarChoiceFleet)['Star']}", 10)
+                        break
             if com == "f":
                 if PlayerIs['MapSettings']['Filter'] == 0: PlayerIs['MapSettings']['Filter'] = 1
                 elif PlayerIs['MapSettings']['Filter'] == 1: PlayerIs['MapSettings']['Filter'] = 2
