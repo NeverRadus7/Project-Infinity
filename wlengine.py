@@ -263,7 +263,7 @@ class wl(): # Main class
         print(f" ▪ Кредити: {Colore.Yellow}{PlayerIs['Money']:,} ©{Colore.Reset}")
         print(f" ▪ Досл. бали: {Colore.Blue}{PlayerIs['IntelBall']:,} ◭{Colore.Reset}")
         print(f" ▪ XP: {PlayerIs['XP']:,} XP {Colore.Gray}| Level: {wl.Level} {Colore.Reset}")
-        print(f" ▪ Корабель: {PlayerIs['Ship']['ShipName']}{Colore.Gray} ({Ships[PlayerIs['Ship']['ShipID']]['ShipName']}) | МВС: {TravelDistation} св. р | Паливо: {PlayerIs['Ship']['Fuel']} тон{Colore.Reset}")
+        print(f" ▪ Корабель: {PlayerIs['Ship']['ShipName']}{Colore.Gray} ({Ships[PlayerIs['Ship']['ShipID']]['ShipName']}) | МВС: {TravelDistation} св. р | Паливо: {PlayerIs['Ship']['Fuel']}/{Ships[PlayerIs['Ship']['ShipID']]['ShipMaxFuel']} тон{Colore.Reset}")
         if DebugInfo == True: print(f"{Colore.Red}Debug-інформація: MapSeed: {MapSeed}, StarID: {StarIs['StarID']}{Colore.Reset}")
         print(wl.Wall)
         print(wl.DoList)
@@ -402,47 +402,47 @@ class wl(): # Main class
         a = datetime.date.today()
         return a
     
-    def InvAdd(itemID, count):
+    def InvAdd(itemID, count, inStorage):
         if itemID > len(ItemsDB):
             wl.Error(f"Предмет із номером #{itemID} не існує")
         else:
-            if len(PlayerIs['Ship']['Storage']) == 0:
-                PlayerIs['Ship']['Storage'].append(
+            if len(PlayerIs[inStorage]['Storage']) == 0:
+                PlayerIs[inStorage]['Storage'].append(
                     {
                         "ItemID": itemID,
                         "ItemCount": count
                     }
                 )
             else:
-                for alli in range(len(PlayerIs['Ship']['Storage'])):
-                    ItemIs = PlayerIs['Ship']['Storage'][alli]
+                for alli in range(len(PlayerIs[inStorage]['Storage'])):
+                    ItemIs = PlayerIs[inStorage]['Storage'][alli]
                     if ItemIs['ItemID'] == itemID:
                         break
                 if ItemIs['ItemID'] == itemID:
                     ItemIs['ItemCount'] += count
                 else:
-                    PlayerIs['Ship']['Storage'].append(
+                    PlayerIs[inStorage]['Storage'].append(
                         {
                             "ItemID": itemID,
                             "ItemCount": count
                         }
                     )
         
-    def InvRem(itemID, count):
+    def InvRem(itemID, count, inStorage):
         if itemID > len(ItemsDB):
             wl.Error(f"Предмет із номером #{itemID} не існує")
         else:
-            if len(PlayerIs['Ship']['Storage']) == 0:
+            if len(PlayerIs[inStorage]['Storage']) == 0:
                 wl.Error("В сховище порожньо")
             else:
-                for alli in range(len(PlayerIs['Ship']['Storage'])):
-                    ItemIs = PlayerIs['Ship']['Storage'][alli]
+                for alli in range(len(PlayerIs[inStorage]['Storage'])):
+                    ItemIs = PlayerIs[inStorage]['Storage'][alli]
                     if ItemIs['ItemID'] == itemID:
                         ItemIsID = alli
                         break
                 if ItemIs['ItemID'] == itemID:
                     if ItemIs['ItemCount'] <= count:
-                        PlayerIs['Ship']['Storage'].pop(ItemIsID)
+                        PlayerIs[inStorage]['Storage'].pop(ItemIsID)
                     else:
                         ItemIs['ItemCount'] -= count
 
@@ -472,6 +472,169 @@ class ProjectInfinity():
                 )
         file = open("galaxy/mapchanges.py", "w", encoding="utf-8")
         file.write(f"CustomStars = {CustomStars}")
+    
+    def GalaxyMap(type):
+        StartLoc = PlayerIs['Location']['Star']
+        while True:
+            wl.Skip()
+            empty_map = ""
+
+            for star in range(StartLoc-TravelDistation, StartLoc+(TravelDistation + 1)):
+                StarIs = GenMap(star)
+                SymbolFrame = ""
+                SymbolFrameBack = ""
+                if StarIs.get("PlayerPinned"):
+                    PlayerSymbol = SymbolOfStarPinned
+                else:
+                    PlayerSymbol = SymbolOfStar
+
+                if PlayerIs.get("Fleet"):
+                    if PlayerIs['Fleet']['Location'] == StarIs['StarID']:
+                        FleetSymbol = f"{Colore.Blue} ⊴{Colore.Reset}"
+                    else:
+                        FleetSymbol = ""
+                else:
+                    FleetSymbol = ""
+
+                if PlayerIs['MapSettings']['Filter'] == 2:
+                    if StarIs['Class'] == "O":
+                        PlayerLight = colorama.Fore.BLUE
+                    elif StarIs['Class'] == "B":
+                        PlayerLight = colorama.Fore.LIGHTBLUE_EX
+                    elif StarIs['Class'] == "A":
+                        PlayerLight = colorama.Fore.WHITE
+                    elif StarIs['Class'] == "F":
+                        PlayerLight = colorama.Fore.LIGHTYELLOW_EX
+                    elif StarIs['Class'] == "G":
+                        PlayerLight = colorama.Fore.YELLOW
+                    elif StarIs['Class'] == "K":
+                        PlayerLight = colorama.Fore.LIGHTRED_EX
+                    elif StarIs['Class'] == "M":
+                        PlayerLight = colorama.Fore.RED
+
+                if PlayerIs['MapSettings']['Filter'] == 1:
+                    if StarIs.get("StarControled") and StarIs['StarControled'] == True:
+                        PlayerLight = Colore.Red
+                    else:
+                        PlayerLight = Colore.Gray
+
+                if PlayerIs['MapSettings']['Filter'] == 0:
+                    if StarIs.get("StarCivil"):
+                        PlayerLight = colorama.Fore.GREEN
+                    elif StarIs.get("StarIntel"):
+                        PlayerLight = colorama.Fore.LIGHTBLUE_EX
+                    elif StarIs.get("PlayerPinned"):
+                        PlayerLight = colorama.Fore.YELLOW
+                    else: 
+                        PlayerLight = Colore.Gray
+
+                if PlayerIs['Location']['Star'] == StarIs["StarID"]:
+                    SelectedFrame = "["
+                    SelectedFrameBack = "]"
+                else:
+                    SelectedFrame = " "
+                    SelectedFrameBack = " "
+                
+                sp = "⁝" * random.randint(MinFulling,MaxFulling)
+                empty_map += f"{Colore.Gray}{sp}{Colore.Reset}{SelectedFrame}{PlayerLight}{PlayerSymbol} {StarIs['Star']}{Colore.Reset}{FleetSymbol}{SelectedFrameBack}{Colore.Gray}{sp}{Colore.Reset}"
+
+            text = "Galaxy Map"
+            print(f"{"─" * (int(ConsoleSizeX / 2) - len(text))} {text} {"─" * (int(ConsoleSizeX / 2)-1)}")
+            MapFilterPrint = f"{colorama.Back.WHITE}{colorama.Fore.BLACK}█ Фільтр мапи: {MapFilter[PlayerIs['MapSettings']['Filter']]} █{colorama.Back.RESET}{colorama.Fore.RESET}"
+            print(MapFilterPrint)
+            print(f"{"─" * ConsoleSizeX}")
+            StarIs = GenMap(PlayerIs['Location']['Star'])
+            Distation = abs(PlayerIs['Location']['Star'] - StartLoc)
+            print(empty_map)
+
+            if StarIs.get("PlayerPinned") and StarIs['PlayerPinned'] == True:
+                SelectedStar = f"{colorama.Back.YELLOW}{colorama.Fore.BLACK}█ Вибрано: {StarIs['Star']} █{colorama.Back.RESET}{colorama.Fore.RESET}"
+                PinnedDescPrint = f"{colorama.Back.YELLOW}{colorama.Fore.BLACK}█ ★⚲ {StarIs['PlayerPinnedDesc']} █{colorama.Back.RESET}{colorama.Fore.RESET}"
+            else:
+                SelectedStar = f"{colorama.Back.WHITE}{colorama.Fore.BLACK}█ Вибрано: {StarIs['Star']} █{colorama.Back.RESET}{colorama.Fore.RESET}"
+                PinnedDescPrint = ""
+            if Distation > TravelDistation:
+                SelectedDist = f"{colorama.Back.RED}{colorama.Fore.BLACK}█ Дистанція: /!\\ █{colorama.Back.RESET}{colorama.Fore.RESET}"
+            else:
+                SelectedDist = f"{colorama.Back.GREEN}{colorama.Fore.BLACK}█ Дистанція: {Distation} св. р █{colorama.Back.RESET}{colorama.Fore.RESET}"
+            print(f"{"─" * ConsoleSizeX}")
+            print(f"{SelectedStar}{PinnedDescPrint}{SelectedDist}")
+            print(f"{"─" * ConsoleSizeX}")
+            com = wl.Command()
+
+            if com == "w" or com == "W":
+                PlayerIs['Location']['Star'] -= 1
+            if com == "s" or com == "S":
+                PlayerIs['Location']['Star'] += 1
+            if com == " ":
+                if StartLoc == PlayerIs['Location']['Star']:
+                    wl.Skip()
+                    break
+                else:
+                    if type == "SHIP":
+                        if Distation > TravelDistation:
+                            wl.Error("Занадто далеко!")
+                        if PlayerIs['Ship']['Fuel'] >= FuelRequire:
+                            PlayerIs['Location']['Star']
+                            PlayerIs['Ship']['Fuel'] -= FuelRequire
+                            PlayerIs['MapSettings']['Filter'] = 0
+                            wl.Loading(f"Подорож до {GenMap(PlayerIs['Location']['Star'])['Star']}", 5)
+                            wl.SaveJSON("save.json", save)
+                            wl.Skip()
+                            break
+                        else:
+                            wl.Skip()
+                            wl.Error("Невисточає пального")
+                    if type == "FLEET":
+                        if Distation > TravelDistation:
+                            wl.Error("Занадто далеко!")
+                        if PlayerIs['Ship']['Fuel'] >= FuelRequire:
+                            PlayerIs['Location']['Star']
+                            PlayerIs['Fleet']['Location'] = PlayerIs['Location']['Star']
+                            PlayerIs['Fleet']['Fuel'] -= FuelRequire
+                            PlayerIs['MapSettings']['Filter'] = 0
+                            wl.Loading(f"Подорож до {GenMap(PlayerIs['Location']['Star'])['Star']}", 5)
+                            wl.SaveJSON("save.json", save)
+                            wl.Skip()
+                            break
+                        else:
+                            wl.Skip()
+                            wl.Error("Невисточає пального")
+            if com == "q" or com == "Q":
+                PlayerIs['MapSettings']['Filter'] = 0
+                wl.Skip()
+                exit()
+            if type == "FLEET":
+                if com == "e":
+                    wl.Massage("Ви перейшли до Гіперстрибку флотоносця - в цьому режимі, Ви можете відправитися куда-завгодно, але це вимагає багато палива!")
+                    wl.Skip()
+                    StarChoiceFleet = int(input("Пункт призначення: "))
+                    HyperDistant = abs(StartLoc - StarChoiceFleet)
+                    if HyperDistant > FleetMaxDistant:
+                        wl.Error("Занадто далеко")
+                    if PlayerIs['Fleet']['Fuel'] <= 50:
+                        wl.Error("Не достатньо пального!")
+                    else:
+                        PlayerIs['Location']['Star'] = StarChoiceFleet
+                        PlayerIs['Fleet']['Location'] = StarChoiceFleet
+                        PlayerIs['Fleet']['Fuel'] -= 50
+                        StartLoc = StarChoiceFleet
+                        wl.Loading(f"Перебуваємо в гіперстрибку до {GenMap(StarChoiceFleet)['Star']}", 10)
+            if com == "f":
+                if PlayerIs['MapSettings']['Filter'] == 0: PlayerIs['MapSettings']['Filter'] = 1
+                elif PlayerIs['MapSettings']['Filter'] == 1: PlayerIs['MapSettings']['Filter'] = 2
+                elif PlayerIs['MapSettings']['Filter'] == 2: PlayerIs['MapSettings']['Filter'] = 0
+            if com == "m":
+                wl.Skip()
+                m1 = int(input("Від: "))
+                m2 = int(input("До: "))
+                wl.Skip()
+                for absi in range(m1, m2):
+                    StarIs = GenMap(absi)
+                    if StarIs.get("StarCivil"): StarColor = colorama.Fore.GREEN
+                    else: StarColor = colorama.Fore.RED
+                    print(f"{StarColor}StarID: {StarIs['StarID']} - Система: {StarIs['Star']} - Планет: {len(StarIs['Planets'])}{colorama.Fore.RESET}")
+                input()
 
 class Debug():
     def Refuel():

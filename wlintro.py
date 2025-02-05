@@ -8,6 +8,8 @@ wl.ConsoleSetSize()
 
 wl.Skip()
 print(LICENSE.read())
+for abs in range(5):
+    print()
 time.sleep(3)
 
 for abs in range(31):

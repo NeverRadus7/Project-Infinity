@@ -1,7 +1,7 @@
 {
     "Nickname": "★ NeverRadus7",
     "Location": {
-        "Star": 584402
+        "Star": 0
     },
     "Ship": {
         "ShipID": 2,
@@ -9,19 +9,38 @@
         "Storage": [
             {
                 "ItemID": 0,
-                "ItemCount": 2880
+                "ItemCount": 2877
+            },
+            {
+                "ItemID": 3,
+                "ItemCount": 5
             }
         ],
-        "Fuel": 3
+        "Fuel": 8
     },
-    "Money": 3135378716,
-    "IntelBall": 342639,
-    "XP": 1004809,
+    "Fleet": {
+        "FleetID": 0,
+        "FleetName": "Emperor [ASTRANT]",
+        "Ships": [],
+        "Fuel": 3,
+        "Modules": {},
+        "Location": 0,
+        "Storage": [
+            {
+                "ItemID": 0,
+                "ItemCount": 3
+            }
+        ]
+    },
+    "Money": 4606872161,
+    "IntelBall": 0,
+    "XP": 1613244,
     "Reputation": 0,
     "Atribution": [],
     "Statistic": {
         "StarInteled": 2,
-        "StarControled": 2
+        "StarControled": 2,
+        "CreditsFromSelled": 5798020489
     },
     "MapSettings": {
         "Filter": 0

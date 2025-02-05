@@ -33,20 +33,32 @@ Ships = [
         "ShipTravelingDist": 10,
         "ShipMaxFuel": 15,
         "ShipCoust": 3_750_000
+    },
+    {
+        "ShipID": 3,
+        "ShipName": "ASI Contstructor",
+        "ShipClass": 4,
+        "ShipTravelingDist": 8,
+        "ShipMaxFuel": 30,
+        "ShipCoust": 200_000_000
     }
 ]
 
 ItemsDB = [
     {
-        "ItemName": 'Астробак 1000мл',
-        "ItemCoust": 100
+        "ItemName": 'Астробак 5000мл',
+        "ItemCoust": 300
     },
     {
-        "ItemName": 'Вантаж із Золотом 95 проби',
+        "ItemName": 'Вантаж (Золотом)',
         "ItemCoust": 5500
     },
     {
-        "ItemName": 'Високотехнологічні нано-трубки',
+        "ItemName": 'Вантаж (Високотехнологічні нано-трубки)',
         "ItemCoust": 40000
+    },
+    {
+        "ItemName": 'Вантаж (Екзотичні кристали)',
+        "ItemCoust": 2000000
     }
 ]

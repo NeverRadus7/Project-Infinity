@@ -2,7 +2,7 @@ import random
 import settings
 import wlregister
 from galaxy.mapchanges import CustomStars
-from galaxy.mapchanges_lock import changes_lock
+from galaxy.mapchanges_lock import CustomStarsLock
 from nickname_generator import generate as ranname
 
 mapseed = settings.MapSeed
@@ -16,19 +16,17 @@ def GenMap(seed):
         Planets = []
         for gen in range(x):
             gen += 1
-
             planet_name = f"{solar_name}-{gen}"
-
             planet_class = random.randint(0, 4)
             if planet_class == 0:
                 planet_temp = random.randint(0,1000)
-            if planet_class == 1:
+            elif planet_class == 1:
                 planet_temp = random.randint(-273,0)
-            if planet_class == 2:
+            elif planet_class == 2:
                 planet_temp = random.randint(-273,100)
-            if planet_class == 3:
+            elif planet_class == 3:
                 planet_temp = random.randint(-10,300)
-            if planet_class == 4:
+            elif planet_class == 4:
                 planet_temp = random.randint(-8,30)
 
             Planets.append(
@@ -97,6 +95,12 @@ def GenMap(seed):
     # Імпорт всіх змін із mapchanges.py
     for abis in range(len(CustomStars)):
         CustomStarsIs = CustomStars[abis]
+        if Starsystems['StarID'] == CustomStarsIs['StarID']:
+            Starsystems.update(CustomStarsIs)
+
+    # Імпорт всіх змін, тепер з заблокованного mapchanges_lock.py
+    for abis in range(len(CustomStarsLock)):
+        CustomStarsIs = CustomStarsLock[abis]
         if Starsystems['StarID'] == CustomStarsIs['StarID']:
             Starsystems.update(CustomStarsIs)
 

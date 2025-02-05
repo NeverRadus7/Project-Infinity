@@ -1,1 +1,1 @@
-CustomStars = [{'StarID': 584402, 'PlayerPinned': True, 'PlayerPinnedDesc': 'aLdgfjs'}, {'StarID': 584403, 'PlayerPinned': False, 'PlayerPinnedDesc': 'ktew'}, {'StarID': 584404, 'PlayerPinned': True, 'PlayerPinnedDesc': 'Arfdjsg'}]
+CustomStars = [{'StarID': 584375, 'PlayerPinned': True, 'PlayerPinnedDesc': 'Економічна стала: 0.889'}, {'StarID': 584366, 'PlayerPinned': True, 'PlayerPinnedDesc': 'Економічна стала: 1.1911825644504965'}, {'StarID': 0, 'PlayerPinned': False, 'PlayerPinnedDesc': ''}]
