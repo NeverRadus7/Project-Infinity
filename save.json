@@ -1,46 +1,60 @@
 {
     "Nickname": "★ NeverRadus7",
     "Location": {
-        "Star": 1000
+        "Star": 273
     },
     "Ship": {
         "ShipID": 2,
-        "ShipName": "BigFleet Explorer-36",
+        "ShipName": "HER 015",
         "Storage": [
             {
                 "ItemID": 0,
-                "ItemCount": 876
+                "ItemCount": 198
             }
         ],
-        "Fuel": 12
+        "Fuel": 8
     },
     "Fleet": {
         "FleetID": 0,
         "FleetName": "Emperor [ASTRANT]",
-        "Ships": [],
-        "Fuel": 61,
+        "Ships": [
+            {
+                "ShipID": 0,
+                "ShipName": "R-145",
+                "Storage": [],
+                "Fuel": 20
+            },
+            {
+                "ShipID": 0,
+                "ShipName": "R-145",
+                "Storage": [
+                    {
+                        "ItemID": 0,
+                        "ItemCount": 876
+                    }
+                ],
+                "Fuel": 20
+            }
+        ],
+        "Fuel": 11,
         "Modules": {},
-        "Location": 1000,
+        "Location": 276,
         "Storage": [
             {
                 "ItemID": 0,
-                "ItemCount": 1997
-            },
-            {
-                "ItemID": 3,
-                "ItemCount": 33725
+                "ItemCount": 1993
             }
         ]
     },
-    "Money": 233220149996,
-    "IntelBall": 268730,
-    "XP": 2144023,
+    "Money": 34508981,
+    "IntelBall": 0,
+    "XP": 49171151,
     "Reputation": 0,
     "Atribution": [],
     "Statistic": {
-        "StarInteled": 3,
-        "StarControled": 3,
-        "CreditsFromSelled": 241502342324
+        "StarInteled": 6,
+        "StarControled": 5,
+        "CreditsFromSelled": 60381969
     },
     "MapSettings": {
         "Filter": 0
