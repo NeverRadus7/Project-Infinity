@@ -12,12 +12,22 @@ CustomStarsLock = [
     },
     {
         "StarID": 273,
-        "Star": "Sun",
+        "Star": "Sol",
         "Class": "G",
         "Temp": 5780,
         "Size": 1,
         "Mass": 1,
-        "Planets": [{"PlanetName": "Mecury", "PlanetClass": 0, "PlanetTemp": 167}, {"PlanetName": "Venus", "PlanetClass": 5, "PlanetTemp": 464}, {"PlanetName": "Earth", "PlanetClass": 4, "PlanetTemp": 14}, {"PlanetName": "Mars", "PlanetClass": 5, "PlanetTemp": -65}],
+        "Planets": [
+            {"PlanetName": "Mercury", "PlanetClass": 0, "PlanetTemp": 167}, 
+            {"PlanetName": "Venus", "PlanetClass": 5, "PlanetTemp": 464}, 
+            {"PlanetName": "Earth", "PlanetClass": 4, "PlanetTemp": 14}, 
+            {"PlanetName": "Mars", "PlanetClass": 5, "PlanetTemp": -65},
+            {"PlanetName": "Jupiter", "PlanetClass": 3, "PlanetTemp": -126},
+            {"PlanetName": "Saturn", "PlanetClass": 3, "PlanetTemp": -185},
+            {"PlanetName": "Uranus", "PlanetClass": 3, "PlanetTemp": -210},
+            {"PlanetName": "Neptune", "PlanetClass": 3, "PlanetTemp": -227},
+            {"PlanetName": "Pluto", "PlanetClass": 0, "PlanetTemp": -218}
+        ],
         "StarIntel": True,
         "StarCivil": {"CivilEco": 1.053, "CivilStation": {"StationName": "Gaia Century", "StationType": 2, "StationStoreList": [0,1,3]}}
     }
