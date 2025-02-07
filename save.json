@@ -1,7 +1,7 @@
 {
     "Nickname": "★ NeverRadus7",
     "Location": {
-        "Star": 273
+        "Star": 1000
     },
     "Ship": {
         "ShipID": 2,
@@ -9,10 +9,10 @@
         "Storage": [
             {
                 "ItemID": 0,
-                "ItemCount": 198
+                "ItemCount": 2198
             }
         ],
-        "Fuel": 8
+        "Fuel": 9
     },
     "Fleet": {
         "FleetID": 0,
@@ -36,25 +36,25 @@
                 "Fuel": 20
             }
         ],
-        "Fuel": 11,
+        "Fuel": 25,
         "Modules": {},
-        "Location": 276,
+        "Location": 1000,
         "Storage": [
             {
                 "ItemID": 0,
-                "ItemCount": 1993
+                "ItemCount": 1982
             }
         ]
     },
-    "Money": 34508981,
+    "Money": 57195219098,
     "IntelBall": 0,
-    "XP": 49171151,
+    "XP": 49237708,
     "Reputation": 0,
     "Atribution": [],
     "Statistic": {
-        "StarInteled": 6,
-        "StarControled": 5,
-        "CreditsFromSelled": 60381969
+        "StarInteled": 13,
+        "StarControled": 12,
+        "CreditsFromSelled": 58016751581
     },
     "MapSettings": {
         "Filter": 0

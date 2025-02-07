@@ -89,7 +89,7 @@ def GenMap(seed):
         Starsystems['StarCivil']['CivilStation'] = {
             "StationName": f"{ranname()} Station",
             "StationType": random.randint(0,2),
-            "StationStoreList": random.sample(range(len(wlregister.ItemsDB)), 3) 
+            "StationStoreList": random.sample(range(len(wlregister.ItemsDB)), 5) 
         }
     
     # Імпорт всіх змін із mapchanges.py
