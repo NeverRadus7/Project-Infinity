@@ -219,6 +219,37 @@ if CommandInput == "2":
                     PlayerIs['Ship'] = PlayerIs['Fleet']['Ships'][ShipIs]
                     PlayerIs['Fleet']['Ships'].pop(ShipIs)
 
+if CommandInput == "3":
+    wl.Skip()
+    for abs in range(len(StarIs['Planets'])):
+        PlanetIs = StarIs['Planets'][abs]
+        print(f"{abs+1}. {PlanetIs['PlanetName']} - Клас: {PlanetClass[PlanetIs['PlanetClass']]} - Температура: {PlanetIs['PlanetTemp']} °C")
+
+    PlanetChoice = int(input("Відправитися: "))-1
+    
+
+    if PlanetChoice > len(StarIs['Planets']) or PlanetChoice < 0:
+        wl.Error("Невірне введення")
+    else:
+        PlanetIs = StarIs['Planets'][PlanetChoice]
+        if PlanetIs['PlanetClass'] == 3:
+            wl.Error("На газових гігантів посадка неможлива")
+        else:
+            while True:
+                wl.Skip()
+                PlanetList = ["Зробити поверхневий аналіз", "Видобуток корисних копалин"]
+                if StarIs['StarControled']:
+                    PlanetList.append("Переіменувати планету")
+                PlanetList.append("Вийти із планети")
+                print(f" ▪ Планета: {PlanetIs['PlanetName']}")
+                wl.Menu(PlanetList)
+                PlanetChoice = input("Вибрати: ")
+                if PlanetChoice == "": pass
+                if PlanetChoice == "Вийти із планети":
+                    break
+
+                
+
 if CommandInput == "4":
     if StarIs.get("StarCivil"):
             wl.Skip()

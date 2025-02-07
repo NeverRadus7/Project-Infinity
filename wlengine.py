@@ -345,7 +345,6 @@ class wl(): # Main class
         for elements in range(len(list)):
             NameElement = list[elements]
             print(f"{elements+1}. {NameElement}")
-        
         Command = wl.Command()
         Choice = list[int(Command) - 1]
         return Choice
