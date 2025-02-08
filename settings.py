@@ -4,13 +4,13 @@ FuelRequire = 1
 TravelDistation = 5
 DebugInfo = True
 
-SymbolOfStar = "★"
-SymbolOfStarPinned = "★⚲"
+SymbolOfStar = "★ "
+SymbolOfStarPinned = "★⚐ "
 
 # Map settings
 MapSeed = 0xABCDEF12345678
-MapCivilRange = 10
+MapCivilRange = 1
 CivilEcoMin = 0.8
 CivilEcoMax = 1.2
-MinFulling = 20
-MaxFulling = 60
+MinFulling = 1
+MaxFulling = 130

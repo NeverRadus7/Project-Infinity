@@ -525,7 +525,7 @@ class ProjectInfinity():
             wl.Skip()
             empty_map = ""
 
-            for star in range(StartMapLoc-20, StartMapLoc+20):
+            for star in range(StartMapLoc-10, StartMapLoc+11):
                 StarIs = GenMap(star)
                 SymbolFrame = ""
                 SymbolFrameBack = ""
@@ -582,12 +582,9 @@ class ProjectInfinity():
                 else:
                     SelectedFrame = " "
                     SelectedFrameBack = " "
-                
-                
-                #sp = ":" * 3780
-                #empty_map = sp[:StarIs['MapPosition']] + f"{SelectedFrame}{PlayerLight}{PlayerSymbol} {StarIs['Star']}{Colore.Reset}{FleetSymbol}{SelectedFrameBack}" + sp[StarIs['MapPosition']+len(f"{SelectedFrame}{PlayerLight}{PlayerSymbol} {StarIs['Star']}{Colore.Reset}{FleetSymbol}{SelectedFrameBack}"):]
-                sp = "⁝" * random.randint(MinFulling,MaxFulling)
-                empty_map += f"{Colore.Gray}{sp}{Colore.Reset}{SelectedFrame}{PlayerLight}{PlayerSymbol} {StarIs['Star']}{Colore.Reset}{FleetSymbol}{SelectedFrameBack}{Colore.Gray}{sp}{Colore.Reset}"
+                starview = f"{SelectedFrame}{PlayerLight}{PlayerSymbol}{StarIs['Star']}{Colore.Reset}{FleetSymbol}{SelectedFrameBack}"
+                sp = "⋮" * random.randint(MinFulling, MaxFulling)
+                empty_map += f"{sp}{starview}{sp}"
 
             text = "Galaxy Map"
             print(f"{"─" * (int(ConsoleSizeX / 2) - len(text))} {text} {"─" * (int(ConsoleSizeX / 2)-1)}")
@@ -595,13 +592,11 @@ class ProjectInfinity():
             ShiftMap = f"{colorama.Back.WHITE}{colorama.Fore.BLACK} Центр: {StartMapLoc} █{colorama.Fore.RESET}{colorama.Back.RESET}"
             print(MapFilterPrint,ShiftMap)
             print(f"{"─" * ConsoleSizeX}")
+
             StarIs = GenMap(PlayerIs['Location']['Star'])
             Distation = abs(PlayerIs['Location']['Star'] - StartLoc)
-            def mapprint(m, ml):
-                if len(m) > ml:
-                    m = m[:ml]
-                print(m)
-            mapprint(empty_map, 4875)
+            
+            print(empty_map)
 
             if StarIs.get("PlayerPinned") and StarIs['PlayerPinned'] == True:
                 SelectedStar = f"{colorama.Back.YELLOW}{colorama.Fore.BLACK}█ Вибрано: {StarIs['Star']} █{colorama.Back.RESET}{colorama.Fore.RESET}"
@@ -618,13 +613,13 @@ class ProjectInfinity():
             print(f"{"─" * ConsoleSizeX}")
             com = wl.Command()
 
-            if com == "w" or com == "W":
+            if com == "a" or com == "A":
                 PlayerIs['Location']['Star'] -= 1
-            if com == "s" or com == "S":
+            if com == "d" or com == "D":
                 PlayerIs['Location']['Star'] += 1
-            if com == "z" or com == "Z":
+            if com == "s" or com == "S":
                 StartMapLoc += 1
-            if com == "x" or com == "Z":
+            if com == "w" or com == "W":
                 StartMapLoc -= 1
             if com == "c" or com == "C":
                 StartMapLoc = int(input("Назначити центр: "))

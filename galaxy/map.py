@@ -9,6 +9,7 @@ mapseed = settings.MapSeed
 
 Latters = [chr(i) for i in range(65, 91)]
 LowerLatters = [chr(i) for i in range(97, 123)]
+Articl = ["Alpha","Beta","Gamma","Delta"]
 
 def GenMap(seed):
     random.seed(mapseed + seed)
@@ -38,7 +39,7 @@ def GenMap(seed):
             )
         return Planets
     
-    solar_name = f"{random.choice(Latters)}{random.choice(Latters)} {abs(seed)}-{abs(int(seed/20))}-{random.choice(Latters)}{random.randint(1,999)}"
+    solar_name = f"{random.choice(Articl)} {abs(seed)}-{abs(int(seed/20))}-{random.choice(Latters)}{random.randint(1,999)}"
 
     solar_class = random.choice(["O", "B", "A", "F", "G", "K", "M"])
     if solar_class == "O":

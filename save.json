@@ -9,10 +9,10 @@
         "Storage": [
             {
                 "ItemID": 0,
-                "ItemCount": 2198
+                "ItemCount": 2098
             }
         ],
-        "Fuel": 12
+        "Fuel": 9
     },
     "Fleet": [
         {
@@ -51,10 +51,15 @@
             "FleetID": 1,
             "FleetName": "Loxonia Starship",
             "Ships": [],
-            "Fuel": 87,
+            "Fuel": 12,
             "Modules": {},
             "Location": 1000,
-            "Storage": []
+            "Storage": [
+                {
+                    "ItemID": 0,
+                    "ItemCount": 99
+                }
+            ]
         },
         {
             "FleetID": 2,

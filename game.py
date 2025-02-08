@@ -33,13 +33,14 @@ if CommandInput == "2":
                 StarList.append(f"Космоносці{Colore.Blue} ⊴{Colore.Reset}")
                 break
     
-    if StarIs.get("StarIntel") and not StarIs.get("StarCivil") and not StarIs.get("StarControled"): StarSymbol = f"{Colore.Blue}⌬{Colore.Reset}"
-    elif StarIs.get("StarCivil") and StarIs.get("StarIntel"):
-        if StarIs.get("StarControled"): StarSymbol = f"{Colore.Red}⚑{Colore.Reset}"
-        else: StarSymbol = f"{Colore.Green}⚑{Colore.Reset}"
+    if StarIs.get("StarIntel"):
+        if StarIs.get("StarCivil"):
+            StarSymbol = f"{Colore.Red if StarIs.get('StarControled') else Colore.Green}⚑{Colore.Reset}"
+        elif not StarIs.get("StarControled"):
+            StarSymbol = f"{Colore.Blue}⌬{Colore.Reset}"
     else:
         StarSymbol = ""
-        
+            
     wl.Skip()
     print(f"{Colore.Gray}ID: {StarIs['StarID']}{Colore.Reset}")
     print(f" ▪ Зірка: {StarIs['Star']} {StarSymbol}")
