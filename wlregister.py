@@ -8,7 +8,7 @@ PlanetClass = [
 ]
 
 MapFilter = ["Досліднецько-політичний", "Територія", "Спектральний"]
-ShipClasses = ["Малий", "Вантажний", "Досліднецьке судно", "Військовий фрегат"]
+ShipClasses = ["Малий", "Вантажний", "Досліднецьке судно", "Військовий фрегат", "Тераформер"]
 FleetClasses = ["Великий корабель", "Флотоносець", "Конструкторний", "Космічний авантюрист"]
 
 Ships = [
@@ -30,23 +30,49 @@ Ships = [
     },
     {
         "ShipID": 2,
-        "ShipName": "BigFleet Explorer-36",
+        "ShipName": "Emu Exp-36",
         "ShipClass": 3,
         "ShipTravelingDist": 10,
         "ShipMaxFuel": 15,
         "ShipCoust": 3_750_000
+    },
+    {
+        "ShipID": 3,
+        "ShipName": "Emu Exp-50",
+        "ShipClass": 3,
+        "ShipTravelingDist": 15,
+        "ShipMaxFuel": 20,
+        "ShipCoust": 15_000_000
     }
 ]
 
 Fleets = [
     {
         "FleetID": 0,
+        "FleetModel": "ISC G-160 Booldog",
+        "FleetClass": 0,
+        "FleetMaxFuel": 200,
+        "FleetMaxHyperdrive": 300,
+        "FleetTravelingDist": 15,
+        "FleetCoust": 700_000_000
+    },
+    {
+        "FleetID": 1,
         "FleetModel": "Ra-Min H100",
         "FleetClass": 2,
         "FleetMaxFuel": 100,
         "FleetMaxHyperdrive": 1000,
         "FleetTravelingDist": 12,
         "FleetCoust": 1_500_000_000
+    },
+    {
+        "FleetID": 2,
+        "FleetModel": "ISC G-160 Booldog",
+        "FleetClass": 3,
+        "FleetMaxFuel": 50,
+        "FleetMaxHyperdrive": 5000,
+        "FleetTravelingDist": 15,
+        "FleetCoust": 700_000_000
     }
 ]
 

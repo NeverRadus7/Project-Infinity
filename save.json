@@ -4,7 +4,7 @@
         "Star": 1000
     },
     "Ship": {
-        "ShipID": 2,
+        "ShipID": 3,
         "ShipName": "HER 015",
         "Storage": [
             {
@@ -12,49 +12,70 @@
                 "ItemCount": 2198
             }
         ],
-        "Fuel": 9
+        "Fuel": 12
     },
-    "Fleet": {
-        "FleetID": 0,
-        "FleetName": "Emperor [ASTRANT]",
-        "Ships": [
-            {
-                "ShipID": 0,
-                "ShipName": "R-145",
-                "Storage": [],
-                "Fuel": 20
-            },
-            {
-                "ShipID": 0,
-                "ShipName": "R-145",
-                "Storage": [
-                    {
-                        "ItemID": 0,
-                        "ItemCount": 876
-                    }
-                ],
-                "Fuel": 20
-            }
-        ],
-        "Fuel": 25,
-        "Modules": {},
-        "Location": 1000,
-        "Storage": [
-            {
-                "ItemID": 0,
-                "ItemCount": 1982
-            }
-        ]
-    },
-    "Money": 57195219098,
-    "IntelBall": 0,
-    "XP": 49237708,
+    "Fleet": [
+        {
+            "FleetID": 0,
+            "FleetName": "Astrant",
+            "Ships": [
+                {
+                    "ShipID": 0,
+                    "ShipName": "R-145",
+                    "Storage": [
+                        {
+                            "ItemID": 0,
+                            "ItemCount": 876
+                        }
+                    ],
+                    "Fuel": 20
+                },
+                {
+                    "ShipID": 0,
+                    "ShipName": "R-145",
+                    "Storage": [],
+                    "Fuel": 20
+                }
+            ],
+            "Fuel": 96,
+            "Modules": {},
+            "Location": 1000,
+            "Storage": [
+                {
+                    "ItemID": 0,
+                    "ItemCount": 1979
+                }
+            ]
+        },
+        {
+            "FleetID": 1,
+            "FleetName": "Loxonia Starship",
+            "Ships": [],
+            "Fuel": 87,
+            "Modules": {},
+            "Location": 1000,
+            "Storage": []
+        },
+        {
+            "FleetID": 2,
+            "FleetName": "Hator",
+            "Ships": [],
+            "Fuel": 9749,
+            "Modules": {},
+            "Location": 1000,
+            "Storage": []
+        }
+    ],
+    "Money": 56194938928,
+    "IntelBall": 46532775,
+    "XP": 49326847,
     "Reputation": 0,
     "Atribution": [],
     "Statistic": {
-        "StarInteled": 13,
-        "StarControled": 12,
-        "CreditsFromSelled": 58016751581
+        "StarInteled": 23,
+        "StarControled": 22,
+        "CreditsFromSelled": 58016751581,
+        "CreditsFromScience": 0
     },
     "MapSettings": {
         "Filter": 0

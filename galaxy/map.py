@@ -78,6 +78,7 @@ def GenMap(seed):
         "Mass": solar_mass,
         "Size": solar_size,
         "Planets": PlanetGen(random.randint(1,8)),
+        "MapPosition": random.randint(1,3780)
     }
 
     # Генератор колонії

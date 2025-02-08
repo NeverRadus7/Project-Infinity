@@ -29,6 +29,6 @@ CustomStarsLock = [
             {"PlanetName": "Pluto", "PlanetClass": 0, "PlanetTemp": -218}
         ],
         "StarIntel": True,
-        "StarCivil": {"CivilEco": 1.053, "CivilStation": {"StationName": "Gaia Century", "StationType": 2, "StationStoreList": [0,1,3]}}
+        "StarCivil": {"CivilEco": 1.053, "CivilStation": {"StationName": "Gaia Century", "StationType": 2, "StationStoreList": [6,12,7,2,14]}}
     }
 ]

@@ -401,47 +401,93 @@ class wl(): # Main class
         a = datetime.date.today()
         return a
     
-    def InvAdd(itemID, count, inStorage):
+    def InvAdd(itemID, count):
         if itemID > len(ItemsDB):
             wl.Error(f"Предмет із номером #{itemID} не існує")
         else:
-            if len(PlayerIs[inStorage]['Storage']) == 0:
-                PlayerIs[inStorage]['Storage'].append(
+            if len(PlayerIs["Ship"]['Storage']) == 0:
+                PlayerIs["Ship"]['Storage'].append(
                     {
                         "ItemID": itemID,
                         "ItemCount": count
                     }
                 )
             else:
-                for alli in range(len(PlayerIs[inStorage]['Storage'])):
-                    ItemIs = PlayerIs[inStorage]['Storage'][alli]
+                FleetID = None
+                for alli in range(len(PlayerIs["Ship"]['Storage'])):
+                    ItemIs = PlayerIs["Ship"]['Storage'][alli]
                     if ItemIs['ItemID'] == itemID:
                         break
                 if ItemIs['ItemID'] == itemID:
                     ItemIs['ItemCount'] += count
                 else:
-                    PlayerIs[inStorage]['Storage'].append(
+                    PlayerIs["Ship"]['Storage'].append(
                         {
                             "ItemID": itemID,
                             "ItemCount": count
                         }
                     )
         
-    def InvRem(itemID, count, inStorage):
+    def InvRem(itemID, count):
         if itemID > len(ItemsDB):
             wl.Error(f"Предмет із номером #{itemID} не існує")
         else:
-            if len(PlayerIs[inStorage]['Storage']) == 0:
+            if len(PlayerIs["Ship"]['Storage']) == 0:
                 wl.Error("В сховище порожньо")
             else:
-                for alli in range(len(PlayerIs[inStorage]['Storage'])):
-                    ItemIs = PlayerIs[inStorage]['Storage'][alli]
+                for alli in range(len(PlayerIs["Ship"]['Storage'])):
+                    ItemIs = PlayerIs["Ship"]['Storage'][alli]
                     if ItemIs['ItemID'] == itemID:
                         ItemIsID = alli
                         break
                 if ItemIs['ItemID'] == itemID:
                     if ItemIs['ItemCount'] <= count:
-                        PlayerIs[inStorage]['Storage'].pop(ItemIsID)
+                        PlayerIs["Ship"]['Storage'].pop(ItemIsID)
+                    else:
+                        ItemIs['ItemCount'] -= count
+
+    def FleetInvAdd(itemID, count, FleetID):
+        if itemID > len(ItemsDB):
+            wl.Error(f"Предмет із номером #{itemID} не існує")
+        else:
+            if len(PlayerIs["Fleet"][FleetID]['Storage']) == 0:
+                PlayerIs["Fleet"][FleetID]['Storage'].append(
+                    {
+                        "ItemID": itemID,
+                        "ItemCount": count
+                    }
+                )
+            else:
+                FleetID = None
+                for alli in range(len(PlayerIs["Fleet"][FleetID]['Storage'])):
+                    ItemIs = PlayerIs["Fleet"][FleetID]['Storage'][alli]
+                    if ItemIs['ItemID'] == itemID:
+                        break
+                if ItemIs['ItemID'] == itemID:
+                    ItemIs['ItemCount'] += count
+                else:
+                    PlayerIs["Fleet"][FleetID]['Storage'].append(
+                        {
+                            "ItemID": itemID,
+                            "ItemCount": count
+                        }
+                    )
+        
+    def FleetInvRem(itemID, count, FleetID):
+        if itemID > len(ItemsDB):
+            wl.Error(f"Предмет із номером #{itemID} не існує")
+        else:
+            if len(PlayerIs["Fleet"][FleetID]['Storage']) == 0:
+                wl.Error("В сховище порожньо")
+            else:
+                for alli in range(len(PlayerIs["Fleet"][FleetID]['Storage'])):
+                    ItemIs = PlayerIs["Fleet"][FleetID]['Storage'][alli]
+                    if ItemIs['ItemID'] == itemID:
+                        ItemIsID = alli
+                        break
+                if ItemIs['ItemID'] == itemID:
+                    if ItemIs['ItemCount'] <= count:
+                        PlayerIs["Fleet"][FleetID]['Storage'].pop(ItemIsID)
                     else:
                         ItemIs['ItemCount'] -= count
 
@@ -472,13 +518,14 @@ class ProjectInfinity():
         file = open("galaxy/mapchanges.py", "w", encoding="utf-8")
         file.write(f"CustomStars = {CustomStars}")
     
-    def GalaxyMap(type):
+    def GalaxyMap(type, FleetID=None):
         StartLoc = PlayerIs['Location']['Star']
+        StartMapLoc = PlayerIs['Location']['Star']
         while True:
             wl.Skip()
             empty_map = ""
 
-            for star in range(StartLoc-TravelDistation, StartLoc+(TravelDistation + 1)):
+            for star in range(StartMapLoc-20, StartMapLoc+20):
                 StarIs = GenMap(star)
                 SymbolFrame = ""
                 SymbolFrameBack = ""
@@ -488,10 +535,12 @@ class ProjectInfinity():
                     PlayerSymbol = SymbolOfStar
 
                 if PlayerIs.get("Fleet"):
-                    if PlayerIs['Fleet']['Location'] == StarIs['StarID']:
-                        FleetSymbol = f"{Colore.Blue} ⊴{Colore.Reset}"
-                    else:
-                        FleetSymbol = ""
+                    for i in range(len(PlayerIs['Fleet'])):
+                        if PlayerIs['Fleet'][i]['Location'] == StarIs['StarID']:
+                            FleetSymbol = f"{Colore.Blue} ⊴{Colore.Reset}"
+                            break
+                        else:
+                            FleetSymbol = ""
                 else:
                     FleetSymbol = ""
 
@@ -534,17 +583,25 @@ class ProjectInfinity():
                     SelectedFrame = " "
                     SelectedFrameBack = " "
                 
+                
+                #sp = ":" * 3780
+                #empty_map = sp[:StarIs['MapPosition']] + f"{SelectedFrame}{PlayerLight}{PlayerSymbol} {StarIs['Star']}{Colore.Reset}{FleetSymbol}{SelectedFrameBack}" + sp[StarIs['MapPosition']+len(f"{SelectedFrame}{PlayerLight}{PlayerSymbol} {StarIs['Star']}{Colore.Reset}{FleetSymbol}{SelectedFrameBack}"):]
                 sp = "⁝" * random.randint(MinFulling,MaxFulling)
                 empty_map += f"{Colore.Gray}{sp}{Colore.Reset}{SelectedFrame}{PlayerLight}{PlayerSymbol} {StarIs['Star']}{Colore.Reset}{FleetSymbol}{SelectedFrameBack}{Colore.Gray}{sp}{Colore.Reset}"
 
             text = "Galaxy Map"
             print(f"{"─" * (int(ConsoleSizeX / 2) - len(text))} {text} {"─" * (int(ConsoleSizeX / 2)-1)}")
             MapFilterPrint = f"{colorama.Back.WHITE}{colorama.Fore.BLACK}█ Фільтр мапи: {MapFilter[PlayerIs['MapSettings']['Filter']]} █{colorama.Back.RESET}{colorama.Fore.RESET}"
-            print(MapFilterPrint)
+            ShiftMap = f"{colorama.Back.WHITE}{colorama.Fore.BLACK} Центр: {StartMapLoc} █{colorama.Fore.RESET}{colorama.Back.RESET}"
+            print(MapFilterPrint,ShiftMap)
             print(f"{"─" * ConsoleSizeX}")
             StarIs = GenMap(PlayerIs['Location']['Star'])
             Distation = abs(PlayerIs['Location']['Star'] - StartLoc)
-            print(empty_map)
+            def mapprint(m, ml):
+                if len(m) > ml:
+                    m = m[:ml]
+                print(m)
+            mapprint(empty_map, 4875)
 
             if StarIs.get("PlayerPinned") and StarIs['PlayerPinned'] == True:
                 SelectedStar = f"{colorama.Back.YELLOW}{colorama.Fore.BLACK}█ Вибрано: {StarIs['Star']} █{colorama.Back.RESET}{colorama.Fore.RESET}"
@@ -565,12 +622,19 @@ class ProjectInfinity():
                 PlayerIs['Location']['Star'] -= 1
             if com == "s" or com == "S":
                 PlayerIs['Location']['Star'] += 1
+            if com == "z" or com == "Z":
+                StartMapLoc += 1
+            if com == "x" or com == "Z":
+                StartMapLoc -= 1
+            if com == "c" or com == "C":
+                StartMapLoc = int(input("Назначити центр: "))
             if com == " ":
                 if StartLoc == PlayerIs['Location']['Star']:
                     wl.Skip()
                     break
                 else:
                     if type == "SHIP":
+                        FleetID = None
                         if Distation > TravelDistation:
                             wl.Error("Занадто далеко!")
                         if PlayerIs['Ship']['Fuel'] >= FuelRequire:
@@ -587,10 +651,10 @@ class ProjectInfinity():
                     if type == "FLEET":
                         if Distation > TravelDistation:
                             wl.Error("Занадто далеко!")
-                        if PlayerIs['Ship']['Fuel'] >= FuelRequire:
+                        if PlayerIs['Fleet'][FleetID]['Fuel'] >= FuelRequire:
                             PlayerIs['Location']['Star']
-                            PlayerIs['Fleet']['Location'] = PlayerIs['Location']['Star']
-                            PlayerIs['Fleet']['Fuel'] -= FuelRequire
+                            PlayerIs['Fleet'][FleetID]['Location'] = PlayerIs['Location']['Star']
+                            PlayerIs['Fleet'][FleetID]['Fuel'] -= FuelRequire
                             PlayerIs['MapSettings']['Filter'] = 0
                             wl.Loading(f"Подорож до {GenMap(PlayerIs['Location']['Star'])['Star']}", 5)
                             wl.SaveJSON("save.json", save)
@@ -605,18 +669,16 @@ class ProjectInfinity():
                 exit()
             if type == "FLEET":
                 if com == "e":
-                    wl.Massage("Ви перейшли до Гіперстрибку флотоносця - в цьому режимі, Ви можете відправитися куда-завгодно, але це вимагає багато палива!")
-                    wl.Skip()
                     StarChoiceFleet = int(input("Пункт призначення: "))
                     HyperDistant = abs(StartLoc - StarChoiceFleet)
-                    if HyperDistant > FleetMaxDistant:
+                    if HyperDistant > Fleets[PlayerIs['Fleet'][FleetID]['FleetID']]['FleetMaxHyperdrive']:
                         wl.Error("Занадто далеко")
-                    if PlayerIs['Fleet']['Fuel'] <= 50:
+                    if PlayerIs['Fleet'][FleetID]['Fuel'] < 50:
                         wl.Error("Не достатньо пального!")
                     else:
                         PlayerIs['Location']['Star'] = StarChoiceFleet
-                        PlayerIs['Fleet']['Location'] = StarChoiceFleet
-                        PlayerIs['Fleet']['Fuel'] -= 50
+                        PlayerIs['Fleet'][FleetID]['Location'] = StarChoiceFleet
+                        PlayerIs['Fleet'][FleetID]['Fuel'] -= 50
                         StartLoc = StarChoiceFleet
                         wl.Loading(f"Перебуваємо в гіперстрибку до {GenMap(StarChoiceFleet)['Star']}", 10)
                         break

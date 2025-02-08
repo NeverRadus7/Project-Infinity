@@ -28,12 +28,21 @@ if CommandInput == "2":
         StarList.append("Засновати власну колонію")
 
     if PlayerIs.get("Fleet"):
-        if PlayerIs['Fleet']['Location'] == StarIs['StarID']:
-            StarList.append(f"Флотоносець{Colore.Blue} ⊴{Colore.Reset}")
+        for i in range(len(PlayerIs['Fleet'])):
+            if PlayerIs['Fleet'][i]['Location'] == StarIs['StarID']:
+                StarList.append(f"Космоносці{Colore.Blue} ⊴{Colore.Reset}")
+                break
+    
+    if StarIs.get("StarIntel") and not StarIs.get("StarCivil") and not StarIs.get("StarControled"): StarSymbol = f"{Colore.Blue}⌬{Colore.Reset}"
+    elif StarIs.get("StarCivil") and StarIs.get("StarIntel"):
+        if StarIs.get("StarControled"): StarSymbol = f"{Colore.Red}⚑{Colore.Reset}"
+        else: StarSymbol = f"{Colore.Green}⚑{Colore.Reset}"
+    else:
+        StarSymbol = ""
         
     wl.Skip()
     print(f"{Colore.Gray}ID: {StarIs['StarID']}{Colore.Reset}")
-    print(f" ▪ Зірка: {StarIs['Star']}")
+    print(f" ▪ Зірка: {StarIs['Star']} {StarSymbol}")
     print(f" ▪ Спек. клас: {StarIs['Class']}")
     print(f" ▪ Температура: {StarIs['Temp']:,} K")
     print(f" ▪ Радіус: {StarIs['Size']:,} рад. Сонця")
@@ -63,7 +72,7 @@ if CommandInput == "2":
             wl.Loading(f"Досліджуємо зірку {StarIs['Star']}", 5)
             for planets in range(len(StarIs['Planets'])):
                 PlanetIs = StarIs['Planets'][planets]['PlanetName']
-                wl.Loading(f"Скануємо поверхню та проводимо аніліз планети {PlanetIs}", 3)
+                wl.Loading(f"Скануємо планету {PlanetIs}", 3)
             PlayerIs['Statistic']['StarInteled'] += 1
             PlayerIs['IntelBall'] += (random.randint(100,500)) * ((len(StarIs['Planets']) * wl.Level))
             PlayerIs['XP'] += random.randint(100,1000) * (len(StarIs['Planets']))
@@ -91,48 +100,65 @@ if CommandInput == "2":
     if StarInput == "Засновати власну колонію":
         wl.Massage("Заснування колонії - це третій шаг встановлення влади, колонії дають можливість продавати чи покупати товари, мати постійне місце проживання та постійний прибуток. Але під постійним прибуток вважається стабільна економіка системи, яка урегулюєця трьома параметрами: кількість планет, популярність та тип головної станції системи.")
         wl.Massage("Перед тим, як заснувати, вам треба мати: Флотоносець класу Контруктор, 100,000,000 © та 30 рівень галактичної репутації")
+        for i in range(len(PlayerIs['Fleet'])):
+            FleetIs = PlayerIs['Fleet'][i]
+            if FleetIs['Location'] == StarIs['StarID']:
+                break
+            else: pass
         if PlayerIs['Money'] >= 100_000_000: wl.ParrametrInspect(True, "Наявність 100,000,000 ©")
         else: wl.ParrametrInspect(False, "Наявність 100,000,000 ©")
         if wl.Level >= 30: wl.ParrametrInspect(True, "Наявність 30 рівня")
         else: wl.ParrametrInspect(False, "Наявність 30 рівня")
         if PlayerIs.get("Fleet"): 
-            if Fleets[PlayerIs['Fleet']['FleetID']]['FleetClass'] == 2: wl.ParrametrInspect(True, "Флотоносець класу Контруктор")
+            if Fleets[FleetIs['FleetID']]['FleetClass'] == 2: wl.ParrametrInspect(True, "Флотоносець класу Конструктор")
             else: wl.ParrametrInspect(False, "Флотоносець класу Конструкторний")
         else: wl.ParrametrInspect(False, "Флотоносець класу Конструкторний")
         time.sleep(3)
         if wl.Level >= 30:
-            if Fleets[PlayerIs['Fleet']['FleetID']]['FleetClass'] == 2:
-                if PlayerIs['Fleet']['Location'] == StarIs['StarID']:
+            if Fleets[FleetIs['FleetID']]['FleetClass'] == 2:
+                if FleetIs['Location'] == StarIs['StarID']:
                     wl.Loading("Будування станції", 5)
                     PlayerIs['Money'] -= 100_000_000
                     ProjectInfinity.StarChange(StarIs['StarID'], "StarCivil", {"CivilEco": random.uniform(CivilEcoMin,CivilEcoMax), "CivilStation": {"StationName": f"{ranname()} Station", "StationType": random.randint(0,2), "StationStoreList": random.sample(range(len(ItemsDB)), 5)}})
         else:
             wl.Error("Не достатній рівень (>30)")
 
-    if StarInput == f"Флотоносець{Colore.Blue} ⊴{Colore.Reset}":
+    if StarInput == f"Космоносці{Colore.Blue} ⊴{Colore.Reset}":
         wl.Skip()
-        print(f" ▪ Флотоносець: {PlayerIs['Fleet']['FleetName']}")
-        print(f" ▪ Модель: {Fleets[PlayerIs['Fleet']['FleetID']]['FleetModel']}")
-        print(f" ▪ Клас: {FleetClasses[Fleets[PlayerIs['Fleet']['FleetID']]['FleetClass']]}")
-        print(f" ▪ Палива: {PlayerIs['Fleet']['Fuel']}/{Fleets[PlayerIs['Fleet']['FleetID']]['FleetMaxFuel']}")
-        print(f" ▪ Макс. дальність: {Fleets[PlayerIs['Fleet']['FleetID']]['FleetMaxHyperdrive']} св. р")
-        print(f" ▪ Кораблів в сховище: {len(PlayerIs['Fleet']['Ships']):,}")
-        print(f" ▪ Товарів в сховище: {len(PlayerIs['Fleet']['Storage']):,}")
+        for i in range(len(PlayerIs['Fleet'])):
+            FleetIs = PlayerIs['Fleet'][i]
+            if FleetIs['Location'] == StarIs['StarID']:
+                print(f"{i+1}. {FleetIs['FleetName']} ▪ Модель: {Fleets[FleetIs['FleetID']]['FleetModel']} ▪ Клас: {FleetClasses[Fleets[FleetIs['FleetID']]['FleetClass']]} ▪ Палива: {FleetIs['Fuel']}")
+
+        FleetIsChoice = int(input("Вибрати: "))-1
+        FleetIs = PlayerIs['Fleet'][FleetIsChoice]
+
+        if FleetIs['Location'] != StarIs['StarID']:
+            wl.Error("Космоносця не знайдено")
+
+        wl.Skip()
+        print(f" ▪ Космоносець: {FleetIs['FleetName']}")
+        print(f" ▪ Модель: {Fleets[FleetIs['FleetID']]['FleetModel']}")
+        print(f" ▪ Клас: {FleetClasses[Fleets[FleetIs['FleetID']]['FleetClass']]}")
+        print(f" ▪ Палива: {FleetIs['Fuel']}/{Fleets[FleetIs['FleetID']]['FleetMaxFuel']}")
+        print(f" ▪ Макс. дальність: {Fleets[FleetIs['FleetID']]['FleetMaxHyperdrive']} св. р")
+        print(f" ▪ Кораблів в сховище: {len(FleetIs['Ships']):,}")
+        print(f" ▪ Товарів в сховище: {len(FleetIs['Storage']):,}")
         print()
 
-        FleetList = ["Галактична карта","Грузовий відсік","Ангар"]
+        FleetList = ["Галактична карта","Грузовий відсік","Ангар","Переіменувати космоносець"]
         FleetChoice = wl.ChoiceMenu(FleetList)
 
         if FleetChoice == "Галактична карта":
-            ProjectInfinity.GalaxyMap("FLEET")
+            ProjectInfinity.GalaxyMap("FLEET", FleetIsChoice)
         if FleetChoice == "Грузовий відсік":
             wl.Skip()
             StorageList = ['Переглянути вміст', "Перемістити предмети"]
             StorageChoice = wl.ChoiceMenu(StorageList)
             if StorageChoice == "Переглянути вміст":
                 wl.Skip()
-                for alli in range(len(PlayerIs['Fleet']['Storage'])):
-                    ItemIs = PlayerIs['Fleet']['Storage'][alli]
+                for alli in range(len(FleetIs['Storage'])):
+                    ItemIs = FleetIs['Storage'][alli]
                     print(f"{alli+1}. {ItemsDB[ItemIs['ItemID']]['ItemName']} ▪ Кількість: {ItemIs['ItemCount']:,}")
                 
                 ItemChoice = int(input("Вибрати: ")) - 1
@@ -140,14 +166,14 @@ if CommandInput == "2":
                 if ItemChoice+1 > len(PlayerIs['Ship']['Storage']) and ItemChoice+1 <= 0:
                     wl.Error("Недопустиме введення")
                 else:
-                    ItemIs = PlayerIs['Fleet']['Storage'][ItemChoice]
+                    ItemIs = FleetIs['Storage'][ItemChoice]
                     if ItemsDB[ItemIs['ItemID']]['ItemName'] == ItemsDB[0]['ItemName']:
                         if ItemsDB[ItemIs['ItemID']]['ItemType'] == 0:
-                            FuelMaxCapacity = Fleets[PlayerIs['Fleet']['FleetID']]['FleetMaxFuel']
-                            PlayerIs['Fleet']['Fuel'] += 25
-                            if PlayerIs['Fleet']['Fuel'] > FuelMaxCapacity: PlayerIs['Fleet']['Fuel'] = FuelMaxCapacity
+                            FuelMaxCapacity = Fleets[FleetIs['FleetID']]['FleetMaxFuel']
+                            FleetIs['Fuel'] += 25
+                            if FleetIs['Fuel'] > FuelMaxCapacity: FleetIs['Fuel'] = FuelMaxCapacity
                             wl.Loading("Заправлення", 3)
-                            wl.InvRem(0, 1, 'Fleet')
+                            wl.FleetInvRem(0, 1, FleetIsChoice)
 
             if StorageChoice == "Перемістити предмети":
                 wl.Skip()
@@ -168,27 +194,33 @@ if CommandInput == "2":
                             wl.Error("Перебільшена кількість")
                         else:
                             wl.Loading("Переміщення товару", 3)
-                            wl.InvAdd(ItemIs['ItemID'], ItemCount, "Fleet")
-                            wl.InvRem(ItemIs['ItemID'], ItemCount, "Ship")
+                            wl.FleetInvAdd(ItemIs['ItemID'], ItemCount, FleetIsChoice)
+                            wl.InvRem(ItemIs['ItemID'], ItemCount)
 
                 if MoveItemChoice == "Флотоносець -> Корабель":
                     wl.Skip()
-                    for alli in range(len(PlayerIs['Fleet']['Storage'])):
-                        ItemIs = PlayerIs['Fleet']['Storage'][alli]
+                    for alli in range(len(FleetIs['Storage'])):
+                        ItemIs = FleetIs['Storage'][alli]
                         print(f"{alli+1}. {ItemsDB[ItemIs['ItemID']]['ItemName']} ▪ Кількість: {ItemIs['ItemCount']:,}")
                     
                     ItemChoice = int(input("Вибрати: ")) - 1
-                    if ItemChoice+1 > len(PlayerIs['Fleet']['Storage']) and ItemChoice+1 <= 0:
+                    if ItemChoice+1 > len(FleetIs['Storage']) and ItemChoice+1 <= 0:
                         wl.Error("Недопустиме введення")
                     else:
-                        ItemIs = PlayerIs['Fleet']['Storage'][ItemChoice]
+                        ItemIs = FleetIs['Storage'][ItemChoice]
                         ItemCount = int(input("Скільки перемістити: "))
                         if ItemCount > ItemIs['ItemCount']:
                             wl.Error("Перебільшена кількість")
                         else:
                             wl.Loading("Переміщення товару", 3)
-                            wl.InvAdd(ItemIs['ItemID'], ItemCount, "Ship")
-                            wl.InvRem(ItemIs['ItemID'], ItemCount, "Fleet")
+                            wl.InvAdd(ItemIs['ItemID'], ItemCount)
+                            wl.FleetInvRem(ItemIs['ItemID'], ItemCount, FleetIsChoice)
+                
+        if FleetChoice == "Переіменувати космоносець":
+            wl.Skip()
+            NewFleetName = input("Нова назва: ")
+            if NewFleetName == "": exit()
+            FleetIs['FleetName'] = NewFleetName
         
         if FleetChoice == "Ангар":
             wl.Skip()
@@ -197,27 +229,27 @@ if CommandInput == "2":
 
             if AngarChoice == "Подивитися вміст":
                 wl.Skip()
-                for i in range(len(PlayerIs['Fleet']['Ships'])):
-                    ShipIs = PlayerIs['Fleet']['Ships'][i]
+                for i in range(len(FleetIs['Ships'])):
+                    ShipIs = FleetIs['Ships'][i]
                     InShipsIs = Ships[ShipIs['ShipID']]
                     print(f"{i+1}. {ShipIs['ShipName']} ▪ Модель корабля: {InShipsIs['ShipName']}")
                 input()
 
             if AngarChoice == "Використати корабель":
                 wl.Skip()
-                for i in range(len(PlayerIs['Fleet']['Ships'])):
-                    ShipIs = PlayerIs['Fleet']['Ships'][i]
+                for i in range(len(FleetIs['Ships'])):
+                    ShipIs = FleetIs['Ships'][i]
                     InShipsIs = Ships[ShipIs['ShipID']]
                     print(f"{i+1}. {ShipIs['ShipName']} ▪ Модель корабля: {InShipsIs['ShipName']}")
                 
                 ShipIs = int(input("Вибрати: ")) - 1
-                if ShipIs > len(PlayerIs['Fleet']['Ships']) or ShipIs < 0:
+                if ShipIs > len(FleetIs['Ships']) or ShipIs < 0:
                     wl.Error("Невірне введення")
                 else:
                     wl.Loading("Сідаємо до іншого корабля", 3)
-                    PlayerIs['Fleet']['Ships'].append(PlayerIs['Ship'])
-                    PlayerIs['Ship'] = PlayerIs['Fleet']['Ships'][ShipIs]
-                    PlayerIs['Fleet']['Ships'].pop(ShipIs)
+                    FleetIs['Ships'].append(PlayerIs['Ship'])
+                    PlayerIs['Ship'] = FleetIs['Ships'][ShipIs]
+                    FleetIs['Ships'].pop(ShipIs)
 
 if CommandInput == "3":
     wl.Skip()
@@ -235,20 +267,25 @@ if CommandInput == "3":
         if PlanetIs['PlanetClass'] == 3:
             wl.Error("На газових гігантів посадка неможлива")
         else:
-            while True:
-                wl.Skip()
-                PlanetList = ["Зробити поверхневий аналіз", "Видобуток корисних копалин"]
-                if StarIs['StarControled']:
-                    PlanetList.append("Переіменувати планету")
-                PlanetList.append("Вийти із планети")
-                print(f" ▪ Планета: {PlanetIs['PlanetName']}")
-                wl.Menu(PlanetList)
-                PlanetChoice = input("Вибрати: ")
-                if PlanetChoice == "": pass
-                if PlanetChoice == "Вийти із планети":
-                    break
+            wl.Skip()
 
-                
+            PlanetList = ["Зробити поверхневий аналіз", "Видобуток корисних копалин"]
+            if StarIs['StarControled']:
+                PlanetList.append("Переіменувати планету")
+
+            print(f" ▪ Планета: {PlanetIs['PlanetName']}")
+            print(f" ▪ Клас: {PlanetClass[PlanetIs['PlanetClass']]}")
+            print(f" ▪ Температура: {PlanetIs['PlanetTemp']} °C\n")
+            PlanetChoice = wl.ChoiceMenu(PlanetList)
+
+            if PlanetChoice == "Переіменувати планету":
+                wl.Skip()
+                NewPlanetName = input("Нова назва: ")
+                if NewPlanetName == "":
+                    exit()
+                PlanetIs['PlanetName'] = NewPlanetName
+                ProjectInfinity.StarChange(StarIs['StarID'], "Planets", StarIs['Planets'])
+                wl.Loading("Застосовуємо зміни", 1)
 
 if CommandInput == "4":
     if StarIs.get("StarCivil"):
@@ -302,7 +339,12 @@ if CommandInput == "4":
                         PlayerIs['Money'] -= int(ShipChoised['ShipCoust'] * StarIs['StarCivil']['CivilEco'])
                         PlayerIs['XP'] += int(int(ShipChoised['ShipCoust'] * StarIs['StarCivil']['CivilEco']) / 5)
                     def ShipBuyToFleetScript():
-                        PlayerIs['Fleet']['Ships'].append(
+                        for i in range(len(PlayerIs['Fleet'])):
+                            FleetIs = PlayerIs['Fleet'][i]
+                            if FleetIs['Location'] == StarIs['StarID']:
+                                break
+                            else: pass
+                        FleetIs['Ships'].append(
                             {
                                 "ShipID": ShipChoised['ShipID'],
                                 "ShipName": ShipChoised['ShipName'],
@@ -314,13 +356,19 @@ if CommandInput == "4":
                         PlayerIs['XP'] += int(int(ShipChoised['ShipCoust'] * StarIs['StarCivil']['CivilEco']) / 5)
                     
                     if PlayerIs.get("Fleet"):
-                        if PlayerIs['Fleet']['Location'] == StarIs['StarID']:
+                        for i in range(len(PlayerIs['Fleet'])):
+                            if PlayerIs['Fleet'][i]['Location'] == StarIs['StarID']:
+                                FleetIs = PlayerIs['Fleet'][i]
+                                break
+                        if FleetIs['Location'] == StarIs['StarID']:
                             wl.Skip()
                             TypeBuy = wl.ChoiceMenu(["Купити та замінити свій корабель", "Купити та перемістити до флотоносця"])
                             if TypeBuy == "Купити та перемістити до флотоносця":
                                 wl.Loading("Купівля", 3)
                                 ShipBuyToFleetScript()
                             else:
+                                ShipBuyScript()
+                        else:
                                 ShipBuyScript()
                     else:
                         ShipBuyScript()
@@ -382,12 +430,18 @@ if CommandInput == "4":
                 else:
                     FleetIs = Fleets[FleetChoice]
                     if PlayerIs['Money'] > FleetIs['FleetCoust']:
+                        PlayerIs['Fleet'].append(
+                            {
+                                "FleetID": FleetIs['FleetID'],
+                                "FleetName": FleetIs['FleetID']['FleetModel'],
+                                "Ships": [],
+                                "Storage": [],
+                                "Location": StarIs['StarID'],
+                                "Modules": {},
+                                "Fuel": FleetIs['FleetMaxFuel']
+                            }
+                        )
                         PlayerIs['Money'] -= FleetCoust
-                        PlayerIs['Fleet']['FleetID'] = FleetIs['FleetID']
-                        PlayerIs['Fleet']['FleetName'] = FleetIs['FleetName']
-                        PlayerIs['Fleet']['Location'] = StarIs['StarID']
-                        PlayerIs['Fleet']['Modules'] = {}
-                        PlayerIs['Fleet']['Fuel'] = FleetIs['FleetMaxFuel']
 
 if CommandInput == "5":
     wl.Skip()
@@ -400,7 +454,7 @@ if CommandInput == "5":
         print(f" ▪ Систем під контролем: {PlayerIs['Statistic']['StarControled']:,}")
         print()
         print(f" ▪ Усього кредитів отримана з торгівлі: {PlayerIs['Statistic']['CreditsFromSelled']:,} ©")
-        if PlayerIs.get("Fleet"): print(f" ▪ Місце розташування флотоносця: {GenMap(PlayerIs['Fleet']['Location'])['Star']} ({GenMap(PlayerIs['Fleet']['Location'])['StarID']})")
+        print(f" ▪ Усього кредитів отримана з досліджень: {PlayerIs['Statistic']['CreditsFromScience']:,} ©")
         input()
 
     if OtherCom == "Сховище корабля":

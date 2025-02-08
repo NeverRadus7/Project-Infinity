@@ -14,6 +14,3 @@ CivilEcoMin = 0.8
 CivilEcoMax = 1.2
 MinFulling = 20
 MaxFulling = 60
-
-# Fleet settings
-FleetMaxDistant = 1000
