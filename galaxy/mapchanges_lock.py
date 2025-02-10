@@ -4,11 +4,11 @@ CustomStarsLock = [
         "Star": "Sagittarius A*",
         "Class": "Galaxy Core",
         "Temp": 210000,
-        "Size": 60320,
-        "Mass": 112056,
+        "Size": 17,
+        "Mass": 4_300_000,
         "Planets": [{"PlanetName": "Galileo", "PlanetClass": 4, "PlanetTemp": 21}],
         "StarIntel": True,
-        "StarCivil": {"CivilEco": 1, "CivilStation": {"StationName": "Maia Core", "StationType": 0, "StationStoreList": [0,1,2]}}
+        "StarCivil": {"CivilEco": 1, "CivilStation": {"StationName": "Maia Core", "StationType": 0, "StationStoreList": [0,1,2]}, "CivilFraction": {"FractionName": "Galaxy Core United Army", "FractionPop": 83_472_516}}
     },
     {
         "StarID": 273,
@@ -29,6 +29,6 @@ CustomStarsLock = [
             {"PlanetName": "Pluto", "PlanetClass": 0, "PlanetTemp": -218}
         ],
         "StarIntel": True,
-        "StarCivil": {"CivilEco": 1.053, "CivilStation": {"StationName": "Gaia Century", "StationType": 2, "StationStoreList": [6,12,7,2,14]}}
+        "StarCivil": {"CivilEco": 1.053, "CivilStation": {"StationName": "Gaia Century", "StationType": 2, "StationStoreList": [6,12,7,2,14]}, "CivilFraction": {"FractionName": "Earth Mother", "FractionPop": 17_536_975_012}}
     }
 ]

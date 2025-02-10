@@ -34,8 +34,8 @@ if CommandInput == "2":
                 break
     
     if StarIs.get("StarIntel"):
-        if StarIs.get("StarCivil"):
-            StarSymbol = f"{Colore.Red if StarIs.get('StarControled') else Colore.Green}⚑{Colore.Reset}"
+        if StarIs.get("StarControled"):
+            StarSymbol = f"{Colore.Green if StarIs.get('StarCivil') else Colore.Red}⚑{Colore.Reset}"
         elif not StarIs.get("StarControled"):
             StarSymbol = f"{Colore.Blue}⌬{Colore.Reset}"
     else:
@@ -58,6 +58,8 @@ if CommandInput == "2":
         if StarIs.get("StarControled"):
             print(f"     - Підкорив: {PlayerIs['Nickname']}")
         if StarIs.get("StarCivil") and not StarIs['StarCivil']['CivilStation'] == {}:
+            print(f"     - Системні володарі: {StarIs['StarCivil']['CivilFraction']['FractionName']}")
+            print(f"     - Населення: {StarIs['StarCivil']['CivilFraction']['FractionPop']:,}")
             print(f"     - Станція: {StarIs['StarCivil']['CivilStation']['StationName']}")
     print()
     print(f" ▪ Планет:")
@@ -120,7 +122,24 @@ if CommandInput == "2":
                 if FleetIs['Location'] == StarIs['StarID']:
                     wl.Loading("Будування станції", 5)
                     PlayerIs['Money'] -= 100_000_000
-                    ProjectInfinity.StarChange(StarIs['StarID'], "StarCivil", {"CivilEco": random.uniform(CivilEcoMin,CivilEcoMax), "CivilStation": {"StationName": f"{ranname()} Station", "StationType": random.randint(0,2), "StationStoreList": random.sample(range(len(ItemsDB)), 5)}})
+                    ProjectInfinity.StarChange(
+                        StarIs['StarID'], 
+                        "StarCivil", 
+                        {
+                            "CivilEco": random.uniform(CivilEcoMin,CivilEcoMax), 
+                            "CivilStation": {
+                                "StationName": f"{ranname()} Station", 
+                                "StationType": random.randint(0,2), 
+                                "StationStoreList": random.sample(range(len(ItemsDB)), 5)}, 
+                            "CivilFraction": {
+                                "FractionName": f"{PlayerIs['Nickname']} Company",
+                                "FractionPop": random.randint(100,1000),
+                                "FractionEcoType": 0,
+                                "FractionRep": 100,
+                                "FractionPolType": 0
+                            }
+                        }
+                    )
         else:
             wl.Error("Не достатній рівень (>30)")
 
@@ -270,8 +289,12 @@ if CommandInput == "3":
         else:
             wl.Skip()
 
-            PlanetList = ["Зробити поверхневий аналіз", "Видобуток корисних копалин"]
-            if StarIs['StarControled']:
+            PlanetList = []
+            if "Surface Mining Device" in PlayerIs['Atribution']:
+                PlanetList.append("Видобуток корисних копалин")
+            if not StarIs.get('StarCivil') and StarIs['StarCivil'] != {}:
+                PlanetList.append("Зробити поверхневий аналіз")
+            if StarIs.get('StarControled') and StarIs['StarControled'] == True:
                 PlanetList.append("Переіменувати планету")
 
             print(f" ▪ Планета: {PlanetIs['PlanetName']}")

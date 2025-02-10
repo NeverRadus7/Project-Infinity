@@ -1,7 +1,7 @@
 {
     "Nickname": "★ NeverRadus7",
     "Location": {
-        "Star": 1000
+        "Star": 1
     },
     "Ship": {
         "ShipID": 3,
@@ -12,7 +12,7 @@
                 "ItemCount": 2098
             }
         ],
-        "Fuel": 9
+        "Fuel": 5
     },
     "Fleet": [
         {
@@ -53,11 +53,11 @@
             "Ships": [],
             "Fuel": 12,
             "Modules": {},
-            "Location": 1000,
+            "Location": 1,
             "Storage": [
                 {
                     "ItemID": 0,
-                    "ItemCount": 99
+                    "ItemCount": 97
                 }
             ]
         },
@@ -65,20 +65,20 @@
             "FleetID": 2,
             "FleetName": "Hator",
             "Ships": [],
-            "Fuel": 9749,
+            "Fuel": 9348,
             "Modules": {},
             "Location": 1000,
             "Storage": []
         }
     ],
-    "Money": 56194938928,
-    "IntelBall": 46532775,
-    "XP": 49326847,
+    "Money": 56094938928,
+    "IntelBall": 55337428,
+    "XP": 49329695,
     "Reputation": 0,
     "Atribution": [],
     "Statistic": {
-        "StarInteled": 23,
-        "StarControled": 22,
+        "StarInteled": 25,
+        "StarControled": 23,
         "CreditsFromSelled": 58016751581,
         "CreditsFromScience": 0
     },

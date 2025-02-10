@@ -35,8 +35,8 @@ colorama.init()
 VersionClient = "Dev"
 EngineVersion = "2.16"
 
-ConsoleSizeX = 135
-ConsoleSizeY = 35
+ConsoleSizeX = 145
+ConsoleSizeY = 45
 
 TimeToday = time.strftime("%d")
 TimeMonth = time.strftime("%m")
@@ -677,20 +677,23 @@ class ProjectInfinity():
                         StartLoc = StarChoiceFleet
                         wl.Loading(f"Перебуваємо в гіперстрибку до {GenMap(StarChoiceFleet)['Star']}", 10)
                         break
-            if com == "f":
+            if com == "f" or com == "F":
                 if PlayerIs['MapSettings']['Filter'] == 0: PlayerIs['MapSettings']['Filter'] = 1
                 elif PlayerIs['MapSettings']['Filter'] == 1: PlayerIs['MapSettings']['Filter'] = 2
                 elif PlayerIs['MapSettings']['Filter'] == 2: PlayerIs['MapSettings']['Filter'] = 0
-            if com == "m":
+            if com == "m" or com == "M":
                 wl.Skip()
                 m1 = int(input("Від: "))
                 m2 = int(input("До: "))
                 wl.Skip()
                 for absi in range(m1, m2):
                     StarIs = GenMap(absi)
-                    if StarIs.get("StarCivil"): StarColor = colorama.Fore.GREEN
-                    else: StarColor = colorama.Fore.RED
-                    print(f"{StarColor}StarID: {StarIs['StarID']} - Система: {StarIs['Star']} - Планет: {len(StarIs['Planets'])}{colorama.Fore.RESET}")
+                    if StarIs.get("StarCivil"):
+                        StarColor = colorama.Fore.GREEN
+                        print(f"{StarColor}StarID: {StarIs['StarID']} - Система: {StarIs['Star']} - Планет: {len(StarIs['Planets'])} - Цивілізація: Станція: {StarIs['StarCivil']['CivilStation']['StationName']} - Фракція: {StarIs['StarCivil']['CivilFraction']['FractionName']} - Населення: {StarIs['StarCivil']['CivilFraction']['FractionPop']:,}{colorama.Fore.RESET}")
+                    else: 
+                        StarColor = colorama.Fore.RED
+                        print(f"{StarColor}StarID: {StarIs['StarID']} - Система: {StarIs['Star']} - Планет: {len(StarIs['Planets'])}{colorama.Fore.RESET}")
                 input()
 
 class Debug():

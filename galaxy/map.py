@@ -11,8 +11,35 @@ Latters = [chr(i) for i in range(65, 91)]
 LowerLatters = [chr(i) for i in range(97, 123)]
 Articl = ["Alpha","Beta","Gamma","Delta"]
 
+FractionSuffix = ["Liga", "Party", "Organisation", "Company", "Empire", "Clan", "Group", "Brotherhood"]
+
 def GenMap(seed):
     random.seed(mapseed + seed)
+    def FractionGen():
+        FractionName = f"{ranname()} {random.choice(FractionSuffix)}"
+        FractionRep = 0
+        FractionEcoType = 0
+        FractionPolType = 0
+        FractionPop = 0
+        procentrange = random.randint(0,100)
+        if procentrange <= 100:
+            FractionPop = random.randint(100,1000)
+        if procentrange <= 75:
+            FractionPop = random.randint(1000,10000)
+        if procentrange <= 30:
+            FractionPop = random.randint(10000,100000)
+        if procentrange <= 15:
+            FractionPop = random.randint(100000,1000000)
+        if procentrange <= 5:
+            FractionPop = random.randint(1_000_000, 10_000_000_000_000)
+        FractionIs = {
+            "FractionName": FractionName,
+            "FractionRep": FractionRep,
+            "FractionEcoType": FractionEcoType,
+            "FractionPolType": FractionPolType,
+            "FractionPop": FractionPop
+        }
+        return FractionIs
     def PlanetGen(x):
         Planets = []
         for gen in range(x):
@@ -93,6 +120,7 @@ def GenMap(seed):
             "StationType": random.randint(0,2),
             "StationStoreList": random.sample(range(len(wlregister.ItemsDB)), 5) 
         }
+        Starsystems['StarCivil']['CivilFraction'] = FractionGen()
     
     # Імпорт всіх змін із mapchanges.py
     for abis in range(len(CustomStars)):
