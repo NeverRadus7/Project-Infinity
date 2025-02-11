@@ -1,7 +1,7 @@
 {
     "Nickname": "★ NeverRadus7",
     "Location": {
-        "Star": 1
+        "Star": 0
     },
     "Ship": {
         "ShipID": 3,
@@ -12,7 +12,7 @@
                 "ItemCount": 2098
             }
         ],
-        "Fuel": 5
+        "Fuel": 0
     },
     "Fleet": [
         {
@@ -51,9 +51,9 @@
             "FleetID": 1,
             "FleetName": "Loxonia Starship",
             "Ships": [],
-            "Fuel": 12,
+            "Fuel": 11,
             "Modules": {},
-            "Location": 1,
+            "Location": 2,
             "Storage": [
                 {
                     "ItemID": 0,
@@ -71,18 +71,20 @@
             "Storage": []
         }
     ],
-    "Money": 56094938928,
-    "IntelBall": 55337428,
-    "XP": 49329695,
+    "Money": 1287640311057,
+    "IntelBall": 3477248864,
+    "XP": 196019695929,
     "Reputation": 0,
     "Atribution": [],
     "Statistic": {
-        "StarInteled": 25,
-        "StarControled": 23,
+        "StarInteled": 26,
+        "StarControled": 24,
         "CreditsFromSelled": 58016751581,
-        "CreditsFromScience": 0
+        "CreditsFromScience": 0,
+        "IncomeFromColony": 79263946870
     },
     "MapSettings": {
         "Filter": 0
-    }
+    },
+    "GameUpdate": 3
 }

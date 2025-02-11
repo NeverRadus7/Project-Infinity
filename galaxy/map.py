@@ -37,7 +37,8 @@ def GenMap(seed):
             "FractionRep": FractionRep,
             "FractionEcoType": FractionEcoType,
             "FractionPolType": FractionPolType,
-            "FractionPop": FractionPop
+            "FractionPop": FractionPop,
+            "FractionPopHap": 50
         }
         return FractionIs
     def PlanetGen(x):

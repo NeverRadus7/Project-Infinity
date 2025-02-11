@@ -479,6 +479,9 @@ if CommandInput == "5":
         print()
         print(f" ▪ Усього кредитів отримана з торгівлі: {PlayerIs['Statistic']['CreditsFromSelled']:,} ©")
         print(f" ▪ Усього кредитів отримана з досліджень: {PlayerIs['Statistic']['CreditsFromScience']:,} ©")
+        if PlayerIs['Statistic']['IncomeFromColony'] > 0:
+            print()
+            print(f" ▪ Прибуток з колонії: {PlayerIs['Statistic']['IncomeFromColony']:,} ©")
         input()
 
     if OtherCom == "Сховище корабля":
@@ -527,5 +530,24 @@ if CommandInput == "/":
     if debug == "":
         exit()
     input("Нажміть ENTER щоб продовжити")
+
+#region Logic
+PlayerIs['GameUpdate'] += 1
+if PlayerIs['GameUpdate'] == 5:
+    PlayerIs['GameUpdate'] = 0
+    PlayerIs['Statistic']['IncomeFromColony'] = 0
+    for i in range(len(CustomStars)):
+        StarIs = CustomStars[i]
+        if StarIs.get("StarControled") and StarIs['StarControled'] == True:
+            if StarIs.get("StarCivil"):
+                PlayerIs['Statistic']['IncomeFromColony'] += int(StarIs['StarCivil']['CivilFraction']['FractionPop'] * 5)
+                PlayerIs['Money'] += int(StarIs['StarCivil']['CivilFraction']['FractionPop'] * 5)
+                PlayerIs['XP'] += int(StarIs['StarCivil']['CivilFraction']['FractionPop'] / 12)
+        if StarIs.get("StarCivil"):
+            StarIs['StarCivil']['CivilFraction']['FractionPop'] += int(random.randint(-500,500) * math.sqrt(StarIs['StarCivil']['CivilFraction']['FractionPop']))
+            if StarIs['StarCivil']['CivilFraction']['FractionPop'] < 1:
+                StarIs['StarCivil']['CivilFraction']['FractionPop'] = 0
+            ProjectInfinity.StarChange(StarIs['StarID'],'StarCivil',StarIs['StarCivil'])
+#endregion
 
 wl.SaveJSON("save.json", save)

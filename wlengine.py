@@ -9,7 +9,7 @@
 # © WhiteLight studio • 2024 • ALL RIGHTS RESERVED • https://sites.google.com/view/whitelight-studio
 
 # -- Base import ■ ▪ ∙ •
-import time, random, os, datetime, colorama, msvcrt, json
+import time, random, os, datetime, colorama, msvcrt, json, math
 
 # -- Files import
 from galaxy.map import GenMap

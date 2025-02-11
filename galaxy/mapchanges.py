@@ -1,1 +1,1 @@
-CustomStars = [{'StarID': 2, 'StarIntel': True}, {'StarID': 1, 'StarIntel': True, 'StarControled': True, 'Star': 'Centrum Galactica', 'StarCivil': {'CivilEco': 0.9723705713153089, 'CivilStation': {'StationName': 'Sojorov Station', 'StationType': 2, 'StationStoreList': [12, 16, 7, 13, 18]}, 'CivilFraction': {'FractionName': '★ NeverRadus7 Company', 'FractionPop': 376, 'FractionEcoType': 0, 'FractionRep': 100, 'FractionPolType': 0}}}]
+CustomStars = []
