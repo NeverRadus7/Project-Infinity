@@ -9,7 +9,8 @@
 # © WhiteLight studio • 2024 • ALL RIGHTS RESERVED • https://sites.google.com/view/whitelight-studio
 
 # -- Base import ■ ▪ ∙ •
-import time, random, os, datetime, colorama, msvcrt, json, math
+import time, random, os, colorama, msvcrt, json, math
+from datetime import datetime, timedelta, date
 
 # -- Files import
 from galaxy.map import GenMap
@@ -26,7 +27,7 @@ with open("save.json",'r', encoding="utf-8") as f:
 LICENSE = open("LICENSE", "r", encoding="utf-8")
 
 PlayerIs = save
-StarIs = GenMap(PlayerIs['Location']['Star'])
+StarIs = GenMap(PlayerIs['Location'])
 PlayerAtribution = PlayerIs['Atribution']
 
 # -- Main Code
@@ -41,6 +42,8 @@ ConsoleSizeY = 45
 TimeToday = time.strftime("%d")
 TimeMonth = time.strftime("%m")
 TimeYear = time.strftime("%Y")
+
+rwos = random.Random()
 
 class Colore():
     Red = colorama.Fore.RED
@@ -257,7 +260,7 @@ class wl(): # Main class
         print(f"Project Infinity ▪ {VersionClient}".center(ConsoleSizeX))
         print(f"© WhiteLight studio - all rights reserved")
         print(wl.Wall)
-        print(f" ▪ Зірка: {StarIs['Star']}")
+        print(f" ▪ Зірка: {StarIs['Star']}" + wl.Date().center(int(ConsoleSizeX - 25 - len(f" ▪ Зірка: {StarIs['Star']}"))))
         print(wl.Wall)
         print(f" ▪ Ім'я: {PlayerIs['Nickname']}")
         print(f" ▪ Кредити: {Colore.Yellow}{PlayerIs['Money']:,} ©{Colore.Reset}")
@@ -370,36 +373,11 @@ class wl(): # Main class
         Choice = list[int(Command) - 1]
         return Choice
 
-    def DateDay(d):
-        today = time.strftime("%d")
-
-        if today in str(d):
-            event = True
-        else:
-            event = False
-        return event
-    
-    def DateMonth(m):
-        tomonth = time.strftime("%m")
-
-        if m == tomonth:
-            event = True
-        else:
-            event = False
-        return event
-    
-    def DateYear(y):
-        toyear = time.strftime("%Y")
-
-        if y == toyear:
-            event = True
-        else:
-            event = False
-        return event
-    
-    def getDate():
-        a = datetime.date.today()
-        return a
+    def Date():
+        start_date = datetime(3000,1,1)
+        start_date += timedelta(days=PlayerIs["WorldDay"])
+        date = f"{start_date.strftime("%d.%m.%Y")}"
+        return date
     
     def InvAdd(itemID, count):
         if itemID > len(ItemsDB):
@@ -519,8 +497,8 @@ class ProjectInfinity():
         file.write(f"CustomStars = {CustomStars}")
     
     def GalaxyMap(type, FleetID=None):
-        StartLoc = PlayerIs['Location']['Star']
-        StartMapLoc = PlayerIs['Location']['Star']
+        StartLoc = PlayerIs['Location']
+        StartMapLoc = PlayerIs['Location']
         while True:
             wl.Skip()
             empty_map = ""
@@ -576,7 +554,7 @@ class ProjectInfinity():
                     else: 
                         PlayerLight = Colore.Gray
 
-                if PlayerIs['Location']['Star'] == StarIs["StarID"]:
+                if PlayerIs['Location'] == StarIs["StarID"]:
                     SelectedFrame = "["
                     SelectedFrameBack = "]"
                 else:
@@ -593,8 +571,8 @@ class ProjectInfinity():
             print(MapFilterPrint,ShiftMap)
             print(f"{"─" * ConsoleSizeX}")
 
-            StarIs = GenMap(PlayerIs['Location']['Star'])
-            Distation = abs(PlayerIs['Location']['Star'] - StartLoc)
+            StarIs = GenMap(PlayerIs['Location'])
+            Distation = abs(PlayerIs['Location'] - StartLoc)
             
             print(empty_map)
 
@@ -614,9 +592,9 @@ class ProjectInfinity():
             com = wl.Command()
 
             if com == "a" or com == "A":
-                PlayerIs['Location']['Star'] -= 1
+                PlayerIs['Location'] -= 1
             if com == "d" or com == "D":
-                PlayerIs['Location']['Star'] += 1
+                PlayerIs['Location'] += 1
             if com == "s" or com == "S":
                 StartMapLoc += 1
             if com == "w" or com == "W":
@@ -624,7 +602,7 @@ class ProjectInfinity():
             if com == "c" or com == "C":
                 StartMapLoc = int(input("Назначити центр: "))
             if com == " ":
-                if StartLoc == PlayerIs['Location']['Star']:
+                if StartLoc == PlayerIs['Location']:
                     wl.Skip()
                     break
                 else:
@@ -633,10 +611,9 @@ class ProjectInfinity():
                         if Distation > TravelDistation:
                             wl.Error("Занадто далеко!")
                         if PlayerIs['Ship']['Fuel'] >= FuelRequire:
-                            PlayerIs['Location']['Star']
+                            PlayerIs['Location']
                             PlayerIs['Ship']['Fuel'] -= FuelRequire
-                            PlayerIs['MapSettings']['Filter'] = 0
-                            wl.Loading(f"Подорож до {GenMap(PlayerIs['Location']['Star'])['Star']}", 5)
+                            wl.Loading(f"Подорож до {GenMap(PlayerIs['Location'])['Star']}", 5)
                             wl.SaveJSON("save.json", save)
                             wl.Skip()
                             break
@@ -647,11 +624,10 @@ class ProjectInfinity():
                         if Distation > TravelDistation:
                             wl.Error("Занадто далеко!")
                         if PlayerIs['Fleet'][FleetID]['Fuel'] >= FuelRequire:
-                            PlayerIs['Location']['Star']
-                            PlayerIs['Fleet'][FleetID]['Location'] = PlayerIs['Location']['Star']
+                            PlayerIs['Location']
+                            PlayerIs['Fleet'][FleetID]['Location'] = PlayerIs['Location']
                             PlayerIs['Fleet'][FleetID]['Fuel'] -= FuelRequire
-                            PlayerIs['MapSettings']['Filter'] = 0
-                            wl.Loading(f"Подорож до {GenMap(PlayerIs['Location']['Star'])['Star']}", 5)
+                            wl.Loading(f"Подорож до {GenMap(PlayerIs['Location'])['Star']}", 5)
                             wl.SaveJSON("save.json", save)
                             wl.Skip()
                             break
@@ -671,7 +647,7 @@ class ProjectInfinity():
                     if PlayerIs['Fleet'][FleetID]['Fuel'] < 50:
                         wl.Error("Не достатньо пального!")
                     else:
-                        PlayerIs['Location']['Star'] = StarChoiceFleet
+                        PlayerIs['Location'] = StarChoiceFleet
                         PlayerIs['Fleet'][FleetID]['Location'] = StarChoiceFleet
                         PlayerIs['Fleet'][FleetID]['Fuel'] -= 50
                         StartLoc = StarChoiceFleet
@@ -688,16 +664,56 @@ class ProjectInfinity():
                 wl.Skip()
                 for absi in range(m1, m2):
                     StarIs = GenMap(absi)
+                    PlanetLive = 0
+                    for i in range(len(StarIs['Planets'])):
+                        if StarIs['Planets'][i]['PlanetClass'] == 4:
+                            PlanetLive += 1
+                        else:
+                            PlanetLive += 0
                     if StarIs.get("StarCivil"):
                         StarColor = colorama.Fore.GREEN
-                        print(f"{StarColor}StarID: {StarIs['StarID']} - Система: {StarIs['Star']} - Планет: {len(StarIs['Planets'])} - Цивілізація: Станція: {StarIs['StarCivil']['CivilStation']['StationName']} - Фракція: {StarIs['StarCivil']['CivilFraction']['FractionName']} - Населення: {StarIs['StarCivil']['CivilFraction']['FractionPop']:,}{colorama.Fore.RESET}")
+                        print(f"{StarColor}StarID: {StarIs['StarID']} - Система: {StarIs['Star']} - Планет: {len(StarIs['Planets'])}: з життям: {PlanetLive} - Цивілізація: Станція: {StarIs['StarCivil']['CivilStation']['StationName']} - Фракція: {StarIs['StarCivil']['CivilFraction']['FractionName']} - Населення: {StarIs['StarCivil']['CivilFraction']['FractionPop']:,}{colorama.Fore.RESET}")
                     else: 
                         StarColor = colorama.Fore.RED
-                        print(f"{StarColor}StarID: {StarIs['StarID']} - Система: {StarIs['Star']} - Планет: {len(StarIs['Planets'])}{colorama.Fore.RESET}")
+                        print(f"{StarColor}StarID: {StarIs['StarID']} - Система: {StarIs['Star']} - Планет: {len(StarIs['Planets'])}: з життям: {PlanetLive}{colorama.Fore.RESET}")
                 input()
+    def Logic():
+        PlayerIs["WorldDay"] += 1
+        PlayerIs['Statistic']['IncomeFromColony'] = 0
+        for i in range(len(CustomStars)):
+            StarIs = CustomStars[i]
+            # Player colony money income
+            if StarIs.get("StarControled") and StarIs['StarControled'] == True:
+                if StarIs.get("StarCivil"):
+                    Star = GenMap(StarIs['StarID'])
+                    PlanetLiveCount = 0
+                    for ii in range(len(Star['Planets'])):
+                        if Star['Planets'][ii]['PlanetClass'] == 4:
+                            PlanetLiveCount += 1
+                    PlayerIs['Statistic']['IncomeFromColony'] += int((int(StarIs['StarCivil']['CivilFraction']['FractionPop'] * 2) * (4 * PlanetLiveCount+1)) * StarIs['StarCivil']['CivilEco'])
+                    ProjectInfinity.StarChange(StarIs['StarID'], 'InfoIncome', int((int(StarIs['StarCivil']['CivilFraction']['FractionPop'] * 2) * (4 * PlanetLiveCount+1)) * StarIs['StarCivil']['CivilEco']))
+                    PlayerIs['Money'] += int((int(StarIs['StarCivil']['CivilFraction']['FractionPop'] * 2) * (4 * PlanetLiveCount+1)) * StarIs['StarCivil']['CivilEco'])
+                    PlayerIs['XP'] += int(StarIs['StarCivil']['CivilFraction']['FractionPop'] / 12) * (3 * PlanetLiveCount)
+            # Pop include
+            if StarIs.get("StarCivil"):
+                StarIs['StarCivil']['CivilFraction']['FractionPop'] += int(rwos.randint(-2,4) * (math.sqrt(StarIs['StarCivil']['CivilFraction']['FractionPop'])) + 1)
+                if StarIs['StarCivil']['CivilFraction']['FractionPop'] < 1:
+                    StarIs['StarCivil']['CivilFraction']['FractionPop'] = 0
+                ProjectInfinity.StarChange(StarIs['StarID'],'StarCivil',StarIs['StarCivil'])
 
-class Debug():
-    def Refuel():
-        PlayerIs['Ship']['Fuel'] = Ships[PlayerIs['Ship']['ShipID']]['ShipMaxFuel']
+class game():
+    class player():
+        def refuel():
+            PlayerIs['Ship']['Fuel'] = Ships[PlayerIs['Ship']['ShipID']]['ShipMaxFuel']
+        def loc(x):
+            PlayerIs['Location'] = x
+    
+    class world():
+        def mature(cycle):
+            for i in range(cycle):
+                ProjectInfinity.Logic()
 
 TravelDistation += Ships[PlayerIs['Ship']['ShipID']]['ShipTravelingDist']
+
+if wl.Level >= MaxLevel:
+    wl.Level = MaxLevel

@@ -34,10 +34,12 @@ if CommandInput == "2":
                 break
     
     if StarIs.get("StarIntel"):
-        if StarIs.get("StarControled"):
-            StarSymbol = f"{Colore.Green if StarIs.get('StarCivil') else Colore.Red}⚑{Colore.Reset}"
-        elif not StarIs.get("StarControled"):
-            StarSymbol = f"{Colore.Blue}⌬{Colore.Reset}"
+        if StarIs.get("StarCivil"):
+            StarSymbol = f"{Colore.Red if StarIs.get("StarControled") else Colore.Green}⚑{Colore.Reset}"
+        elif StarIs.get("StarControled"):
+            StarSymbol = f"{Colore.Red}⛊{Colore.Reset}"
+        else:
+            StarSymbol = f"{Colore.Blue}⌬{Colore.Reset}"     
     else:
         StarSymbol = ""
             
@@ -54,13 +56,17 @@ if CommandInput == "2":
         print("     - Дослідженна: Так")
         if StarIs.get("StarCivil"):
             print(f"     - Наявна колонія: Так") 
-            print(f"     - Економічна стала: {StarIs['StarCivil']['CivilEco']}")
         if StarIs.get("StarControled"):
             print(f"     - Підкорив: {PlayerIs['Nickname']}")
         if StarIs.get("StarCivil") and not StarIs['StarCivil']['CivilStation'] == {}:
             print(f"     - Системні володарі: {StarIs['StarCivil']['CivilFraction']['FractionName']}")
             print(f"     - Населення: {StarIs['StarCivil']['CivilFraction']['FractionPop']:,}")
             print(f"     - Станція: {StarIs['StarCivil']['CivilStation']['StationName']}")
+        print()
+        print(" ▪ Економічна інформація:")
+        if StarIs.get("StarCivil") and StarIs.get("StarControled"):
+            print(f"     - Економічна стала: {StarIs['StarCivil']['CivilEco']}")
+            if StarIs.get("InfoIncome"): print(f"     - Прибуток: {StarIs['InfoIncome']:,} ©")
     print()
     print(f" ▪ Планет:")
     for abs in range(len(StarIs['Planets'])):
@@ -140,6 +146,7 @@ if CommandInput == "2":
                             }
                         }
                     )
+                    ProjectInfinity.StarChange(StarIs['StarID'], "InfoDate", wl.Date())
         else:
             wl.Error("Не достатній рівень (>30)")
 
@@ -470,6 +477,10 @@ if CommandInput == "4":
 if CommandInput == "5":
     wl.Skip()
     OtherList = ["Статистика", "Переіменувати корабель", "Сховище корабля", "Закріпленні"]
+
+    if wl.Level >= 30:
+        OtherList.append("Ваші колонії")
+
     OtherCom = wl.ChoiceMenu(OtherList)
     if OtherCom == "Статистика":
         wl.Skip()
@@ -520,6 +531,16 @@ if CommandInput == "5":
         if NewName == "" or NewName == " ": exit()
         PlayerIs['Ship']['ShipName'] = NewName
         wl.Loading("Застосовуємо зміни", 1)
+    
+    if OtherCom == "Ваші колонії":
+        wl.Skip()
+        print("Колонії:")
+        for i in range(len(CustomStars)):
+            StarIs = CustomStars[i]
+            Star = GenMap(StarIs['StarID'])
+            if StarIs.get("StarCivil") and StarIs.get("StarControled"):
+                print(f" - {Star['Star']} ({StarIs['StarID']}) ▪ Населення: {Star['StarCivil']['CivilFraction']['FractionPop']:,} ▪ Прибуток: {Star['InfoIncome']:,} © ▪ Дата колонізації: {StarIs['InfoDate']}")
+        input()
 
 if CommandInput == "*":
     exit()
@@ -535,19 +556,7 @@ if CommandInput == "/":
 PlayerIs['GameUpdate'] += 1
 if PlayerIs['GameUpdate'] == 5:
     PlayerIs['GameUpdate'] = 0
-    PlayerIs['Statistic']['IncomeFromColony'] = 0
-    for i in range(len(CustomStars)):
-        StarIs = CustomStars[i]
-        if StarIs.get("StarControled") and StarIs['StarControled'] == True:
-            if StarIs.get("StarCivil"):
-                PlayerIs['Statistic']['IncomeFromColony'] += int(StarIs['StarCivil']['CivilFraction']['FractionPop'] * 5)
-                PlayerIs['Money'] += int(StarIs['StarCivil']['CivilFraction']['FractionPop'] * 5)
-                PlayerIs['XP'] += int(StarIs['StarCivil']['CivilFraction']['FractionPop'] / 12)
-        if StarIs.get("StarCivil"):
-            StarIs['StarCivil']['CivilFraction']['FractionPop'] += int(random.randint(-500,500) * math.sqrt(StarIs['StarCivil']['CivilFraction']['FractionPop']))
-            if StarIs['StarCivil']['CivilFraction']['FractionPop'] < 1:
-                StarIs['StarCivil']['CivilFraction']['FractionPop'] = 0
-            ProjectInfinity.StarChange(StarIs['StarID'],'StarCivil',StarIs['StarCivil'])
+    ProjectInfinity.Logic()
 #endregion
 
 wl.SaveJSON("save.json", save)

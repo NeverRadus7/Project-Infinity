@@ -1,29 +1,28 @@
 {
-    "Nickname": "★ NeverRadus7",
-    "Location": {
-        "Star": 584405
-    },
+    "Nickname": "Player",
+    "Location": 273,
     "Ship": {
-        "ShipID": 2,
-        "ShipName": "BigFleet Explorer-36",
-        "Storage": [
-            {
-                "ItemID": 0,
-                "ItemCount": 2880
-            }
-        ],
-        "Fuel": 9
+        "ShipID": 0,
+        "ShipName": "HER 015",
+        "Storage": [],
+        "Fuel": 0
     },
-    "Money": 3135378716,
-    "IntelBall": 169109,
-    "XP": 1002961,
+    "Fleet": [],
+    "Money": 0,
+    "IntelBall": 0,
+    "XP": 0,
     "Reputation": 0,
+    "WorldDay": 1,
     "Atribution": [],
     "Statistic": {
-        "StarInteled": 1,
-        "StarControled": 1
+        "StarInteled": 0,
+        "StarControled": 0,
+        "CreditsFromSelled": 0,
+        "CreditsFromScience": 0,
+        "IncomeFromColony": 0
     },
     "MapSettings": {
         "Filter": 0
-    }
+    },
+    "GameUpdate": 0
 }

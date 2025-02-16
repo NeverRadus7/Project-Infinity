@@ -46,7 +46,14 @@ def GenMap(seed):
         for gen in range(x):
             gen += 1
             planet_name = f"{solar_name}-{gen}"
-            planet_class = random.randint(0, 4)
+            planet_range = random.randint(1,100)
+            if planet_range <= 100:
+                planet_class = random.choice([0,1,2,5])
+            if planet_range <= 80:
+                planet_class = 3
+            if planet_range <= 3:
+                planet_class = 4
+
             if planet_class == 0:
                 planet_temp = random.randint(0,1000)
             elif planet_class == 1:
@@ -57,6 +64,8 @@ def GenMap(seed):
                 planet_temp = random.randint(-10,300)
             elif planet_class == 4:
                 planet_temp = random.randint(-8,30)
+            elif planet_class == 5:
+                planet_temp = random.randint(-100,200)
 
             Planets.append(
                 {

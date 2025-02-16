@@ -8,8 +8,8 @@ SymbolOfStar = "★ "
 SymbolOfStarPinned = "★⚐ "
 
 # Map settings
-MapSeed = 0xABCDEF12345678
-MapCivilRange = 1
+MapSeed = 0xB16B00B5
+MapCivilRange = 0
 CivilEcoMin = 0.8
 CivilEcoMax = 1.2
 MinFulling = 1

@@ -7,8 +7,6 @@ CustomStarsLock = [
         "Size": 17,
         "Mass": 4_300_000,
         "Planets": [{"PlanetName": "Galileo", "PlanetClass": 4, "PlanetTemp": 21}],
-        "StarIntel": True,
-        "StarCivil": {"CivilEco": 1, "CivilStation": {"StationName": "Maia Core", "StationType": 0, "StationStoreList": [0,1,2]}, "CivilFraction": {"FractionName": "Galaxy Core United Army", "FractionPop": 83_472_516}}
     },
     {
         "StarID": 273,
