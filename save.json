@@ -1,28 +1,28 @@
 {
     "Nickname": "Player",
-    "Location": 273,
+    "Location": 288,
     "Ship": {
         "ShipID": 0,
         "ShipName": "HER 015",
         "Storage": [],
-        "Fuel": 0
+        "Fuel": 15
     },
     "Fleet": [],
-    "Money": 0,
-    "IntelBall": 0,
-    "XP": 0,
+    "Money": 55179,
+    "IntelBall": 3944,
+    "XP": 28401,
     "Reputation": 0,
-    "WorldDay": 0,
+    "WorldDay": 15,
     "Atribution": [],
     "Statistic": {
-        "StarInteled": 0,
+        "StarInteled": 13,
         "StarControled": 0,
         "CreditsFromSelled": 0,
         "CreditsFromScience": 0,
         "IncomeFromColony": 0
     },
     "MapSettings": {
-        "Filter": 0
+        "Filter": 2
     },
-    "GameUpdate": 0
+    "GameUpdate": 3
 }

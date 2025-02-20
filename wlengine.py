@@ -510,7 +510,10 @@ class ProjectInfinity():
                 if StarIs.get("PlayerPinned"):
                     PlayerSymbol = SymbolOfStarPinned
                 else:
-                    PlayerSymbol = SymbolOfStar
+                    if StarIs['StarSister'] != {}:
+                        PlayerSymbol = SymbolOfStar + SymbolOfStar
+                    else:
+                        PlayerSymbol = SymbolOfStar
 
                 if PlayerIs.get("Fleet"):
                     for i in range(len(PlayerIs['Fleet'])):
