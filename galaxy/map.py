@@ -119,18 +119,20 @@ def GenMap(seed):
         solar_size = random.uniform(0.1,0.7)
         solar_mass = random.uniform(0.08, 0.45)
         solar_temp = random.randint(2_400,3_700)
-    solar_sisters = {}
+    solar_sisters = []
     if random.randint(1,8) == 1:
+        solar_sisters = []
         other_random = random.Random()
-        other_random.seed(0x123456789 + seed)
-        solar_class_sis = other_random.choice(["O", "B", "A", "F", "G", "K", "M", "L", "T", "P"])
-        solar_sisters = {
-            "Star": solar_name + " B",
-            "Class": solar_class_sis,
-            "Temp": solar_temp,
-            "Mass": solar_mass,
-            "Size": solar_size
-        }
+        for i in range(random.randint(1,3)):
+            other_random.seed(0x0BA7643 + seed + i)
+            solar_class_sis = other_random.choice(["O", "B", "A", "F", "G", "K", "M", "L", "T", "P"])
+            solar_sisters.append({
+                "Star": solar_name + " " + Latters[i+1],
+                "Class": solar_class_sis,
+                "Temp": solar_temp,
+                "Mass": solar_mass,
+                "Size": solar_size
+            })
         solar_name = f"{solar_name} A"
 
     Starsystems = {

@@ -45,9 +45,11 @@ if CommandInput == "2":
             
     wl.Skip()
     print(f"{Colore.Gray}ID: {StarIs['StarID']}{Colore.Reset}")
-    if StarIs['StarSister'] != {}:
+    if StarIs['StarSister'] != []:
         print(f" ▪ Гол. зірка: {StarIs['Star']} {StarSymbol}")
-        print(f" ▪ Доч. зірка: {StarIs['StarSister']['Star']} {Colore.Gray}- Спек. клас: {StarIs['StarSister']['Class']}{Colore.Reset} {StarSymbol}")
+        print(f" ▪ Доч. зірки: {StarIs['StarSister'][0]['Star']} {Colore.Gray}- Спек. клас: {StarIs['StarSister'][0]['Class']}{Colore.Reset} {StarSymbol}")
+        for i in range(1, len(StarIs['StarSister'])):
+            print(f"               {StarIs['StarSister'][i]['Star']} {Colore.Gray}- Спек. клас: {StarIs['StarSister'][i]['Class']}{Colore.Reset} {StarSymbol}")
     else:
         print(f" ▪ Зірка: {StarIs['Star']} {StarSymbol}")
     print(f" ▪ Спек. клас: {StarIs['Class']}")

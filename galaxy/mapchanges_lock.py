@@ -11,7 +11,7 @@ CustomStarsLock = [
     {
         "StarID": 273,
         "Star": "Sol",
-        "StarSister": {},
+        "StarSister": [],
         "Class": "G",
         "Temp": 5780,
         "Size": 1,

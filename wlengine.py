@@ -510,7 +510,7 @@ class ProjectInfinity():
                 if StarIs.get("PlayerPinned"):
                     PlayerSymbol = SymbolOfStarPinned
                 else:
-                    if StarIs['StarSister'] != {}:
+                    if StarIs['StarSister'] != []:
                         PlayerSymbol = SymbolOfStar + SymbolOfStar
                     else:
                         PlayerSymbol = SymbolOfStar
@@ -540,6 +540,12 @@ class ProjectInfinity():
                         PlayerLight = colorama.Fore.LIGHTRED_EX
                     elif StarIs['Class'] == "M":
                         PlayerLight = colorama.Fore.RED
+                    elif StarIs['Class'] == "L":
+                        PlayerLight = colorama.Fore.RED
+                    elif StarIs['Class'] == "T":
+                        PlayerLight = colorama.Fore.RED
+                    else:
+                        PlayerLight = colorama.Fore.LIGHTBLACK_EX
 
                 if PlayerIs['MapSettings']['Filter'] == 1:
                     if StarIs.get("StarControled") and StarIs['StarControled'] == True:
