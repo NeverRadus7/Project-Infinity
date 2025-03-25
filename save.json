@@ -1,28 +1,38 @@
 {
-    "Nickname": "Player",
+    "Nickname": "NeverRadus7",
     "Location": 273,
     "Ship": {
         "ShipID": 0,
         "ShipName": "HER 015",
         "Storage": [],
-        "Fuel": 19
+        "Fuel": 12
     },
-    "Fleet": [],
-    "Money": 5383122273,
-    "IntelBall": 3944,
-    "XP": 28401,
+    "Fleet": [
+        {
+            "FleetID": 1,
+            "FleetName": "Ra-Min H100",
+            "Ships": [],
+            "Storage": [],
+            "Location": 266,
+            "Modules": {},
+            "Fuel": 99
+        }
+    ],
+    "Money": 3171822273,
+    "IntelBall": 5180,
+    "XP": 31917,
     "Reputation": 0,
-    "WorldDay": 23,
+    "WorldDay": 30,
     "Atribution": [],
     "Statistic": {
-        "StarInteled": 13,
-        "StarControled": 0,
+        "StarInteled": 14,
+        "StarControled": 1,
         "CreditsFromSelled": 0,
         "CreditsFromScience": 0,
         "IncomeFromColony": 0
     },
     "MapSettings": {
-        "Filter": 2
+        "Filter": 0
     },
-    "GameUpdate": 2
+    "GameUpdate": 3
 }

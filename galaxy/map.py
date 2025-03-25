@@ -69,6 +69,7 @@ def GenMap(seed):
 
             Planets.append(
                 {
+                    "PlanetID": gen,
                     "PlanetName": planet_name,
                     "PlanetClass": planet_class,
                     "PlanetTemp": planet_temp
@@ -156,7 +157,7 @@ def GenMap(seed):
         Starsystems['StarCivil']['CivilStation'] = {
             "StationName": f"{ranname()} Station",
             "StationType": random.randint(0,2),
-            "StationStoreList": random.sample(range(len(wlregister.ItemsDB)), 5) 
+            "StationStoreList": random.sample(range(len(wlregister.ItemsDB)), random.randint(3,20)) 
         }
         Starsystems['StarCivil']['CivilFraction'] = FractionGen()
     

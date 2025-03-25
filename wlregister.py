@@ -1,10 +1,10 @@
 PlanetClass = [
-    "Кам'яна безповітряна планета",
-    "Льодова безповітряна планета",
-    "Кам'яно-льодова безповітряна планета",
-    "Газовий гігант",
-    "Землеподібна планета",
-    "Скеляста планета земної групи",
+    "Кам'яна безповітряна планета", #0
+    "Льодова безповітряна планета", #1
+    "Кам'яно-льодова безповітряна планета", #2
+    "Газовий гігант", #3
+    "Землеподібна планета", #4
+    "Скеляста планета земної групи", #5
 ]
 
 MapFilter = ["Досліднецько-політичний", "Територія", "Спектральний"]
@@ -67,12 +67,12 @@ Fleets = [
     },
     {
         "FleetID": 2,
-        "FleetModel": "ISC G-160 Booldog",
+        "FleetModel": "ISC G-200 Excalibur",
         "FleetClass": 3,
         "FleetMaxFuel": 50,
         "FleetMaxHyperdrive": 5000,
         "FleetTravelingDist": 15,
-        "FleetCoust": 700_000_000
+        "FleetCoust": 2_100_000_000
     }
 ]
 
@@ -123,5 +123,6 @@ ItemsDB = [
     {"ItemID": 31, "ItemName": "Синтетичний полімер", "ItemType": 5, "ItemCategory": 0, "ItemCoust": 3400},
     {"ItemID": 32, "ItemName": "Фотонний підсилювач", "ItemType": 6, "ItemCategory": 0, "ItemCoust": 8900},
     {"ItemID": 33, "ItemName": "Нано-волокна", "ItemType": 5, "ItemCategory": 0, "ItemCoust": 3700},
-    {"ItemID": 34, "ItemName": "Лігірований титан", "ItemType": 2, "ItemCategory": 0, "ItemCoust": 7200}
+    {"ItemID": 34, "ItemName": "Лігірований титан", "ItemType": 2, "ItemCategory": 0, "ItemCoust": 7200},
+    {"ItemID": 35, "ItemName": "Вантаж (Будівельні матеріали)", "ItemType": 4, "ItemCategory": 0, "ItemCoust": 100000}
 ]

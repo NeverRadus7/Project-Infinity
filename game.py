@@ -27,7 +27,7 @@ if CommandInput == "2":
     if StarIs.get("StarControled") and Ships[PlayerIs['Ship']['ShipID']]['ShipClass'] == 3 and not StarIs.get("StarCivil"):
         StarList.append("Засновати власну колонію")
 
-    if PlayerIs.get("Fleet"):
+    if PlayerIs.get("Fleet") and len(PlayerIs['Fleet']) > 0:
         for i in range(len(PlayerIs['Fleet'])):
             if PlayerIs['Fleet'][i]['Location'] == StarIs['StarID']:
                 StarList.append(f"Космоносці{Colore.Blue} ⊴{Colore.Reset}")
@@ -132,6 +132,12 @@ if CommandInput == "2":
         if wl.Level >= 30:
             if Fleets[FleetIs['FleetID']]['FleetClass'] == 2:
                 if FleetIs['Location'] == StarIs['StarID']:
+                    for i in range(len(PlayerIs['Ship']['Storage'])):
+                        ItemIs = PlayerIs['Ship']['Storage'][i]
+                        if ItemIs["ItemID"] == 35:
+                            wl.InvRem(35, 1)
+                        else:
+                            wl.Error("Немає будівельних матеріалів в трюмі")
                     wl.Loading("Будування станції", 5)
                     PlayerIs['Money'] -= 100_000_000
                     ProjectInfinity.StarChange(
@@ -305,10 +311,13 @@ if CommandInput == "3":
             PlanetList = []
             if "Surface Mining Device" in PlayerIs['Atribution']:
                 PlanetList.append("Видобуток корисних копалин")
-            if not StarIs.get('StarCivil') and StarIs['StarCivil'] != {}:
+            if not StarIs.get('StarCivil'):
                 PlanetList.append("Зробити поверхневий аналіз")
             if StarIs.get('StarControled') and StarIs['StarControled'] == True:
                 PlanetList.append("Переіменувати планету")
+            if "PLAYER_TERRAFORMER_DEVICE" in PlayerIs['Atribution']:
+                if PlanetIs['PlanetID'] in [3,4,5] and PlayerIs['PlanetClass'] in [1,3,5]:
+                    PlanetList.append(f"Почати тераформінг {Colore.Green}Θ{Colore.Reset}")
 
             print(f" ▪ Планета: {PlanetIs['PlanetName']}")
             print(f" ▪ Клас: {PlanetClass[PlanetIs['PlanetClass']]}")
@@ -460,6 +469,7 @@ if CommandInput == "4":
                     FleetIs = Fleets[i]
                     FleetCoust = int(FleetIs['FleetCoust'] * StarIs['StarCivil']['CivilEco'])
                     print(f"{i+1}. {FleetIs['FleetModel']} ▪ {FleetIs['FleetCoust']:,} ©")
+
                 FleetChoice = int(input("Купити: ")) - 1
 
                 if FleetChoice > len(Fleets) or FleetChoice < 0:
@@ -470,7 +480,7 @@ if CommandInput == "4":
                         PlayerIs['Fleet'].append(
                             {
                                 "FleetID": FleetIs['FleetID'],
-                                "FleetName": FleetIs['FleetID']['FleetModel'],
+                                "FleetName": FleetIs['FleetModel'],
                                 "Ships": [],
                                 "Storage": [],
                                 "Location": StarIs['StarID'],
