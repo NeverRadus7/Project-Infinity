@@ -136,6 +136,7 @@ if CommandInput == "2":
                         ItemIs = PlayerIs['Ship']['Storage'][i]
                         if ItemIs["ItemID"] == 35:
                             wl.InvRem(35, 1)
+                            break
                         else:
                             wl.Error("Немає будівельних матеріалів в трюмі")
                     wl.Loading("Будування станції", 5)

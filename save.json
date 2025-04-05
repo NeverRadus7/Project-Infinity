@@ -1,11 +1,11 @@
 {
     "Nickname": "NeverRadus7",
-    "Location": 273,
+    "Location": 266,
     "Ship": {
         "ShipID": 0,
         "ShipName": "HER 015",
         "Storage": [],
-        "Fuel": 12
+        "Fuel": 11
     },
     "Fleet": [
         {
@@ -20,9 +20,9 @@
     ],
     "Money": 3171822273,
     "IntelBall": 5180,
-    "XP": 31917,
+    "XP": 2,
     "Reputation": 0,
-    "WorldDay": 30,
+    "WorldDay": 31,
     "Atribution": [],
     "Statistic": {
         "StarInteled": 14,
@@ -32,7 +32,7 @@
         "IncomeFromColony": 0
     },
     "MapSettings": {
-        "Filter": 0
+        "Filter": 1
     },
-    "GameUpdate": 3
+    "GameUpdate": 0
 }

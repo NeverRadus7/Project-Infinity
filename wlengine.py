@@ -60,7 +60,7 @@ class wl(): # Main class
     Player = f"{PlayerIs['Nickname']}"
     Data = f"{TimeToday}.{TimeMonth}.{TimeYear}"
     ID = f"0x{random.randint(int(1e+7),int(9e+7))}"
-    Level = int(int(PlayerIs['XP']) / XpToLevel) + 1
+    Level = int(int(PlayerIs['XP']) / (XpToLevel * math.sqrt(PlayerIs['XP'] / XpToLevel))) + 1
     StopGame = exit
     SquereSymbol = "▪"
     Latters = [chr(i) for i in range(65, 91)]
