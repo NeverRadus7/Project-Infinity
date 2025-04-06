@@ -1,11 +1,16 @@
 {
     "Nickname": "NeverRadus7",
-    "Location": 266,
+    "Location": 259,
     "Ship": {
         "ShipID": 0,
         "ShipName": "HER 015",
-        "Storage": [],
-        "Fuel": 11
+        "Storage": [
+            {
+                "ItemID": 6,
+                "ItemCount": 1
+            }
+        ],
+        "Fuel": 9
     },
     "Fleet": [
         {
@@ -13,26 +18,27 @@
             "FleetName": "Ra-Min H100",
             "Ships": [],
             "Storage": [],
-            "Location": 266,
+            "Location": 259,
             "Modules": {},
-            "Fuel": 99
+            "Fuel": 95
         }
     ],
-    "Money": 3171822273,
-    "IntelBall": 5180,
-    "XP": 2,
+    "Money": 39781302310,
+    "IntelBall": 94462,
+    "XP": 15668718,
     "Reputation": 0,
-    "WorldDay": 31,
+    "WorldDay": 4068,
     "Atribution": [],
     "Statistic": {
-        "StarInteled": 14,
-        "StarControled": 1,
+        "StarInteled": 17,
+        "StarControled": 4,
+        "StarColony": 1,
         "CreditsFromSelled": 0,
         "CreditsFromScience": 0,
-        "IncomeFromColony": 0
+        "IncomeFromColony": 26699607
     },
     "MapSettings": {
-        "Filter": 1
+        "Filter": 0
     },
     "GameUpdate": 0
 }

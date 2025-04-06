@@ -24,7 +24,7 @@ if CommandInput == "2":
     else: 
         StarList.append("Зняти систему із закріплень")
     
-    if StarIs.get("StarControled") and Ships[PlayerIs['Ship']['ShipID']]['ShipClass'] == 3 and not StarIs.get("StarCivil"):
+    if StarIs.get("StarControled") and not StarIs.get("StarCivil"):
         StarList.append("Засновати власну колонію")
 
     if PlayerIs.get("Fleet") and len(PlayerIs['Fleet']) > 0:
@@ -120,27 +120,21 @@ if CommandInput == "2":
             if FleetIs['Location'] == StarIs['StarID']:
                 break
             else: pass
-        if PlayerIs['Money'] >= 100_000_000: wl.ParrametrInspect(True, "Наявність 100,000,000 ©")
-        else: wl.ParrametrInspect(False, "Наявність 100,000,000 ©")
-        if wl.Level >= 30: wl.ParrametrInspect(True, "Наявність 30 рівня")
-        else: wl.ParrametrInspect(False, "Наявність 30 рівня")
-        if PlayerIs.get("Fleet"): 
-            if Fleets[FleetIs['FleetID']]['FleetClass'] == 2: wl.ParrametrInspect(True, "Флотоносець класу Конструктор")
-            else: wl.ParrametrInspect(False, "Флотоносець класу Конструкторний")
-        else: wl.ParrametrInspect(False, "Флотоносець класу Конструкторний")
-        time.sleep(3)
         if wl.Level >= 30:
             if Fleets[FleetIs['FleetID']]['FleetClass'] == 2:
                 if FleetIs['Location'] == StarIs['StarID']:
+                    ItemSearcher = 0
                     for i in range(len(PlayerIs['Ship']['Storage'])):
                         ItemIs = PlayerIs['Ship']['Storage'][i]
                         if ItemIs["ItemID"] == 35:
+                            ItemSearcher = 1
                             wl.InvRem(35, 1)
                             break
                         else:
-                            wl.Error("Немає будівельних матеріалів в трюмі")
+                            ItemSearcher += 0
+                    if ItemSearcher == 0:
+                        wl.Error("Немає будівельних матеріалів в трюмі")
                     wl.Loading("Будування станції", 5)
-                    PlayerIs['Money'] -= 100_000_000
                     ProjectInfinity.StarChange(
                         StarIs['StarID'], 
                         "StarCivil", 
@@ -160,6 +154,7 @@ if CommandInput == "2":
                         }
                     )
                     ProjectInfinity.StarChange(StarIs['StarID'], "InfoDate", wl.Date())
+                    PlayerIs['Statistic']['StarColony'] += 1
         else:
             wl.Error("Не достатній рівень (>30)")
 
@@ -440,7 +435,7 @@ if CommandInput == "4":
                             wl.Error("Не достатньо грошей")
                         else:
                             PlayerIs['Money'] -= ItemCoust
-                            wl.InvAdd(ItemIs, Count, 'Ship')
+                            wl.InvAdd(ItemIs, Count)
 
                 if StationStoreChoice == "Продати":
                     wl.Skip()
@@ -462,7 +457,7 @@ if CommandInput == "4":
                             PlayerIs['Money'] += ItemCoust
                             PlayerIs['XP'] += int((int(SellLot)) * 5)
                             PlayerIs['Statistic']['CreditsFromSelled'] += ItemCoust
-                            wl.InvRem(ItemIs['ItemID'], int(SellLot), 'Ship')
+                            wl.InvRem(ItemIs['ItemID'], int(SellLot))
 
             if StationCom == "Верф флотоносців":
                 wl.Skip()
@@ -504,6 +499,7 @@ if CommandInput == "5":
         print("Статистика систем")
         print(f" ▪ Вивчено систем: {PlayerIs['Statistic']['StarInteled']:,}")
         print(f" ▪ Систем під контролем: {PlayerIs['Statistic']['StarControled']:,}")
+        print(f" ▪ Колоній: {PlayerIs['Statistic']['StarColony']:,}")
         print()
         print(f" ▪ Усього кредитів отримана з торгівлі: {PlayerIs['Statistic']['CreditsFromSelled']:,} ©")
         print(f" ▪ Усього кредитів отримана з досліджень: {PlayerIs['Statistic']['CreditsFromScience']:,} ©")
