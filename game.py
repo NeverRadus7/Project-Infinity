@@ -294,7 +294,6 @@ if CommandInput == "3":
 
     PlanetChoice = int(input("Відправитися: "))-1
     
-
     if PlanetChoice > len(StarIs['Planets']) or PlanetChoice < 0:
         wl.Error("Невірне введення")
     else:
@@ -305,15 +304,19 @@ if CommandInput == "3":
             wl.Skip()
 
             PlanetList = []
-            if "Surface Mining Device" in PlayerIs['Atribution']:
+            if "PLAYER_MINERTOOL" in PlayerIs['Atribution']:
                 PlanetList.append("Видобуток корисних копалин")
+
             if not StarIs.get('StarCivil'):
                 PlanetList.append("Зробити поверхневий аналіз")
+
             if StarIs.get('StarControled') and StarIs['StarControled'] == True:
                 PlanetList.append("Переіменувати планету")
+
             if "PLAYER_TERRAFORMER_DEVICE" in PlayerIs['Atribution']:
                 if PlanetIs['PlanetID'] in [3,4,5] and PlayerIs['PlanetClass'] in [1,3,5]:
-                    PlanetList.append(f"Почати тераформінг {Colore.Green}Θ{Colore.Reset}")
+                    if PlanetIs['Temp'] <= 25 and PlanetIs['Temp'] >= 1:
+                        PlanetList.append(f"Почати тераформінг {Colore.Green}Θ{Colore.Reset}")
 
             print(f" ▪ Планета: {PlanetIs['PlanetName']}")
             print(f" ▪ Клас: {PlanetClass[PlanetIs['PlanetClass']]}")

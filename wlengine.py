@@ -507,13 +507,17 @@ class ProjectInfinity():
                 StarIs = GenMap(star)
                 SymbolFrame = ""
                 SymbolFrameBack = ""
+
                 if StarIs.get("PlayerPinned"):
                     PlayerSymbol = SymbolOfStarPinned
                 else:
                     if StarIs['StarSister'] != []:
                         PlayerSymbol = SymbolOfStar + SymbolOfStar
                     else:
-                        PlayerSymbol = SymbolOfStar
+                        if StarIs['Class'] == "BH":
+                            PlayerSymbol = "⚬ "
+                        else:
+                            PlayerSymbol = SymbolOfStar
 
                 if PlayerIs.get("Fleet"):
                     for i in range(len(PlayerIs['Fleet'])):

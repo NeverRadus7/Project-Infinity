@@ -49,9 +49,9 @@ def GenMap(seed):
             planet_range = random.randint(1,100)
             if planet_range <= 100:
                 planet_class = random.choice([0,1,2,5])
-            if planet_range <= 80:
+            if planet_range <= 30:
                 planet_class = 3
-            if planet_range <= 3:
+            if planet_range <= 5:
                 planet_class = 4
 
             if planet_class == 0:
@@ -79,7 +79,13 @@ def GenMap(seed):
     
     solar_name = f"{random.choice(Articl)} {abs(seed)}-{abs(int(seed/20))}-{random.choice(Latters)}{random.randint(1,999)}"
 
-    solar_class = random.choice(["O", "B", "A", "F", "G", "K", "M", "L", "T", "P"])
+    standart_solar_class = ["O", "B", "A", "F", "G", "K", "M", "L", "T", "NS", "BH"]
+    exotic_solar_class = ["NS","BH"]
+    if random.randint(1,20) == 1:
+        solar_class = random.choice(exotic_solar_class)
+    else:
+        solar_class = random.choice(standart_solar_class)
+
     if solar_class == "O":
         solar_size = random.uniform(6.6,15)
         solar_mass = random.uniform(16,120)
@@ -116,10 +122,14 @@ def GenMap(seed):
         solar_size = random.uniform(0.01,0.05)
         solar_mass = random.uniform(0.001,0.01)
         solar_temp = random.randint(500,1_000)
-    if solar_class == "P":
-        solar_size = random.uniform(0.1,0.7)
-        solar_mass = random.uniform(0.08, 0.45)
-        solar_temp = random.randint(2_400,3_700)
+    if solar_class == "NS":
+        solar_size = random.uniform(0.001,0.05)
+        solar_mass = random.uniform(10, 25)
+        solar_temp = random.randint(1_000_000,4_000_000)
+    if solar_class == "BH":
+        solar_size = random.uniform(20,500)
+        solar_mass = random.uniform(1_000,500_000)
+        solar_temp = random.randint(0,0)
     solar_sisters = []
     if random.randint(1,8) == 1:
         solar_sisters = []
