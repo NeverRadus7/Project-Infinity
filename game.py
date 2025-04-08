@@ -154,6 +154,7 @@ if CommandInput == "2":
                         }
                     )
                     ProjectInfinity.StarChange(StarIs['StarID'], "InfoDate", wl.Date())
+                    ProjectInfinity.StarChange(StarIs['StarID'], "InfoIncome", 0)
                     PlayerIs['Statistic']['StarColony'] += 1
         else:
             wl.Error("Не достатній рівень (>30)")

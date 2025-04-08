@@ -1,5 +1,5 @@
-MaxLevel = 100
-XpToLevel = 15000
+MaxLevel = 999
+XpToLevel = 10000
 FuelRequire = 1
 TravelDistation = 5
 DebugInfo = True
