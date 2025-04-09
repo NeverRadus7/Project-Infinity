@@ -79,7 +79,7 @@ def GenMap(seed):
 
             planet_distance = random.uniform(9.5e+10*planet_number, 1.5e+11*planet_number) * planet_number
             planet_ao = planet_distance / (1.496e+11)
-            planet_effective_temp = ((solar_luminos * 1e+6)/ (4*math.pi * 5.67e-8 * (planet_ao**2))) ** (1/4)
+            planet_effective_temp = ((solar_luminos * 1e+4)/ (16 * math.pi * 5.67e-8 * (planet_ao**2))) ** (1/4)
             planet_kelvin_temp = planet_effective_temp * ((1 + (planet_atmo_greenhouse + planet_atmo_albedo)) ** (1/4))
             planet_temp = planet_kelvin_temp - 273.15
     

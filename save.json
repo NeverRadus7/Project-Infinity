@@ -1,6 +1,6 @@
 {
     "Nickname": "NeverRadus7",
-    "Location": 273,
+    "Location": 62,
     "Ship": {
         "ShipID": 0,
         "ShipName": "HER 015",
@@ -26,7 +26,7 @@
                 "ItemCount": 10
             }
         ],
-        "Fuel": 982
+        "Fuel": 971
     },
     "Fleet": [
         {
@@ -39,11 +39,11 @@
             "Fuel": 91
         }
     ],
-    "Money": 1928332693,
+    "Money": 1928349473,
     "IntelBall": 242530,
     "XP": 112174,
     "Reputation": 0,
-    "WorldDay": 17410,
+    "WorldDay": 17413,
     "Atribution": [
         "PLAYER_TERRAFORMER_DEVICE"
     ],
@@ -53,7 +53,7 @@
         "StarColony": 4,
         "CreditsFromSelled": 0,
         "CreditsFromScience": 0,
-        "IncomeFromColony": 5370
+        "IncomeFromColony": 5464
     },
     "MapSettings": {
         "Filter": 2
