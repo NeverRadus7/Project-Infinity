@@ -54,8 +54,9 @@ if CommandInput == "2":
         print(f" ▪ Зірка: {StarIs['Star']} {StarSymbol}")
     print(f" ▪ Спек. клас: {StarIs['Class']}")
     print(f" ▪ Температура: {StarIs['Temp']:,} K")
-    print(f" ▪ Радіус: {StarIs['Size']:,} рад. Сонця")
-    print(f" ▪ Маса: {StarIs['Mass']:,} мас Сонця")
+    print(f" ▪ Радіус: {StarIs['Size']:,.2f} рад. Сонця")
+    print(f" ▪ Маса: {StarIs['Mass']:,.2f} мас Сонця")
+    print(f" ▪ Світність: {StarIs['Luminos']:.2f} світ. Сонця")
     if StarIs.get("StarIntel"):
         print()
         print(" ▪ Політична інформація:")
@@ -77,7 +78,8 @@ if CommandInput == "2":
     print(f" ▪ Планет:")
     for abs in range(len(StarIs['Planets'])):
         PlanetIs = StarIs['Planets'][abs]
-        print(f"     - {PlanetIs['PlanetName']} - Клас: {PlanetClass[PlanetIs['PlanetClass']]} - Температура: {PlanetIs['PlanetTemp']} °C")
+        TerraformSymbol = ""
+        print(f"     - {PlanetIs['PlanetName']}{TerraformSymbol} - Клас: {PlanetClass[PlanetIs['PlanetClass']]} - Температура: {PlanetIs['PlanetTemp']:.2f} °C - Велика піввісь: {PlanetIs['PlanetDistance']:.2f} а. о.")
     print()
 
     StarInput = wl.ChoiceMenu(StarList)
@@ -315,8 +317,8 @@ if CommandInput == "3":
                 PlanetList.append("Переіменувати планету")
 
             if "PLAYER_TERRAFORMER_DEVICE" in PlayerIs['Atribution']:
-                if PlanetIs['PlanetID'] in [3,4,5] and PlayerIs['PlanetClass'] in [1,3,5]:
-                    if PlanetIs['Temp'] <= 25 and PlanetIs['Temp'] >= 1:
+                if PlanetIs['PlanetID'] in [3,4,5] and PlanetIs['PlanetClass'] in [1,3,5]:
+                    if PlanetIs['PlanetTemp'] <= 25 and PlanetIs['PlanetTemp'] >= -10:
                         PlanetList.append(f"Почати тераформінг {Colore.Green}Θ{Colore.Reset}")
 
             print(f" ▪ Планета: {PlanetIs['PlanetName']}")
@@ -332,6 +334,19 @@ if CommandInput == "3":
                 PlanetIs['PlanetName'] = NewPlanetName
                 ProjectInfinity.StarChange(StarIs['StarID'], "Planets", StarIs['Planets'])
                 wl.Loading("Застосовуємо зміни", 1)
+
+            if PlanetChoice == f"Почати тераформінг {Colore.Green}Θ{Colore.Reset}":
+                PlanetIs['PlanetClass'] = 4
+                for abs in range(len(PlayerIs['Ship']['Storage'])):
+                    ItemIs = PlayerIs['Ship']['Storage'][abs]
+                    ItemSec = 0
+                    if ItemIs['ItemID'] == 36:
+                        ItemSec += 1
+                    else: ItemSec += 0
+                if ItemSec > 0:
+                    wl.InvRem(36, 1)
+                else:
+                    wl.Error(f"В трюмі відсутній: {ItemsDB[36]['ItemName']}")
 
 if CommandInput == "4":
     if StarIs.get("StarCivil"):
@@ -530,7 +545,7 @@ if CommandInput == "5":
                     PlayerIs['Ship']['Fuel'] += 5
                     if PlayerIs['Ship']['Fuel'] > FuelMaxCapacity: PlayerIs['Ship']['Fuel'] = FuelMaxCapacity
                     wl.Loading("Заправлення", 3)
-                    wl.InvRem(0, 1, 'Ship')
+                    wl.InvRem(0, 1)
 
     if OtherCom == "Закріпленні":
         wl.Skip()

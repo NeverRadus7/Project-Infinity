@@ -1,6 +1,7 @@
 import random
 import settings
 import wlregister
+import math
 from galaxy.mapchanges import CustomStars
 from galaxy.mapchanges_lock import CustomStarsLock
 from nickname_generator import generate as ranname
@@ -45,8 +46,10 @@ def GenMap(seed):
         Planets = []
         for gen in range(x):
             gen += 1
-            planet_name = f"{solar_name}-{gen}"
+            planet_number = gen
+            planet_name = f"{solar_name}-{planet_number}"
             planet_range = random.randint(1,100)
+
             if planet_range <= 100:
                 planet_class = random.choice([0,1,2,5])
             if planet_range <= 30:
@@ -54,25 +57,44 @@ def GenMap(seed):
             if planet_range <= 5:
                 planet_class = 4
 
-            if planet_class == 0:
-                planet_temp = random.randint(0,1000)
-            elif planet_class == 1:
-                planet_temp = random.randint(-273,0)
-            elif planet_class == 2:
-                planet_temp = random.randint(-273,100)
-            elif planet_class == 3:
-                planet_temp = random.randint(-10,300)
-            elif planet_class == 4:
-                planet_temp = random.randint(-8,30)
-            elif planet_class == 5:
-                planet_temp = random.randint(-100,200)
+            planet_atmo_albedo = random.uniform(0,1)
+            planet_atmo_greenhouse = random.uniform(0,1)
 
+            if planet_class == 0:
+                planet_mass = random.uniform(0.6,5)
+            elif planet_class == 1:
+                planet_mass = random.uniform(0.6,5)
+            elif planet_class == 2:
+                planet_mass = random.uniform(0.5,4)
+            elif planet_class == 3:
+                planet_mass = random.uniform(9,18)
+            elif planet_class == 4:
+                planet_mass = random.uniform(0.8,1.5)
+            elif planet_class == 5:
+                planet_mass = random.uniform(0.8,1.5)
+            elif planet_class == 6:
+                planet_mass = random.uniform(0.6,2)
+            elif planet_class == 7:
+                planet_mass = random.uniform(0.6,5)
+
+            planet_distance = random.uniform(9.5e+10*planet_number, 1.5e+11*planet_number) * planet_number
+            planet_ao = planet_distance / (1.496e+11)
+            planet_effective_temp = ((solar_luminos * 1e+6)/ (4*math.pi * 5.67e-8 * (planet_ao**2))) ** (1/4)
+            planet_kelvin_temp = planet_effective_temp * ((1 + (planet_atmo_greenhouse + planet_atmo_albedo)) ** (1/4))
+            planet_temp = planet_kelvin_temp - 273.15
+    
             Planets.append(
                 {
                     "PlanetID": gen,
                     "PlanetName": planet_name,
                     "PlanetClass": planet_class,
-                    "PlanetTemp": planet_temp
+                    "PlanetEffectiveTemp": planet_effective_temp,
+                    "PlanetKelvinTemp": planet_kelvin_temp,
+                    "PlanetTemp": planet_temp,
+                    "PlanetMass": planet_mass,
+                    "PlanetAtmoAlbedo": planet_atmo_albedo,
+                    "PlanetAtmoGreenhouse": planet_atmo_greenhouse,
+                    "PlanetDistance": planet_ao
                 }
             )
         return Planets
@@ -90,61 +112,77 @@ def GenMap(seed):
         solar_size = random.uniform(6.6,15)
         solar_mass = random.uniform(16,120)
         solar_temp = random.randint(30_000, 50_000)
+        solar_luminos = random.uniform(100,10e+6)
     if solar_class == "B":
         solar_size = random.uniform(3.2,6.6)
         solar_mass = random.uniform(2.1,16)
         solar_temp = random.randint(10_000, 30_000)
+        solar_luminos = random.uniform(10,1000)
     if solar_class == "A":
         solar_size = random.uniform(1.8,3.2)
         solar_mass = random.uniform(1.4,2.1)
         solar_temp = random.randint(7_500, 10_000)
+        solar_luminos = random.uniform(1,100)
     if solar_class == "F":
         solar_size = random.uniform(1.2,1.8)
         solar_mass = random.uniform(1.04,1.4)
         solar_temp = random.randint(6_000, 7_500)
+        solar_luminos = random.uniform(0.1,10)
     if solar_class == "G":
         solar_size = random.uniform(0.96,1.2)
         solar_mass = random.uniform(0.8,1.04)
         solar_temp = random.randint(5_200, 6_000)
+        solar_luminos = random.uniform(0.05, 5)
     if solar_class == "K":
         solar_size = random.uniform(0.7,0.96)
         solar_mass = random.uniform(0.45,0.8)
         solar_temp = random.randint(3_700, 5_200)
+        solar_luminos = random.uniform(0.01, 2)
     if solar_class == "M":
         solar_size = random.uniform(0.1,0.7)
         solar_mass = random.uniform(0.08,0.45)
         solar_temp = random.randint(2_400, 3_700)
+        solar_luminos = random.uniform(1e-3, 0.1)
     if solar_class == "L":
         solar_size = random.uniform(0.05,0.1)
         solar_mass = random.uniform(0.01,0.08)
         solar_temp = random.randint(1_000, 2_400)
+        solar_luminos = random.uniform(1e-4, 1e-2)
     if solar_class == "T":
         solar_size = random.uniform(0.01,0.05)
         solar_mass = random.uniform(0.001,0.01)
         solar_temp = random.randint(500,1_000)
+        solar_luminos = random.uniform(1e-5, 1e-3)
     if solar_class == "NS":
         solar_size = random.uniform(0.001,0.05)
         solar_mass = random.uniform(10, 25)
-        solar_temp = random.randint(1_000_000,4_000_000)
+        solar_temp = random.randint(1_000_000,10_000_000)
+        solar_luminos = random.uniform(0.001, 0.1)
     if solar_class == "BH":
         solar_size = random.uniform(20,500)
         solar_mass = random.uniform(1_000,500_000)
         solar_temp = random.randint(0,0)
+        solar_luminos = 1e-36
     solar_sisters = []
     if random.randint(1,8) == 1:
         solar_sisters = []
         other_random = random.Random()
         for i in range(random.randint(1,3)):
             other_random.seed(0x0BA7643 + seed + i)
-            solar_class_sis = other_random.choice(["O", "B", "A", "F", "G", "K", "M", "L", "T", "P"])
+            solar_class_sis = other_random.choice(["O", "B", "A", "F", "G", "K", "M", "L", "T", "NS", "BH"])
             solar_sisters.append({
                 "Star": solar_name + " " + Latters[i+1],
                 "Class": solar_class_sis,
                 "Temp": solar_temp,
                 "Mass": solar_mass,
-                "Size": solar_size
+                "Size": solar_size,
+                "Luminos": solar_luminos
             })
         solar_name = f"{solar_name} A"
+    
+    if solar_luminos > 1000:
+        planet_count = 0
+    else: planet_count = random.randint(1,15)
 
     Starsystems = {
         "StarID": seed,
@@ -154,7 +192,8 @@ def GenMap(seed):
         "Temp": solar_temp,
         "Mass": solar_mass,
         "Size": solar_size,
-        "Planets": PlanetGen(random.randint(1,8)),
+        "Luminos": solar_luminos,
+        "Planets": PlanetGen(planet_count),
         "MapPosition": random.randint(1,3780)
     }
 
