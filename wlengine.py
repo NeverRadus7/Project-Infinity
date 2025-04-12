@@ -503,7 +503,7 @@ class ProjectInfinity():
             wl.Skip()
             empty_map = ""
 
-            for star in range(StartMapLoc-10, StartMapLoc+11):
+            for star in range(StartMapLoc-15, StartMapLoc+16):
                 StarIs = GenMap(star)
                 SymbolFrame = ""
                 SymbolFrameBack = ""
@@ -599,8 +599,18 @@ class ProjectInfinity():
                 SelectedDist = f"{colorama.Back.RED}{colorama.Fore.BLACK}█ Дистанція: /!\\ █{colorama.Back.RESET}{colorama.Fore.RESET}"
             else:
                 SelectedDist = f"{colorama.Back.GREEN}{colorama.Fore.BLACK}█ Дистанція: {Distation} св. р █{colorama.Back.RESET}{colorama.Fore.RESET}"
+            if PlayerIs['MapSettings']['Filter'] == 2:
+                SpecularClassBar = f"{colorama.Back.WHITE}{colorama.Fore.BLACK}█ Спек. клас: {StarIs['Class']} █{colorama.Fore.RESET}{colorama.Back.RESET}"
+                if StarIs.get("StarIntel") and StarIs["StarIntel"] == True:
+                    PlanetCountBar = f"{colorama.Back.WHITE}{colorama.Fore.BLACK}█ Кількість планет: {len(StarIs['Planets'])} █{colorama.Fore.RESET}{colorama.Back.RESET}"
+                else:
+                    PlanetCountBar = ""
+            else:
+                SpecularClassBar = ""
+                PlanetCountBar = ""
+                
             print(f"{"─" * ConsoleSizeX}")
-            print(f"{SelectedStar}{PinnedDescPrint}{SelectedDist}")
+            print(f"{SelectedStar}{PinnedDescPrint}{SelectedDist}{SpecularClassBar}{PlanetCountBar}")
             print(f"{"─" * ConsoleSizeX}")
             com = wl.Command()
 

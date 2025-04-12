@@ -57,9 +57,6 @@ def GenMap(seed):
             if planet_range <= 5:
                 planet_class = 4
 
-            planet_atmo_albedo = random.uniform(0,1)
-            planet_atmo_greenhouse = random.uniform(0,1)
-
             if planet_class == 0:
                 planet_mass = random.uniform(0.6,5)
             elif planet_class == 1:
@@ -77,11 +74,28 @@ def GenMap(seed):
             elif planet_class == 7:
                 planet_mass = random.uniform(0.6,5)
 
-            planet_distance = random.uniform(9.5e+10*planet_number, 1.5e+11*planet_number) * planet_number
+            planet_atmo_albedo = random.uniform(0,1)
+            planet_atmo_greenhouse = random.uniform(0,1)
+
+            planet_distance = random.uniform(1e+11*planet_number, 2e+11*planet_number) * planet_number
             planet_ao = planet_distance / (1.496e+11)
             planet_effective_temp = ((solar_luminos * 1e+4)/ (16 * math.pi * 5.67e-8 * (planet_ao**2))) ** (1/4)
             planet_kelvin_temp = planet_effective_temp * ((1 + (planet_atmo_greenhouse + planet_atmo_albedo)) ** (1/4))
             planet_temp = planet_kelvin_temp - 273.15
+
+            planet_live = False
+            if random.randint(1,4) == 1:
+                if planet_temp >= -8 and planet_temp <= 25:
+                    planet_live = True
+                else:
+                    pass
+                
+            planet_terraform_confirm = False
+            if planet_class == 4 and planet_live == False:
+                if planet_temp >= -8 and planet_temp <= 21:
+                    planet_terraform_confirm = True
+                else:
+                    pass
     
             Planets.append(
                 {
@@ -94,7 +108,9 @@ def GenMap(seed):
                     "PlanetMass": planet_mass,
                     "PlanetAtmoAlbedo": planet_atmo_albedo,
                     "PlanetAtmoGreenhouse": planet_atmo_greenhouse,
-                    "PlanetDistance": planet_ao
+                    "PlanetDistance": planet_ao,
+                    "PlanetTerraform": planet_terraform_confirm,
+                    "PlanetLive": planet_live
                 }
             )
         return Planets

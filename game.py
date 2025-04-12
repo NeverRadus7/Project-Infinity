@@ -78,7 +78,11 @@ if CommandInput == "2":
     print(f" ▪ Планет:")
     for abs in range(len(StarIs['Planets'])):
         PlanetIs = StarIs['Planets'][abs]
+
         TerraformSymbol = ""
+        if PlanetIs['PlanetTerraform'] == True:
+            TerraformSymbol = f"{colorama.Fore.GREEN} 𖤖{colorama.Fore.RESET}"
+
         print(f"     - {PlanetIs['PlanetName']}{TerraformSymbol} - Клас: {PlanetClass[PlanetIs['PlanetClass']]} - Температура: {PlanetIs['PlanetTemp']:.2f} °C - Велика піввісь: {PlanetIs['PlanetDistance']:.2f} а. о.")
     print()
 
@@ -293,7 +297,12 @@ if CommandInput == "3":
     wl.Skip()
     for abs in range(len(StarIs['Planets'])):
         PlanetIs = StarIs['Planets'][abs]
-        print(f"{abs+1}. {PlanetIs['PlanetName']} - Клас: {PlanetClass[PlanetIs['PlanetClass']]} - Температура: {PlanetIs['PlanetTemp']} °C")
+
+        TerraformSymbol = ""
+        if PlanetIs['PlanetTerraform'] == True:
+            TerraformSymbol = f"{colorama.Fore.GREEN} 𖤖{colorama.Fore.RESET}"
+
+        print(f"{abs+1}. {PlanetIs['PlanetName']}{TerraformSymbol} - Клас: {PlanetClass[PlanetIs['PlanetClass']]} - Температура: {PlanetIs['PlanetTemp']} °C")
 
     PlanetChoice = int(input("Відправитися: "))-1
     
@@ -317,9 +326,8 @@ if CommandInput == "3":
                 PlanetList.append("Переіменувати планету")
 
             if "PLAYER_TERRAFORMER_DEVICE" in PlayerIs['Atribution']:
-                if PlanetIs['PlanetID'] in [3,4,5] and PlanetIs['PlanetClass'] in [1,3,5]:
-                    if PlanetIs['PlanetTemp'] <= 25 and PlanetIs['PlanetTemp'] >= -10:
-                        PlanetList.append(f"Почати тераформінг {Colore.Green}Θ{Colore.Reset}")
+                if PlanetIs['PlanetTerraform'] == True:
+                    PlanetList.append(f"Почати тераформінг {Colore.Green}𖤖{Colore.Reset}")
 
             print(f" ▪ Планета: {PlanetIs['PlanetName']}")
             print(f" ▪ Клас: {PlanetClass[PlanetIs['PlanetClass']]}")
@@ -335,7 +343,7 @@ if CommandInput == "3":
                 ProjectInfinity.StarChange(StarIs['StarID'], "Planets", StarIs['Planets'])
                 wl.Loading("Застосовуємо зміни", 1)
 
-            if PlanetChoice == f"Почати тераформінг {Colore.Green}Θ{Colore.Reset}":
+            if PlanetChoice == f"Почати тераформінг {Colore.Green}𖤖{Colore.Reset}":
                 PlanetIs['PlanetClass'] = 4
                 for abs in range(len(PlayerIs['Ship']['Storage'])):
                     ItemIs = PlayerIs['Ship']['Storage'][abs]
