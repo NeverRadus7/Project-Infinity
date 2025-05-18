@@ -11,6 +11,9 @@
 # -- Base import ■ ▪ ∙ •
 import time, random, os, colorama, msvcrt, json, math
 from datetime import datetime, timedelta, date
+from rich.console import Console
+from rich.panel import Panel
+from rich.text import Text
 
 # -- Files import
 from galaxy.map import GenMap
@@ -38,6 +41,7 @@ EngineVersion = "2.16"
 
 ConsoleSizeX = 145
 ConsoleSizeY = 45
+Rconsole = Console()
 
 TimeToday = time.strftime("%d")
 TimeMonth = time.strftime("%m")
@@ -722,6 +726,15 @@ class ProjectInfinity():
                 StarIs['StarCivil']['CivilFraction']['FractionPop'] += int(rwos.randint(-2,4) * (math.sqrt(StarIs['StarCivil']['CivilFraction']['FractionPop'])) + 1)
                 if StarIs['StarCivil']['CivilFraction']['FractionPop'] < 1:
                     StarIs['StarCivil']['CivilFraction']['FractionPop'] = 0
+                ProjectInfinity.StarChange(StarIs['StarID'],'StarCivil',StarIs['StarCivil'])
+            # Civil Eco changes
+            if StarIs.get("StarCivil"):
+                StarIs['StarCivil']['CivilEco'] += random.uniform(-0.00001, 0.01)
+                if StarIs['StarCivil']['CivilEco'] < CivilEcoMin:
+                    StarIs['StarCivil']['CivilEco'] = CivilEcoMin
+                else:
+                    if StarIs['StarCivil']['CivilEco'] > CivilEcoMax:
+                        StarIs['StarCivil']['CivilEco'] = CivilEcoMax
                 ProjectInfinity.StarChange(StarIs['StarID'],'StarCivil',StarIs['StarCivil'])
 
 class game():

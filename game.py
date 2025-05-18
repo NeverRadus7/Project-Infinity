@@ -7,9 +7,11 @@ wl.Screen()
 
 CommandInput = wl.Command()
 
+# Функція, яка відкриває мапу Галактики
 if CommandInput == "1":
     ProjectInfinity.GalaxyMap("SHIP")
         
+# Зоряна система
 if CommandInput == "2":
     StarList = []
     if StarIs.get("StarIntel"):
@@ -42,48 +44,69 @@ if CommandInput == "2":
             StarSymbol = f"{Colore.Blue}⌬{Colore.Reset}"     
     else:
         StarSymbol = ""
+
+    if StarIs.get("StarCivil") and StarIs.get("StarControled"):
+        StarList.append("Керівництво системи")
             
     wl.Skip()
     print(f"{Colore.Gray}ID: {StarIs['StarID']}{Colore.Reset}")
-    if StarIs['StarSister'] != []:
-        print(f" ▪ Гол. зірка: {StarIs['Star']} {StarSymbol}")
-        print(f" ▪ Доч. зірки: {StarIs['StarSister'][0]['Star']} {Colore.Gray}- Спек. клас: {StarIs['StarSister'][0]['Class']}{Colore.Reset} {StarSymbol}")
-        for i in range(1, len(StarIs['StarSister'])):
-            print(f"               {StarIs['StarSister'][i]['Star']} {Colore.Gray}- Спек. клас: {StarIs['StarSister'][i]['Class']}{Colore.Reset} {StarSymbol}")
-    else:
-        print(f" ▪ Зірка: {StarIs['Star']} {StarSymbol}")
-    print(f" ▪ Спек. клас: {StarIs['Class']}")
-    print(f" ▪ Температура: {StarIs['Temp']:,} K")
-    print(f" ▪ Радіус: {StarIs['Size']:,.2f} рад. Сонця")
-    print(f" ▪ Маса: {StarIs['Mass']:,.2f} мас Сонця")
-    print(f" ▪ Світність: {StarIs['Luminos']:.2f} світ. Сонця")
+    Cont = Text()
+    Cont.append(f"Зірка: {StarIs['Star']} {StarSymbol}\n")
+    Cont.append(f"Спек. клас: {StarIs['Class']}\n")
+    Cont.append(f"Температура: {StarIs['Temp']:,} K\n")
+    Cont.append(f"Радіус: {StarIs['Size']:,.2f} рад. Сонця\n")
+    Cont.append(f"Маса: {StarIs['Mass']:,.2f} мас Сонця\n")
+    Cont.append(f"Світність: {StarIs['Luminos']:.2f} світ. Сонця")
+
+    Rconsole.print(Panel(Cont,border_style="white",title="[yellow]Зоряна система"))
+    #if StarIs.get("StarIntel"):
+    #    print()
+    #    print(" ▪ Політична інформація:")
+    #    print("     - Дослідженна: Так")
+    #    if StarIs.get("StarCivil"):
+    #        print(f"     - Наявна колонія: Так") 
+    #    if StarIs.get("StarControled"):
+    #        print(f"     - Підкорив: {PlayerIs['Nickname']}")
+    #    if StarIs.get("StarCivil") and not StarIs['StarCivil']['CivilStation'] == {}:
+    #        print(f"     - Системні володарі: {StarIs['StarCivil']['CivilFraction']['FractionName']}")
+    #        print(f"     - Населення: {StarIs['StarCivil']['CivilFraction']['FractionPop']:,}")
+    #        print(f"     - Станція: {StarIs['StarCivil']['CivilStation']['StationName']}")
+    #    print()
+    
+
     if StarIs.get("StarIntel"):
-        print()
-        print(" ▪ Політична інформація:")
-        print("     - Дослідженна: Так")
         if StarIs.get("StarCivil"):
-            print(f"     - Наявна колонія: Так") 
-        if StarIs.get("StarControled"):
-            print(f"     - Підкорив: {PlayerIs['Nickname']}")
-        if StarIs.get("StarCivil") and not StarIs['StarCivil']['CivilStation'] == {}:
-            print(f"     - Системні володарі: {StarIs['StarCivil']['CivilFraction']['FractionName']}")
-            print(f"     - Населення: {StarIs['StarCivil']['CivilFraction']['FractionPop']:,}")
-            print(f"     - Станція: {StarIs['StarCivil']['CivilStation']['StationName']}")
-        print()
-        print(" ▪ Економічна інформація:")
-        if StarIs.get("StarCivil") and StarIs.get("StarControled"):
-            print(f"     - Економічна стала: {StarIs['StarCivil']['CivilEco']}")
-            if StarIs.get("InfoIncome"): print(f"     - Прибуток: {StarIs['InfoIncome']:,} ©")
-    print()
-    print(f" ▪ Планет:")
+            Cont1 = Text()
+            Cont1.append(f"Тип економіки: {Economics[StarIs['StarCivil']['CivilEconomicType']]}\n")
+            if StarIs.get("StarControled"):
+                Cont1.append(f"Економічна стала: {StarIs['StarCivil']['CivilEco']:.2f}\n")
+            if StarIs.get("InfoIncome"): 
+                Cont1.append(f"Прибуток: {StarIs['InfoIncome']:,} ©\n")
+
+            Cont2 = Text()
+            Cont2.append("Досліджена: Так\n")
+            if StarIs.get("StarCivil"):
+                Cont2.append("Заселенна: Так\n")
+            if StarIs.get("StarCivil") and not StarIs['StarCivil']['CivilStation'] == {}:
+                Cont2.append(f"Системні володарі: {StarIs['StarCivil']['CivilFraction']['FractionName']}\n")
+                Cont2.append(f"Населення: {StarIs['StarCivil']['CivilFraction']['FractionPop']:,}\n")
+                Cont2.append(f"Станція: {StarIs['StarCivil']['CivilStation']['StationName']}\n")
+
+            Rconsole.print(Panel(Cont1,border_style="white",title="Економіка"))
+    
+            Rconsole.print(Panel(Cont2, title="[blue]Політична інформація", border_style="white"))
+
+    PlanetContent = Text()
     for abs in range(len(StarIs['Planets'])):
         PlanetIs = StarIs['Planets'][abs]
 
         TerraformSymbol = ""
-        if PlanetIs['PlanetTerraform'] == True:
+        if PlanetIs['PlanetTerraform'] == True and PlanetIs['PlanetLive'] == False:
             TerraformSymbol = f"{colorama.Fore.GREEN} 𖤖{colorama.Fore.RESET}"
 
-        print(f"     - {PlanetIs['PlanetName']}{TerraformSymbol} - Клас: {PlanetClass[PlanetIs['PlanetClass']]} - Температура: {PlanetIs['PlanetTemp']:.2f} °C - Велика піввісь: {PlanetIs['PlanetDistance']:.2f} а. о.")
+        PlanetContent.append(f"{PlanetIs['PlanetName']}{TerraformSymbol} - Клас: {PlanetClass[PlanetIs['PlanetClass']]} - Температура: {PlanetIs['PlanetTemp']:.2f} °C - Велика піввісь: {PlanetIs['PlanetDistance']:.2f} а. о.\n")
+    
+    Rconsole.print(Panel(PlanetContent,border_style="white",title="[green]Планети"))
     print()
 
     StarInput = wl.ChoiceMenu(StarList)
@@ -132,9 +155,9 @@ if CommandInput == "2":
                     ItemSearcher = 0
                     for i in range(len(PlayerIs['Ship']['Storage'])):
                         ItemIs = PlayerIs['Ship']['Storage'][i]
-                        if ItemIs["ItemID"] == 35:
+                        if ItemIs["ItemID"] == 1:
                             ItemSearcher = 1
-                            wl.InvRem(35, 1)
+                            wl.InvRem(1, 1)
                             break
                         else:
                             ItemSearcher += 0
@@ -145,13 +168,15 @@ if CommandInput == "2":
                         StarIs['StarID'], 
                         "StarCivil", 
                         {
+                            "CivilEconomicType": random.randint(0, len(Economics)),
                             "CivilEco": random.uniform(CivilEcoMin,CivilEcoMax), 
+                            "CivilBank": 0,
                             "CivilStation": {
                                 "StationName": f"{ranname()} Station", 
                                 "StationType": random.randint(0,2), 
-                                "StationStoreList": random.sample(range(len(ItemsDB)), 5)}, 
+                                "StationStoreList": random.sample(range(len(ItemsDB)), 1)}, 
                             "CivilFraction": {
-                                "FractionName": f"{PlayerIs['Nickname']} Company",
+                                "FractionName": f"{PlayerIs['Nickname']}",
                                 "FractionPop": random.randint(100,1000),
                                 "FractionEcoType": 0,
                                 "FractionRep": 100,
@@ -164,6 +189,30 @@ if CommandInput == "2":
                     PlayerIs['Statistic']['StarColony'] += 1
         else:
             wl.Error("Не достатній рівень (>30)")
+
+    if StarInput == "Керівництво системи":
+        wl.Skip()
+        Cont = Text()
+        Cont.append(f"Система: {StarIs['Star']}\n")
+        Cont.append(f"Тип економіки: {Economics[StarIs['StarCivil']['CivilEconomicType']]}\n")
+        Cont.append(f"Станція: {StarIs['StarCivil']['CivilStation']['StationName']}\n")
+        Cont.append(f"Населення: {StarIs['StarCivil']['CivilFraction']['FractionPop']:,}\n")
+        Cont.append(f"Прибуток: {StarIs['InfoIncome']:,} ©")
+        Rconsole.print(Panel(Cont,border_style="white", title="Інформація о системі"))
+        
+        ControlInput = wl.ChoiceMenu(["Переіменувати станцію", "Змінити економіку"])
+
+        if ControlInput == "Переіменувати станцію":
+            wl.Skip()
+            StarIs['StarCivil']['CivilStation']['StationName'] = input("Назва для станції: ")
+            ProjectInfinity.StarChange(StarIs['StarID'], "StarCivil", StarIs['StarCivil'])
+
+        if ControlInput == "Змінити економіку":
+            wl.Skip()
+            wl.Menu(Economics)
+            EconomicChoice = int(input("Вибрати: ")) - 1
+            StarIs['StarCivil']['CivilEconomicType'] = EconomicChoice
+            ProjectInfinity.StarChange(StarIs['StarID'], "StarCivil", StarIs['StarCivil'])
 
     if StarInput == f"Космоносці{Colore.Blue} ⊴{Colore.Reset}":
         wl.Skip()
@@ -293,6 +342,7 @@ if CommandInput == "2":
                     PlayerIs['Ship'] = FleetIs['Ships'][ShipIs]
                     FleetIs['Ships'].pop(ShipIs)
 
+# Планети поточної зоряної системи
 if CommandInput == "3":
     wl.Skip()
     for abs in range(len(StarIs['Planets'])):
@@ -326,7 +376,7 @@ if CommandInput == "3":
                 PlanetList.append("Переіменувати планету")
 
             if "PLAYER_TERRAFORMER_DEVICE" in PlayerIs['Atribution']:
-                if PlanetIs['PlanetTerraform'] == True:
+                if PlanetIs['PlanetTerraform'] == True and PlanetIs['PlanetLive'] == False:
                     PlanetList.append(f"Почати тераформінг {Colore.Green}𖤖{Colore.Reset}")
 
             print(f" ▪ Планета: {PlanetIs['PlanetName']}")
@@ -356,6 +406,7 @@ if CommandInput == "3":
                 else:
                     wl.Error(f"В трюмі відсутній: {ItemsDB[36]['ItemName']}")
 
+# Станція
 if CommandInput == "4":
     if StarIs.get("StarCivil"):
             wl.Skip()
@@ -461,6 +512,13 @@ if CommandInput == "4":
                         if PlayerIs['Money'] <= ItemCoust:
                             wl.Error("Не достатньо грошей")
                         else:
+                            StarIs['StarCivil']['CivilEco'] += StarIs['StarCivil']['CivilEco'] + 0.01 * math.log10((int(ItemCoust) * int(Count)))
+                            if StarIs['StarCivil']['CivilEco'] < CivilEcoMin:
+                                StarIs['StarCivil']['CivilEco'] = CivilEcoMin
+                            else:
+                                if StarIs['StarCivil']['CivilEco'] > CivilEcoMax:
+                                    StarIs['StarCivil']['CivilEco'] = CivilEcoMax
+                            ProjectInfinity.StarChange(StarIs['StarID'], 'StarCivil', StarIs['StarCivil'])
                             PlayerIs['Money'] -= ItemCoust
                             wl.InvAdd(ItemIs, Count)
 
@@ -484,6 +542,13 @@ if CommandInput == "4":
                             PlayerIs['Money'] += ItemCoust
                             PlayerIs['XP'] += int((int(SellLot)) * 5)
                             PlayerIs['Statistic']['CreditsFromSelled'] += ItemCoust
+                            StarIs['StarCivil']['CivilEco'] -= StarIs['StarCivil']['CivilEco'] + 0.01 * math.log10((int(ItemCoust) * int(SellLot)))
+                            if StarIs['StarCivil']['CivilEco'] < CivilEcoMin:
+                                StarIs['StarCivil']['CivilEco'] = CivilEcoMin
+                            else:
+                                if StarIs['StarCivil']['CivilEco'] > CivilEcoMax:
+                                    StarIs['StarCivil']['CivilEco'] = CivilEcoMax
+                            ProjectInfinity.StarChange(StarIs['StarID'], 'StarCivil', StarIs['StarCivil'])
                             wl.InvRem(ItemIs['ItemID'], int(SellLot))
 
             if StationCom == "Верф флотоносців":
@@ -513,6 +578,7 @@ if CommandInput == "4":
                         )
                         PlayerIs['Money'] -= FleetCoust
 
+# Різне
 if CommandInput == "5":
     wl.Skip()
     OtherList = ["Статистика", "Переіменувати корабель", "Сховище корабля", "Закріпленні"]
@@ -582,9 +648,11 @@ if CommandInput == "5":
                 print(f" - {Star['Star']} ({StarIs['StarID']}) ▪ Населення: {Star['StarCivil']['CivilFraction']['FractionPop']:,} ▪ Прибуток: {Star['InfoIncome']:,} © ▪ Дата колонізації: {StarIs['InfoDate']}")
         input()
 
+# Перезавантажує гру, не зберігає процеси
 if CommandInput == "*":
     exit()
 
+# Командна строка для ведення кодів чи команд
 if CommandInput == "/":
     wl.Skip()
     debug = exec(input("/"))
@@ -599,4 +667,5 @@ if PlayerIs['GameUpdate'] == 5:
     ProjectInfinity.Logic()
 #endregion
 
+# Збереження прогресу через функцію SaveJSON із WhiteEngine
 wl.SaveJSON("save.json", save)

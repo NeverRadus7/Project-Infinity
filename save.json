@@ -1,62 +1,56 @@
 {
     "Nickname": "NeverRadus7",
-    "Location": 273,
+    "Location": 1,
     "Ship": {
         "ShipID": 0,
         "ShipName": "HER 015",
+        "ShipModification": [],
         "Storage": [
             {
-                "ItemID": 6,
-                "ItemCount": 1
-            },
-            {
-                "ItemID": 29,
-                "ItemCount": 1
-            },
-            {
-                "ItemID": 35,
-                "ItemCount": 17
-            },
-            {
-                "ItemID": 1,
-                "ItemCount": 1
-            },
-            {
                 "ItemID": 0,
-                "ItemCount": 10
+                "ItemCount": 700
             }
         ],
-        "Fuel": 958
+        "Fuel": 950
     },
     "Fleet": [
         {
-            "FleetID": 1,
+            "FleetID": 0,
             "FleetName": "Ra-Min H100",
             "Ships": [],
             "Storage": [],
             "Location": 248,
             "Modules": {},
             "Fuel": 91
+        },
+        {
+            "FleetID": 1,
+            "FleetName": "ISC G-160 Booldog",
+            "Ships": [],
+            "Storage": [],
+            "Location": 1,
+            "Modules": {},
+            "Fuel": 200
         }
     ],
-    "Money": 1928396660,
-    "IntelBall": 252166,
-    "XP": 114472,
+    "Money": 10131625025,
+    "IntelBall": 312322,
+    "XP": 794163,
     "Reputation": 0,
-    "WorldDay": 17421,
+    "WorldDay": 17689,
     "Atribution": [
         "PLAYER_TERRAFORMER_DEVICE"
     ],
     "Statistic": {
-        "StarInteled": 26,
-        "StarControled": 10,
-        "StarColony": 4,
-        "CreditsFromSelled": 0,
+        "StarInteled": 28,
+        "StarControled": 12,
+        "StarColony": 5,
+        "CreditsFromSelled": 10111259010,
         "CreditsFromScience": 0,
-        "IncomeFromColony": 6471
+        "IncomeFromColony": 20739
     },
     "MapSettings": {
-        "Filter": 2
+        "Filter": 0
     },
-    "GameUpdate": 0
+    "GameUpdate": 3
 }

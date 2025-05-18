@@ -215,14 +215,24 @@ def GenMap(seed):
 
     # Генератор колонії
     if random.randint(1,100) <= settings.MapCivilRange:
+        Economic = random.choice(wlregister.Economics)
+        
+        # Генерація списка товарів
+        StationStoreList = []
+        if Economic == wlregister.Economics[1]:
+            StationStoreList = [item for item in wlregister.ItemsDB if item['ItemEconomicType'] == 1]
+        else:
+            StationStoreList = wlregister.ItemsDB
+
         Starsystems['Star'] = ranname()
         Starsystems['StarIntel'] = True
         Starsystems['StarCivil'] = {}
+        Starsystems['StarCivil']['CivilEconomicType'] = random.randint(0, len(wlregister.Economics))
         Starsystems['StarCivil']['CivilEco'] = random.uniform(settings.CivilEcoMin,settings.CivilEcoMax)
         Starsystems['StarCivil']['CivilStation'] = {
             "StationName": f"{ranname()} Station",
             "StationType": random.randint(0,2),
-            "StationStoreList": random.sample(range(len(wlregister.ItemsDB)), random.randint(3,20)) 
+            "StationStoreList": random.sample(range(len(StationStoreList)), random.randint(1,1)) 
         }
         Starsystems['StarCivil']['CivilFraction'] = FractionGen()
     
