@@ -72,7 +72,6 @@ if CommandInput == "2":
     #        print(f"     - Населення: {StarIs['StarCivil']['CivilFraction']['FractionPop']:,}")
     #        print(f"     - Станція: {StarIs['StarCivil']['CivilStation']['StationName']}")
     #    print()
-    
 
     if StarIs.get("StarIntel"):
         if StarIs.get("StarCivil"):
@@ -419,6 +418,9 @@ if CommandInput == "4":
             if StarIs['StarCivil']['CivilStation']['StationType'] == 2:
                 StationList.append("Верф флотоносців")
 
+            if StarIs['StarCivil']['CivilEconomicType'] in [1,3,4]:
+                StationList.append("Майстерня")
+
             StationCom = wl.ChoiceMenu(StationList)
 
             if StationCom == "Здати досліди":
@@ -577,6 +579,21 @@ if CommandInput == "4":
                             }
                         )
                         PlayerIs['Money'] -= FleetCoust
+
+            if StationCom == "Майстерня":
+                wl.Skip()
+                Categories = ["Корабль", "Атака та оборона", "Додаткові пристрої", "Інші"]
+                IsCategories = wl.ChoiceMenu(Categories)
+                
+                if IsCategories == "Корабль":
+                    wl.Skip()
+                    Modifications = [item for item in ShipModifications if item["ModCategory"] == 0] # 0 is ID of ModCategory, 0 - Ship
+                    for abs in range(len(Modifications)):
+                        ModificationIs = Modifications[abs]
+                        ModificationDynamicCoust = int(ModificationIs['ModCoust'] * StarIs['StarCivil']['CivilEco'])
+                        print(f"{abs+1}. {ModificationIs['ModName']} ▪ Ціна: {ModificationDynamicCoust:,} ©")
+                    ModificationBuy = int(input("Вибрати: "))
+                    if ModificationBuy 
 
 # Різне
 if CommandInput == "5":

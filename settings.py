@@ -3,6 +3,7 @@ XpToLevel = 10000
 FuelRequire = 1
 TravelDistation = 5
 DebugInfo = True
+MaxShipModification = 3
 
 SymbolOfStar = "★ "
 SymbolOfStarPinned = "★⚐ "
