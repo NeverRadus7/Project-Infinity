@@ -593,7 +593,6 @@ if CommandInput == "4":
                         ModificationDynamicCoust = int(ModificationIs['ModCoust'] * StarIs['StarCivil']['CivilEco'])
                         print(f"{abs+1}. {ModificationIs['ModName']} ▪ Ціна: {ModificationDynamicCoust:,} ©")
                     ModificationBuy = int(input("Вибрати: "))
-                    if ModificationBuy 
 
 # Різне
 if CommandInput == "5":

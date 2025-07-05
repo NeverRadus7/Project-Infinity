@@ -33,11 +33,11 @@
             "Fuel": 200
         }
     ],
-    "Money": 10133098655,
+    "Money": 10133201202,
     "IntelBall": 0,
     "XP": 794163,
     "Reputation": 0,
-    "WorldDay": 17703,
+    "WorldDay": 17705,
     "Atribution": [
         "PLAYER_TERRAFORMER_DEVICE"
     ],
@@ -47,10 +47,10 @@
         "StarColony": 5,
         "CreditsFromSelled": 10111259010,
         "CreditsFromScience": 0,
-        "IncomeFromColony": 50010
+        "IncomeFromColony": 51350
     },
     "MapSettings": {
         "Filter": 0
     },
-    "GameUpdate": 2
+    "GameUpdate": 0
 }

@@ -9,7 +9,7 @@
 # © WhiteLight studio • 2024 • ALL RIGHTS RESERVED • https://sites.google.com/view/whitelight-studio
 
 # -- Base import ■ ▪ ∙ •
-import time, random, os, colorama, msvcrt, json, math
+import time, random, os, colorama, json, math, getch
 from datetime import datetime, timedelta, date
 from rich.console import Console
 from rich.panel import Panel
@@ -39,8 +39,8 @@ colorama.init()
 VersionClient = "Dev"
 EngineVersion = "2.16"
 
-ConsoleSizeX = 145
-ConsoleSizeY = 45
+ConsoleSizeX = 120
+ConsoleSizeY = 35
 Rconsole = Console()
 
 TimeToday = time.strftime("%d")
@@ -71,8 +71,7 @@ class wl(): # Main class
     LowerLatters = [chr(i) for i in range(97, 123)]
 
     def Command():
-        key = msvcrt.getch()
-        key = key.decode("utf-8")
+        key = getch.getch()
         return key
 
     def ConsoleSetSize():
