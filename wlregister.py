@@ -28,18 +28,9 @@ Economics = [
 
 ShipModifications = [
     {
-        "ModCategory": 0,
-        "ModType": "Armor",
-        "ModName": "Стандартний сплав",
-        "ModValue": ["Health", 200],
-        "ModCoust": 25000
-    },
-    {
-        "ModCategory": 2,
-        "ModType": "SystemScan",
-        "ModName": "Пристрій картографії",
-        "ModValue": ["ScanBonusMultiply", 1],
-        "ModCoust": 10000
+        "ModID": 0,
+        "ModName": "Паливний бак 50т",
+        "ModCoust": 7000000
     }
 ]
 

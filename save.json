@@ -4,14 +4,28 @@
     "Ship": {
         "ShipID": 0,
         "ShipName": "HER 015",
-        "ShipModification": [],
+        "ShipModification": [
+            {
+                "ModificationID": null
+            },
+            {
+                "ModificationID": 0
+            },
+            {
+                "ModificationID": 0
+            }
+        ],
         "Storage": [
             {
                 "ItemID": 0,
                 "ItemCount": 719
+            },
+            {
+                "ItemID": 1,
+                "ItemCount": 5
             }
         ],
-        "Fuel": 20
+        "Fuel": 117
     },
     "Fleet": [
         {
@@ -33,11 +47,11 @@
             "Fuel": 200
         }
     ],
-    "Money": 10133201202,
+    "Money": 10133579143,
     "IntelBall": 0,
     "XP": 794163,
     "Reputation": 0,
-    "WorldDay": 17705,
+    "WorldDay": 17712,
     "Atribution": [
         "PLAYER_TERRAFORMER_DEVICE"
     ],
@@ -47,10 +61,10 @@
         "StarColony": 5,
         "CreditsFromSelled": 10111259010,
         "CreditsFromScience": 0,
-        "IncomeFromColony": 51350
+        "IncomeFromColony": 57558
     },
     "MapSettings": {
-        "Filter": 0
+        "Filter": 1
     },
-    "GameUpdate": 0
+    "GameUpdate": 3
 }

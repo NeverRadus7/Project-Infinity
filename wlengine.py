@@ -269,7 +269,7 @@ class wl(): # Main class
         print(f" ▪ Кредити: {Colore.Yellow}{PlayerIs['Money']:,} ©{Colore.Reset}")
         print(f" ▪ Досл. бали: {Colore.Blue}{PlayerIs['IntelBall']:,} ◭{Colore.Reset}")
         print(f" ▪ XP: {PlayerIs['XP']:,} XP {Colore.Gray}| Level: {wl.Level} {Colore.Reset}")
-        print(f" ▪ Корабель: {PlayerIs['Ship']['ShipName']}{Colore.Gray} ({Ships[PlayerIs['Ship']['ShipID']]['ShipName']}) | МВС: {TravelDistation} св. р | Паливо: {PlayerIs['Ship']['Fuel']}/{Ships[PlayerIs['Ship']['ShipID']]['ShipMaxFuel']} тон{Colore.Reset}")
+        print(f" ▪ Корабель: {PlayerIs['Ship']['ShipName']}{Colore.Gray} ({Ships[PlayerIs['Ship']['ShipID']]['ShipName']}) | МВС: {TravelDistation} св. р | Паливо: {PlayerIs['Ship']['Fuel']}/{FuelMaxCapacity} тон{Colore.Reset}")
         if DebugInfo == True: print(f"{Colore.Red}Debug-інформація: MapSeed: {MapSeed}, StarID: {StarIs['StarID']}{Colore.Reset}")
         print(wl.Wall)
         print(wl.DoList)
@@ -752,3 +752,11 @@ TravelDistation += Ships[PlayerIs['Ship']['ShipID']]['ShipTravelingDist']
 
 if wl.Level >= MaxLevel:
     wl.Level = MaxLevel
+
+NewFuel = 0
+for i in range(len(PlayerIs['Ship']['ShipModification'])):
+    if PlayerIs['Ship']['ShipModification'][i]['ModificationID'] == 0:
+        NewFuel += 50
+
+FuelNow = PlayerIs['Ship']['Fuel']
+FuelMaxCapacity = Ships[PlayerIs['Ship']['ShipID']]['ShipMaxFuel'] + NewFuel

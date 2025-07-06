@@ -430,8 +430,13 @@ if CommandInput == "4":
                     PlayerIs['IntelBall'] = 0
             
             if StationCom == "Заправитися":
+                NewFuel = 0
+                for i in range(len(PlayerIs['Ship']['ShipModification'])):
+                    if PlayerIs['Ship']['ShipModification'][i]['ModificationID'] == 0:
+                        NewFuel += 50
+
                 FuelNow = PlayerIs['Ship']['Fuel']
-                FuelMaxCapacity = Ships[PlayerIs['Ship']['ShipID']]['ShipMaxFuel']
+                FuelMaxCapacity = Ships[PlayerIs['Ship']['ShipID']]['ShipMaxFuel'] + NewFuel
                 FuelCoust = (FuelMaxCapacity - FuelNow) * 12
                 if PlayerIs['Ship']['Fuel'] != FuelMaxCapacity:
                     if PlayerIs['Money'] >= FuelCoust:
@@ -581,18 +586,42 @@ if CommandInput == "4":
                         PlayerIs['Money'] -= FleetCoust
 
             if StationCom == "Майстерня":
+                def ChoiceModificationSlot():
+                    wl.Skip()
+                    for abs in range(len(PlayerIs['Ship']['ShipModification'])):
+                        SlotIs = PlayerIs['Ship']['ShipModification'][abs]
+                        if SlotIs['ModificationID'] != None:
+                            ModIs = ShipModifications[SlotIs['ModificationID']]
+                            ModLabel = f"{Colore.Yellow}{ModIs['ModName']}{Colore.Reset}"
+                        else:
+                            ModLabel = f"{Colore.Gray}Відсутній{Colore.Reset}"
+                        print(f"{abs+1}. {abs+1} слот: [{ModLabel}]")
+                    inp = int(wl.Command()) - 1
+                    return inp
+                
                 wl.Skip()
-                Categories = ["Корабль", "Атака та оборона", "Додаткові пристрої", "Інші"]
+                Categories = ["Придбати та встановити модифікацію", "Продати модифікацію"]
                 IsCategories = wl.ChoiceMenu(Categories)
                 
-                if IsCategories == "Корабль":
+                if IsCategories == "Придбати та встановити модифікацію":
                     wl.Skip()
-                    Modifications = [item for item in ShipModifications if item["ModCategory"] == 0] # 0 is ID of ModCategory, 0 - Ship
+                    Modifications = ShipModifications
                     for abs in range(len(Modifications)):
                         ModificationIs = Modifications[abs]
                         ModificationDynamicCoust = int(ModificationIs['ModCoust'] * StarIs['StarCivil']['CivilEco'])
                         print(f"{abs+1}. {ModificationIs['ModName']} ▪ Ціна: {ModificationDynamicCoust:,} ©")
-                    ModificationBuy = int(input("Вибрати: "))
+                    ModificationBuy = int(input("Вибрати: ")) - 1
+                    ModificationIs = Modifications[ModificationBuy]
+                    Slot = ChoiceModificationSlot()
+                    if PlayerIs['Money'] >= ModificationIs['ModCoust']:
+                        if PlayerIs['Ship']['ShipModification'][Slot]['ModificationID'] == None:
+                            PlayerIs['Ship']['ShipModification'][Slot]['ModificationID'] = ModificationBuy
+                            PlayerIs['Money'] -= ModificationIs['ModCoust']
+                            wl.Loading("Встановлюємо модифікацію", 3)
+                        else:
+                            wl.Error("У вашему кораблі вже встановлена модифікація!")
+                    else: wl.Error("Не достатньо грошей!")
+                    
 
 # Різне
 if CommandInput == "5":
@@ -630,8 +659,12 @@ if CommandInput == "5":
         else:
             ItemIs = PlayerIs['Ship']['Storage'][ItemChoice]
             if ItemsDB[ItemIs['ItemID']]['ItemName'] == ItemsDB[0]['ItemName']:
-                if ItemsDB[ItemIs['ItemID']]['ItemType'] == 0:
-                    FuelMaxCapacity = Ships[PlayerIs['Ship']['ShipID']]['ShipMaxFuel']
+                    if ItemsDB[ItemIs['ItemID']]['ItemType'] == 0:
+                        NewFuel = 0
+                    for i in range(len(PlayerIs['Ship']['ShipModification'])):
+                        if PlayerIs['Ship']['ShipModification'][i]['ModificationID'] == 0:
+                            NewFuel += 50
+                    FuelMaxCapacity = Ships[PlayerIs['Ship']['ShipID']]['ShipMaxFuel'] + NewFuel
                     PlayerIs['Ship']['Fuel'] += 5
                     if PlayerIs['Ship']['Fuel'] > FuelMaxCapacity: PlayerIs['Ship']['Fuel'] = FuelMaxCapacity
                     wl.Loading("Заправлення", 3)
