@@ -15,3 +15,5 @@ CivilEcoMin = 0.1
 CivilEcoMax = 1.5
 MinFulling = 1
 MaxFulling = 60
+
+# Battle settings

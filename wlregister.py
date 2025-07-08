@@ -32,7 +32,14 @@ ShipModifications = [
         "ModType": 0,
         "ModName": "Паливний бак 50т",
         "ModCoust": 7000000,
-        "ModValue": 50
+        "ModValue": 50 # + Fuel maximum capacity
+    },
+    {
+        "ModID": 1,
+        "ModType": 1,
+        "ModName": "Легкоповерхневий сплав",
+        "ModCoust": 180000,
+        "ModValue": 100 # + Health ship
     }
 ]
 

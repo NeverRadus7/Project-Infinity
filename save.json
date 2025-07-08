@@ -18,7 +18,7 @@
                 "ModificationID": 0
             },
             {
-                "ModificationID": 0
+                "ModificationID": 1
             }
         ],
         "Storage": [
@@ -61,12 +61,12 @@
             ]
         }
     },
-    "Money": 388484767290,
+    "Money": 389020066127,
     "IntelBall": 548202,
     "BattleScore": 5030,
-    "XP": 23195356381,
+    "XP": 23229302593,
     "Reputation": 0,
-    "WorldDay": 27967,
+    "WorldDay": 27972,
     "Atribution": [
         "PLAYER_TERRAFORMER_DEVICE"
     ],
@@ -76,10 +76,10 @@
         "StarColony": 7,
         "CreditsFromSelled": 13866527205,
         "CreditsFromScience": 0,
-        "IncomeFromColony": 106409144
+        "IncomeFromColony": 104117850
     },
     "MapSettings": {
         "Filter": 0
     },
-    "GameUpdate": 4
+    "GameUpdate": 2
 }

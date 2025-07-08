@@ -706,6 +706,7 @@ class ProjectInfinity():
                         StarColor = colorama.Fore.RED
                         print(f"{StarColor}StarID: {StarIs['StarID']} - Система: {StarIs['Star']} - Планет: {len(StarIs['Planets'])}: з життям: {PlanetLive}{colorama.Fore.RESET}")
                 input()
+
     def Logic():
         PlayerIs["WorldDay"] += 1
         PlayerIs['Statistic']['IncomeFromColony'] = 0
@@ -741,6 +742,89 @@ class ProjectInfinity():
                     if StarIs['StarCivil']['CivilEco'] > CivilEcoMax:
                         StarIs['StarCivil']['CivilEco'] = CivilEcoMax
                 ProjectInfinity.StarChange(StarIs['StarID'],'StarCivil',StarIs['StarCivil'])
+
+    def Duel(Title, EnemyNavy):
+        # ProjectInfinity.Duel("Test", {"Bot": "TestBot"})
+        def BattleScreen():
+            wl.Skip()
+            print(Title)
+            print(wl.Wall)
+            print(f" - {PlayerPrefix} Гравець: {wl.Player} - HP: {PlayerHP:,} - DM: {PlayerDMG:,} | {PlayerMessage}")
+            print(wl.Wall)
+            print(f" - {BotPrefix} Опонент: {str(EnemyNavy['Bot'])} - HP: {BotHP:,} - DM: {PlayerDMG:,} | {BotMessage}")
+            print(wl.Wall)
+            time.sleep(1.5)
+        
+        PlayerHP = 100
+        for i in range(len(PlayerIs['Ship']['ShipModification'])):
+            ModPlayerIs = PlayerIs['Ship']['ShipModification'][i]['ModificationID']
+            ModIs = ShipModifications[ModPlayerIs]
+            if ModIs['ModType'] == 1:
+                PlayerHP += ModIs['ModValue']
+
+        BotHP = 100
+        #for i in range(len(PlayerIs['Ship']['ShipModification'])):
+        #    ModPlayerIs = PlayerIs['Ship']['ShipModification']['ModificationID']
+        #    ModIs = ShipModifications[ModPlayerIs]
+        #    if ModIs['ModType'] == 1:
+        #        PlayerHP += ModIs['ModValue']
+
+        PlayerDMG = 12
+        BotDMG = 10
+
+        BattleCoefMin = 0.1
+        BattleCoefMax = 1.2
+
+        PlayerInterval = 3
+        BotInterval = 4
+
+        PlayerAccuracy = 40
+        BotAccuracy = 50
+
+        BattleToggle = True
+
+        PlayerMessage = ""
+        BotMessage = ""
+        
+        while BattleToggle == True:
+            PlayerDM = int(PlayerDMG * random.uniform(BattleCoefMin, BattleCoefMax))
+            BotDM = int(BotDMG * random.uniform(BattleCoefMin, BattleCoefMax))
+            for p_i in range(PlayerInterval):
+                BotPrefix = f"{Colore.Blue}⛊{Colore.Reset}"
+                PlayerPrefix = f"{p_i+1}{Colore.Red}▶{Colore.Reset}"
+                if random.randint(1,2) == 1:
+                    PlayerMessage = "Залп"
+                    if random.randint(1,100) <= PlayerAccuracy:
+                        BotHP -= PlayerDM
+                        BotMessage = f"Ненесена шкода ({PlayerDM})"
+                    else:
+                        BotHP -= 0
+                        PlayerMessage = "Залп: Промах"
+                BattleScreen()
+            
+            PlayerMessage = ""
+
+            for b_i in range(BotInterval):
+                PlayerPrefix = f"{Colore.Blue}⛊{Colore.Reset}"
+                BotPrefix = f"{b_i+1}{Colore.Red}▶{Colore.Reset}"
+                if random.randint(1,2) == 1:
+                    BotMessage = "Залп"
+                    if random.randint(1,100) <= BotAccuracy:
+                        PlayerHP -= BotDM
+                        PlayerMessage = f"Ненесена шкода ({BotDM})"
+                    else:
+                        PlayerHP -= 0
+                        BotMessage = "Залп: Промах"
+                BattleScreen()
+            BotMessage = ""
+
+            BattleScreen()
+            if BotHP <= 0:
+                break
+            
+            if PlayerHP <= 0:
+                break
+            
 
 class game():
     class player():
