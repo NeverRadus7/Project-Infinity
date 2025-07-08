@@ -29,8 +29,10 @@ Economics = [
 ShipModifications = [
     {
         "ModID": 0,
+        "ModType": 0,
         "ModName": "Паливний бак 50т",
-        "ModCoust": 7000000
+        "ModCoust": 7000000,
+        "ModValue": 50
     }
 ]
 

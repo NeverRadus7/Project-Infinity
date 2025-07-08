@@ -28,6 +28,7 @@ with open("save.json",'r', encoding="utf-8") as f:
 
 # -- LICENSE
 LICENSE = open("LICENSE", "r", encoding="utf-8")
+GameLogo = open("data//game_logo.wlf", "r", encoding="utf-8")
 
 PlayerIs = save
 StarIs = GenMap(PlayerIs['Location'])
@@ -39,8 +40,8 @@ colorama.init()
 VersionClient = "Dev"
 EngineVersion = "2.16"
 
-ConsoleSizeX = 120
-ConsoleSizeY = 35
+ConsoleSizeX = 130
+ConsoleSizeY = 30
 Rconsole = Console()
 
 TimeToday = time.strftime("%d")
@@ -260,6 +261,7 @@ class wl(): # Main class
         print(textt)
 
     def Screen():
+        print(GameLogo.read())
         print(f"Project Infinity ▪ {VersionClient}".center(ConsoleSizeX))
         print(f"© WhiteLight studio - all rights reserved")
         print(wl.Wall)
@@ -268,13 +270,14 @@ class wl(): # Main class
         print(f" ▪ Ім'я: {PlayerIs['Nickname']}")
         print(f" ▪ Кредити: {Colore.Yellow}{PlayerIs['Money']:,} ©{Colore.Reset}")
         print(f" ▪ Досл. бали: {Colore.Blue}{PlayerIs['IntelBall']:,} ◭{Colore.Reset}")
+        print(f" ▪ Бойові гранти: {Colore.Red}{PlayerIs['BattleScore']:,} ⊙{Colore.Reset}")
         print(f" ▪ XP: {PlayerIs['XP']:,} XP {Colore.Gray}| Level: {wl.Level} {Colore.Reset}")
         print(f" ▪ Корабель: {PlayerIs['Ship']['ShipName']}{Colore.Gray} ({Ships[PlayerIs['Ship']['ShipID']]['ShipName']}) | МВС: {TravelDistation} св. р | Паливо: {PlayerIs['Ship']['Fuel']}/{FuelMaxCapacity} тон{Colore.Reset}")
         if DebugInfo == True: print(f"{Colore.Red}Debug-інформація: MapSeed: {MapSeed}, StarID: {StarIs['StarID']}{Colore.Reset}")
         print(wl.Wall)
         print(wl.DoList)
         print(wl.Wall)
-        for abis in range(9):
+        for abis in range(6):
             print()
 
     def ReadList(list, a0):
@@ -581,7 +584,7 @@ class ProjectInfinity():
                 empty_map += f"{sp}{starview}{sp}"
 
             text = "Galaxy Map"
-            print(f"{"─" * (int(ConsoleSizeX / 2) - len(text))} {text} {"─" * (int(ConsoleSizeX / 2)-1)}")
+            print(f"{"─" * (int(ConsoleSizeX / 2) - len(text)-1)} {text} {"─" * (int(ConsoleSizeX / 2)-1)}")
             MapFilterPrint = f"{colorama.Back.WHITE}{colorama.Fore.BLACK}█ Фільтр мапи: {MapFilter[PlayerIs['MapSettings']['Filter']]} █{colorama.Back.RESET}{colorama.Fore.RESET}"
             ShiftMap = f"{colorama.Back.WHITE}{colorama.Fore.BLACK} Центр: {StartMapLoc} █{colorama.Fore.RESET}{colorama.Back.RESET}"
             print(MapFilterPrint,ShiftMap)
@@ -728,7 +731,10 @@ class ProjectInfinity():
                 ProjectInfinity.StarChange(StarIs['StarID'],'StarCivil',StarIs['StarCivil'])
             # Civil Eco changes
             if StarIs.get("StarCivil"):
-                StarIs['StarCivil']['CivilEco'] += random.uniform(-0.00001, 0.01)
+                if rwos.randint(1,2) == 1:
+                    StarIs['StarCivil']['CivilEco'] -= rwos.uniform(0.0001, 0.01)
+                else:
+                    StarIs['StarCivil']['CivilEco'] += rwos.uniform(0.0001, 0.01)
                 if StarIs['StarCivil']['CivilEco'] < CivilEcoMin:
                     StarIs['StarCivil']['CivilEco'] = CivilEcoMin
                 else:
@@ -753,10 +759,22 @@ TravelDistation += Ships[PlayerIs['Ship']['ShipID']]['ShipTravelingDist']
 if wl.Level >= MaxLevel:
     wl.Level = MaxLevel
 
+if len(PlayerIs['Ship']['ShipModification']) < MaxShipModification:
+    for abs in range(MaxShipModification - len(PlayerIs['Ship']['ShipModification'])):
+        PlayerIs['Ship']['ShipModification'].append(
+            {
+                "ModificationID": None
+            }
+        )
+elif len(PlayerIs['Ship']['ShipModification']) > MaxShipModification:
+    for abs in range(len(PlayerIs['Ship']['ShipModification']) - MaxShipModification):
+        PlayerIs['Ship']['ShipModification'].pop()
+
 NewFuel = 0
 for i in range(len(PlayerIs['Ship']['ShipModification'])):
     if PlayerIs['Ship']['ShipModification'][i]['ModificationID'] == 0:
-        NewFuel += 50
+        if ShipModifications[PlayerIs['Ship']['ShipModification'][i]['ModificationID']]['ModType'] == 0:
+            NewFuel += ShipModifications[PlayerIs['Ship']['ShipModification'][i]['ModificationID']]['ModValue']
 
 FuelNow = PlayerIs['Ship']['Fuel']
 FuelMaxCapacity = Ships[PlayerIs['Ship']['ShipID']]['ShipMaxFuel'] + NewFuel

@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV '/home/hermanpc/Стільниця/All applications/Project-Infinity/python'
+set -gx VIRTUAL_ENV '/home/hermanpc/Стільниця/Програми/Project-Infinity/python'
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/"bin $PATH

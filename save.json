@@ -1,12 +1,18 @@
 {
     "Nickname": "NeverRadus7",
-    "Location": 1,
+    "Location": 2,
     "Ship": {
         "ShipID": 0,
         "ShipName": "HER 015",
         "ShipModification": [
             {
-                "ModificationID": null
+                "ModificationID": 0
+            },
+            {
+                "ModificationID": 0
+            },
+            {
+                "ModificationID": 0
             },
             {
                 "ModificationID": 0
@@ -17,15 +23,11 @@
         ],
         "Storage": [
             {
-                "ItemID": 0,
-                "ItemCount": 719
-            },
-            {
-                "ItemID": 1,
-                "ItemCount": 5
+                "ItemID": 2,
+                "ItemCount": 1010040
             }
         ],
-        "Fuel": 117
+        "Fuel": 269
     },
     "Fleet": [
         {
@@ -42,29 +44,42 @@
             "FleetName": "ISC G-160 Booldog",
             "Ships": [],
             "Storage": [],
-            "Location": 1,
+            "Location": 2,
             "Modules": {},
-            "Fuel": 200
+            "Fuel": 148
         }
     ],
-    "Money": 10133579143,
-    "IntelBall": 0,
-    "XP": 794163,
+    "Navy": {
+        "NavyLevel": 1,
+        "NavyShips": 24,
+        "NavyLeader": {
+            "LeaderName": "George Smith",
+            "LeaderRank": "Grand-Admiral",
+            "LeaderLevel": 50,
+            "LeaderPerk": [
+                "Battle"
+            ]
+        }
+    },
+    "Money": 388484767290,
+    "IntelBall": 548202,
+    "BattleScore": 5030,
+    "XP": 23195356381,
     "Reputation": 0,
-    "WorldDay": 17712,
+    "WorldDay": 27967,
     "Atribution": [
         "PLAYER_TERRAFORMER_DEVICE"
     ],
     "Statistic": {
-        "StarInteled": 28,
-        "StarControled": 12,
-        "StarColony": 5,
-        "CreditsFromSelled": 10111259010,
+        "StarInteled": 31,
+        "StarControled": 15,
+        "StarColony": 7,
+        "CreditsFromSelled": 13866527205,
         "CreditsFromScience": 0,
-        "IncomeFromColony": 57558
+        "IncomeFromColony": 106409144
     },
     "MapSettings": {
-        "Filter": 1
+        "Filter": 0
     },
-    "GameUpdate": 3
+    "GameUpdate": 4
 }
