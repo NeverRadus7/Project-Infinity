@@ -27,7 +27,7 @@ if CommandInput == "2":
         StarList.append("Зняти систему із закріплень")
     
     if StarIs.get("StarControled") and not StarIs.get("StarCivil"):
-        StarList.append("Засновати власну колонію")
+        StarList.append("Заснувати власну колонію")
 
     if PlayerIs.get("Fleet") and len(PlayerIs['Fleet']) > 0:
         for i in range(len(PlayerIs['Fleet'])):
@@ -72,7 +72,6 @@ if CommandInput == "2":
     #        print(f"     - Населення: {StarIs['StarCivil']['CivilFraction']['FractionPop']:,}")
     #        print(f"     - Станція: {StarIs['StarCivil']['CivilStation']['StationName']}")
     #    print()
-    
 
     if StarIs.get("StarIntel"):
         if StarIs.get("StarCivil"):
@@ -141,7 +140,7 @@ if CommandInput == "2":
         PlayerIs['Statistic']['StarControled'] += 1
         ProjectInfinity.StarChange(StarIs['StarID'], "StarControled", True)
     
-    if StarInput == "Засновати власну колонію":
+    if StarInput == "Заснувати власну колонію":
         wl.Massage("Заснування колонії - це третій шаг встановлення влади, колонії дають можливість продавати чи покупати товари, мати постійне місце проживання та постійний прибуток. Але під постійним прибуток вважається стабільна економіка системи, яка урегулюєця трьома параметрами: кількість планет, популярність та тип головної станції системи.")
         wl.Massage("Перед тим, як заснувати, вам треба мати: Флотоносець класу Контруктор, 100,000,000 © та 30 рівень галактичної репутації")
         for i in range(len(PlayerIs['Fleet'])):
@@ -168,7 +167,7 @@ if CommandInput == "2":
                         StarIs['StarID'], 
                         "StarCivil", 
                         {
-                            "CivilEconomicType": random.randint(0, len(Economics)),
+                            "CivilEconomicType": random.randint(0, len(Economics)-1),
                             "CivilEco": random.uniform(CivilEcoMin,CivilEcoMax), 
                             "CivilBank": 0,
                             "CivilStation": {
@@ -409,174 +408,231 @@ if CommandInput == "3":
 # Станція
 if CommandInput == "4":
     if StarIs.get("StarCivil"):
+        wl.Skip()
+        print(f" ▪ Станція: {StarIs['StarCivil']['CivilStation']['StationName']}")
+        print(f" ▪ Економічна стала: {StarIs['StarCivil']['CivilEco']}")
+        print()
+
+        StationList = ["Здати досліди", "Заправитися", "Верф", "Ринок"]
+
+        if StarIs['StarCivil']['CivilStation']['StationType'] == 2:
+            StationList.append("Верф флотоносців")
+
+        if StarIs['StarCivil']['CivilEconomicType'] in [1,3,4]:
+            StationList.append("Майстерня")
+
+        StationCom = wl.ChoiceMenu(StationList)
+
+        if StationCom == "Здати досліди":
+            if PlayerIs['IntelBall'] > 0:
+                wl.Loading("Здавання дослідження",3)
+                PlayerIs['Money'] += (PlayerIs['IntelBall'] * 3)
+                PlayerIs['IntelBall'] = 0
+        
+        if StationCom == "Заправитися":
+            FuelNow = PlayerIs['Ship']['Fuel']
+            FuelMaxCapacity = Ships[PlayerIs['Ship']['ShipID']]['ShipMaxFuel'] + NewFuel
+            FuelCoust = (FuelMaxCapacity - FuelNow) * 12
+            if PlayerIs['Ship']['Fuel'] != FuelMaxCapacity:
+                if PlayerIs['Money'] >= FuelCoust:
+                    wl.Loading("Заправлення", 3)
+                    PlayerIs['Ship']['Fuel'] += FuelMaxCapacity - FuelNow
+                    PlayerIs['Money'] -= FuelCoust
+                else:
+                    wl.Error("Не достатньо грошей")
+            else:
+                wl.Error(f"{PlayerIs['Ship']['ShipName']} вже заправленний")
+        
+        if StationCom == "Верф":
             wl.Skip()
-            print(f" ▪ Станція: {StarIs['StarCivil']['CivilStation']['StationName']}")
-            print(f" ▪ Економічна стала: {StarIs['StarCivil']['CivilEco']}")
-            print()
+            for ship in range(len(Ships)):
+                ShipIs = Ships[ship]
+                print(f"{ship+1}. {ShipIs['ShipName']} | Клас: {ShipClasses[ShipIs['ShipClass']]} | Ціна: {int(ShipIs['ShipCoust'] * StarIs['StarCivil']['CivilEco']):,} ©")
+            ShipChoice = input("Вибрати: ")
+            ShipChoised = Ships[int(ShipChoice)-1]
 
-            StationList = ["Здати досліди", "Заправитися", "Верф", "Ринок"]
-
-            if StarIs['StarCivil']['CivilStation']['StationType'] == 2:
-                StationList.append("Верф флотоносців")
-
-            StationCom = wl.ChoiceMenu(StationList)
-
-            if StationCom == "Здати досліди":
-                if PlayerIs['IntelBall'] > 0:
-                    wl.Loading("Здавання дослідження",3)
-                    PlayerIs['Money'] += (PlayerIs['IntelBall'] * 3)
-                    PlayerIs['IntelBall'] = 0
-            
-            if StationCom == "Заправитися":
-                FuelNow = PlayerIs['Ship']['Fuel']
-                FuelMaxCapacity = Ships[PlayerIs['Ship']['ShipID']]['ShipMaxFuel']
-                FuelCoust = (FuelMaxCapacity - FuelNow) * 12
-                if PlayerIs['Ship']['Fuel'] != FuelMaxCapacity:
-                    if PlayerIs['Money'] >= FuelCoust:
-                        wl.Loading("Заправлення", 3)
-                        PlayerIs['Ship']['Fuel'] += FuelMaxCapacity - FuelNow
-                        PlayerIs['Money'] -= FuelCoust
-                    else:
-                        wl.Error("Не достатньо грошей")
-                else:
-                    wl.Error(f"{PlayerIs['Ship']['ShipName']} вже заправленний")
-            
-            if StationCom == "Верф":
-                wl.Skip()
-                for ship in range(len(Ships)):
-                    ShipIs = Ships[ship]
-                    print(f"{ship+1}. {ShipIs['ShipName']} | Клас: {ShipClasses[ShipIs['ShipClass']]} | Ціна: {int(ShipIs['ShipCoust'] * StarIs['StarCivil']['CivilEco']):,} ©")
-                ShipChoice = input("Вибрати: ")
-                ShipChoised = Ships[int(ShipChoice)-1]
-
-                if PlayerIs['Money'] >= int(ShipChoised['ShipCoust'] * StarIs['StarCivil']['CivilEco']):
-                    def ShipBuyScript():
-                        wl.Loading("Купівля", 3)
-                        PlayerIs['Ship']['ShipID'] = ShipChoised['ShipID']
-                        PlayerIs['Ship']['Fuel'] = ShipChoised['ShipMaxFuel']
-                        PlayerIs['Ship']['ShipName'] = ShipChoised['ShipName']
-                        PlayerIs['Ship']['Storage'] = []
-                        PlayerIs['Money'] -= int(ShipChoised['ShipCoust'] * StarIs['StarCivil']['CivilEco'])
-                        PlayerIs['XP'] += int(int(ShipChoised['ShipCoust'] * StarIs['StarCivil']['CivilEco']) / 5)
-                    def ShipBuyToFleetScript():
-                        for i in range(len(PlayerIs['Fleet'])):
-                            FleetIs = PlayerIs['Fleet'][i]
-                            if FleetIs['Location'] == StarIs['StarID']:
-                                break
-                            else: pass
-                        FleetIs['Ships'].append(
-                            {
-                                "ShipID": ShipChoised['ShipID'],
-                                "ShipName": ShipChoised['ShipName'],
-                                "Storage": [],
-                                "Fuel": ShipChoised['ShipMaxFuel']
-                            }
-                        )
-                        PlayerIs['Money'] -= int(ShipChoised['ShipCoust'] * StarIs['StarCivil']['CivilEco'])
-                        PlayerIs['XP'] += int(int(ShipChoised['ShipCoust'] * StarIs['StarCivil']['CivilEco']) / 5)
-                    
-                    if PlayerIs.get("Fleet"):
-                        for i in range(len(PlayerIs['Fleet'])):
-                            if PlayerIs['Fleet'][i]['Location'] == StarIs['StarID']:
-                                FleetIs = PlayerIs['Fleet'][i]
-                                break
+            if PlayerIs['Money'] >= int(ShipChoised['ShipCoust'] * StarIs['StarCivil']['CivilEco']):
+                def ShipBuyScript():
+                    wl.Loading("Купівля", 3)
+                    PlayerIs['Ship']['ShipID'] = ShipChoised['ShipID']
+                    PlayerIs['Ship']['Fuel'] = ShipChoised['ShipMaxFuel']
+                    PlayerIs['Ship']['ShipName'] = ShipChoised['ShipName']
+                    PlayerIs['Ship']['Storage'] = []
+                    PlayerIs['Money'] -= int(ShipChoised['ShipCoust'] * StarIs['StarCivil']['CivilEco'])
+                    PlayerIs['XP'] += int(int(ShipChoised['ShipCoust'] * StarIs['StarCivil']['CivilEco']) / 5)
+                def ShipBuyToFleetScript():
+                    for i in range(len(PlayerIs['Fleet'])):
+                        FleetIs = PlayerIs['Fleet'][i]
                         if FleetIs['Location'] == StarIs['StarID']:
-                            wl.Skip()
-                            TypeBuy = wl.ChoiceMenu(["Купити та замінити свій корабель", "Купити та перемістити до флотоносця"])
-                            if TypeBuy == "Купити та перемістити до флотоносця":
-                                wl.Loading("Купівля", 3)
-                                ShipBuyToFleetScript()
-                            else:
-                                ShipBuyScript()
-                        else:
-                                ShipBuyScript()
-                    else:
-                        ShipBuyScript()
-
-            if StationCom == "Ринок":
-                wl.Skip()
-                StationStoreChoice = wl.ChoiceMenu(["Купити", "Продати"])
-                if StationStoreChoice == "Купити":
-                    wl.Skip()
-                    for alli in range(len(StarIs['StarCivil']['CivilStation']['StationStoreList'])):
-                        ItemIs = StarIs['StarCivil']['CivilStation']['StationStoreList'][alli]
-                        ItemCoust = int(int(ItemsDB[ItemIs]['ItemCoust']) * StarIs['StarCivil']['CivilEco'])
-                        print(f"{alli+1}. {ItemsDB[ItemIs]['ItemName']} ▪ Ціна: {ItemCoust:,} © ▪ Тип: {ItemsType[ItemsDB[ItemIs]['ItemType']]}")
-                    ChoiceItem = int(input("Купити: ")) - 1
-
-                    if ChoiceItem < len(StarIs['StarCivil']['CivilStation']['StationStoreList']) and ChoiceItem >= 0:
+                            break
+                        else: pass
+                    FleetIs['Ships'].append(
+                        {
+                            "ShipID": ShipChoised['ShipID'],
+                            "ShipName": ShipChoised['ShipName'],
+                            "Storage": [],
+                            "Fuel": ShipChoised['ShipMaxFuel']
+                        }
+                    )
+                    PlayerIs['Money'] -= int(ShipChoised['ShipCoust'] * StarIs['StarCivil']['CivilEco'])
+                    PlayerIs['XP'] += int(int(ShipChoised['ShipCoust'] * StarIs['StarCivil']['CivilEco']) / 5)
+                
+                if PlayerIs.get("Fleet"):
+                    for i in range(len(PlayerIs['Fleet'])):
+                        if PlayerIs['Fleet'][i]['Location'] == StarIs['StarID']:
+                            FleetIs = PlayerIs['Fleet'][i]
+                            break
+                    if FleetIs['Location'] == StarIs['StarID']:
                         wl.Skip()
-                        Count = int(input("Скільки: "))
-                        ItemIs = StarIs['StarCivil']['CivilStation']['StationStoreList'][ChoiceItem]
-                        ItemCoust = int(int(ItemsDB[ItemIs]['ItemCoust']) * StarIs['StarCivil']['CivilEco']) * Count
-                        if PlayerIs['Money'] <= ItemCoust:
-                            wl.Error("Не достатньо грошей")
+                        TypeBuy = wl.ChoiceMenu(["Купити та замінити свій корабель", "Купити та перемістити до флотоносця"])
+                        if TypeBuy == "Купити та перемістити до флотоносця":
+                            wl.Loading("Купівля", 3)
+                            ShipBuyToFleetScript()
                         else:
-                            StarIs['StarCivil']['CivilEco'] += StarIs['StarCivil']['CivilEco'] + 0.01 * math.log10((int(ItemCoust) * int(Count)))
-                            if StarIs['StarCivil']['CivilEco'] < CivilEcoMin:
-                                StarIs['StarCivil']['CivilEco'] = CivilEcoMin
-                            else:
-                                if StarIs['StarCivil']['CivilEco'] > CivilEcoMax:
-                                    StarIs['StarCivil']['CivilEco'] = CivilEcoMax
-                            ProjectInfinity.StarChange(StarIs['StarID'], 'StarCivil', StarIs['StarCivil'])
-                            PlayerIs['Money'] -= ItemCoust
-                            wl.InvAdd(ItemIs, Count)
-
-                if StationStoreChoice == "Продати":
-                    wl.Skip()
-                    for alli in range(len(PlayerIs['Ship']['Storage'])):
-                        ItemIs = PlayerIs['Ship']['Storage'][alli]
-                        ItemCoust = int(int(ItemsDB[ItemIs['ItemID']]['ItemCoust']) * StarIs['StarCivil']['CivilEco'])
-                        print(f"{alli+1}. {ItemsDB[ItemIs['ItemID']]['ItemName']} ▪ Ціна: {ItemCoust:,} © ▪ Тип: {ItemsType[ItemsDB[alli]['ItemType']]} ▪ Ціна разом: {int(ItemCoust*ItemIs['ItemCount']):,} © ▪ Кількість в сховище: {ItemIs['ItemCount']:,}")
-                    ChoiceItem = int(input("Продати: ")) - 1
-                    
-                    if ChoiceItem > len(PlayerIs['Ship']['Storage'])+1 or ChoiceItem < 0:
-                        wl.Error("Недоступне введення")
+                            ShipBuyScript()
                     else:
-                        wl.Skip()
-                        SellLot = input("Скільки продати: ")
-                        ItemIs = PlayerIs['Ship']['Storage'][ChoiceItem]
-                        ItemCoust = int(int(ItemsDB[ItemIs['ItemID']]['ItemCoust']) * StarIs['StarCivil']['CivilEco']) * int(SellLot)
-                        if int(SellLot) > ItemIs['ItemCount']: wl.Error("Не висточає товару для продажу")
-                        else:
-                            PlayerIs['Money'] += ItemCoust
-                            PlayerIs['XP'] += int((int(SellLot)) * 5)
-                            PlayerIs['Statistic']['CreditsFromSelled'] += ItemCoust
-                            StarIs['StarCivil']['CivilEco'] -= StarIs['StarCivil']['CivilEco'] + 0.01 * math.log10((int(ItemCoust) * int(SellLot)))
-                            if StarIs['StarCivil']['CivilEco'] < CivilEcoMin:
-                                StarIs['StarCivil']['CivilEco'] = CivilEcoMin
-                            else:
-                                if StarIs['StarCivil']['CivilEco'] > CivilEcoMax:
-                                    StarIs['StarCivil']['CivilEco'] = CivilEcoMax
-                            ProjectInfinity.StarChange(StarIs['StarID'], 'StarCivil', StarIs['StarCivil'])
-                            wl.InvRem(ItemIs['ItemID'], int(SellLot))
-
-            if StationCom == "Верф флотоносців":
-                wl.Skip()
-                for i in range(len(Fleets)):
-                    FleetIs = Fleets[i]
-                    FleetCoust = int(FleetIs['FleetCoust'] * StarIs['StarCivil']['CivilEco'])
-                    print(f"{i+1}. {FleetIs['FleetModel']} ▪ {FleetIs['FleetCoust']:,} ©")
-
-                FleetChoice = int(input("Купити: ")) - 1
-
-                if FleetChoice > len(Fleets) or FleetChoice < 0:
-                    wl.Error("Невірне введення")
+                            ShipBuyScript()
                 else:
-                    FleetIs = Fleets[FleetChoice]
-                    if PlayerIs['Money'] > FleetIs['FleetCoust']:
-                        PlayerIs['Fleet'].append(
-                            {
-                                "FleetID": FleetIs['FleetID'],
-                                "FleetName": FleetIs['FleetModel'],
-                                "Ships": [],
-                                "Storage": [],
-                                "Location": StarIs['StarID'],
-                                "Modules": {},
-                                "Fuel": FleetIs['FleetMaxFuel']
-                            }
-                        )
-                        PlayerIs['Money'] -= FleetCoust
+                    ShipBuyScript()
+
+        if StationCom == "Ринок":
+            wl.Skip()
+            StationStoreChoice = wl.ChoiceMenu(["Купити", "Продати"])
+
+            if StationStoreChoice == "Купити":
+                wl.Skip()
+                for alli in range(len(StarIs['StarCivil']['CivilStation']['StationStoreList'])):
+                    ItemIs = StarIs['StarCivil']['CivilStation']['StationStoreList'][alli]
+                    ItemCoust = int(int(ItemsDB[ItemIs]['ItemCoust']) * StarIs['StarCivil']['CivilEco'])
+                    print(f"{alli+1}. {ItemsDB[ItemIs]['ItemName']} ▪ Ціна: {ItemCoust:,} © ▪ Тип: {ItemsType[ItemsDB[ItemIs]['ItemType']]}")
+                ChoiceItem = int(input("Купити: ")) - 1
+
+                if ChoiceItem < len(StarIs['StarCivil']['CivilStation']['StationStoreList']) and ChoiceItem >= 0:
+                    wl.Skip()
+                    Count = int(input("Скільки: "))
+                    ItemIs = StarIs['StarCivil']['CivilStation']['StationStoreList'][ChoiceItem]
+                    ItemCoustClear = int(int(ItemsDB[ItemIs]['ItemCoust']) * StarIs['StarCivil']['CivilEco']) 
+                    ItemCoust = int(int(ItemsDB[ItemIs]['ItemCoust']) * StarIs['StarCivil']['CivilEco']) * Count
+                    if PlayerIs['Money'] <= ItemCoust:
+                        wl.Error("Не достатньо грошей")
+                    else:
+                        StarIs['StarCivil']['CivilEco'] += (1 - (ItemCoustClear/(ItemCoust)))/10
+                        if StarIs['StarCivil']['CivilEco'] < CivilEcoMin:
+                            StarIs['StarCivil']['CivilEco'] = CivilEcoMin
+                        else:
+                            if StarIs['StarCivil']['CivilEco'] > CivilEcoMax:
+                                StarIs['StarCivil']['CivilEco'] = CivilEcoMax
+                        ProjectInfinity.StarChange(StarIs['StarID'], 'StarCivil', StarIs['StarCivil'])
+                        PlayerIs['Money'] -= ItemCoust
+                        wl.InvAdd(ItemIs, Count)
+
+            if StationStoreChoice == "Продати":
+                wl.Skip()
+                for alli in range(len(PlayerIs['Ship']['Storage'])):
+                    ItemIs = PlayerIs['Ship']['Storage'][alli]
+                    ItemCoust = int(int(ItemsDB[ItemIs['ItemID']]['ItemCoust']) * StarIs['StarCivil']['CivilEco'])
+                    print(f"{alli+1}. {ItemsDB[ItemIs['ItemID']]['ItemName']} ▪ Ціна: {ItemCoust:,} © ▪ Тип: {ItemsType[ItemsDB[alli]['ItemType']]} ▪ Ціна разом: {int(ItemCoust*ItemIs['ItemCount']):,} © ▪ Кількість в сховище: {ItemIs['ItemCount']:,}")
+                ChoiceItem = int(input("Продати: ")) - 1
+                
+                if ChoiceItem > len(PlayerIs['Ship']['Storage'])+1 or ChoiceItem < 0:
+                    wl.Error("Недоступне введення")
+                else:
+                    wl.Skip()
+                    SellLot = input("Скільки продати: ")
+                    ItemIs = PlayerIs['Ship']['Storage'][ChoiceItem]
+                    ItemCoustClear = int(int(ItemsDB[ItemIs['ItemID']]['ItemCoust']) * StarIs['StarCivil']['CivilEco'])
+                    ItemCoust = int(int(ItemsDB[ItemIs['ItemID']]['ItemCoust']) * StarIs['StarCivil']['CivilEco']) * int(SellLot)
+                    if int(SellLot) > ItemIs['ItemCount']: wl.Error("Не висточає товару для продажу")
+                    else:
+                        PlayerIs['Money'] += ItemCoust
+                        PlayerIs['XP'] += int((int(SellLot)) * 5)
+                        PlayerIs['Statistic']['CreditsFromSelled'] += ItemCoust
+                        StarIs['StarCivil']['CivilEco'] -= (1 - (ItemCoustClear/(ItemCoust)))/10
+                        if StarIs['StarCivil']['CivilEco'] < CivilEcoMin:
+                            StarIs['StarCivil']['CivilEco'] = CivilEcoMin
+                        else:
+                            if StarIs['StarCivil']['CivilEco'] > CivilEcoMax:
+                                StarIs['StarCivil']['CivilEco'] = CivilEcoMax
+                        ProjectInfinity.StarChange(StarIs['StarID'], 'StarCivil', StarIs['StarCivil'])
+                        wl.InvRem(ItemIs['ItemID'], int(SellLot))
+
+        if StationCom == "Верф флотоносців":
+            wl.Skip()
+            for i in range(len(Fleets)):
+                FleetIs = Fleets[i]
+                FleetCoust = int(FleetIs['FleetCoust'] * StarIs['StarCivil']['CivilEco'])
+                print(f"{i+1}. {FleetIs['FleetModel']} ▪ {FleetIs['FleetCoust']:,} ©")
+
+            FleetChoice = int(input("Купити: ")) - 1
+
+            if FleetChoice > len(Fleets) or FleetChoice < 0:
+                wl.Error("Невірне введення")
+            else:
+                FleetIs = Fleets[FleetChoice]
+                if PlayerIs['Money'] > FleetIs['FleetCoust']:
+                    PlayerIs['Fleet'].append(
+                        {
+                            "FleetID": FleetIs['FleetID'],
+                            "FleetName": FleetIs['FleetModel'],
+                            "Ships": [],
+                            "Storage": [],
+                            "Location": StarIs['StarID'],
+                            "Modules": {},
+                            "Fuel": FleetIs['FleetMaxFuel']
+                        }
+                    )
+                    PlayerIs['Money'] -= FleetCoust
+
+        if StationCom == "Майстерня":
+            def ChoiceModificationSlot():
+                wl.Skip()
+                for abs in range(MaxShipModification):
+                    SlotIs = PlayerIs['Ship']['ShipModification'][abs]
+                    if SlotIs['ModificationID'] != None:
+                        ModIs = ShipModifications[SlotIs['ModificationID']]
+                        ModLabel = f"{Colore.Yellow}{ModIs['ModName']}{Colore.Reset}"
+                    else:
+                        ModLabel = f"{Colore.Gray}Відсутній{Colore.Reset}"
+                    print(f"{abs+1}. {abs+1} слот: [{ModLabel}]")
+                inp = int(input("Вибрати слот: ")) - 1
+                return inp
+            
+            wl.Skip()
+            Categories = ["Придбати та встановити модифікацію", "Продати модифікацію"]
+            IsCategories = wl.ChoiceMenu(Categories)
+            
+            if IsCategories == "Придбати та встановити модифікацію":
+                wl.Skip()
+                Modifications = ShipModifications
+                for abs in range(len(Modifications)):
+                    ModificationIs = Modifications[abs]
+                    ModificationDynamicCoust = int(ModificationIs['ModCoust'] * StarIs['StarCivil']['CivilEco'])
+                    print(f"{abs+1}. {ModificationIs['ModName']} ▪ Ціна: {ModificationDynamicCoust:,} ©")
+                ModificationBuy = int(input("Вибрати: ")) - 1
+                ModificationIs = Modifications[ModificationBuy]
+                Slot = ChoiceModificationSlot()
+                if PlayerIs['Money'] >= ModificationIs['ModCoust']:
+                    if PlayerIs['Ship']['ShipModification'][Slot]['ModificationID'] == None:
+                        PlayerIs['Ship']['ShipModification'][Slot]['ModificationID'] = ModificationBuy
+                        PlayerIs['Money'] -= ModificationIs['ModCoust']
+                        wl.Loading("Встановлюємо модифікацію", 3)
+                    else:
+                        wl.Error("У вашему кораблі вже встановлена модифікація!")
+                else: wl.Error("Не достатньо грошей!")
+            
+            if IsCategories == "Продати модифікацію":
+                wl.Skip()
+                Slot = ChoiceModificationSlot()
+                ModIs = PlayerIs['Ship']['ShipModification'][Slot]
+                ModRegisterIs = ShipModifications[ModIs['ModificationID']]
+                
+                wl.Skip()
+                wl.Quation("Ви точно хочете продати існуючу модифікацію?")
+
+                NewCoust = int(ModRegisterIs['ModCoust'] * 0.95)
+                ModIs['ModificationID'] = None
+                PlayerIs['Money'] += NewCoust
+                wl.Loading("Демонтаж модифікації", 3)
 
 # Різне
 if CommandInput == "5":
@@ -585,6 +641,9 @@ if CommandInput == "5":
 
     if wl.Level >= 30:
         OtherList.append("Ваші колонії")
+    
+    if wl.Level >= 50:
+        OtherList.append("Флот")
 
     OtherCom = wl.ChoiceMenu(OtherList)
     if OtherCom == "Статистика":
@@ -614,12 +673,13 @@ if CommandInput == "5":
         else:
             ItemIs = PlayerIs['Ship']['Storage'][ItemChoice]
             if ItemsDB[ItemIs['ItemID']]['ItemName'] == ItemsDB[0]['ItemName']:
-                if ItemsDB[ItemIs['ItemID']]['ItemType'] == 0:
-                    FuelMaxCapacity = Ships[PlayerIs['Ship']['ShipID']]['ShipMaxFuel']
-                    PlayerIs['Ship']['Fuel'] += 5
-                    if PlayerIs['Ship']['Fuel'] > FuelMaxCapacity: PlayerIs['Ship']['Fuel'] = FuelMaxCapacity
-                    wl.Loading("Заправлення", 3)
-                    wl.InvRem(0, 1)
+                    if ItemsDB[ItemIs['ItemID']]['ItemType'] == 0:
+                        PlayerIs['Ship']['Fuel'] += 5
+                        if PlayerIs['Ship']['Fuel'] > FuelMaxCapacity: 
+                            PlayerIs['Ship']['Fuel'] = FuelMaxCapacity
+                        wl.Loading("Заправлення", 3)
+                        wl.InvRem(0, 1)
+                        # ID OF FUEL: 0
 
     if OtherCom == "Закріпленні":
         wl.Skip()
@@ -646,6 +706,15 @@ if CommandInput == "5":
             Star = GenMap(StarIs['StarID'])
             if StarIs.get("StarCivil") and StarIs.get("StarControled"):
                 print(f" - {Star['Star']} ({StarIs['StarID']}) ▪ Населення: {Star['StarCivil']['CivilFraction']['FractionPop']:,} ▪ Прибуток: {Star['InfoIncome']:,} © ▪ Дата колонізації: {StarIs['InfoDate']}")
+        input()
+
+    if OtherCom == "Флот":
+        wl.Skip()
+        print("Флот:")
+        print(f" ▪ Досвід флоту: {PlayerIs['Navy']['NavyLevel']}")
+        print(f" ▪ Кораблів: {PlayerIs['Navy']['NavyShips']}")
+        print(f" ▪ Лідер: {PlayerIs['Navy']['NavyLeader']['LeaderRank']} {PlayerIs['Navy']['NavyLeader']['LeaderName']} ({PlayerIs['Navy']['NavyLeader']['LeaderLevel']})")
+        print(f" ▪ Бойовий рейтинг: {int(int(PlayerIs['Navy']['NavyShips']) * int(PlayerIs['Navy']['NavyLevel']) * (int(PlayerIs['Navy']['NavyLeader']['LeaderLevel'])/5)):,}")
         input()
 
 # Перезавантажує гру, не зберігає процеси

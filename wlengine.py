@@ -9,7 +9,7 @@
 # © WhiteLight studio • 2024 • ALL RIGHTS RESERVED • https://sites.google.com/view/whitelight-studio
 
 # -- Base import ■ ▪ ∙ •
-import time, random, os, colorama, msvcrt, json, math
+import time, random, os, colorama, json, math, msvcrt
 from datetime import datetime, timedelta, date
 from rich.console import Console
 from rich.panel import Panel
@@ -28,6 +28,7 @@ with open("save.json",'r', encoding="utf-8") as f:
 
 # -- LICENSE
 LICENSE = open("LICENSE", "r", encoding="utf-8")
+GameLogo = open("data//game_logo.wlf", "r", encoding="utf-8")
 
 PlayerIs = save
 StarIs = GenMap(PlayerIs['Location'])
@@ -39,8 +40,8 @@ colorama.init()
 VersionClient = "Dev"
 EngineVersion = "2.16"
 
-ConsoleSizeX = 145
-ConsoleSizeY = 45
+ConsoleSizeX = 130
+ConsoleSizeY = 30
 Rconsole = Console()
 
 TimeToday = time.strftime("%d")
@@ -71,8 +72,7 @@ class wl(): # Main class
     LowerLatters = [chr(i) for i in range(97, 123)]
 
     def Command():
-        key = msvcrt.getch()
-        key = key.decode("utf-8")
+        key = msvcrt.getch().decode("utf-8")
         return key
 
     def ConsoleSetSize():
@@ -261,6 +261,7 @@ class wl(): # Main class
         print(textt)
 
     def Screen():
+        print(GameLogo.read())
         print(f"Project Infinity ▪ {VersionClient}".center(ConsoleSizeX))
         print(f"© WhiteLight studio - all rights reserved")
         print(wl.Wall)
@@ -269,13 +270,14 @@ class wl(): # Main class
         print(f" ▪ Ім'я: {PlayerIs['Nickname']}")
         print(f" ▪ Кредити: {Colore.Yellow}{PlayerIs['Money']:,} ©{Colore.Reset}")
         print(f" ▪ Досл. бали: {Colore.Blue}{PlayerIs['IntelBall']:,} ◭{Colore.Reset}")
+        print(f" ▪ Бойові гранти: {Colore.Red}{PlayerIs['BattleScore']:,} ⊙{Colore.Reset}")
         print(f" ▪ XP: {PlayerIs['XP']:,} XP {Colore.Gray}| Level: {wl.Level} {Colore.Reset}")
-        print(f" ▪ Корабель: {PlayerIs['Ship']['ShipName']}{Colore.Gray} ({Ships[PlayerIs['Ship']['ShipID']]['ShipName']}) | МВС: {TravelDistation} св. р | Паливо: {PlayerIs['Ship']['Fuel']}/{Ships[PlayerIs['Ship']['ShipID']]['ShipMaxFuel']} тон{Colore.Reset}")
+        print(f" ▪ Корабель: {PlayerIs['Ship']['ShipName']}{Colore.Gray} ({Ships[PlayerIs['Ship']['ShipID']]['ShipName']}) | МВС: {TravelDistation} св. р | Паливо: {PlayerIs['Ship']['Fuel']}/{FuelMaxCapacity} тон{Colore.Reset}")
         if DebugInfo == True: print(f"{Colore.Red}Debug-інформація: MapSeed: {MapSeed}, StarID: {StarIs['StarID']}{Colore.Reset}")
         print(wl.Wall)
         print(wl.DoList)
         print(wl.Wall)
-        for abis in range(9):
+        for abis in range(6):
             print()
 
     def ReadList(list, a0):
@@ -582,7 +584,7 @@ class ProjectInfinity():
                 empty_map += f"{sp}{starview}{sp}"
 
             text = "Galaxy Map"
-            print(f"{"─" * (int(ConsoleSizeX / 2) - len(text))} {text} {"─" * (int(ConsoleSizeX / 2)-1)}")
+            print(f"{"─" * (int(ConsoleSizeX / 2) - len(text)-1)} {text} {"─" * (int(ConsoleSizeX / 2)-1)}")
             MapFilterPrint = f"{colorama.Back.WHITE}{colorama.Fore.BLACK}█ Фільтр мапи: {MapFilter[PlayerIs['MapSettings']['Filter']]} █{colorama.Back.RESET}{colorama.Fore.RESET}"
             ShiftMap = f"{colorama.Back.WHITE}{colorama.Fore.BLACK} Центр: {StartMapLoc} █{colorama.Fore.RESET}{colorama.Back.RESET}"
             print(MapFilterPrint,ShiftMap)
@@ -704,6 +706,7 @@ class ProjectInfinity():
                         StarColor = colorama.Fore.RED
                         print(f"{StarColor}StarID: {StarIs['StarID']} - Система: {StarIs['Star']} - Планет: {len(StarIs['Planets'])}: з життям: {PlanetLive}{colorama.Fore.RESET}")
                 input()
+
     def Logic():
         PlayerIs["WorldDay"] += 1
         PlayerIs['Statistic']['IncomeFromColony'] = 0
@@ -729,13 +732,99 @@ class ProjectInfinity():
                 ProjectInfinity.StarChange(StarIs['StarID'],'StarCivil',StarIs['StarCivil'])
             # Civil Eco changes
             if StarIs.get("StarCivil"):
-                StarIs['StarCivil']['CivilEco'] += random.uniform(-0.00001, 0.01)
+                if rwos.randint(1,2) == 1:
+                    StarIs['StarCivil']['CivilEco'] -= rwos.uniform(0.0001, 0.01)
+                else:
+                    StarIs['StarCivil']['CivilEco'] += rwos.uniform(0.0001, 0.01)
                 if StarIs['StarCivil']['CivilEco'] < CivilEcoMin:
                     StarIs['StarCivil']['CivilEco'] = CivilEcoMin
                 else:
                     if StarIs['StarCivil']['CivilEco'] > CivilEcoMax:
                         StarIs['StarCivil']['CivilEco'] = CivilEcoMax
                 ProjectInfinity.StarChange(StarIs['StarID'],'StarCivil',StarIs['StarCivil'])
+
+    def Duel(Title, EnemyNavy):
+        # ProjectInfinity.Duel("Test", {"Bot": "TestBot"})
+        def BattleScreen():
+            wl.Skip()
+            print(Title)
+            print(wl.Wall)
+            print(f" - {PlayerPrefix} Гравець: {wl.Player} - HP: {PlayerHP:,} - DM: {PlayerDMG:,} | {PlayerMessage}")
+            print(wl.Wall)
+            print(f" - {BotPrefix} Опонент: {str(EnemyNavy['Bot'])} - HP: {BotHP:,} - DM: {PlayerDMG:,} | {BotMessage}")
+            print(wl.Wall)
+            time.sleep(1.5)
+        
+        PlayerHP = 100
+        for i in range(len(PlayerIs['Ship']['ShipModification'])):
+            ModPlayerIs = PlayerIs['Ship']['ShipModification'][i]['ModificationID']
+            ModIs = ShipModifications[ModPlayerIs]
+            if ModIs['ModType'] == 1:
+                PlayerHP += ModIs['ModValue']
+
+        BotHP = 100
+        #for i in range(len(PlayerIs['Ship']['ShipModification'])):
+        #    ModPlayerIs = PlayerIs['Ship']['ShipModification']['ModificationID']
+        #    ModIs = ShipModifications[ModPlayerIs]
+        #    if ModIs['ModType'] == 1:
+        #        PlayerHP += ModIs['ModValue']
+
+        PlayerDMG = 12
+        BotDMG = 10
+
+        BattleCoefMin = 0.1
+        BattleCoefMax = 1.2
+
+        PlayerInterval = 3
+        BotInterval = 4
+
+        PlayerAccuracy = 40
+        BotAccuracy = 50
+
+        BattleToggle = True
+
+        PlayerMessage = ""
+        BotMessage = ""
+        
+        while BattleToggle == True:
+            PlayerDM = int(PlayerDMG * random.uniform(BattleCoefMin, BattleCoefMax))
+            BotDM = int(BotDMG * random.uniform(BattleCoefMin, BattleCoefMax))
+            for p_i in range(PlayerInterval):
+                BotPrefix = f"{Colore.Blue}⛊{Colore.Reset}"
+                PlayerPrefix = f"{p_i+1}{Colore.Red}▶{Colore.Reset}"
+                if random.randint(1,2) == 1:
+                    PlayerMessage = "Залп"
+                    if random.randint(1,100) <= PlayerAccuracy:
+                        BotHP -= PlayerDM
+                        BotMessage = f"Ненесена шкода ({PlayerDM})"
+                    else:
+                        BotHP -= 0
+                        PlayerMessage = "Залп: Промах"
+                BattleScreen()
+            
+            PlayerMessage = ""
+
+            for b_i in range(BotInterval):
+                PlayerPrefix = f"{Colore.Blue}⛊{Colore.Reset}"
+                BotPrefix = f"{b_i+1}{Colore.Red}▶{Colore.Reset}"
+                if random.randint(1,2) == 1:
+                    BotMessage = "Залп"
+                    if random.randint(1,100) <= BotAccuracy:
+                        PlayerHP -= BotDM
+                        PlayerMessage = f"Ненесена шкода ({BotDM})"
+                    else:
+                        PlayerHP -= 0
+                        BotMessage = "Залп: Промах"
+                BattleScreen()
+            BotMessage = ""
+
+            BattleScreen()
+            if BotHP <= 0:
+                break
+            
+            if PlayerHP <= 0:
+                break
+            
 
 class game():
     class player():
@@ -753,3 +842,23 @@ TravelDistation += Ships[PlayerIs['Ship']['ShipID']]['ShipTravelingDist']
 
 if wl.Level >= MaxLevel:
     wl.Level = MaxLevel
+
+if len(PlayerIs['Ship']['ShipModification']) < MaxShipModification:
+    for abs in range(MaxShipModification - len(PlayerIs['Ship']['ShipModification'])):
+        PlayerIs['Ship']['ShipModification'].append(
+            {
+                "ModificationID": None
+            }
+        )
+elif len(PlayerIs['Ship']['ShipModification']) > MaxShipModification:
+    for abs in range(len(PlayerIs['Ship']['ShipModification']) - MaxShipModification):
+        PlayerIs['Ship']['ShipModification'].pop()
+
+NewFuel = 0
+for i in range(len(PlayerIs['Ship']['ShipModification'])):
+    if PlayerIs['Ship']['ShipModification'][i]['ModificationID'] == 0:
+        if ShipModifications[PlayerIs['Ship']['ShipModification'][i]['ModificationID']]['ModType'] == 0:
+            NewFuel += ShipModifications[PlayerIs['Ship']['ShipModification'][i]['ModificationID']]['ModValue']
+
+FuelNow = PlayerIs['Ship']['Fuel']
+FuelMaxCapacity = Ships[PlayerIs['Ship']['ShipID']]['ShipMaxFuel'] + NewFuel

@@ -3,6 +3,7 @@ XpToLevel = 10000
 FuelRequire = 1
 TravelDistation = 5
 DebugInfo = True
+MaxShipModification = 5
 
 SymbolOfStar = "★ "
 SymbolOfStarPinned = "★⚐ "
@@ -13,4 +14,6 @@ MapCivilRange = 20
 CivilEcoMin = 0.1
 CivilEcoMax = 1.5
 MinFulling = 1
-MaxFulling = 130
+MaxFulling = 60
+
+# Battle settings
