@@ -40,6 +40,13 @@ ShipModifications = [
         "ModName": "Легкоповерхневий сплав",
         "ModCoust": 180000,
         "ModValue": 100 # + Health ship
+    },
+    {
+        "ModID": 2,
+        "ModType": 2,
+        "ModName": "Покращені досліднецьки сенсори",
+        "ModCoust": 500000,
+        "ModValue": 2 # + Coefficient intel
     }
 ]
 
@@ -122,6 +129,7 @@ ItemsType = [
 ItemsDB = [
     {"ItemID": 0, "ItemName": 'Ракетне паливо', "ItemType": 0,"ItemEconomicType": 1,"ItemCoust": 300},
     {"ItemID": 1, "ItemName": 'Будівельний матеріал', "ItemType": 4,"ItemEconomicType": 3,"ItemCoust": 300},
-    {"ItemID": 2, "ItemName": "Золото", "ItemType": 1, "ItemEconomicType": 1, "ItemCoust": 15000},
-    {'ItemID': 3, 'ItemName': 'Реактивна сталь', 'ItemType': 1, 'ItemEconomicType': 3, 'ItemCoust': 1250000}
+    {"ItemID": 2, "ItemName": "Золото", "ItemType": 1, "ItemEconomicType": 1, "ItemCoust": 15_000},
+    {'ItemID': 3, 'ItemName': 'Реактивна сталь', 'ItemType': 1, 'ItemEconomicType': 3, 'ItemCoust': 12_500_00},
+    {'ItemID': 4, 'ItemName': 'Тераформічні бактерії та хімія', 'ItemType': 4, 'ItemEconomicType': 4, 'ItemCoust': 5_000_000}
 ]

@@ -1,33 +1,43 @@
 {
     "Nickname": "NeverRadus7",
-    "Location": 2,
+    "Location": 8,
     "Ship": {
-        "ShipID": 0,
-        "ShipName": "HER 015",
+        "ShipID": 1,
+        "ShipName": "Isledovskiy XOZAIN",
         "ShipModification": [
             {
                 "ModificationID": 0
             },
             {
-                "ModificationID": 0
+                "ModificationID": 2
             },
             {
-                "ModificationID": 0
+                "ModificationID": 2
             },
             {
-                "ModificationID": 0
+                "ModificationID": 2
             },
             {
-                "ModificationID": 1
+                "ModificationID": 2
+            },
+            {
+                "ModificationID": 2
+            },
+            {
+                "ModificationID": 2
+            },
+            {
+                "ModificationID": 2
+            },
+            {
+                "ModificationID": 2
+            },
+            {
+                "ModificationID": 2
             }
         ],
-        "Storage": [
-            {
-                "ItemID": 2,
-                "ItemCount": 1010040
-            }
-        ],
-        "Fuel": 269
+        "Storage": [],
+        "Fuel": 20
     },
     "Fleet": [
         {
@@ -42,7 +52,59 @@
         {
             "FleetID": 1,
             "FleetName": "ISC G-160 Booldog",
-            "Ships": [],
+            "Ships": [
+                {
+                    "ShipID": 0,
+                    "ShipName": "HER 015",
+                    "ShipModification": [
+                        {
+                            "ModificationID": 0
+                        },
+                        {
+                            "ModificationID": 0
+                        },
+                        {
+                            "ModificationID": 2
+                        },
+                        {
+                            "ModificationID": null
+                        },
+                        {
+                            "ModificationID": null
+                        },
+                        {
+                            "ModificationID": null
+                        },
+                        {
+                            "ModificationID": null
+                        },
+                        {
+                            "ModificationID": null
+                        },
+                        {
+                            "ModificationID": null
+                        },
+                        {
+                            "ModificationID": 1
+                        }
+                    ],
+                    "Storage": [
+                        {
+                            "ItemID": 2,
+                            "ItemCount": 10040
+                        },
+                        {
+                            "ItemID": 3,
+                            "ItemCount": 15
+                        },
+                        {
+                            "ItemID": 1,
+                            "ItemCount": 3
+                        }
+                    ],
+                    "Fuel": 116
+                }
+            ],
             "Storage": [],
             "Location": 2,
             "Modules": {},
@@ -61,25 +123,25 @@
             ]
         }
     },
-    "Money": 389020066127,
-    "IntelBall": 548202,
+    "Money": 403872833045,
+    "IntelBall": 1690289,
     "BattleScore": 5030,
-    "XP": 23229302593,
+    "XP": 23234370655,
     "Reputation": 0,
-    "WorldDay": 27972,
+    "WorldDay": 28014,
     "Atribution": [
         "PLAYER_TERRAFORMER_DEVICE"
     ],
     "Statistic": {
-        "StarInteled": 31,
-        "StarControled": 15,
-        "StarColony": 7,
-        "CreditsFromSelled": 13866527205,
+        "StarInteled": 40,
+        "StarControled": 16,
+        "StarColony": 8,
+        "CreditsFromSelled": 28724927205,
         "CreditsFromScience": 0,
-        "IncomeFromColony": 104117850
+        "IncomeFromColony": 2162
     },
     "MapSettings": {
         "Filter": 0
     },
-    "GameUpdate": 2
+    "GameUpdate": 4
 }
