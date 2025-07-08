@@ -695,16 +695,30 @@ class ProjectInfinity():
                     StarIs = GenMap(absi)
                     PlanetLive = 0
                     for i in range(len(StarIs['Planets'])):
-                        if StarIs['Planets'][i]['PlanetClass'] == 4:
+                        if StarIs['Planets'][i]['PlanetLive'] == True:
                             PlanetLive += 1
                         else:
                             PlanetLive += 0
+
                     if StarIs.get("StarCivil"):
                         StarColor = colorama.Fore.GREEN
-                        print(f"{StarColor}StarID: {StarIs['StarID']} - Система: {StarIs['Star']} - Планет: {len(StarIs['Planets'])}: з життям: {PlanetLive} - Цивілізація: Станція: {StarIs['StarCivil']['CivilStation']['StationName']} - Фракція: {StarIs['StarCivil']['CivilFraction']['FractionName']} - Населення: {StarIs['StarCivil']['CivilFraction']['FractionPop']:,}{colorama.Fore.RESET}")
+                    else:
+                        StarColor = colorama.Fore.LIGHTBLACK_EX
+
+                    for i in range(len(StarIs['Planets'])):
+                        if StarIs['Planets'][i]['PlanetTerraform'] == True and StarIs['Planets'][i]['PlanetLive'] == False:
+                            TerraformSymbol = f"{Colore.Red}𖤖{StarColor}"
+                            break
+                        elif StarIs['Planets'][i]['PlanetLive'] == True:
+                            TerraformSymbol = f"{Colore.Green}𖤖{StarColor}"
+                            break
+                        else:
+                            TerraformSymbol = ""
+
+                    if StarIs.get("StarCivil"):
+                        print(f"{StarColor}StarID: {StarIs['StarID']} {TerraformSymbol} - Система: {StarIs['Star']} - Планет: {len(StarIs['Planets'])}: з життям: {PlanetLive} - Цивілізація: Станція: {StarIs['StarCivil']['CivilStation']['StationName']} - Фракція: {StarIs['StarCivil']['CivilFraction']['FractionName']} - Населення: {StarIs['StarCivil']['CivilFraction']['FractionPop']:,}{colorama.Fore.RESET}")
                     else: 
-                        StarColor = colorama.Fore.RED
-                        print(f"{StarColor}StarID: {StarIs['StarID']} - Система: {StarIs['Star']} - Планет: {len(StarIs['Planets'])}: з життям: {PlanetLive}{colorama.Fore.RESET}")
+                        print(f"{StarColor}StarID: {StarIs['StarID']} {TerraformSymbol} - Система: {StarIs['Star']} - Планет: {len(StarIs['Planets'])}: з життям: {PlanetLive}{colorama.Fore.RESET}")
                 input()
 
     def Logic():
@@ -719,7 +733,8 @@ class ProjectInfinity():
                     PlanetLiveCount = 0
                     for ii in range(len(Star['Planets'])):
                         if Star['Planets'][ii]['PlanetClass'] == 4:
-                            PlanetLiveCount += 1
+                            if Star['Planets'][ii]['PlanetLive'] == True:
+                                PlanetLiveCount += 1
                     PlayerIs['Statistic']['IncomeFromColony'] += int((int(StarIs['StarCivil']['CivilFraction']['FractionPop'] * 2) * (4 * PlanetLiveCount+1)) * StarIs['StarCivil']['CivilEco'])
                     ProjectInfinity.StarChange(StarIs['StarID'], 'InfoIncome', int((int(StarIs['StarCivil']['CivilFraction']['FractionPop'] * 2) * (4 * PlanetLiveCount+1)) * StarIs['StarCivil']['CivilEco']))
                     PlayerIs['Money'] += int((int(StarIs['StarCivil']['CivilFraction']['FractionPop'] * 2) * (4 * PlanetLiveCount+1)) * StarIs['StarCivil']['CivilEco'])
@@ -772,9 +787,6 @@ class ProjectInfinity():
         PlayerDMG = 12
         BotDMG = 10
 
-        BattleCoefMin = 0.1
-        BattleCoefMax = 1.2
-
         PlayerInterval = 3
         BotInterval = 4
 
@@ -789,6 +801,7 @@ class ProjectInfinity():
         while BattleToggle == True:
             PlayerDM = int(PlayerDMG * random.uniform(BattleCoefMin, BattleCoefMax))
             BotDM = int(BotDMG * random.uniform(BattleCoefMin, BattleCoefMax))
+            
             for p_i in range(PlayerInterval):
                 BotPrefix = f"{Colore.Blue}⛊{Colore.Reset}"
                 PlayerPrefix = f"{p_i+1}{Colore.Red}▶{Colore.Reset}"
@@ -801,7 +814,6 @@ class ProjectInfinity():
                         BotHP -= 0
                         PlayerMessage = "Залп: Промах"
                 BattleScreen()
-            
             PlayerMessage = ""
 
             for b_i in range(BotInterval):
@@ -818,13 +830,25 @@ class ProjectInfinity():
                 BattleScreen()
             BotMessage = ""
 
-            BattleScreen()
             if BotHP <= 0:
-                break
+                BotHP = 0
+                return True
             
             if PlayerHP <= 0:
-                break
+                PlayerHP = 0
+                return False
+
+            BattleScreen()
             
+    def PlayerShipModificationAll(ModType):
+        Value = 0
+        for i in range(len(PlayerIs['Ship']['ShipModification'])):
+            ModPlayerIs = PlayerIs['Ship']['ShipModification'][i]
+            if ModPlayerIs['ModificationID'] != None:
+                ModIs = ShipModifications[ModPlayerIs['ModificationID']]
+                if ModIs['ModType'] == ModType:
+                    Value += ModIs['ModValue']
+        return int(Value)
 
 class game():
     class player():
@@ -837,6 +861,30 @@ class game():
         def mature(cycle):
             for i in range(cycle):
                 ProjectInfinity.Logic()
+
+def ChoiceModificationSlot():
+    wl.Skip()
+    for abs in range(MaxShipModification):
+        SlotIs = PlayerIs['Ship']['ShipModification'][abs]
+        if SlotIs['ModificationID'] != None:
+            ModIs = ShipModifications[SlotIs['ModificationID']]
+            ModLabel = f"{Colore.Yellow}{ModIs['ModName']}{Colore.Reset}"
+        else:
+            ModLabel = f"{Colore.Gray}Відсутній{Colore.Reset}"
+        print(f"{abs+1}. {abs+1} слот: [{ModLabel}]")
+    inp = int(input("Вибрати слот: ")) - 1
+    return inp
+
+def ModificationSlots(x):
+    for abs in range(MaxShipModification):
+        SlotIs = PlayerIs['Ship']['ShipModification'][abs]
+        if SlotIs['ModificationID'] != None:
+            ModIs = ShipModifications[SlotIs['ModificationID']]
+            ModLabel = f"{Colore.Yellow}{ModIs['ModName']}{Colore.Reset}"
+        else:
+            ModLabel = f"{Colore.Gray}Відсутній{Colore.Reset}"
+        sr = "  " * x
+        print(f"{sr} ▪ {abs+1} слот: [{ModLabel}]")
 
 TravelDistation += Ships[PlayerIs['Ship']['ShipID']]['ShipTravelingDist']
 

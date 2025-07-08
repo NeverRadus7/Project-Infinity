@@ -1,0 +1,57 @@
+{
+    "Nickname": "Player",
+    "Location": 3215,
+    "Ship": {
+        "ShipID": 0,
+        "ShipName": "R-145",
+        "ShipModification": [
+            {
+                "ModificationID": null
+            },
+            {
+                "ModificationID": null
+            },
+            {
+                "ModificationID": null
+            },
+            {
+                "ModificationID": null
+            },
+            {
+                "ModificationID": null
+            }
+        ],
+        "Storage": [],
+        "Fuel": 20
+    },
+    "Fleet": [],
+    "Navy": {
+        "NavyLevel": 0,
+        "NavyShips": 0,
+        "NavyLeader": {
+            "LeaderName": "",
+            "LeaderRank": "",
+            "LeaderLevel": 0,
+            "LeaderPerk": []
+        }
+    },
+    "Money": 10000,
+    "IntelBall": 0,
+    "BattleScore": 0,
+    "XP": 0,
+    "Reputation": 0,
+    "WorldDay": 0,
+    "Atribution": [],
+    "Statistic": {
+        "StarInteled": 0,
+        "StarControled": 0,
+        "StarColony": 0,
+        "CreditsFromSelled": 0,
+        "CreditsFromScience": 0,
+        "IncomeFromColony": 0
+    },
+    "MapSettings": {
+        "Filter": 0
+    },
+    "GameUpdate": 0
+}

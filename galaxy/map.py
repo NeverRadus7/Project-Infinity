@@ -42,6 +42,7 @@ def GenMap(seed):
             "FractionPopHap": 50
         }
         return FractionIs
+    
     def PlanetGen(x):
         Planets = []
         for gen in range(x):
@@ -92,7 +93,7 @@ def GenMap(seed):
                 
             planet_terraform_confirm = False
             if planet_class == 4 and planet_live == False:
-                if planet_temp >= -8 and planet_temp <= 21:
+                if planet_temp >= -30 and planet_temp <= 50:
                     planet_terraform_confirm = True
                 else:
                     pass
@@ -224,7 +225,13 @@ def GenMap(seed):
         else:
             StationStoreList = wlregister.ItemsDB
 
-        Starsystems['Star'] = ranname()
+        for i in range(len(Starsystems['Planets'])):
+            PlanetIs = Starsystems['Planets'][i]
+            if PlanetIs['PlanetLive'] == True:
+                Starsystems['Star'] = ranname()
+                break
+                
+            
         Starsystems['StarIntel'] = True
         Starsystems['StarCivil'] = {}
         Starsystems['StarCivil']['CivilEconomicType'] = random.randint(0, len(wlregister.Economics))

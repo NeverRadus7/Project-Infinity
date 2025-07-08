@@ -1,85 +1,84 @@
 {
-    "Nickname": "NeverRadus7",
-    "Location": 2,
+    "Nickname": "Player",
+    "Location": 3209,
     "Ship": {
-        "ShipID": 0,
-        "ShipName": "HER 015",
+        "ShipID": 1,
+        "ShipName": "NR-516",
         "ShipModification": [
             {
-                "ModificationID": 0
+                "ModificationID": 2
             },
             {
                 "ModificationID": 0
             },
             {
-                "ModificationID": 0
+                "ModificationID": null
             },
             {
-                "ModificationID": 0
+                "ModificationID": null
             },
             {
-                "ModificationID": 1
+                "ModificationID": null
             }
         ],
         "Storage": [
             {
                 "ItemID": 2,
-                "ItemCount": 1010040
+                "ItemCount": 1
+            },
+            {
+                "ItemID": 3,
+                "ItemCount": 1
+            },
+            {
+                "ItemID": 4,
+                "ItemCount": 1
+            },
+            {
+                "ItemID": 1,
+                "ItemCount": 25
             }
         ],
-        "Fuel": 269
+        "Fuel": 20
     },
     "Fleet": [
         {
             "FleetID": 0,
-            "FleetName": "Ra-Min H100",
-            "Ships": [],
-            "Storage": [],
-            "Location": 248,
-            "Modules": {},
-            "Fuel": 91
-        },
-        {
-            "FleetID": 1,
             "FleetName": "ISC G-160 Booldog",
             "Ships": [],
             "Storage": [],
-            "Location": 2,
+            "Location": 3209,
             "Modules": {},
-            "Fuel": 148
+            "Fuel": 199
         }
     ],
     "Navy": {
-        "NavyLevel": 1,
-        "NavyShips": 24,
+        "NavyLevel": 0,
+        "NavyShips": 0,
         "NavyLeader": {
-            "LeaderName": "George Smith",
-            "LeaderRank": "Grand-Admiral",
-            "LeaderLevel": 50,
-            "LeaderPerk": [
-                "Battle"
-            ]
+            "LeaderName": "",
+            "LeaderRank": "",
+            "LeaderLevel": 0,
+            "LeaderPerk": []
         }
     },
-    "Money": 389532615683,
-    "IntelBall": 548202,
-    "BattleScore": 5030,
-    "XP": 23263316581,
+    "Money": -910925553,
+    "IntelBall": 1369,
+    "BattleScore": 0,
+    "XP": 2521711,
     "Reputation": 0,
-    "WorldDay": 27977,
-    "Atribution": [
-        "PLAYER_TERRAFORMER_DEVICE"
-    ],
+    "WorldDay": 16,
+    "Atribution": [],
     "Statistic": {
-        "StarInteled": 31,
-        "StarControled": 15,
-        "StarColony": 7,
-        "CreditsFromSelled": 13866527205,
-        "CreditsFromScience": 0,
-        "IncomeFromColony": 98940000
+        "StarInteled": 7,
+        "StarControled": 1,
+        "StarColony": 0,
+        "CreditsFromSelled": 0,
+        "CreditsFromScience": 198312,
+        "IncomeFromColony": 0
     },
     "MapSettings": {
         "Filter": 0
     },
-    "GameUpdate": 1
+    "GameUpdate": 3
 }
