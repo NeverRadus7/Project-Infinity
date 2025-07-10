@@ -758,24 +758,20 @@ class ProjectInfinity():
                         StarIs['StarCivil']['CivilEco'] = CivilEcoMax
                 ProjectInfinity.StarChange(StarIs['StarID'],'StarCivil',StarIs['StarCivil'])
 
-    def Duel(Title, EnemyNavy):
-        # ProjectInfinity.Duel("Test", {"Bot": "TestBot"})
+    def Duel(Title="Test", Target={"Bot": "TestBot"}):
         def BattleScreen():
             wl.Skip()
+            print(wl.Wall)
             print(Title)
             print(wl.Wall)
-            print(f" - {PlayerPrefix} Гравець: {wl.Player} - HP: {PlayerHP:,} - DM: {PlayerDMG:,} | {PlayerMessage}")
+            print(f" ▪ {PlayerPrefix} Гравець: {wl.Player} - HP: {PlayerHP:,} - DM: {PlayerDMG:,} | {PlayerMessage}")
+            #print(f"     {Colore.Gray} ▪ Корабель: {PlayerIs['Ship']['ShipName']}{Colore.Reset}")
             print(wl.Wall)
-            print(f" - {BotPrefix} Опонент: {str(EnemyNavy['Bot'])} - HP: {BotHP:,} - DM: {PlayerDMG:,} | {BotMessage}")
+            print(f" ▪ {BotPrefix} Опонент: {str(Target['Bot'])} - HP: {BotHP:,} - DM: {BotDMG:,} | {BotMessage}")
             print(wl.Wall)
-            time.sleep(1.5)
+            time.sleep(BattleCooldown)
         
-        PlayerHP = 100
-        for i in range(len(PlayerIs['Ship']['ShipModification'])):
-            ModPlayerIs = PlayerIs['Ship']['ShipModification'][i]['ModificationID']
-            ModIs = ShipModifications[ModPlayerIs]
-            if ModIs['ModType'] == 1:
-                PlayerHP += ModIs['ModValue']
+        PlayerHP = PlayerShipHP
 
         BotHP = 100
         #for i in range(len(PlayerIs['Ship']['ShipModification'])):
@@ -784,10 +780,10 @@ class ProjectInfinity():
         #    if ModIs['ModType'] == 1:
         #        PlayerHP += ModIs['ModValue']
 
-        PlayerDMG = 12
-        BotDMG = 10
+        PlayerDMG = PlayerShipDMG
+        PlayerInterval = PlayerShipInterval
 
-        PlayerInterval = 3
+        BotDMG = 10
         BotInterval = 4
 
         PlayerAccuracy = 40
@@ -804,7 +800,7 @@ class ProjectInfinity():
             
             for p_i in range(PlayerInterval):
                 BotPrefix = f"{Colore.Blue}⛊{Colore.Reset}"
-                PlayerPrefix = f"{p_i+1}{Colore.Red}▶{Colore.Reset}"
+                PlayerPrefix = f"({p_i+1}) {Colore.Red}▶{Colore.Reset}"
                 if random.randint(1,2) == 1:
                     PlayerMessage = "Залп"
                     if random.randint(1,100) <= PlayerAccuracy:
@@ -813,12 +809,19 @@ class ProjectInfinity():
                     else:
                         BotHP -= 0
                         PlayerMessage = "Залп: Промах"
+                if BotHP <= 0:
+                    BotHP = 0
+                    return True
+                
+                if PlayerHP <= 0:
+                    PlayerHP = 0
+                    return False
                 BattleScreen()
             PlayerMessage = ""
 
             for b_i in range(BotInterval):
                 PlayerPrefix = f"{Colore.Blue}⛊{Colore.Reset}"
-                BotPrefix = f"{b_i+1}{Colore.Red}▶{Colore.Reset}"
+                BotPrefix = f"({b_i+1}) {Colore.Red}▶{Colore.Reset}"
                 if random.randint(1,2) == 1:
                     BotMessage = "Залп"
                     if random.randint(1,100) <= BotAccuracy:
@@ -827,16 +830,15 @@ class ProjectInfinity():
                     else:
                         PlayerHP -= 0
                         BotMessage = "Залп: Промах"
+                if BotHP <= 0:
+                    BotHP = 0
+                    return True
+                
+                if PlayerHP <= 0:
+                    PlayerHP = 0
+                    return False
                 BattleScreen()
             BotMessage = ""
-
-            if BotHP <= 0:
-                BotHP = 0
-                return True
-            
-            if PlayerHP <= 0:
-                PlayerHP = 0
-                return False
 
             BattleScreen()
             
@@ -847,7 +849,7 @@ class ProjectInfinity():
             if ModPlayerIs['ModificationID'] != None:
                 ModIs = ShipModifications[ModPlayerIs['ModificationID']]
                 if ModIs['ModType'] == ModType:
-                    Value += ModIs['ModValue']
+                    Value += (ModIs['ModValue'] * (ModPlayerIs['ModificationLevel'] * ModLevelCoeff))
         return int(Value)
 
 class game():
@@ -868,10 +870,16 @@ def ChoiceModificationSlot():
         SlotIs = PlayerIs['Ship']['ShipModification'][abs]
         if SlotIs['ModificationID'] != None:
             ModIs = ShipModifications[SlotIs['ModificationID']]
-            ModLabel = f"{Colore.Yellow}{ModIs['ModName']}{Colore.Reset}"
+            ModLabel = f"{Colore.Green}{ModIs['ModName']}{Colore.Reset}"
         else:
             ModLabel = f"{Colore.Gray}Відсутній{Colore.Reset}"
-        print(f"{abs+1}. {abs+1} слот: [{ModLabel}]")
+        ModLevel = SlotIs['ModificationLevel']
+        ModLevelEmpty = f"{Colore.Gray}{ModLevelEmptySym}{Colore.Reset}"
+        ModLevelSymbol = f"{Colore.Yellow}{ModLevelSym}{Colore.Reset}"
+        ModLevelA = ModLevelSymbol * (ModLevel)
+        ModLevelB = ModLevelEmpty * (ModMaxLevel-ModLevel)
+        ModLevelIs = ModLevelA + ModLevelB
+        print(f"{abs+1}. {abs+1} слот: [{ModLabel}] ({ModLevelIs})")
     inp = int(input("Вибрати слот: ")) - 1
     return inp
 
@@ -880,22 +888,37 @@ def ModificationSlots(x):
         SlotIs = PlayerIs['Ship']['ShipModification'][abs]
         if SlotIs['ModificationID'] != None:
             ModIs = ShipModifications[SlotIs['ModificationID']]
-            ModLabel = f"{Colore.Yellow}{ModIs['ModName']}{Colore.Reset}"
+            ModLabel = f"{Colore.Green}{ModIs['ModName']}{Colore.Reset}"
         else:
             ModLabel = f"{Colore.Gray}Відсутній{Colore.Reset}"
         sr = "  " * x
-        print(f"{sr} ▪ {abs+1} слот: [{ModLabel}]")
+        ModLevel = SlotIs['ModificationLevel']
+        ModLevelEmpty = f"{Colore.Gray}{ModLevelEmptySym}{Colore.Reset}"
+        ModLevelSymbol = f"{Colore.Yellow}{ModLevelSym}{Colore.Reset}"
+        ModLevelA = ModLevelSymbol * (ModLevel)
+        ModLevelB = ModLevelEmpty * (ModMaxLevel-ModLevel)
+        ModLevelIs = ModLevelA + ModLevelB
+        print(f"{sr} ▪ {abs+1} слот: [{ModLabel}] ({ModLevelIs})")
 
-TravelDistation += Ships[PlayerIs['Ship']['ShipID']]['ShipTravelingDist']
+AddTravelDistation = 0
+for i in range(len(PlayerIs['Ship']['ShipModification'])):
+    ModIs = PlayerIs['Ship']['ShipModification'][i]
+    if ModIs['ModificationID'] != None: 
+        Mod = ShipModifications[ModIs['ModificationID']]
+        if Mod['ModType'] == 5:
+            AddTravelDistation += (Mod['ModValue'] * ModIs['ModificationLevel'])
+TravelDistation = Ships[PlayerIs['Ship']['ShipID']]['ShipTravelingDist'] + AddTravelDistation + SetTravelDistation
 
 if wl.Level >= MaxLevel:
     wl.Level = MaxLevel
 
+MaxShipModification = (Ships[PlayerIs['Ship']['ShipID']]['ShipMaxModification'] + AddShipModification)
 if len(PlayerIs['Ship']['ShipModification']) < MaxShipModification:
     for abs in range(MaxShipModification - len(PlayerIs['Ship']['ShipModification'])):
         PlayerIs['Ship']['ShipModification'].append(
             {
-                "ModificationID": None
+                "ModificationID": None,
+                "ModificationLevel": 0
             }
         )
 elif len(PlayerIs['Ship']['ShipModification']) > MaxShipModification:
@@ -906,8 +929,27 @@ NewFuel = 0
 for i in range(len(PlayerIs['Ship']['ShipModification'])):
     if PlayerIs['Ship']['ShipModification'][i]['ModificationID'] == 0:
         if ShipModifications[PlayerIs['Ship']['ShipModification'][i]['ModificationID']]['ModType'] == 0:
-            NewFuel += ShipModifications[PlayerIs['Ship']['ShipModification'][i]['ModificationID']]['ModValue']
+            NewFuel += (ShipModifications[PlayerIs['Ship']['ShipModification'][i]['ModificationID']]['ModValue'] * (PlayerIs['Ship']['ShipModification'][i]['ModificationLevel'] * ModLevelCoeff))
 
 FuelNow = PlayerIs['Ship']['Fuel']
 FuelMaxCapacity = Ships[PlayerIs['Ship']['ShipID']]['ShipMaxFuel'] + NewFuel
 if FuelNow > FuelMaxCapacity: PlayerIs['Ship']['Fuel'] = FuelMaxCapacity
+
+PlayerShipDMG = 0
+PlayerShipInterval = 0
+for i in range(len(PlayerIs['Ship']['ShipModification'])):
+    ModPlayer = PlayerIs['Ship']['ShipModification'][i]
+    if ModPlayer['ModificationID'] != None:
+        ModIs = ShipModifications[ModPlayer['ModificationID']]
+        if ModIs['ModType'] == 3:
+            PlayerShipDMG += (ModIs['ModValue']['damage'] * (ModPlayer['ModificationLevel'] * ModLevelCoeff))
+            PlayerShipInterval += ModIs['ModValue']['interval']
+
+PlayerShipHP = Ships[PlayerIs['Ship']['ShipID']]['ShipHealth']
+for i in range(len(PlayerIs['Ship']['ShipModification'])):
+    ModPlayerIs = PlayerIs['Ship']['ShipModification'][i]['ModificationID']
+    ModPlayer = PlayerIs['Ship']['ShipModification'][i]
+    if ModPlayerIs != None:
+        ModIs = ShipModifications[ModPlayerIs]
+        if ModIs['ModType'] == 1:
+            PlayerShipHP += (ModIs['ModValue'] * (ModPlayer['ModificationLevel'] * ModLevelCoeff))

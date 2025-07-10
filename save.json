@@ -1,43 +1,42 @@
 {
     "Nickname": "NeverRadus7",
-    "Location": 8,
+    "Location": -6,
     "Ship": {
-        "ShipID": 1,
-        "ShipName": "Isledovskiy XOZAIN",
+        "ShipID": 3,
+        "ShipName": "BattleTest",
         "ShipModification": [
             {
-                "ModificationID": 0
+                "ModificationID": 3,
+                "ModificationLevel": 5
             },
             {
-                "ModificationID": 2
+                "ModificationID": 3,
+                "ModificationLevel": 5
             },
             {
-                "ModificationID": 2
+                "ModificationID": 3,
+                "ModificationLevel": 5
             },
             {
-                "ModificationID": 2
+                "ModificationID": 3,
+                "ModificationLevel": 5
             },
             {
-                "ModificationID": 2
+                "ModificationID": 7,
+                "ModificationLevel": 5
             },
             {
-                "ModificationID": 2
-            },
-            {
-                "ModificationID": 2
-            },
-            {
-                "ModificationID": 2
-            },
-            {
-                "ModificationID": 2
-            },
-            {
-                "ModificationID": 2
+                "ModificationID": 7,
+                "ModificationLevel": 5
             }
         ],
-        "Storage": [],
-        "Fuel": 20
+        "Storage": [
+            {
+                "ItemID": 1,
+                "ItemCount": 1000
+            }
+        ],
+        "Fuel": 17
     },
     "Fleet": [
         {
@@ -54,15 +53,9 @@
             "FleetName": "ISC G-160 Booldog",
             "Ships": [
                 {
-                    "ShipID": 0,
-                    "ShipName": "HER 015",
+                    "ShipID": 2,
+                    "ShipName": "Emu Exp-36",
                     "ShipModification": [
-                        {
-                            "ModificationID": 0
-                        },
-                        {
-                            "ModificationID": 0
-                        },
                         {
                             "ModificationID": 2
                         },
@@ -77,32 +70,27 @@
                         },
                         {
                             "ModificationID": null
-                        },
-                        {
-                            "ModificationID": null
-                        },
-                        {
-                            "ModificationID": null
-                        },
-                        {
-                            "ModificationID": 1
                         }
                     ],
-                    "Storage": [
+                    "Storage": [],
+                    "Fuel": 15
+                },
+                {
+                    "ShipID": 1,
+                    "ShipName": "Isledovskiy XOZAIN",
+                    "ShipModification": [
                         {
-                            "ItemID": 2,
-                            "ItemCount": 10040
+                            "ModificationID": 2
                         },
                         {
-                            "ItemID": 3,
-                            "ItemCount": 15
+                            "ModificationID": 2
                         },
                         {
-                            "ItemID": 1,
-                            "ItemCount": 3
+                            "ModificationID": 4
                         }
                     ],
-                    "Fuel": 116
+                    "Storage": [],
+                    "Fuel": 17
                 }
             ],
             "Storage": [],
@@ -123,12 +111,12 @@
             ]
         }
     },
-    "Money": 403872833045,
+    "Money": 403813424849,
     "IntelBall": 1690289,
     "BattleScore": 5030,
-    "XP": 23234370655,
+    "XP": 23238877418,
     "Reputation": 0,
-    "WorldDay": 28014,
+    "WorldDay": 28034,
     "Atribution": [
         "PLAYER_TERRAFORMER_DEVICE"
     ],
@@ -138,10 +126,10 @@
         "StarColony": 8,
         "CreditsFromSelled": 28724927205,
         "CreditsFromScience": 0,
-        "IncomeFromColony": 2162
+        "IncomeFromColony": 3092
     },
     "MapSettings": {
         "Filter": 0
     },
-    "GameUpdate": 4
+    "GameUpdate": 2
 }

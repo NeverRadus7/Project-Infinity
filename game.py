@@ -181,7 +181,7 @@ if CommandInput == "2":
                             "CivilStation": {
                                 "StationName": f"{ranname()} Station", 
                                 "StationType": random.randint(0,2), 
-                                "StationStoreList": random.sample(range(len(ItemsDB)), 1)}, 
+                                "StationStoreList": random.sample(range(len(ItemsDB)), 5)}, 
                             "CivilFraction": {
                                 "FractionName": f"{PlayerIs['Nickname']}",
                                 "FractionPop": random.randint(100,1000),
@@ -249,6 +249,7 @@ if CommandInput == "2":
 
         if FleetChoice == "Галактична карта":
             ProjectInfinity.GalaxyMap("FLEET", FleetIsChoice)
+
         if FleetChoice == "Грузовий відсік":
             wl.Skip()
             StorageList = ['Переглянути вміст', "Перемістити предмети"]
@@ -472,6 +473,7 @@ if CommandInput == "4":
                     PlayerIs['Ship']['ShipID'] = ShipChoised['ShipID']
                     PlayerIs['Ship']['Fuel'] = ShipChoised['ShipMaxFuel']
                     PlayerIs['Ship']['ShipName'] = ShipChoised['ShipName']
+                    PlayerIs['Ship']['ShipModification'] = []
                     PlayerIs['Ship']['Storage'] = []
                     PlayerIs['Money'] -= int(ShipChoised['ShipCoust'] * StarIs['StarCivil']['CivilEco'])
                     PlayerIs['XP'] += int(int(ShipChoised['ShipCoust'] * StarIs['StarCivil']['CivilEco']) / 5)
@@ -485,6 +487,7 @@ if CommandInput == "4":
                         {
                             "ShipID": ShipChoised['ShipID'],
                             "ShipName": ShipChoised['ShipName'],
+                            "ShipModification": [],
                             "Storage": [],
                             "Fuel": ShipChoised['ShipMaxFuel']
                         }
@@ -600,22 +603,32 @@ if CommandInput == "4":
 
         if StationCom == "Майстерня":
             wl.Skip()
-            Categories = ["Придбати та встановити модифікацію", "Продати модифікацію"]
+            Categories = ["Придбати та встановити модифікацію", "Продати модифікацію", "Покращити модифікацію"]
             IsCategories = wl.ChoiceMenu(Categories)
             
             if IsCategories == "Придбати та встановити модифікацію":
                 wl.Skip()
                 Modifications = ShipModifications
+                wl.Menu(ModificationType)
+                ModType = int(input("Вибрати: "))-1
+                if ModType > len(ModificationType) or ModType < 0:
+                    wl.Error("Невірне введення")
+                wl.Skip()
                 for abs in range(len(Modifications)):
                     ModificationIs = Modifications[abs]
-                    ModificationDynamicCoust = int(ModificationIs['ModCoust'] * StarIs['StarCivil']['CivilEco'])
-                    print(f"{abs+1}. {ModificationIs['ModName']} ▪ Ціна: {ModificationDynamicCoust:,} ©")
+                    if ModificationIs['ModType'] == ModType:
+                        ModificationDynamicCoust = int(ModificationIs['ModCoust'] * StarIs['StarCivil']['CivilEco'])
+                        print(f"{abs+1}. {ModificationIs['ModName']} ▪ Ціна: {ModificationDynamicCoust:,} ©")
+
                 ModificationBuy = int(input("Вибрати: ")) - 1
                 ModificationIs = Modifications[ModificationBuy]
+
                 Slot = ChoiceModificationSlot()
+
                 if PlayerIs['Money'] >= ModificationIs['ModCoust']:
                     if PlayerIs['Ship']['ShipModification'][Slot]['ModificationID'] == None:
                         PlayerIs['Ship']['ShipModification'][Slot]['ModificationID'] = ModificationBuy
+                        PlayerIs['Ship']['ShipModification'][Slot]['ModificationLevel'] = 0
                         PlayerIs['Money'] -= ModificationIs['ModCoust']
                         wl.Loading("Встановлюємо модифікацію", 3)
                     else:
@@ -631,10 +644,30 @@ if CommandInput == "4":
                 wl.Skip()
                 wl.Quation("Ви точно хочете продати існуючу модифікацію?")
 
-                NewCoust = int(ModRegisterIs['ModCoust'] * 0.95)
+                NewCoust = int((ModRegisterIs['ModCoust'] * 0.95) * (1 + ModIs['ModificationLevel']))
                 ModIs['ModificationID'] = None
                 PlayerIs['Money'] += NewCoust
                 wl.Loading("Демонтаж модифікації", 3)
+
+            if IsCategories == "Покращити модифікацію":
+                wl.Skip()
+                Slot = ChoiceModificationSlot()
+                ModIs = PlayerIs['Ship']['ShipModification'][Slot]
+                
+                if ModIs['ModificationLevel'] >= ModMaxLevel:
+                    wl.Error("Вже максимальний рівень модифікації")
+                else:
+                    LevelIs = int(input(f"Від 1 до {ModMaxLevel-ModIs['ModificationLevel']}: "))
+                    if LevelIs <= (ModMaxLevel-ModIs['ModificationLevel']) and LevelIs < ModMaxLevel:
+                        CoustUp = int(ShipModifications[ModIs['ModificationID']]['ModCoust'] * (1 + ModIs['ModificationLevel']) * (LevelIs * 7))
+                        wl.Skip()
+                        wl.Quation(f"Ви точно хочете покращити модифікацію ({CoustUp:,} ©)")
+                        if PlayerIs['Money'] >= CoustUp:
+                            PlayerIs['Money'] -= CoustUp
+                            ModIs['ModificationLevel'] += LevelIs
+                            wl.Loading("Покращуємо модифікацію",3)
+                    else:
+                        wl.Error("Перевишен максимум рівня")
 
 # Різне
 if CommandInput == "5":
@@ -666,7 +699,10 @@ if CommandInput == "5":
         wl.Skip()
         print(f"Ваш корабель: {PlayerIs['Ship']['ShipName']}")
         print(f"    ▪ Клас: {ShipClasses[Ships[PlayerIs['Ship']['ShipID']]['ShipClass']]}")
-        print(f"    ▪ Макс. дистанція стрибка: {Ships[PlayerIs['Ship']['ShipID']]['ShipTravelingDist']}")
+        print(f"    ▪ Міцність: {PlayerShipHP:,} HP")
+        print(f"    ▪ Урон: {PlayerShipDMG:,} DM")
+        print(f"    ▪ Інтервалів: {PlayerShipInterval:,}")
+        print(f"    ▪ Макс. дистанція стрибка: {Ships[PlayerIs['Ship']['ShipID']]['ShipTravelingDist']} (+{TravelDistation-Ships[PlayerIs['Ship']['ShipID']]['ShipTravelingDist']})")
         print(f"    ▪ Макс. палива: {Ships[PlayerIs['Ship']['ShipID']]['ShipMaxFuel']} (+{FuelMaxCapacity-Ships[PlayerIs['Ship']['ShipID']]['ShipMaxFuel']})")
         print(f"    ▪ Модифікації:")
         ModificationSlots(3)

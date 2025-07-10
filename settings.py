@@ -1,9 +1,9 @@
 MaxLevel = 999
 XpToLevel = 10000
 FuelRequire = 1
-TravelDistation = 5
 DebugInfo = False
-MaxShipModification = 10
+SetTravelDistation = 0
+AddShipModification = 0
 
 SymbolOfStar = "★ "
 SymbolOfStarPinned = "★⚐ "
@@ -21,6 +21,7 @@ MinFulling = 1
 MaxFulling = 60
 
 # Battle settings
+BattleCooldown = 0.3
 BattleCoefMin = 0.1
 BattleCoefMax = 1.2
 
@@ -41,3 +42,9 @@ CoefficientsPlanetSpecial = {
     'Live': 2.5,
     'Terraform': 1.33
 }
+
+# Modification settings
+ModLevelEmptySym = "◈ "
+ModLevelSym = "◈ "
+ModMaxLevel = 5
+ModLevelCoeff = 8

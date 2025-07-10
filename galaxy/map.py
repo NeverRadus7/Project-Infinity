@@ -238,7 +238,7 @@ def GenMap(seed):
         Starsystems['StarCivil']['CivilStation'] = {
             "StationName": f"{ranname()} Station",
             "StationType": random.randint(0,2),
-            "StationStoreList": random.sample(range(len(StationStoreList)), random.randint(1,1)) 
+            "StationStoreList": random.sample(range(len(StationStoreList)), random.randint(1,5)) 
         }
         Starsystems['StarCivil']['CivilFraction'] = FractionGen()
     
