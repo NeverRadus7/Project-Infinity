@@ -1,0 +1,41 @@
+[
+    {
+        "StarID": 11,
+        "StarCivil": {
+            "CivilEconomicType": 5,
+            "CivilEco": 1.5,
+            "CivilReputation": 55,
+            "CivilSecurity": 1,
+            "CivilStable": 58,
+            "CivilStation": {
+                "StationName": "Ecicopiv Station",
+                "StationType": 0,
+                "StationStoreList": [
+                    5
+                ]
+            },
+            "CivilPop": 0
+        }
+    },
+    {
+        "StarID": 13,
+        "StarCivil": {
+            "CivilEconomicType": 6,
+            "CivilEco": 0.3620957767798057,
+            "CivilReputation": 62,
+            "CivilSecurity": 2,
+            "CivilStable": 57,
+            "CivilStation": {
+                "StationName": "Jekhishu Station",
+                "StationType": 2,
+                "StationStoreList": [
+                    4,
+                    0,
+                    1,
+                    9
+                ]
+            },
+            "CivilPop": 0
+        }
+    }
+]

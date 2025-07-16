@@ -1,9 +1,9 @@
 {
     "Nickname": "NeverRadus7",
-    "Location": -6,
+    "Location": 13,
     "Ship": {
         "ShipID": 3,
-        "ShipName": "BattleTest",
+        "ShipName": "Чудотворец",
         "ShipModification": [
             {
                 "ModificationID": 3,
@@ -18,7 +18,7 @@
                 "ModificationLevel": 5
             },
             {
-                "ModificationID": 3,
+                "ModificationID": 7,
                 "ModificationLevel": 5
             },
             {
@@ -33,10 +33,34 @@
         "Storage": [
             {
                 "ItemID": 1,
-                "ItemCount": 1000
+                "ItemCount": 996
+            },
+            {
+                "ItemID": 6,
+                "ItemCount": 73
+            },
+            {
+                "ItemID": 7,
+                "ItemCount": 39
+            },
+            {
+                "ItemID": 5,
+                "ItemCount": 33
+            },
+            {
+                "ItemID": 8,
+                "ItemCount": 27
+            },
+            {
+                "ItemID": 9,
+                "ItemCount": 3
+            },
+            {
+                "ItemID": 10,
+                "ItemCount": 58
             }
         ],
-        "Fuel": 17
+        "Fuel": 8
     },
     "Fleet": [
         {
@@ -44,7 +68,7 @@
             "FleetName": "Ra-Min H100",
             "Ships": [],
             "Storage": [],
-            "Location": 248,
+            "Location": -5,
             "Modules": {},
             "Fuel": 91
         },
@@ -76,32 +100,41 @@
                     "Fuel": 15
                 },
                 {
-                    "ShipID": 1,
-                    "ShipName": "Isledovskiy XOZAIN",
+                    "ShipID": 2,
+                    "ShipName": "EMU Exp-36",
                     "ShipModification": [
                         {
-                            "ModificationID": 2
+                            "ModificationID": 2,
+                            "ModificationLevel": 5
                         },
                         {
-                            "ModificationID": 2
+                            "ModificationID": 2,
+                            "ModificationLevel": 5
                         },
                         {
-                            "ModificationID": 4
+                            "ModificationID": 4,
+                            "ModificationLevel": 5
+                        },
+                        {
+                            "ModificationID": 0,
+                            "ModificationLevel": 5
                         }
                     ],
                     "Storage": [],
-                    "Fuel": 17
+                    "Fuel": 67
                 }
             ],
             "Storage": [],
-            "Location": 2,
+            "Location": 12,
             "Modules": {},
-            "Fuel": 148
+            "Fuel": 92
         }
     ],
     "Navy": {
-        "NavyLevel": 1,
-        "NavyShips": 24,
+        "NavyLevel": 100,
+        "NavyCruisers": 160,
+        "NavyShips": 3465,
+        "NavyLocation": 20,
         "NavyLeader": {
             "LeaderName": "George Smith",
             "LeaderRank": "Grand-Admiral",
@@ -111,25 +144,26 @@
             ]
         }
     },
-    "Money": 403813424849,
-    "IntelBall": 1690289,
-    "BattleScore": 5030,
-    "XP": 23238877418,
+    "Money": 397872664589,
+    "IntelBall": 4124317,
+    "BattleScore": 11605418,
+    "XP": 32340683029,
     "Reputation": 0,
-    "WorldDay": 28034,
+    "WorldDay": 165922,
     "Atribution": [
-        "PLAYER_TERRAFORMER_DEVICE"
+        "PLAYER_TERRAFORMER_DEVICE",
+        "PLAYER_MINERTOOL"
     ],
     "Statistic": {
-        "StarInteled": 40,
-        "StarControled": 16,
-        "StarColony": 8,
-        "CreditsFromSelled": 28724927205,
-        "CreditsFromScience": 0,
-        "IncomeFromColony": 3092
+        "StarInteled": 60,
+        "StarControled": 26,
+        "StarColony": 14,
+        "CreditsFromSelled": 430244927205,
+        "CreditsFromScience": 1169960997,
+        "IncomeFromColony": 0
     },
     "MapSettings": {
         "Filter": 0
     },
-    "GameUpdate": 2
+    "GameUpdate": 4
 }

@@ -23,7 +23,7 @@ Economics = [
     "Переробна", # 6
     "Видобувна", # 7
     "Військове", # 8
-    "Фінанси"
+    "Фінанси" # 9
 ]
 
 ShipModifications = [
@@ -90,7 +90,7 @@ ModificationType = ["Паливні баки", "Броня", "Досліднец
 Ships = [
     {
         "ShipID": 0,
-        "ShipName": "R-145",
+        "ShipName": "Rookie ORT-100",
         "ShipHealth": 100,
         "ShipClass": 0,
         "ShipTravelingDist": 5,
@@ -100,7 +100,7 @@ Ships = [
     },
     {
         "ShipID": 1,
-        "ShipName": "NR-516",
+        "ShipName": "Excalibur EXP-10",
         "ShipHealth": 80,
         "ShipClass": 2,
         "ShipTravelingDist": 8,
@@ -110,18 +110,18 @@ Ships = [
     },
     {
         "ShipID": 2,
-        "ShipName": "Emu Exp-36",
+        "ShipName": "EMU Exp-36",
         "ShipHealth": 125,
-        "ShipClass": 3,
+        "ShipClass": 2,
         "ShipTravelingDist": 10,
         "ShipMaxFuel": 15,
-        "ShipMaxModification": 5,
+        "ShipMaxModification": 4,
         "ShipCoust": 3_750_000
     },
     {
         "ShipID": 3,
-        "ShipName": "Emu Exp-50",
-        "ShipHealth": 140,
+        "ShipName": "Anabelus BTL-1",
+        "ShipHealth": 1000,
         "ShipClass": 3,
         "ShipTravelingDist": 15,
         "ShipMaxFuel": 20,
@@ -160,21 +160,28 @@ Fleets = [
     }
 ]
 
+StarSecurityType = ["Дрібні патрулі", "Часті патрулі", "Повна безпека"]
+
 ItemsType = [
     "Паливні", # 0
     "Метали", # 1
-    "Мінерали", # 2
-    "Техніка", # 3
-    "Хімічні препарати", # 4
-    "Наукові зразки", # 5
-    "Харчові продукти", # 6
-    "Екзотичні" # 7
+    "Техніка", # 2
+    "Хімічні препарати", # 3
+    "Наукові зразки", # 4
+    "Харчові продукти", # 5
+    "Екзотичні" # 6
 ]
 
 ItemsDB = [
-    {"ItemID": 0, "ItemName": 'Ракетне паливо', "ItemType": 0,"ItemEconomicType": 1,"ItemCoust": 300},
-    {"ItemID": 1, "ItemName": 'Будівельний матеріал', "ItemType": 4,"ItemEconomicType": 3,"ItemCoust": 300},
-    {"ItemID": 2, "ItemName": "Золото", "ItemType": 1, "ItemEconomicType": 1, "ItemCoust": 15_000},
-    {'ItemID': 3, 'ItemName': 'Реактивна сталь', 'ItemType': 1, 'ItemEconomicType': 3, 'ItemCoust': 12_500_00},
-    {'ItemID': 4, 'ItemName': 'Тераформічні бактерії та хімія', 'ItemType': 4, 'ItemEconomicType': 4, 'ItemCoust': 5_000_000}
+    {"ItemID": 0, "ItemName": 'Ракетне паливо', "ItemType": 0,"ItemEconomicType": 1,"ItemCoust": 200},
+    {"ItemID": 1, "ItemName": 'Будівельні матеріали', "ItemType": 3,"ItemEconomicType": 3,"ItemCoust": 15_000_000},
+    {"ItemID": 2, "ItemName": "Очишений метал: Золото", "ItemType": 1, "ItemEconomicType": 1, "ItemCoust": 15_000},
+    {'ItemID': 3, 'ItemName': 'Реактивна сталь', 'ItemType': 1, 'ItemEconomicType': 3, 'ItemCoust': 90_000_00},
+    {'ItemID': 4, 'ItemName': 'Тераформічні бактерії та хімія', 'ItemType': 3, 'ItemEconomicType': 4, 'ItemCoust': 5_000_000},
+    {'ItemID': 5, 'ItemName': 'Копалина: Залізна руда ☆☆☆☆☆', 'ItemType': 1, 'ItemEconomicType': 7, 'ItemCoust': 50},
+    {'ItemID': 6, 'ItemName': 'Копалина: Алюмінюєва руда ☆☆☆☆☆', 'ItemType': 1, 'ItemEconomicType': 7, 'ItemCoust': 30},
+    {'ItemID': 7, 'ItemName': 'Копалина: Осмієва руда ★☆☆☆☆', 'ItemType': 1, 'ItemEconomicType': 7, 'ItemCoust': 60},
+    {'ItemID': 8, 'ItemName': 'Копалина: Багата осмієва руда ★★☆☆☆', 'ItemType': 1, 'ItemEconomicType': 7, 'ItemCoust': 150},
+    {'ItemID': 9, 'ItemName': 'Копалина: Мідна руда ★☆☆☆☆', 'ItemType': 1, 'ItemEconomicType': 7, 'ItemCoust': 40},
+    {'ItemID': 10, 'ItemName': 'Копалина: Золота руда ★★★☆☆', 'ItemType': 1, 'ItemEconomicType': 7, 'ItemCoust': 250}
 ]

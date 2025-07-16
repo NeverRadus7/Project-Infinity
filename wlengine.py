@@ -18,13 +18,15 @@ from rich.text import Text
 # -- Files import
 from galaxy.map import GenMap
 from wlregister import *
-from galaxy.mapchanges import CustomStars
 from settings import *
 from nickname_generator import generate as ranname
 
 # -- Save import
 with open("save.json",'r', encoding="utf-8") as f:
     save = json.load(f)
+
+with open("galaxy/map.json", 'r', encoding="utf-8") as f:
+    CustomStars = json.load(f)
 
 # -- LICENSE
 LICENSE = open("LICENSE", "r", encoding="utf-8")
@@ -50,6 +52,7 @@ TimeYear = time.strftime("%Y")
 
 rwos = random.Random()
 
+
 class Colore():
     Red = colorama.Fore.RED
     LightRed = colorama.Fore.LIGHTRED_EX
@@ -59,7 +62,8 @@ class Colore():
     Green = colorama.Fore.GREEN
     Blue = colorama.Fore.BLUE
 
-class wl(): # Main class
+
+class wl():   # Main class
     Wall = "─" * (ConsoleSizeX - 1)
     DoList = "1. Галактична карта ▪ 2. Зоряна система ▪ 3. Планета ▪ 4. Станція ▪ 5. Інше".center(ConsoleSizeX)
     Player = f"{PlayerIs['Nickname']}"
@@ -111,14 +115,14 @@ class wl(): # Main class
         print(f"{text}".center(ConsoleSizeX))
         wl.SkipValue(int(ConsoleSizeY / 2) - 2)
         time.sleep(3)
-        
+
     def CenterTextLable(text):
         wl.Skip()
         print(f"{text}".center(ConsoleSizeX))
         wl.SkipValue(int(ConsoleSizeY / 2) - 2)
     
     def Skip():
-        for Skip_screen in range(ConsoleSizeY):
+        for Skip_screen in range(ConsoleSizeY*2):
             print()
     
     def SkipValue(value):
@@ -138,7 +142,7 @@ class wl(): # Main class
         input()
     
     def ParrametrInspect(par, text):
-        if par == True:
+        if par is True:
             print(f"{Colore.Green}◈ {text}{Colore.Reset}")
         else:
             print(f"{Colore.Red}◈ {text}{Colore.Reset}")
@@ -186,6 +190,7 @@ class wl(): # Main class
 
     def Background(textcolore, backcolore, text):
         B = f"{textcolore}{backcolore} {text} {colorama.Fore.RESET}{colorama.Back.RESET}"
+        return B
 
     def NumberFormat(x):
         formatted_number = "{:,}".format(x)
@@ -195,7 +200,7 @@ class wl(): # Main class
     def NumberFormatComa(x):
         formatted_number = "{:,}".format(x)
         return formatted_number
-        
+
     def Dialog(type, name, dia, descript, quat1, quat2, quat3, quat4):
         wl.Skip()
         print(wl.Wall)
@@ -229,7 +234,7 @@ class wl(): # Main class
             for a in range(1):
                 print()
         print(wl.Wall)
-    
+
     def Status(text, value):
         print(f"{text}: {value}", end="\r")
 
@@ -255,7 +260,7 @@ class wl(): # Main class
             if item[object] == name:
                 return index
         else: return -1
-    
+
     def TextColore(text, colore):
         textt = f"{colore}{text}{Colore.Reset}"
         print(textt)
@@ -292,12 +297,12 @@ class wl(): # Main class
                 print(f"{i+1}. {list[i]}")
         else:
             return -1
-    
+
     def ReadBox(list, item):
         for i in range(0, len(list)):
             elist = list[i]
             print(f"{i+1}. {elist[item]}")
-    
+
     def ReadBoxCat(list, item, elements):
         wl.Skip()
         BoxSize = len(list)
@@ -321,7 +326,7 @@ class wl(): # Main class
             for i in range(StartList,  EndList):
                 elist = list[i]
                 print(f"{i+1}. {elist[item]}")
-    
+
     def ReadList(list, puncktuation):
         if puncktuation == True:
             for i in range(len(list)):
@@ -329,61 +334,71 @@ class wl(): # Main class
         else:
             for i in range(len(list)):
                 print(f"{list[i]}")
-    
+
     def ReadJSON(file):
         with open(file, 'r', encoding="utf-8") as f:
             jsonfileread = json.load(f)
         return jsonfileread
-    
+
     def SaveJSON(file, element):
         with open(file, 'w', encoding="utf-8") as f:
             json.dump(element, f, ensure_ascii=False, indent=4)
-            
+
     def GetObjectID(list, name):
         for index, item in enumerate(list):
             if item["ID"] == name:
                 return index
-        else: return -1
+            else:
+                return -1
 
     def Menu(list):
-        for elements in range(len(list)):
-            NameElement = list[elements]
-            print(f"{elements+1}. {NameElement}")
-    
+        for i, elements in enumerate(list):
+            print(f"{i+1}. {elements}")
+
     def ChoiceMenu(list):
-        for elements in range(len(list)):
-            NameElement = list[elements]
-            print(f"{elements+1}. {NameElement}")
-        Command = wl.Command()
-        Choice = list[int(Command) - 1]
-        return Choice
-            
+        for i, elements in enumerate(list):
+            print(f"{i+1}. {elements}")
+        try:
+            Command = wl.Command()
+            Choice = int(Command)
+            if Choice <= 0 or Choice > len(list):
+                exit()
+            return list[Choice-1]
+        except (ValueError, TypeError):
+            pass
+
     def LMenu(menu_list):
         elementsVal = len(menu_list) 
         menu_line = ""
         for elements in range(elementsVal):
             NameElement = menu_list[elements]
             menu_line += f" {elements+1}. {NameElement}{Colore.Reset} {wl.SquereSymbol} "
-                
+
             print(menu_line, end="\r")
-    
+
     def ChoiceLMenu(list):
-        elementsVal = len(list) 
+        elementsVal = len(list)
         menu_line = ""
         for elements in range(elementsVal):
             NameElement = list[elements]
             menu_line += f" {elements+1}. {NameElement}{Colore.Reset} {wl.SquereSymbol} "
             print(menu_line, end="\r")
-        
+
         Command = wl.Command()
         Choice = list[int(Command) - 1]
         return Choice
 
     def Date():
-        start_date = datetime(3000,1,1)
+        start_date = datetime(3000, 1, 1)
         start_date += timedelta(days=PlayerIs["WorldDay"])
-        date = f"{start_date.strftime("%d.%m.%Y")}"
-        return date
+        prdate = f"{start_date.strftime("%d.%m.%Y")}"
+        return prdate
+
+    def DateString(x):
+        start_date = datetime(3000, 1, 1)
+        start_date += timedelta(days=x)
+        prdate = f"{start_date.strftime("%d.%m.%Y")}"
+        return prdate
     
     def InvAdd(itemID, count):
         if itemID > len(ItemsDB):
@@ -411,7 +426,7 @@ class wl(): # Main class
                             "ItemCount": count
                         }
                     )
-        
+
     def InvRem(itemID, count):
         if itemID > len(ItemsDB):
             wl.Error(f"Предмет із номером #{itemID} не існує")
@@ -456,7 +471,7 @@ class wl(): # Main class
                             "ItemCount": count
                         }
                     )
-        
+
     def FleetInvRem(itemID, count, FleetID):
         if itemID > len(ItemsDB):
             wl.Error(f"Предмет із номером #{itemID} не існує")
@@ -475,13 +490,13 @@ class wl(): # Main class
                     else:
                         ItemIs['ItemCount'] -= count
 
-    
+
 class ProjectInfinity():
     def StarChange(StarID, ElementTag, ElementValue):
         if len(CustomStars) == 0:
             CustomStars.append(
                 {
-                    f'StarID': StarID,
+                    'StarID': StarID,
                     str(ElementTag): ElementValue
                 }
             )
@@ -495,13 +510,14 @@ class ProjectInfinity():
             else:
                 CustomStars.append(
                     {
-                        f'StarID': StarID,
+                        'StarID': StarID,
                         str(ElementTag): ElementValue
                     }
                 )
-        file = open("galaxy/mapchanges.py", "w", encoding="utf-8")
-        file.write(f"CustomStars = {CustomStars}")
-    
+        # file = open("galaxy/mapchanges.py", "w", encoding="utf-8")
+        # file.write(f"CustomStars = {CustomStars}")
+        wl.SaveJSON('galaxy/map.json', CustomStars)
+
     def GalaxyMap(type, FleetID=None):
         StartLoc = PlayerIs['Location']
         StartMapLoc = PlayerIs['Location']
@@ -511,8 +527,8 @@ class ProjectInfinity():
 
             for star in range(StartMapLoc-15, StartMapLoc+16):
                 StarIs = GenMap(star)
-                SymbolFrame = ""
-                SymbolFrameBack = ""
+                #SymbolFrame = ""
+                #SymbolFrameBack = ""
 
                 if StarIs.get("PlayerPinned"):
                     PlayerSymbol = SymbolOfStarPinned
@@ -534,6 +550,11 @@ class ProjectInfinity():
                             FleetSymbol = ""
                 else:
                     FleetSymbol = ""
+
+                if PlayerIs['Navy']['NavyLocation'] == StarIs['StarID']:
+                    NavySymbol = f"{Colore.Red} ⟁{Colore.Reset}"
+                else:
+                    NavySymbol = ""
 
                 if PlayerIs['MapSettings']['Filter'] == 2:
                     if StarIs['Class'] == "O":
@@ -558,19 +579,25 @@ class ProjectInfinity():
                         PlayerLight = colorama.Fore.LIGHTBLACK_EX
 
                 if PlayerIs['MapSettings']['Filter'] == 1:
-                    if StarIs.get("StarControled") and StarIs['StarControled'] == True:
+                    if StarIs.get("StarCivil") and StarIs.get("StarControled"):
                         PlayerLight = Colore.Red
+                    elif StarIs.get("StarControled") and StarIs['StarControled'] == True:
+                        PlayerLight = colorama.Fore.LIGHTRED_EX
                     else:
                         PlayerLight = Colore.Gray
 
                 if PlayerIs['MapSettings']['Filter'] == 0:
                     if StarIs.get("StarCivil"):
-                        PlayerLight = colorama.Fore.GREEN
+                        if StarIs['StarCivil']['CivilReputation'] <= 25: 
+                            PlayerLight = colorama.Fore.RED
+                            PlayerSymbol = "🕱 "
+                        else:  
+                            PlayerLight = colorama.Fore.GREEN
                     elif StarIs.get("StarIntel"):
                         PlayerLight = colorama.Fore.LIGHTBLUE_EX
                     elif StarIs.get("PlayerPinned"):
                         PlayerLight = colorama.Fore.YELLOW
-                    else: 
+                    else:
                         PlayerLight = Colore.Gray
 
                 if PlayerIs['Location'] == StarIs["StarID"]:
@@ -579,7 +606,7 @@ class ProjectInfinity():
                 else:
                     SelectedFrame = " "
                     SelectedFrameBack = " "
-                starview = f"{SelectedFrame}{PlayerLight}{PlayerSymbol}{StarIs['Star']}{Colore.Reset}{FleetSymbol}{SelectedFrameBack}"
+                starview = f"{SelectedFrame}{PlayerLight}{PlayerSymbol}{StarIs['Star']}{Colore.Reset}{FleetSymbol}{NavySymbol}{SelectedFrameBack}"
                 sp = "⋮" * random.randint(MinFulling, MaxFulling)
                 empty_map += f"{sp}{starview}{sp}"
 
@@ -587,7 +614,7 @@ class ProjectInfinity():
             print(f"{"─" * (int(ConsoleSizeX / 2) - len(text)-1)} {text} {"─" * (int(ConsoleSizeX / 2)-1)}")
             MapFilterPrint = f"{colorama.Back.WHITE}{colorama.Fore.BLACK}█ Фільтр мапи: {MapFilter[PlayerIs['MapSettings']['Filter']]} █{colorama.Back.RESET}{colorama.Fore.RESET}"
             ShiftMap = f"{colorama.Back.WHITE}{colorama.Fore.BLACK} Центр: {StartMapLoc} █{colorama.Fore.RESET}{colorama.Back.RESET}"
-            print(MapFilterPrint,ShiftMap)
+            print(MapFilterPrint, ShiftMap)
             print(f"{"─" * ConsoleSizeX}")
 
             StarIs = GenMap(PlayerIs['Location'])
@@ -595,7 +622,7 @@ class ProjectInfinity():
             
             print(empty_map)
 
-            if StarIs.get("PlayerPinned") and StarIs['PlayerPinned'] == True:
+            if StarIs.get("PlayerPinned") and StarIs['PlayerPinned'] is True:
                 SelectedStar = f"{colorama.Back.YELLOW}{colorama.Fore.BLACK}█ Вибрано: {StarIs['Star']} █{colorama.Back.RESET}{colorama.Fore.RESET}"
                 PinnedDescPrint = f"{colorama.Back.YELLOW}{colorama.Fore.BLACK}█ ★⚲ {StarIs['PlayerPinnedDesc']} █{colorama.Back.RESET}{colorama.Fore.RESET}"
             else:
@@ -607,7 +634,7 @@ class ProjectInfinity():
                 SelectedDist = f"{colorama.Back.GREEN}{colorama.Fore.BLACK}█ Дистанція: {Distation} св. р █{colorama.Back.RESET}{colorama.Fore.RESET}"
             if PlayerIs['MapSettings']['Filter'] == 2:
                 SpecularClassBar = f"{colorama.Back.WHITE}{colorama.Fore.BLACK}█ Спек. клас: {StarIs['Class']} █{colorama.Fore.RESET}{colorama.Back.RESET}"
-                if StarIs.get("StarIntel") and StarIs["StarIntel"] == True:
+                if StarIs.get("StarIntel") and StarIs["StarIntel"] is True:
                     PlanetCountBar = f"{colorama.Back.WHITE}{colorama.Fore.BLACK}█ Кількість планет: {len(StarIs['Planets'])} █{colorama.Fore.RESET}{colorama.Back.RESET}"
                 else:
                     PlanetCountBar = ""
@@ -716,7 +743,7 @@ class ProjectInfinity():
                             TerraformSymbol = ""
 
                     if StarIs.get("StarCivil"):
-                        print(f"{StarColor}StarID: {StarIs['StarID']} {TerraformSymbol} - Система: {StarIs['Star']} - Планет: {len(StarIs['Planets'])}: з життям: {PlanetLive} - Цивілізація: Станція: {StarIs['StarCivil']['CivilStation']['StationName']} - Фракція: {StarIs['StarCivil']['CivilFraction']['FractionName']} - Населення: {StarIs['StarCivil']['CivilFraction']['FractionPop']:,}{colorama.Fore.RESET}")
+                        print(f"{StarColor}StarID: {StarIs['StarID']} {TerraformSymbol} - Система: {StarIs['Star']} - Планет: {len(StarIs['Planets'])}: з життям: {PlanetLive} - Цивілізація: Станція: {StarIs['StarCivil']['CivilStation']['StationName']} - Населення: {StarIs['StarCivil']['CivilPop']:,}{colorama.Fore.RESET}")
                     else: 
                         print(f"{StarColor}StarID: {StarIs['StarID']} {TerraformSymbol} - Система: {StarIs['Star']} - Планет: {len(StarIs['Planets'])}: з життям: {PlanetLive}{colorama.Fore.RESET}")
                 input()
@@ -735,59 +762,113 @@ class ProjectInfinity():
                         if Star['Planets'][ii]['PlanetClass'] == 4:
                             if Star['Planets'][ii]['PlanetLive'] == True:
                                 PlanetLiveCount += 1
-                    PlayerIs['Statistic']['IncomeFromColony'] += int((int(StarIs['StarCivil']['CivilFraction']['FractionPop'] * 2) * (4 * PlanetLiveCount+1)) * StarIs['StarCivil']['CivilEco'])
-                    ProjectInfinity.StarChange(StarIs['StarID'], 'InfoIncome', int((int(StarIs['StarCivil']['CivilFraction']['FractionPop'] * 2) * (4 * PlanetLiveCount+1)) * StarIs['StarCivil']['CivilEco']))
-                    PlayerIs['Money'] += int((int(StarIs['StarCivil']['CivilFraction']['FractionPop'] * 2) * (4 * PlanetLiveCount+1)) * StarIs['StarCivil']['CivilEco'])
-                    PlayerIs['XP'] += int(StarIs['StarCivil']['CivilFraction']['FractionPop'] / 12) * (3 * PlanetLiveCount)
-            # Pop include
-            if StarIs.get("StarCivil"):
-                StarIs['StarCivil']['CivilFraction']['FractionPop'] += int(rwos.randint(-2,4) * (math.sqrt(StarIs['StarCivil']['CivilFraction']['FractionPop'])) + 1)
-                if StarIs['StarCivil']['CivilFraction']['FractionPop'] < 1:
-                    StarIs['StarCivil']['CivilFraction']['FractionPop'] = 0
-                ProjectInfinity.StarChange(StarIs['StarID'],'StarCivil',StarIs['StarCivil'])
+                    PlayerIs['Statistic']['IncomeFromColony'] += int((int(StarIs['StarCivil']['CivilPop'] * 2) * (4 * PlanetLiveCount+1)) * StarIs['StarCivil']['CivilEco'])
+                    ProjectInfinity.StarChange(StarIs['StarID'], 'InfoIncome', int((int(StarIs['StarCivil']['CivilPop']* 2) * (4 * PlanetLiveCount+1)) * StarIs['StarCivil']['CivilEco']))
+                    PlayerIs['Money'] += int((int(StarIs['StarCivil']['CivilPop'] * 2) * (4 * PlanetLiveCount+1)) * StarIs['StarCivil']['CivilEco'])
+                    PlayerIs['XP'] += int(StarIs['StarCivil']['CivilPop'] / 12) * (3 * PlanetLiveCount)
             # Civil Eco changes
             if StarIs.get("StarCivil"):
                 if rwos.randint(1,2) == 1:
-                    StarIs['StarCivil']['CivilEco'] -= rwos.uniform(0.0001, 0.01)
+                    StarIs['StarCivil']['CivilEco'] -= rwos.uniform(sett_eco_include[0], sett_eco_include[1])
                 else:
-                    StarIs['StarCivil']['CivilEco'] += rwos.uniform(0.0001, 0.01)
+                    StarIs['StarCivil']['CivilEco'] += rwos.uniform(sett_eco_include[0], sett_eco_include[1])
                 if StarIs['StarCivil']['CivilEco'] < CivilEcoMin:
                     StarIs['StarCivil']['CivilEco'] = CivilEcoMin
                 else:
                     if StarIs['StarCivil']['CivilEco'] > CivilEcoMax:
                         StarIs['StarCivil']['CivilEco'] = CivilEcoMax
+
+                if rwos.randint(1,4) == 1:
+                    StarIs['StarCivil']['CivilStable'] += rwos.randint(-1,1)
+
+                if StarIs['StarCivil']['CivilStable'] > 100: StarIs['StarCivil']['CivilStable'] = 100
+                if StarIs['StarCivil']['CivilStable'] < 0: StarIs['StarCivil']['CivilStable'] = 0
                 ProjectInfinity.StarChange(StarIs['StarID'],'StarCivil',StarIs['StarCivil'])
 
-    def Duel(Title="Test", Target={"Bot": "TestBot"}):
+            if StarIs.get("StarCivil") and StarIs.get('StarControled'):
+                if StarIs.get("Planets"):
+                    for i in range(len(StarIs['Planets'])):
+                        PlanetIs = StarIs['Planets'][i]
+                        if PlanetIs.get("PlanetColony"):
+                            if PlanetIs['PlanetColony']['ColonyBuild']['Enabled'] == True:
+                                if PlanetIs['PlanetColony']['ColonyBuild']['EndBuild'] <= PlayerIs['WorldDay']:
+                                    PlanetIs['PlanetColony']['ColonyBuild']['Enabled'] = False
+
+                        if PlanetIs.get("PlanetColony"):
+                            if PlanetIs['PlanetColony']['ColonyBuild']['Enabled'] == False:
+                                PlanetIs['PlanetColony']['ColonyPop'] += rwos.randint(sett_pop_include[0],sett_pop_include[1]) * (1 + (PlanetIs['PlanetColony']['ColonyLevel']**2))
+                        ProjectInfinity.StarChange(StarIs['StarID'], 'Planets', StarIs['Planets'])
+
+            # Pop include
+            if StarIs.get("StarCivil"):
+                ColonyAllPops = 0
+                if StarIs.get("Planets"):
+                    for i in range(len(StarIs['Planets'])):
+                        PlanetIs = StarIs['Planets'][i]
+                        if PlanetIs.get('PlanetColony'):
+                            if PlanetIs['PlanetColony']['ColonyBuild']['Enabled'] == False:
+                                ColonyAllPops += PlanetIs['PlanetColony']['ColonyPop']
+    
+                StarIs['StarCivil']['CivilPop'] = ColonyAllPops
+                ProjectInfinity.StarChange(StarIs['StarID'],'StarCivil',StarIs['StarCivil'])
+
+    def Duel(Title="Test", Target={"Bot": "TestBot", "BotShip": rwos.choice(Ships), "BotModificationSlots": [], "BotAccuracy": 50, "BotInterval": 3}):
+        wl.Skip()
+        wl.Quation(f"{Title}: Ви точно хочете взяти участь в битві?")
         def BattleScreen():
             wl.Skip()
             print(wl.Wall)
             print(Title)
             print(wl.Wall)
             print(f" ▪ {PlayerPrefix} Гравець: {wl.Player} - HP: {PlayerHP:,} - DM: {PlayerDMG:,} | {PlayerMessage}")
-            #print(f"     {Colore.Gray} ▪ Корабель: {PlayerIs['Ship']['ShipName']}{Colore.Reset}")
+            print(f"     {Colore.Gray} ▪ Корабель: {PlayerIs['Ship']['ShipName']}{Colore.Reset}")
             print(wl.Wall)
             print(f" ▪ {BotPrefix} Опонент: {str(Target['Bot'])} - HP: {BotHP:,} - DM: {BotDMG:,} | {BotMessage}")
+            print(f"     {Colore.Gray} ▪ Корабель: {BotShip['ShipName']}{Colore.Reset}")
             print(wl.Wall)
             time.sleep(BattleCooldown)
+
+        BotModificationSlots = []
+        BotShip = Target['BotShip']
+
+        if Target['BotModificationSlots'] == []:
+            for i in range(BotShip['ShipMaxModification']):
+                BotModificationSlots.append({"ModificationID": None, "ModificationLevel": rwos.randint(1,ModMaxLevel)})
+
+            ModTypeArmor = []
+            for i, mod in enumerate(ShipModifications):
+                if mod['ModType'] == 1: ModTypeArmor.append(mod['ModID'])
+
+            ModTypeWeapons = []
+            for i, mod in enumerate(ShipModifications):
+                if mod['ModType'] == 3: ModTypeWeapons.append(mod['ModID'])
+
+            for i, mod in enumerate(BotModificationSlots):
+                if i in [0,1]: mod['ModificationID'] = rwos.choice(ModTypeArmor)
+                else: mod['ModificationID'] = rwos.choice(ModTypeWeapons)
+
+        print(BotModificationSlots)
+        time.sleep(1)
         
         PlayerHP = PlayerShipHP
-
-        BotHP = 100
-        #for i in range(len(PlayerIs['Ship']['ShipModification'])):
-        #    ModPlayerIs = PlayerIs['Ship']['ShipModification']['ModificationID']
-        #    ModIs = ShipModifications[ModPlayerIs]
-        #    if ModIs['ModType'] == 1:
-        #        PlayerHP += ModIs['ModValue']
+        
+        BotHP = BotShip['ShipHealth']
+        for i, mod in enumerate(BotModificationSlots):
+            if ShipModifications[mod['ModificationID']]['ModType'] == 1:
+                BotHP += ShipModifications[mod['ModificationID']]['ModValue'] * (mod['ModificationLevel'] * ModLevelCoeff)
 
         PlayerDMG = PlayerShipDMG
         PlayerInterval = PlayerShipInterval
 
-        BotDMG = 10
-        BotInterval = 4
+        BotDMG = 0
+        BotInterval = 0
+        for i, mod in enumerate(BotModificationSlots):
+            if ShipModifications[mod['ModificationID']]['ModType'] == 3:
+                BotDMG += ShipModifications[mod['ModificationID']]['ModValue']['damage'] * (mod['ModificationLevel'] * ModLevelCoeff)
+                BotInterval += ShipModifications[mod['ModificationID']]['ModValue']['interval']
 
         PlayerAccuracy = 40
-        BotAccuracy = 50
+        BotAccuracy = Target['BotAccuracy']
 
         BattleToggle = True
 
@@ -795,49 +876,45 @@ class ProjectInfinity():
         BotMessage = ""
         
         while BattleToggle == True:
-            PlayerDM = int(PlayerDMG * random.uniform(BattleCoefMin, BattleCoefMax))
-            BotDM = int(BotDMG * random.uniform(BattleCoefMin, BattleCoefMax))
+            PlayerDM = int(PlayerDMG * rwos.uniform(BattleCoefMin, BattleCoefMax))
+            BotDM = int(BotDMG * rwos.uniform(BattleCoefMin, BattleCoefMax))
             
             for p_i in range(PlayerInterval):
                 BotPrefix = f"{Colore.Blue}⛊{Colore.Reset}"
                 PlayerPrefix = f"({p_i+1}) {Colore.Red}▶{Colore.Reset}"
-                if random.randint(1,2) == 1:
+                if rwos.randint(1,2) == 1:
                     PlayerMessage = "Залп"
-                    if random.randint(1,100) <= PlayerAccuracy:
+                    if rwos.randint(1,100) <= PlayerAccuracy:
                         BotHP -= PlayerDM
                         BotMessage = f"Ненесена шкода ({PlayerDM})"
                     else:
                         BotHP -= 0
                         PlayerMessage = "Залп: Промах"
+                BattleScreen()
                 if BotHP <= 0:
                     BotHP = 0
+                    BattleScreen()
                     return True
                 
-                if PlayerHP <= 0:
-                    PlayerHP = 0
-                    return False
-                BattleScreen()
             PlayerMessage = ""
 
             for b_i in range(BotInterval):
                 PlayerPrefix = f"{Colore.Blue}⛊{Colore.Reset}"
                 BotPrefix = f"({b_i+1}) {Colore.Red}▶{Colore.Reset}"
-                if random.randint(1,2) == 1:
+                if rwos.randint(1,2) == 1:
                     BotMessage = "Залп"
-                    if random.randint(1,100) <= BotAccuracy:
+                    if rwos.randint(1,100) <= BotAccuracy:
                         PlayerHP -= BotDM
                         PlayerMessage = f"Ненесена шкода ({BotDM})"
                     else:
                         PlayerHP -= 0
                         BotMessage = "Залп: Промах"
-                if BotHP <= 0:
-                    BotHP = 0
-                    return True
-                
+                BattleScreen()
                 if PlayerHP <= 0:
                     PlayerHP = 0
+                    BattleScreen()
                     return False
-                BattleScreen()
+            
             BotMessage = ""
 
             BattleScreen()
@@ -888,7 +965,13 @@ def ModificationSlots(x):
         SlotIs = PlayerIs['Ship']['ShipModification'][abs]
         if SlotIs['ModificationID'] != None:
             ModIs = ShipModifications[SlotIs['ModificationID']]
-            ModLabel = f"{Colore.Green}{ModIs['ModName']}{Colore.Reset}"
+            if ModIs['ModType'] == 0: ColoreMod = Colore.Yellow
+            if ModIs['ModType'] == 1: ColoreMod = Colore.Red
+            if ModIs['ModType'] == 2: ColoreMod = Colore.Blue
+            if ModIs['ModType'] == 3: ColoreMod = Colore.LightRed
+            if ModIs['ModType'] == 4: ColoreMod = colorama.Fore.LIGHTYELLOW_EX
+            if ModIs['ModType'] == 5: ColoreMod = colorama.Fore.GREEN
+            ModLabel = f"{ColoreMod}{ModIs['ModName']}{Colore.Reset}"
         else:
             ModLabel = f"{Colore.Gray}Відсутній{Colore.Reset}"
         sr = "  " * x
@@ -953,3 +1036,10 @@ for i in range(len(PlayerIs['Ship']['ShipModification'])):
         ModIs = ShipModifications[ModPlayerIs]
         if ModIs['ModType'] == 1:
             PlayerShipHP += (ModIs['ModValue'] * (ModPlayer['ModificationLevel'] * ModLevelCoeff))
+
+if StarIs.get("StarCivil"):
+    if StarIs['StarCivil']['CivilReputation'] > 100:
+        StarIs['StarCivil']['CivilReputation'] = 100
+
+    if StarIs['StarCivil']['CivilReputation'] < 0:
+        StarIs['StarCivil']['CivilReputation'] = 0

@@ -2,9 +2,13 @@ import random
 import settings
 import wlregister
 import math
-from galaxy.mapchanges import CustomStars
+import json
+#from galaxy.mapchanges import CustomStars
 from galaxy.mapchanges_lock import CustomStarsLock
 from nickname_generator import generate as ranname
+
+with open("galaxy/map.json", 'r', encoding="utf-8") as t:
+    CustomStars = json.load(t)
 
 mapseed = settings.MapSeed
 
@@ -12,36 +16,8 @@ Latters = [chr(i) for i in range(65, 91)]
 LowerLatters = [chr(i) for i in range(97, 123)]
 Articl = ["Alpha","Beta","Gamma","Delta"]
 
-FractionSuffix = ["Liga", "Party", "Organisation", "Company", "Empire", "Clan", "Group", "Brotherhood"]
-
 def GenMap(seed):
     random.seed(mapseed + seed)
-    def FractionGen():
-        FractionName = f"{ranname()} {random.choice(FractionSuffix)}"
-        FractionRep = 0
-        FractionEcoType = 0
-        FractionPolType = 0
-        FractionPop = 0
-        procentrange = random.randint(0,100)
-        if procentrange <= 100:
-            FractionPop = random.randint(100,1000)
-        if procentrange <= 75:
-            FractionPop = random.randint(1000,10000)
-        if procentrange <= 30:
-            FractionPop = random.randint(10000,100000)
-        if procentrange <= 15:
-            FractionPop = random.randint(100000,1000000)
-        if procentrange <= 5:
-            FractionPop = random.randint(1_000_000, 10_000_000_000_000)
-        FractionIs = {
-            "FractionName": FractionName,
-            "FractionRep": FractionRep,
-            "FractionEcoType": FractionEcoType,
-            "FractionPolType": FractionPolType,
-            "FractionPop": FractionPop,
-            "FractionPopHap": 50
-        }
-        return FractionIs
     
     def PlanetGen(x):
         Planets = []
@@ -199,7 +175,8 @@ def GenMap(seed):
     
     if solar_luminos > 1000:
         planet_count = 0
-    else: planet_count = random.randint(1,15)
+    else:
+        planet_count = random.randint(1,15)
 
     Starsystems = {
         "StarID": seed,
@@ -224,33 +201,51 @@ def GenMap(seed):
             StationStoreList = [item for item in wlregister.ItemsDB if item['ItemEconomicType'] == 1]
         else:
             StationStoreList = wlregister.ItemsDB
-
-        for i in range(len(Starsystems['Planets'])):
-            PlanetIs = Starsystems['Planets'][i]
-            if PlanetIs['PlanetLive'] == True:
-                Starsystems['Star'] = ranname()
-                break
                 
         Starsystems['StarIntel'] = True
         Starsystems['StarCivil'] = {}
-        Starsystems['StarCivil']['CivilEconomicType'] = random.randint(0, len(wlregister.Economics))
+        Starsystems['StarCivil']['CivilEconomicType'] = random.randint(0, len(wlregister.Economics)-1)
         Starsystems['StarCivil']['CivilEco'] = random.uniform(settings.CivilEcoMin,settings.CivilEcoMax)
+        Starsystems['StarCivil']['CivilReputation'] = 50
+        Starsystems['StarCivil']['CivilSecurity'] = random.randint(0,2)
+        #Starsystems['StarCivil']['CivilPop'] = random.randint(1,10_000_000_000)
+        Starsystems['StarCivil']['CivilStable'] = random.randint(1,100)
         Starsystems['StarCivil']['CivilStation'] = {
             "StationName": f"{ranname()} Station",
             "StationType": random.randint(0,2),
-            "StationStoreList": random.sample(range(len(StationStoreList)), random.randint(1,5)) 
+            "StationStoreList": random.sample(range(len(StationStoreList)), int(random.randint(1,len(StationStoreList)))) 
         }
-        Starsystems['StarCivil']['CivilFraction'] = FractionGen()
-    
-    # Імпорт всіх змін із mapchanges.py
-    for abis in range(len(CustomStars)):
-        CustomStarsIs = CustomStars[abis]
-        if Starsystems['StarID'] == CustomStarsIs['StarID']:
-            Starsystems.update(CustomStarsIs)
+
+        for i, planet in enumerate(Starsystems['Planets']):
+            if random.randint(1,100) <= 75:
+                if not planet['PlanetClass'] == 3:
+                    planet['PlanetColony'] = {}
+                    planet['PlanetColony']['ColonyName'] = ranname() + " Colony"
+                    planet['PlanetColony']['ColonyLevel'] = random.randint(1,100)
+                    planet['PlanetColony']['ColonyPop'] = random.randint(100,100_000_000)
+                    planet['PlanetColony']['ColonyBuild'] = {"Enabled": False, "EndBuild": 0}
+
+        Pops = 0
+        for i, planet in enumerate(Starsystems['Planets']):
+            if planet.get("PlanetColony"):
+                Pops += planet['PlanetColony']['ColonyPop']
+        Starsystems['StarCivil']['CivilPop'] = Pops
+
+        for i in range(len(Starsystems['Planets'])):
+            PlanetIs = Starsystems['Planets'][i]
+            if PlanetIs['PlanetLive'] == True or Starsystems['StarCivil']['CivilPop'] >= 1_000_000:
+                Starsystems['Star'] = ranname()
+                break
 
     # Імпорт всіх змін, тепер з заблокованного mapchanges_lock.py
     for abis in range(len(CustomStarsLock)):
         CustomStarsIs = CustomStarsLock[abis]
+        if Starsystems['StarID'] == CustomStarsIs['StarID']:
+            Starsystems.update(CustomStarsIs)
+    
+    # Імпорт всіх змін із mapchanges.py
+    for abis in range(len(CustomStars)):
+        CustomStarsIs = CustomStars[abis]
         if Starsystems['StarID'] == CustomStarsIs['StarID']:
             Starsystems.update(CustomStarsIs)
 
