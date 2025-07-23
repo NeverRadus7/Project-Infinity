@@ -264,9 +264,9 @@ class wl():   # Main class
 
     def Loading(name, ranger):
         for loading in range(ranger):
-            wl.CenterTextLable(f"{name} ○\r")
+            wl.CenterTextLable(f" {name} ○\r")
             time.sleep(0.2)
-            wl.CenterTextLable(f"{name} ●\r")
+            wl.CenterTextLable(f" {name} ●\r")
             time.sleep(0.2)
         wl.Skip()
 
@@ -523,7 +523,7 @@ class wl():   # Main class
                         ItemIs['ItemCount'] -= count
 
 
-class ProjectInfinity():
+class pi():
     def StarChange(StarID, ElementTag, ElementValue):
         if len(CustomStars) == 0:
             CustomStars.append(
@@ -822,7 +822,7 @@ class ProjectInfinity():
                             if Star['Planets'][ii]['PlanetLive'] == True:
                                 PlanetLiveCount += 1
                     PlayerIs['Statistic']['IncomeFromColony'] += int((int(StarIs['StarCivil']['CivilPop'] * 2) * (4 * PlanetLiveCount+1)) * StarIs['StarCivil']['CivilEco'])
-                    ProjectInfinity.StarChange(StarIs['StarID'], 'InfoIncome', int((int(StarIs['StarCivil']['CivilPop']* 2) * (4 * PlanetLiveCount+1)) * StarIs['StarCivil']['CivilEco']))
+                    pi.StarChange(StarIs['StarID'], 'InfoIncome', int((int(StarIs['StarCivil']['CivilPop']* 2) * (4 * PlanetLiveCount+1)) * StarIs['StarCivil']['CivilEco']))
                     PlayerIs['Money'] += int((int(StarIs['StarCivil']['CivilPop'] * 2) * (4 * PlanetLiveCount+1)) * StarIs['StarCivil']['CivilEco'])
                     PlayerIs['XP'] += int(StarIs['StarCivil']['CivilPop'] / 12) * (3 * PlanetLiveCount)
             # Civil Eco changes
@@ -842,7 +842,7 @@ class ProjectInfinity():
 
                 if StarIs['StarCivil']['CivilStable'] > 100: StarIs['StarCivil']['CivilStable'] = 100
                 if StarIs['StarCivil']['CivilStable'] < 0: StarIs['StarCivil']['CivilStable'] = 0
-                ProjectInfinity.StarChange(StarIs['StarID'],'StarCivil',StarIs['StarCivil'])
+                pi.StarChange(StarIs['StarID'],'StarCivil',StarIs['StarCivil'])
 
             if StarIs.get("StarCivil") and StarIs.get('StarControled'):
                 if StarIs.get("Planets"):
@@ -856,7 +856,7 @@ class ProjectInfinity():
                         if PlanetIs.get("PlanetColony"):
                             if PlanetIs['PlanetColony']['ColonyBuild']['Enabled'] == False:
                                 PlanetIs['PlanetColony']['ColonyPop'] += rwos.randint(sett_pop_include[0],sett_pop_include[1]) * (1 + (PlanetIs['PlanetColony']['ColonyLevel']**2))
-                        ProjectInfinity.StarChange(StarIs['StarID'], 'Planets', StarIs['Planets'])
+                        pi.StarChange(StarIs['StarID'], 'Planets', StarIs['Planets'])
 
             # Pop include
             if StarIs.get("StarCivil"):
@@ -869,7 +869,14 @@ class ProjectInfinity():
                                 ColonyAllPops += PlanetIs['PlanetColony']['ColonyPop']
     
                 StarIs['StarCivil']['CivilPop'] = ColonyAllPops
-                ProjectInfinity.StarChange(StarIs['StarID'],'StarCivil',StarIs['StarCivil'])
+                pi.StarChange(StarIs['StarID'],'StarCivil',StarIs['StarCivil'])
+
+            # Security secure
+            if StarIs.get("StarCivil"):
+                if StarIs['StarCivil']['Navy']['NavyShips'] < 5: StarIs['StarCivil']['CivilSecurity'] = 0
+                if StarIs['StarCivil']['Navy']['NavyCruisers'] >= 1 or StarIs['StarCivil']['Navy']['NavyShips'] >= 5: StarIs['StarCivil']['CivilSecurity'] = 1
+                if StarIs['StarCivil']['Navy']['NavyCruisers'] >= 5 or StarIs['StarCivil']['Navy']['NavyShips'] >= 10: StarIs['StarCivil']['CivilSecurity'] = 2
+                pi.StarChange(StarIs['StarID'], 'StarCivil', StarIs['StarCivil'])
 
     def Duel(Title="Test", Target={"Bot": "TestBot", "BotShip": rwos.choice(Ships), "BotModificationSlots": [], "BotAccuracy": 50, "BotInterval": 3}):
         wl.Skip()
@@ -974,7 +981,77 @@ class ProjectInfinity():
             BotMessage = ""
 
             BattleScreen()
+
+    def Navy(Title="Test"):
+        PlayerNavy = PlayerIs['Navy']
+        BotNavy = StarIs['StarCivil']['Navy']
+
+        def BattleScreen():
+            wl.Skip()
+            print(
+                f"{wl.Wall}\n"
+                f"{Title}\n"
+                f"{wl.Wall}\n"
+                f"Флот {LevelRangIs} {wl.Player}\n"
+                f"   ▪ Крейсерів: {PlayerNavy['NavyCruisers']:,}\n"
+                f"   ▪ Кораблів: {PlayerNavy['NavyShips']:,}\n"
+                f"   ▪ Рівень кораблів: {PlayerNavy['NavyLevel']}\n"
+                f"   ▪ Бойовий ранг: {int(PlayerNavy['NavyCruisers'] * PlayerNavy['NavyShips'] * PlayerNavy['NavyLevel']):,}\n"
+                f"{PlayerShipHealth:.2f} - {PlayerCruiserHealth:.2f}\n"
+                f"{wl.Wall}\n"
+                f"Флот {StarIs['Star']}\n"
+                f"   ▪ Крейсерів: {BotNavy['NavyCruisers']:,}\n"
+                f"   ▪ Кораблів: {BotNavy['NavyShips']:,}\n"
+                f"   ▪ Рівень кораблів: {BotNavy['NavyLevel']}\n"
+                f"   ▪ Бойовий ранг: {int(BotNavy['NavyCruisers'] * BotNavy['NavyShips'] * BotNavy['NavyLevel']):,}\n"
+                f"{BotShipHealth:.2f} - {BotCruiserHealth:.2f}\n"
+                f"{wl.Wall}\n"
+            )
+        
+        x = 0
+        PlayerShipHealth = 200 * PlayerNavy['NavyLevel']
+        PlayerCruiserHealth = 500 * PlayerNavy['NavyLevel']
+        BotShipHealth = 200 * BotNavy['NavyLevel']
+        BotCruiserHealth = 500 * BotNavy['NavyLevel']
+
+        while True:
+            x += 1
             
+            for i in range(int((ConsoleSizeY/2) - (15/2))):
+                print()
+
+            PlayerShipHealth -= ((0.6 * BotNavy['NavyLevel'] * BotNavy['NavyShips'] * (1 + (0.133 * BotNavy['NavyCruisers']))))
+            BotShipHealth -= ((0.6 * PlayerNavy['NavyLevel'] * PlayerNavy['NavyShips'] * (1 + (0.133 * PlayerNavy['NavyCruisers']))))
+            PlayerCruiserHealth -= ((0.3 * BotNavy['NavyLevel'] * BotNavy['NavyShips'] * (1 + (0.133 * BotNavy['NavyCruisers']))))
+            BotCruiserHealth -= ((0.3 * PlayerNavy['NavyLevel'] * PlayerNavy['NavyShips'] * (1 + (0.133 * PlayerNavy['NavyCruisers']))))
+
+            if PlayerShipHealth <= 0:
+                PlayerNavy['NavyShips'] -= 1
+                PlayerShipHealth = 200 * PlayerNavy['NavyLevel']
+
+            if BotShipHealth <= 0:
+                BotNavy['NavyShips'] -= 1
+                BotShipHealth = 200 * BotNavy['NavyLevel']
+
+            if PlayerCruiserHealth <= 0:
+                PlayerNavy['NavyCruisers'] -= 1
+                PlayerCruiserHealth = 500 * PlayerNavy['NavyLevel']
+
+            if BotCruiserHealth <= 0:
+                BotNavy['NavyCruisers'] -= 1
+                BotCruiserHealth = 500 * BotNavy['NavyLevel']
+
+            if PlayerNavy['NavyShips'] <= 0: PlayerNavy['NavyShips'] = 0
+            if BotNavy['NavyShips'] <= 0: BotNavy['NavyShips'] = 0
+            if PlayerNavy['NavyCruisers'] <= 0: PlayerNavy['NavyCruisers'] = 0
+            if BotNavy['NavyCruisers'] <= 0: BotNavy['NavyCruisers'] = 0
+            if PlayerNavy['NavyShips'] <= 0 and PlayerNavy['NavyCruisers'] <= 0: return False
+            if BotNavy['NavyShips'] <= 0 and BotNavy['NavyCruisers'] <= 0: return True
+
+            BattleScreen()
+            for i in range(int((ConsoleSizeY/2) - (15/2))): print()
+            time.sleep(0.3)
+
     def PlayerShipModificationAll(ModType):
         Value = 0
         for i in range(len(PlayerIs['Ship']['ShipModification'])):
@@ -984,6 +1061,62 @@ class ProjectInfinity():
                 if ModIs['ModType'] == ModType:
                     Value += (ModIs['ModValue'] * (ModPlayerIs['ModificationLevel'] * ModLevelCoeff))
         return int(Value)
+    
+    def PlanetView(seed=0, radius=4,colore={}):
+        planetrand = random.Random()
+        planetrand.seed(seed)
+
+        if colore['main'] == "red": main = colorama.Fore.RED
+        if colore['main'] == "yellow": main = colorama.Fore.YELLOW
+        if colore['main'] == "blue": main = colorama.Fore.BLUE
+        if colore['main'] == "green": main = colorama.Fore.GREEN
+        if colore['main'] == "white": main = colorama.Fore.WHITE
+        if colore['main'] == "gray": main = colorama.Fore.LIGHTBLACK_EX
+        if colore['main'] == "l_red": main = colorama.Fore.LIGHTRED_EX
+        if colore['main'] == "l_yellow": main = colorama.Fore.LIGHTYELLOW_EX
+        if colore['main'] == "l_blue": main = colorama.Fore.LIGHTBLUE_EX
+        if colore['main'] == "l_green": main = colorama.Fore.LIGHTGREEN_EX
+
+        if colore['second'] == "red": second = colorama.Fore.RED
+        if colore['second'] == "yellow": second = colorama.Fore.YELLOW
+        if colore['second'] == "blue": second = colorama.Fore.BLUE
+        if colore['second'] == "green": second = colorama.Fore.GREEN
+        if colore['second'] == "white": second = colorama.Fore.WHITE
+        if colore['second'] == "gray": second = colorama.Fore.LIGHTBLACK_EX
+        if colore['second'] == "l_red": second = colorama.Fore.LIGHTRED_EX
+        if colore['second'] == "l_yellow": second = colorama.Fore.LIGHTYELLOW_EX
+        if colore['second'] == "l_blue": second = colorama.Fore.LIGHTBLUE_EX
+        if colore['second'] == "l_green": second = colorama.Fore.LIGHTGREEN_EX
+
+        if colore['third'] == "red": third = colorama.Fore.RED
+        if colore['third'] == "yellow": third = colorama.Fore.YELLOW
+        if colore['third'] == "blue": third = colorama.Fore.BLUE
+        if colore['third'] == "green": third = colorama.Fore.GREEN
+        if colore['third'] == "white": third = colorama.Fore.WHITE
+        if colore['third'] == "gray": third = colorama.Fore.LIGHTBLACK_EX
+        if colore['third'] == "l_red": third = colorama.Fore.LIGHTRED_EX
+        if colore['third'] == "l_yellow": third = colorama.Fore.LIGHTYELLOW_EX
+        if colore['third'] == "l_blue": third = colorama.Fore.LIGHTBLUE_EX
+        if colore['third'] == "l_green": third = colorama.Fore.LIGHTGREEN_EX
+
+
+
+        symbols = {
+            1: f'{main}█{colorama.Fore.RESET}',
+            2: f'{second}█{colorama.Fore.RESET}',
+            3: f'{third}█{colorama.Fore.RESET}'
+        }
+
+        for y in range(-radius, radius + 1):
+            for x in range(-radius * 2, radius * 2 + 1):
+                # Перевірка, чи точка знаходиться в колі
+                distance = math.sqrt((x / 2) ** 2 + y ** 2)
+                if distance <= radius:
+                    terrain = random.choices([1, 2, 3], weights=[50, 30, 20])[0]
+                    print(symbols[terrain], end='')
+                else:
+                    print(' ', end='')
+            print()
 
 class game():
     class player():
@@ -995,7 +1128,7 @@ class game():
     class world():
         def mature(cycle):
             for i in range(cycle):
-                ProjectInfinity.Logic()
+                pi.Logic()
 
 def ChoiceModificationSlot():
     wl.Skip()

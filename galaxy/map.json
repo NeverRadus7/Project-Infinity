@@ -1,51 +1,37 @@
 [
     {
-        "StarID": 12,
-        "StarIntel": true,
-        "StarControled": true,
-        "StarCivil": {
-            "CivilEconomicType": 8,
-            "CivilEco": 1.2492257757791791,
-            "CivilStable": 5,
-            "CivilReputation": 100,
-            "CivilSecurity": 0,
-            "CivilStation": {
-                "StationName": "Xesafen Station",
-                "StationType": 0,
-                "StationStoreList": [
-                    2,
-                    9,
-                    7,
-                    10
-                ]
-            },
-            "CivilPop": 0
-        },
-        "InfoDate": "03.07.3454",
-        "InfoIncome": 0,
-        "Star": "Lox"
-    },
-    {
         "StarID": 13,
         "StarCivil": {
-            "CivilEconomicType": 6,
-            "CivilEco": 0.36260838279332436,
-            "CivilReputation": 103,
-            "CivilSecurity": 2,
-            "CivilStable": 25,
+            "CivilEconomicType": 0,
+            "CivilEco": 0.3900525852211587,
+            "CivilReputation": 50,
+            "CivilSecurity": 0,
+            "CivilStable": 87,
+            "Navy": {
+                "NavyLevel": 31,
+                "NavyCruisers": 0,
+                "NavyShips": 0
+            },
             "CivilStation": {
-                "StationName": "Jekhishu Station",
-                "StationType": 2,
+                "StationName": "Ibabokhu Station",
+                "StationType": 0,
                 "StationStoreList": [
-                    4,
                     0,
+                    7,
+                    10,
+                    6,
                     1,
+                    8,
+                    3,
+                    4,
+                    5,
+                    2,
                     9
                 ]
             },
-            "CivilPop": 313108654
+            "CivilPop": 286042556,
+            "CivilSecure": 0
         },
-        "InfoDate": "24.07.3454",
         "Planets": [
             {
                 "PlanetID": 1,
@@ -87,16 +73,7 @@
                 "PlanetAtmoGreenhouse": 0.9223098433391599,
                 "PlanetDistance": 6.3818168537694495,
                 "PlanetTerraform": false,
-                "PlanetLive": false,
-                "PlanetColony": {
-                    "ColonyName": "Taqebo Colony",
-                    "ColonyLevel": 54,
-                    "ColonyPop": 30567192,
-                    "ColonyBuild": {
-                        "Enabled": false,
-                        "EndBuild": 0
-                    }
-                }
+                "PlanetLive": false
             },
             {
                 "PlanetID": 4,
@@ -126,9 +103,9 @@
                 "PlanetTerraform": false,
                 "PlanetLive": false,
                 "PlanetColony": {
-                    "ColonyName": "Seweqe Colony",
-                    "ColonyLevel": 46,
-                    "ColonyPop": 6848058,
+                    "ColonyName": "Qepaqeth Colony",
+                    "ColonyLevel": 4,
+                    "ColonyPop": 85118238,
                     "ColonyBuild": {
                         "Enabled": false,
                         "EndBuild": 0
@@ -149,9 +126,9 @@
                 "PlanetTerraform": false,
                 "PlanetLive": false,
                 "PlanetColony": {
-                    "ColonyName": "Shizhuxu Colony",
-                    "ColonyLevel": 99,
-                    "ColonyPop": 54968088,
+                    "ColonyName": "Epiwynoj Colony",
+                    "ColonyLevel": 33,
+                    "ColonyPop": 8740402,
                     "ColonyBuild": {
                         "Enabled": false,
                         "EndBuild": 0
@@ -172,9 +149,9 @@
                 "PlanetTerraform": false,
                 "PlanetLive": false,
                 "PlanetColony": {
-                    "ColonyName": "Lushirela Colony",
-                    "ColonyLevel": 65,
-                    "ColonyPop": 97013570,
+                    "ColonyName": "Chasakushazh Colony",
+                    "ColonyLevel": 98,
+                    "ColonyPop": 35375038,
                     "ColonyBuild": {
                         "Enabled": false,
                         "EndBuild": 0
@@ -195,9 +172,9 @@
                 "PlanetTerraform": false,
                 "PlanetLive": false,
                 "PlanetColony": {
-                    "ColonyName": "Ofexyd Colony",
-                    "ColonyLevel": 85,
-                    "ColonyPop": 26512091,
+                    "ColonyName": "Wychekhikax Colony",
+                    "ColonyLevel": 74,
+                    "ColonyPop": 16637787,
                     "ColonyBuild": {
                         "Enabled": false,
                         "EndBuild": 0
@@ -216,16 +193,7 @@
                 "PlanetAtmoGreenhouse": 0.11131231314088152,
                 "PlanetDistance": 56.016766043915354,
                 "PlanetTerraform": false,
-                "PlanetLive": false,
-                "PlanetColony": {
-                    "ColonyName": "Wychekhikax Colony",
-                    "ColonyLevel": 74,
-                    "ColonyPop": 11467499,
-                    "ColonyBuild": {
-                        "Enabled": false,
-                        "EndBuild": 0
-                    }
-                }
+                "PlanetLive": false
             },
             {
                 "PlanetID": 10,
@@ -255,9 +223,9 @@
                 "PlanetTerraform": false,
                 "PlanetLive": false,
                 "PlanetColony": {
-                    "ColonyName": "Irygikiz Colony",
-                    "ColonyLevel": 8,
-                    "ColonyPop": 43673576,
+                    "ColonyName": "Ozhelepuc Colony",
+                    "ColonyLevel": 42,
+                    "ColonyPop": 97484255,
                     "ColonyBuild": {
                         "Enabled": false,
                         "EndBuild": 0
@@ -276,7 +244,16 @@
                 "PlanetAtmoGreenhouse": 0.20404533557845517,
                 "PlanetDistance": 191.5358928217271,
                 "PlanetTerraform": false,
-                "PlanetLive": false
+                "PlanetLive": false,
+                "PlanetColony": {
+                    "ColonyName": "Hucezhyry Colony",
+                    "ColonyLevel": 26,
+                    "ColonyPop": 42686836,
+                    "ColonyBuild": {
+                        "Enabled": false,
+                        "EndBuild": 0
+                    }
+                }
             },
             {
                 "PlanetID": 13,
@@ -290,16 +267,7 @@
                 "PlanetAtmoGreenhouse": 0.3642316016940156,
                 "PlanetDistance": 150.89007864529455,
                 "PlanetTerraform": false,
-                "PlanetLive": false,
-                "PlanetColony": {
-                    "ColonyName": "Hucezhyry Colony",
-                    "ColonyLevel": 26,
-                    "ColonyPop": 42058580,
-                    "ColonyBuild": {
-                        "Enabled": false,
-                        "EndBuild": 0
-                    }
-                }
+                "PlanetLive": false
             },
             {
                 "PlanetID": 14,
@@ -331,6 +299,586 @@
             }
         ],
         "StarControled": true,
-        "InfoIncome": 227246822
+        "InfoDate": "30.08.3454",
+        "InfoIncome": 223265479
+    },
+    {
+        "StarID": 15,
+        "StarCivil": {
+            "CivilEconomicType": 1,
+            "CivilEco": 0.6959283590846237,
+            "CivilReputation": 50,
+            "CivilSecurity": 0,
+            "CivilStable": 99,
+            "Navy": {
+                "NavyLevel": 69,
+                "NavyCruisers": 0,
+                "NavyShips": 0
+            },
+            "CivilStation": {
+                "StationName": "Muzezusa Station",
+                "StationType": 1,
+                "StationStoreList": [
+                    6,
+                    3,
+                    10,
+                    1,
+                    2,
+                    7,
+                    0,
+                    8,
+                    9
+                ]
+            },
+            "CivilPop": 203864462,
+            "CivilSecure": 0
+        },
+        "Planets": [
+            {
+                "PlanetID": 1,
+                "PlanetName": "Alpha 15-0-R9-1",
+                "PlanetClass": 5,
+                "PlanetEffectiveTemp": 819.0932322805116,
+                "PlanetKelvinTemp": 970.3006950263357,
+                "PlanetTemp": 697.1506950263357,
+                "PlanetMass": 0.9600281056873188,
+                "PlanetAtmoAlbedo": 0.5628098246429724,
+                "PlanetAtmoGreenhouse": 0.4064001159311076,
+                "PlanetDistance": 0.813731399898617,
+                "PlanetTerraform": false,
+                "PlanetLive": false,
+                "PlanetColony": {
+                    "ColonyName": "Chakhiloke Colony",
+                    "ColonyLevel": 41,
+                    "ColonyPop": 67252071,
+                    "ColonyBuild": {
+                        "Enabled": false,
+                        "EndBuild": 0
+                    }
+                }
+            },
+            {
+                "PlanetID": 2,
+                "PlanetName": "Alpha 15-0-R9-2",
+                "PlanetClass": 0,
+                "PlanetEffectiveTemp": 355.8212640255021,
+                "PlanetKelvinTemp": 458.7909578784856,
+                "PlanetTemp": 185.6409578784856,
+                "PlanetMass": 4.171155845121333,
+                "PlanetAtmoAlbedo": 0.8200885997496511,
+                "PlanetAtmoGreenhouse": 0.9438717421778686,
+                "PlanetDistance": 4.312051644057097,
+                "PlanetTerraform": false,
+                "PlanetLive": false,
+                "PlanetColony": {
+                    "ColonyName": "Wakobykyt Colony",
+                    "ColonyLevel": 12,
+                    "ColonyPop": 40366743,
+                    "ColonyBuild": {
+                        "Enabled": false,
+                        "EndBuild": 0
+                    }
+                }
+            },
+            {
+                "PlanetID": 3,
+                "PlanetName": "Alpha 15-0-R9-3",
+                "PlanetClass": 0,
+                "PlanetEffectiveTemp": 214.11429522862713,
+                "PlanetKelvinTemp": 262.29291515620736,
+                "PlanetTemp": -10.85708484379262,
+                "PlanetMass": 2.201819608874702,
+                "PlanetAtmoAlbedo": 0.6091245664782803,
+                "PlanetAtmoGreenhouse": 0.6428505371520058,
+                "PlanetDistance": 11.90848249172862,
+                "PlanetTerraform": false,
+                "PlanetLive": false,
+                "PlanetColony": {
+                    "ColonyName": "Vaxawu Colony",
+                    "ColonyLevel": 22,
+                    "ColonyPop": 96245648,
+                    "ColonyBuild": {
+                        "Enabled": false,
+                        "EndBuild": 0
+                    }
+                }
+            }
+        ],
+        "StarControled": true,
+        "InfoDate": "12.09.3454",
+        "InfoIncome": 283371599
+    },
+    {
+        "StarID": 11,
+        "StarCivil": {
+            "CivilEconomicType": 6,
+            "CivilEco": 0.9258303631654111,
+            "CivilReputation": 50,
+            "CivilSecurity": 0,
+            "CivilStable": 30,
+            "Navy": {
+                "NavyLevel": 46,
+                "NavyCruisers": 0,
+                "NavyShips": 0
+            },
+            "CivilStation": {
+                "StationName": "Natimu Station",
+                "StationType": 0,
+                "StationStoreList": [
+                    5
+                ]
+            },
+            "CivilPop": 80859666,
+            "CivilSecure": 0
+        },
+        "Planets": [
+            {
+                "PlanetID": 1,
+                "PlanetName": "Gamma 11-0-Z806-1",
+                "PlanetClass": 1,
+                "PlanetEffectiveTemp": 19.189433510511755,
+                "PlanetKelvinTemp": 24.277204488472492,
+                "PlanetTemp": -248.8727955115275,
+                "PlanetMass": 3.004600219135443,
+                "PlanetAtmoAlbedo": 0.8479432170844992,
+                "PlanetAtmoGreenhouse": 0.7138619016198353,
+                "PlanetDistance": 0.8623033132036646,
+                "PlanetTerraform": false,
+                "PlanetLive": false
+            },
+            {
+                "PlanetID": 2,
+                "PlanetName": "Gamma 11-0-Z806-2",
+                "PlanetClass": 3,
+                "PlanetEffectiveTemp": 10.636089595212868,
+                "PlanetKelvinTemp": 12.022503102989827,
+                "PlanetTemp": -261.12749689701013,
+                "PlanetMass": 12.869924566319611,
+                "PlanetAtmoAlbedo": 0.00172065463102411,
+                "PlanetAtmoGreenhouse": 0.630773531140782,
+                "PlanetDistance": 2.8068576571077255,
+                "PlanetTerraform": false,
+                "PlanetLive": false
+            },
+            {
+                "PlanetID": 3,
+                "PlanetName": "Gamma 11-0-Z806-3",
+                "PlanetClass": 1,
+                "PlanetEffectiveTemp": 5.528269684458627,
+                "PlanetKelvinTemp": 6.065977152947631,
+                "PlanetTemp": -267.0840228470523,
+                "PlanetMass": 4.781236586073054,
+                "PlanetAtmoAlbedo": 0.2521992529480973,
+                "PlanetAtmoGreenhouse": 0.19739412714202642,
+                "PlanetDistance": 10.389769701296103,
+                "PlanetTerraform": false,
+                "PlanetLive": false,
+                "PlanetColony": {
+                    "ColonyName": "Pyzothuzy Colony",
+                    "ColonyLevel": 4,
+                    "ColonyPop": 21534043,
+                    "ColonyBuild": {
+                        "Enabled": false,
+                        "EndBuild": 0
+                    }
+                }
+            },
+            {
+                "PlanetID": 4,
+                "PlanetName": "Gamma 11-0-Z806-4",
+                "PlanetClass": 1,
+                "PlanetEffectiveTemp": 4.704425718480432,
+                "PlanetKelvinTemp": 5.626537865952849,
+                "PlanetTemp": -267.5234621340471,
+                "PlanetMass": 3.9309074189648485,
+                "PlanetAtmoAlbedo": 0.7406260794391801,
+                "PlanetAtmoGreenhouse": 0.3055288851842133,
+                "PlanetDistance": 14.347331469415435,
+                "PlanetTerraform": false,
+                "PlanetLive": false,
+                "PlanetColony": {
+                    "ColonyName": "Cosyko Colony",
+                    "ColonyLevel": 43,
+                    "ColonyPop": 59325623,
+                    "ColonyBuild": {
+                        "Enabled": false,
+                        "EndBuild": 0
+                    }
+                }
+            }
+        ],
+        "StarControled": true,
+        "InfoDate": "21.09.3454",
+        "InfoIncome": 149573902
+    },
+    {
+        "StarID": 16,
+        "StarCivil": {
+            "CivilEconomicType": 1,
+            "CivilEco": 0.8164622798359503,
+            "CivilReputation": 56,
+            "CivilSecurity": 2,
+            "CivilStable": 68,
+            "Navy": {
+                "NavyLevel": 17,
+                "NavyCruisers": 1,
+                "NavyShips": 30
+            },
+            "CivilStation": {
+                "StationName": "Acishucu Station",
+                "StationType": 2,
+                "StationStoreList": [
+                    8,
+                    9,
+                    0,
+                    6
+                ]
+            },
+            "CivilPop": 477952070,
+            "CivilSecure": 2
+        },
+        "Planets": [
+            {
+                "PlanetID": 1,
+                "PlanetName": "Delta 16-0-J364-1",
+                "PlanetClass": 5,
+                "PlanetEffectiveTemp": 135.1011989632993,
+                "PlanetKelvinTemp": 160.22431825806245,
+                "PlanetTemp": -112.92568174193752,
+                "PlanetMass": 1.310835782986281,
+                "PlanetAtmoAlbedo": 0.6167773878615607,
+                "PlanetAtmoGreenhouse": 0.3614532177727977,
+                "PlanetDistance": 0.9774531197708807,
+                "PlanetTerraform": false,
+                "PlanetLive": false,
+                "PlanetColony": {
+                    "ColonyName": "Ydyvok Colony",
+                    "ColonyLevel": 72,
+                    "ColonyPop": 37432778,
+                    "ColonyBuild": {
+                        "Enabled": false,
+                        "EndBuild": 0
+                    }
+                }
+            },
+            {
+                "PlanetID": 2,
+                "PlanetName": "Delta 16-0-J364-2",
+                "PlanetClass": 5,
+                "PlanetEffectiveTemp": 73.44935303048995,
+                "PlanetKelvinTemp": 88.80960283276738,
+                "PlanetTemp": -184.3403971672326,
+                "PlanetMass": 1.0554006594652656,
+                "PlanetAtmoAlbedo": 0.7434635485677028,
+                "PlanetAtmoGreenhouse": 0.3939463313737299,
+                "PlanetDistance": 3.307031975450168,
+                "PlanetTerraform": false,
+                "PlanetLive": false,
+                "PlanetColony": {
+                    "ColonyName": "Ifochikych Colony",
+                    "ColonyLevel": 52,
+                    "ColonyPop": 69432229,
+                    "ColonyBuild": {
+                        "Enabled": false,
+                        "EndBuild": 0
+                    }
+                }
+            },
+            {
+                "PlanetID": 3,
+                "PlanetName": "Delta 16-0-J364-3",
+                "PlanetClass": 2,
+                "PlanetEffectiveTemp": 48.18391028781107,
+                "PlanetKelvinTemp": 58.696950989705776,
+                "PlanetTemp": -214.4530490102942,
+                "PlanetMass": 0.7279027045443758,
+                "PlanetAtmoAlbedo": 0.500366593014909,
+                "PlanetAtmoGreenhouse": 0.7018194378936395,
+                "PlanetDistance": 7.684405256291592,
+                "PlanetTerraform": false,
+                "PlanetLive": false,
+                "PlanetColony": {
+                    "ColonyName": "Isuqacho Colony",
+                    "ColonyLevel": 83,
+                    "ColonyPop": 103600242,
+                    "ColonyBuild": {
+                        "Enabled": false,
+                        "EndBuild": 0
+                    }
+                }
+            },
+            {
+                "PlanetID": 4,
+                "PlanetName": "Delta 16-0-J364-4",
+                "PlanetClass": 0,
+                "PlanetEffectiveTemp": 38.90424418555548,
+                "PlanetKelvinTemp": 48.186564742319746,
+                "PlanetTemp": -224.96343525768023,
+                "PlanetMass": 4.6099483079378585,
+                "PlanetAtmoAlbedo": 0.6076672312792415,
+                "PlanetAtmoGreenhouse": 0.7458421568578042,
+                "PlanetDistance": 11.787463979567452,
+                "PlanetTerraform": false,
+                "PlanetLive": false
+            },
+            {
+                "PlanetID": 5,
+                "PlanetName": "Delta 16-0-J364-5",
+                "PlanetClass": 1,
+                "PlanetEffectiveTemp": 32.220090762325384,
+                "PlanetKelvinTemp": 40.135902415870206,
+                "PlanetTemp": -233.0140975841298,
+                "PlanetMass": 4.1202564191493565,
+                "PlanetAtmoAlbedo": 0.922633258021587,
+                "PlanetAtmoGreenhouse": 0.4851926910909776,
+                "PlanetDistance": 17.18544667549115,
+                "PlanetTerraform": false,
+                "PlanetLive": false,
+                "PlanetColony": {
+                    "ColonyName": "Itherobuty Colony",
+                    "ColonyLevel": 35,
+                    "ColonyPop": 84095894,
+                    "ColonyBuild": {
+                        "Enabled": false,
+                        "EndBuild": 0
+                    }
+                }
+            },
+            {
+                "PlanetID": 6,
+                "PlanetName": "Kiyv",
+                "PlanetClass": 4,
+                "PlanetEffectiveTemp": 25.64528411228409,
+                "PlanetKelvinTemp": 32.051720016019964,
+                "PlanetTemp": -241.09827998398,
+                "PlanetMass": 1.3590706776106471,
+                "PlanetAtmoAlbedo": 0.5749636689504105,
+                "PlanetAtmoGreenhouse": 0.8649547320321755,
+                "PlanetDistance": 27.126846754419375,
+                "PlanetTerraform": false,
+                "PlanetLive": false,
+                "PlanetColony": {
+                    "ColonyName": "Utikhew Colony",
+                    "ColonyLevel": 30,
+                    "ColonyPop": 57023570,
+                    "ColonyBuild": {
+                        "Enabled": false,
+                        "EndBuild": 0
+                    }
+                }
+            },
+            {
+                "PlanetID": 7,
+                "PlanetName": "Delta 16-0-J364-7",
+                "PlanetClass": 2,
+                "PlanetEffectiveTemp": 17.679967775104192,
+                "PlanetKelvinTemp": 22.415172939447686,
+                "PlanetTemp": -250.73482706055228,
+                "PlanetMass": 2.4147283950284977,
+                "PlanetAtmoAlbedo": 0.5946536542459938,
+                "PlanetAtmoGreenhouse": 0.9890488091803844,
+                "PlanetDistance": 57.07572086508312,
+                "PlanetTerraform": false,
+                "PlanetLive": false,
+                "PlanetColony": {
+                    "ColonyName": "Emekhoq Colony",
+                    "ColonyLevel": 52,
+                    "ColonyPop": 61613609,
+                    "ColonyBuild": {
+                        "Enabled": false,
+                        "EndBuild": 0
+                    }
+                }
+            },
+            {
+                "PlanetID": 8,
+                "PlanetName": "Delta 16-0-J364-8",
+                "PlanetClass": 3,
+                "PlanetEffectiveTemp": 15.11578679777219,
+                "PlanetKelvinTemp": 17.59805264549252,
+                "PlanetTemp": -255.55194735450746,
+                "PlanetMass": 15.322275253629915,
+                "PlanetAtmoAlbedo": 0.1172323101495295,
+                "PlanetAtmoGreenhouse": 0.7198787820498969,
+                "PlanetDistance": 78.08234145707374,
+                "PlanetTerraform": false,
+                "PlanetLive": false
+            },
+            {
+                "PlanetID": 9,
+                "PlanetName": "Delta 16-0-J364-9",
+                "PlanetClass": 5,
+                "PlanetEffectiveTemp": 13.057327890625867,
+                "PlanetKelvinTemp": 15.587694190474684,
+                "PlanetTemp": -257.5623058095253,
+                "PlanetMass": 0.8031619569395971,
+                "PlanetAtmoAlbedo": 0.37331877983911277,
+                "PlanetAtmoGreenhouse": 0.657682828794008,
+                "PlanetDistance": 104.64192571937615,
+                "PlanetTerraform": false,
+                "PlanetLive": false,
+                "PlanetColony": {
+                    "ColonyName": "Khonanuti Colony",
+                    "ColonyLevel": 51,
+                    "ColonyPop": 64753748,
+                    "ColonyBuild": {
+                        "Enabled": false,
+                        "EndBuild": 0
+                    }
+                }
+            },
+            {
+                "PlanetID": 10,
+                "PlanetName": "Delta 16-0-J364-10",
+                "PlanetClass": 4,
+                "PlanetEffectiveTemp": 11.988530761619375,
+                "PlanetKelvinTemp": 13.313341208675126,
+                "PlanetTemp": -259.83665879132485,
+                "PlanetMass": 1.0435563292055845,
+                "PlanetAtmoAlbedo": 0.3621440068599454,
+                "PlanetAtmoGreenhouse": 0.15869906235339992,
+                "PlanetDistance": 124.13161894425183,
+                "PlanetTerraform": false,
+                "PlanetLive": false
+            },
+            {
+                "PlanetID": 11,
+                "PlanetName": "Delta 16-0-J364-11",
+                "PlanetClass": 3,
+                "PlanetEffectiveTemp": 11.650631756044897,
+                "PlanetKelvinTemp": 12.912896530388334,
+                "PlanetTemp": -260.23710346961167,
+                "PlanetMass": 9.676440187459725,
+                "PlanetAtmoAlbedo": 0.05626328636351596,
+                "PlanetAtmoGreenhouse": 0.4527629193553031,
+                "PlanetDistance": 131.43632035631626,
+                "PlanetTerraform": false,
+                "PlanetLive": false
+            }
+        ],
+        "StarControled": true,
+        "InfoDate": "22.09.3454",
+        "InfoIncome": 781133765,
+        "Star": "[UASR] Centrum-Kyiv",
+        "PlayerPinned": true,
+        "PlayerPinnedDesc": "UASR"
+    },
+    {
+        "StarID": 17,
+        "StarIntel": true,
+        "StarControled": true,
+        "StarCivil": {
+            "CivilEconomicType": 3,
+            "CivilEco": 1.4190712948471949,
+            "CivilStable": 54,
+            "CivilReputation": 100,
+            "CivilSecurity": 2,
+            "Navy": {
+                "NavyLevel": 1,
+                "NavyCruisers": 5,
+                "NavyShips": 1
+            },
+            "CivilStation": {
+                "StationName": "Ikhawychozh Station",
+                "StationType": 2,
+                "StationStoreList": [
+                    3,
+                    6,
+                    0,
+                    4,
+                    7,
+                    8,
+                    1,
+                    9,
+                    2
+                ]
+            },
+            "CivilPop": 1610
+        },
+        "InfoDate": "27.10.3454",
+        "InfoIncome": 4560,
+        "Planets": [
+            {
+                "PlanetID": 1,
+                "PlanetName": "Alpha 17-0-X695-1",
+                "PlanetClass": 2,
+                "PlanetEffectiveTemp": 275.92266307455634,
+                "PlanetKelvinTemp": 294.42497170086335,
+                "PlanetTemp": 21.274971700863375,
+                "PlanetMass": 2.3587607954766403,
+                "PlanetAtmoAlbedo": 0.11945157722099509,
+                "PlanetAtmoGreenhouse": 0.17697843395271096,
+                "PlanetDistance": 1.0695121699350254,
+                "PlanetTerraform": false,
+                "PlanetLive": false
+            },
+            {
+                "PlanetID": 2,
+                "PlanetName": "Alpha 17-0-X695-2",
+                "PlanetClass": 0,
+                "PlanetEffectiveTemp": 145.74794241755524,
+                "PlanetKelvinTemp": 186.23616996958805,
+                "PlanetTemp": -86.91383003041193,
+                "PlanetMass": 4.412136828950179,
+                "PlanetAtmoAlbedo": 0.7907016672755338,
+                "PlanetAtmoGreenhouse": 0.875213938518334,
+                "PlanetDistance": 3.8331482123724716,
+                "PlanetTerraform": false,
+                "PlanetLive": false,
+                "PlanetColony": {
+                    "ColonyName": "Test",
+                    "ColonyLevel": 1,
+                    "ColonyPop": 1610,
+                    "ColonyBuild": {
+                        "Enabled": false,
+                        "EndBuild": 166151
+                    }
+                }
+            },
+            {
+                "PlanetID": 3,
+                "PlanetName": "Alpha 17-0-X695-3",
+                "PlanetClass": 3,
+                "PlanetEffectiveTemp": 86.17482748569199,
+                "PlanetKelvinTemp": 101.04700078875112,
+                "PlanetTemp": -172.10299921124886,
+                "PlanetMass": 10.351879435565303,
+                "PlanetAtmoAlbedo": 0.40914882041898104,
+                "PlanetAtmoGreenhouse": 0.48133088600514906,
+                "PlanetDistance": 10.964772655214553,
+                "PlanetTerraform": false,
+                "PlanetLive": false
+            },
+            {
+                "PlanetID": 4,
+                "PlanetName": "Alpha 17-0-X695-4",
+                "PlanetClass": 5,
+                "PlanetEffectiveTemp": 66.69948594043048,
+                "PlanetKelvinTemp": 72.53334011275008,
+                "PlanetTemp": -200.6166598872499,
+                "PlanetMass": 1.3424672234253565,
+                "PlanetAtmoAlbedo": 0.1464228149741612,
+                "PlanetAtmoGreenhouse": 0.2520716778168067,
+                "PlanetDistance": 18.302714409963766,
+                "PlanetTerraform": false,
+                "PlanetLive": false
+            }
+        ]
+    },
+    {
+        "StarID": 21,
+        "StarIntel": true
+    },
+    {
+        "StarID": 22,
+        "StarIntel": true
+    },
+    {
+        "StarID": 23,
+        "StarIntel": true
+    },
+    {
+        "StarID": 24,
+        "StarIntel": true
     }
 ]

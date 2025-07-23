@@ -36,20 +36,36 @@ def GenMap(seed):
 
             if planet_class == 0:
                 planet_mass = random.uniform(0.6,5)
+                planet_size = random.randint(2,3)
+                planet_colore = {'main': "yellow", 'second': "l_yellow", 'third': "red"}
             elif planet_class == 1:
                 planet_mass = random.uniform(0.6,5)
+                planet_size = random.randint(2,3)
+                planet_colore = {'main': "blue", 'second': "l_blue", 'third': "white"}
             elif planet_class == 2:
                 planet_mass = random.uniform(0.5,4)
+                planet_size = random.randint(1,2)
+                planet_colore = {'main': "yellow", 'second': "gray", 'third': "white"}
             elif planet_class == 3:
                 planet_mass = random.uniform(9,18)
+                planet_size = random.randint(4,6)
+                planet_colore = {'main': "gray", 'second': "white", 'third': "white"}
             elif planet_class == 4:
                 planet_mass = random.uniform(0.8,1.5)
+                planet_size = random.randint(2,3)
+                planet_colore = {'main': "green", 'second': "blue", 'third': "white"}
             elif planet_class == 5:
                 planet_mass = random.uniform(0.8,1.5)
+                planet_size = random.randint(2,4)
+                planet_colore = {'main': "gray", 'second': "l_yellow", 'third': "gray"}
             elif planet_class == 6:
                 planet_mass = random.uniform(0.6,2)
+                planet_size = random.randint(3,5)
+                planet_colore = {'main': "blue", 'second': "blue", 'third': "white"}
             elif planet_class == 7:
                 planet_mass = random.uniform(0.6,5)
+                planet_size = random.randint(3,5)
+                planet_colore = {'main': "yellow", 'second': "gray", 'third': "gray"}
 
             planet_atmo_albedo = random.uniform(0,1)
             planet_atmo_greenhouse = random.uniform(0,1)
@@ -81,13 +97,16 @@ def GenMap(seed):
                     "PlanetClass": planet_class,
                     "PlanetEffectiveTemp": planet_effective_temp,
                     "PlanetKelvinTemp": planet_kelvin_temp,
+                    "PlanetSize": planet_size,
+                    "PlanetColore": planet_colore,
                     "PlanetTemp": planet_temp,
                     "PlanetMass": planet_mass,
                     "PlanetAtmoAlbedo": planet_atmo_albedo,
                     "PlanetAtmoGreenhouse": planet_atmo_greenhouse,
                     "PlanetDistance": planet_ao,
                     "PlanetTerraform": planet_terraform_confirm,
-                    "PlanetLive": planet_live
+                    "PlanetLive": planet_live,
+                    "PlanetViewSeed": random.randint(1,1_000_000_000_000)
                 }
             )
         return Planets
@@ -201,20 +220,9 @@ def GenMap(seed):
             StationStoreList = [item for item in wlregister.ItemsDB if item['ItemEconomicType'] == 1]
         else:
             StationStoreList = wlregister.ItemsDB
-                
+
         Starsystems['StarIntel'] = True
         Starsystems['StarCivil'] = {}
-        Starsystems['StarCivil']['CivilEconomicType'] = random.randint(0, len(wlregister.Economics)-1)
-        Starsystems['StarCivil']['CivilEco'] = random.uniform(settings.CivilEcoMin,settings.CivilEcoMax)
-        Starsystems['StarCivil']['CivilReputation'] = 50
-        Starsystems['StarCivil']['CivilSecurity'] = random.randint(0,2)
-        #Starsystems['StarCivil']['CivilPop'] = random.randint(1,10_000_000_000)
-        Starsystems['StarCivil']['CivilStable'] = random.randint(1,100)
-        Starsystems['StarCivil']['CivilStation'] = {
-            "StationName": f"{ranname()} Station",
-            "StationType": random.randint(0,2),
-            "StationStoreList": random.sample(range(len(StationStoreList)), int(random.randint(1,len(StationStoreList)))) 
-        }
 
         for i, planet in enumerate(Starsystems['Planets']):
             if random.randint(1,100) <= 75:
@@ -233,9 +241,46 @@ def GenMap(seed):
 
         for i in range(len(Starsystems['Planets'])):
             PlanetIs = Starsystems['Planets'][i]
-            if PlanetIs['PlanetLive'] == True or Starsystems['StarCivil']['CivilPop'] >= 1_000_000:
+            if PlanetIs['PlanetLive'] == True or Pops >= 1_000_000:
                 Starsystems['Star'] = ranname()
                 break
+
+        if Pops >= 0:
+            CivilSecurity = 0
+            CivilStable = random.randint(0,40)
+            Navy = {
+                "NavyLevel": random.randint(1,25),
+                "NavyCruisers": random.randint(0,2),
+                "NavyShips": random.randint(1,20)
+            }
+        if Pops >= 100_000_000:
+            CivilSecurity = 1
+            CivilStable = random.randint(40,90)
+            Navy = {
+                "NavyLevel": random.randint(25,50),
+                "NavyCruisers": random.randint(2,10),
+                "NavyShips": random.randint(20,75)
+            }
+        if Pops >= 1_000_000_000:
+            CivilSecurity = 2
+            CivilStable = random.randint(90,100)
+            Navy = {
+                "NavyLevel": random.randint(50,100),
+                "NavyCruisers": random.randint(10,100),
+                "NavyShips": random.randint(100,500)
+            }
+                
+        Starsystems['StarCivil']['CivilEconomicType'] = random.randint(0, len(wlregister.Economics)-1)
+        Starsystems['StarCivil']['CivilEco'] = random.uniform(settings.CivilEcoMin,settings.CivilEcoMax)
+        Starsystems['StarCivil']['CivilReputation'] = 50
+        Starsystems['StarCivil']['CivilSecurity'] = CivilSecurity
+        Starsystems['StarCivil']['CivilStable'] = CivilStable
+        Starsystems['StarCivil']['Navy'] = Navy
+        Starsystems['StarCivil']['CivilStation'] = {
+            "StationName": f"{ranname()} Station",
+            "StationType": random.randint(0,2),
+            "StationStoreList": random.sample(range(len(StationStoreList)), int(random.randint(1,len(StationStoreList)))) 
+        }
 
     # Імпорт всіх змін, тепер з заблокованного mapchanges_lock.py
     for abis in range(len(CustomStarsLock)):

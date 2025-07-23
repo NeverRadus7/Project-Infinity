@@ -1,6 +1,6 @@
 {
     "Nickname": "NeverRadus7",
-    "Location": 13,
+    "Location": 24,
     "Ship": {
         "ShipID": 3,
         "ShipName": "Чудотворец",
@@ -33,7 +33,7 @@
         "Storage": [
             {
                 "ItemID": 1,
-                "ItemCount": 994
+                "ItemCount": 992
             },
             {
                 "ItemID": 6,
@@ -41,7 +41,7 @@
             },
             {
                 "ItemID": 7,
-                "ItemCount": 39
+                "ItemCount": 52
             },
             {
                 "ItemID": 5,
@@ -60,7 +60,7 @@
                 "ItemCount": 62
             }
         ],
-        "Fuel": 16
+        "Fuel": 0
     },
     "Fleet": [
         {
@@ -122,48 +122,72 @@
                     ],
                     "Storage": [],
                     "Fuel": 67
+                },
+                {
+                    "ShipID": 3,
+                    "ShipName": "Жоскій хозяйн",
+                    "ShipModification": [
+                        {
+                            "ModificationID": 3,
+                            "ModificationLevel": 5
+                        },
+                        {
+                            "ModificationID": 7,
+                            "ModificationLevel": 5
+                        },
+                        {
+                            "ModificationID": 7,
+                            "ModificationLevel": 5
+                        },
+                        {
+                            "ModificationID": 7,
+                            "ModificationLevel": 5
+                        },
+                        {
+                            "ModificationID": 7,
+                            "ModificationLevel": 5
+                        },
+                        {
+                            "ModificationID": 8,
+                            "ModificationLevel": 5
+                        }
+                    ],
+                    "Storage": [],
+                    "Fuel": 20
                 }
             ],
             "Storage": [],
-            "Location": 12,
+            "Location": 17,
             "Modules": {},
-            "Fuel": 92
+            "Fuel": 90
         }
     ],
     "Navy": {
         "NavyLevel": 100,
-        "NavyCruisers": 160,
-        "NavyShips": 3465,
-        "NavyLocation": 13,
-        "NavyLeader": {
-            "LeaderName": "George Smith",
-            "LeaderRank": "Grand-Admiral",
-            "LeaderLevel": 50,
-            "LeaderPerk": [
-                "Battle"
-            ]
-        }
+        "NavyCruisers": 494,
+        "NavyShips": 5224,
+        "NavyLocation": 17
     },
-    "Money": 372383353709,
-    "IntelBall": 4164269,
-    "BattleScore": 16606412,
-    "XP": 32704859994,
+    "Money": 1206923620685,
+    "IntelBall": 60763,
+    "BattleScore": 18903113,
+    "XP": 32707335885,
     "Reputation": 0,
-    "WorldDay": 166026,
+    "WorldDay": 166681,
     "Atribution": [
         "PLAYER_TERRAFORMER_DEVICE",
         "PLAYER_MINERTOOL"
     ],
     "Statistic": {
-        "StarInteled": 1,
-        "StarControled": 1,
-        "StarColony": 1,
+        "StarInteled": 6,
+        "StarControled": 5,
+        "StarColony": 5,
         "CreditsFromSelled": 0,
-        "CreditsFromScience": 0,
-        "IncomeFromColony": 227246822
+        "CreditsFromScience": 12643425,
+        "IncomeFromColony": 1437349305
     },
     "MapSettings": {
         "Filter": 0
     },
-    "GameUpdate": 0
+    "GameUpdate": 2
 }

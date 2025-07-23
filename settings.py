@@ -1,12 +1,12 @@
 # Shell settings
-ConsoleSizeX = 112
-ConsoleSizeY = 35
+ConsoleSizeX = 130  # Default: 130
+ConsoleSizeY = 40 # Default: 30
 WallSymbol = "━"
 
 MaxLevel = 999 # Default: 100
 XpToLevel = 10000 # Default: 10000
 FuelRequire = 1 # Default: 1
-DebugInfo = False
+DebugInfo = False # Default: False
 SetTravelDistation = 0 # Default: 0
 AddShipModification = 0 # Default: 0
 
@@ -23,7 +23,7 @@ MapCivilRange = 20 # Default: 20
 CivilEcoMin = 0.1 # Default: 0.1
 CivilEcoMax = 1.5 # Default: 1.5
 MinFulling = 1 # Default: 1
-MaxFulling = 60 # Default: 60
+MaxFulling = 90 # Default: 90
 SymbolFulling = "≡"
 
 # Battle settings

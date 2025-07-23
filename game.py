@@ -9,7 +9,7 @@ CommandInput = wl.Command()
 
 # Функція, яка відкриває мапу Галактики
 if CommandInput == "1":
-    ProjectInfinity.GalaxyMap("SHIP")
+    pi.GalaxyMap("SHIP")
 
 # Зоряна система
 if CommandInput == "2":
@@ -124,37 +124,42 @@ if CommandInput == "2":
         if not StarIs.get("StarIntel"):
             wl.Loading(f"Досліджуємо зірку {StarIs['Star']}", 5)
             TotalIntel = 0
+
             for planets in range(len(StarIs['Planets'])):
                 PlanetIs = StarIs['Planets'][planets]
+
                 if PlanetIs['PlanetLive'] == True: CoefficientsPlanetSpecialIs = 'Live'
                 elif PlanetIs['PlanetTerraform'] == True: CoefficientsPlanetSpecialIs = 'Terraform'
                 else: CoefficientsPlanetSpecialIs = 0
-                PlanetIntel = int(random.randint(1000,2000) * (1 + (CoefficientsPlanetClasses[PlanetIs['PlanetClass']] + CoefficientsPlanetSpecial[CoefficientsPlanetSpecialIs] + ProjectInfinity.PlayerShipModificationAll(2))))
+                
+                PlanetIntel = int(random.randint(1000,2000) * (1 + (CoefficientsPlanetClasses[PlanetIs['PlanetClass']] + CoefficientsPlanetSpecial[CoefficientsPlanetSpecialIs] + pi.PlayerShipModificationAll(2))))
                 TotalIntel += int(PlanetIntel)
                 wl.Loading(f"Скануємо планету {PlanetIs['PlanetName']} {Colore.Blue}(+{PlanetIntel:,} ◭){Colore.Reset}", 3)
+
             PlayerIs['Statistic']['StarInteled'] += 1
             PlayerIs['IntelBall'] += TotalIntel
             PlayerIs['XP'] += random.randint(100,1000) * (len(StarIs['Planets']))
-            ProjectInfinity.StarChange(StarIs['StarID'], "StarIntel", True)
+
+            pi.StarChange(StarIs['StarID'], "StarIntel", True)
     
     if StarInput == "Переіменувати систему":
         wl.Skip()
         NewNameStar = input("Нова назва: ")
         if NewNameStar == "" or NewNameStar == " ": exit()
-        ProjectInfinity.StarChange(StarIs['StarID'], "Star", NewNameStar)
+        pi.StarChange(StarIs['StarID'], "Star", NewNameStar)
                 
     if StarInput == "Закріпити систему в Галактичну мапу":
         wl.Skip()
         PinnedDesc = input("Назва тегу для закріплення: ")
-        ProjectInfinity.StarChange(StarIs['StarID'], "PlayerPinned", True)
-        ProjectInfinity.StarChange(StarIs['StarID'], "PlayerPinnedDesc", PinnedDesc)
+        pi.StarChange(StarIs['StarID'], "PlayerPinned", True)
+        pi.StarChange(StarIs['StarID'], "PlayerPinnedDesc", PinnedDesc)
 
     if StarInput == "Зняти систему із закріплень":
-        ProjectInfinity.StarChange(StarIs['StarID'], "PlayerPinned", False)
+        pi.StarChange(StarIs['StarID'], "PlayerPinned", False)
     
     if StarInput == "Взяти під контроль":
         PlayerIs['Statistic']['StarControled'] += 1
-        ProjectInfinity.StarChange(StarIs['StarID'], "StarControled", True)
+        pi.StarChange(StarIs['StarID'], "StarControled", True)
     
     if StarInput == "Заснувати власну колонію":
         wl.Massage("Заснування колонії - це третій шаг встановлення влади, колонії дають можливість продавати чи покупати товари, мати постійне місце проживання та постійний прибуток. Але під постійним прибуток вважається стабільна економіка системи, яка урегулюєця трьома параметрами: кількість планет, популярність та тип головної станції системи.")
@@ -182,7 +187,7 @@ if CommandInput == "2":
                 
                 EconomicChoice = int(input("Вибрати: ")) - 1
                 
-                ProjectInfinity.StarChange(
+                pi.StarChange(
                     StarIs['StarID'], 
                     "StarCivil", 
                     {
@@ -191,6 +196,11 @@ if CommandInput == "2":
                         "CivilStable": random.randint(1,100),
                         "CivilReputation": 100,
                         'CivilSecurity': 0,
+                        "Navy": {
+                            "NavyLevel": 1,
+                            "NavyCruisers": 0,
+                            "NavyShips": 1
+                        },
                         "CivilStation": {
                             "StationName": f"{ranname()} Station",
                             "StationType": random.randint(0,2),
@@ -199,8 +209,8 @@ if CommandInput == "2":
                     }
                 )
                 wl.Skip()
-                ProjectInfinity.StarChange(StarIs['StarID'], "InfoDate", wl.Date())
-                ProjectInfinity.StarChange(StarIs['StarID'], "InfoIncome", 0)
+                pi.StarChange(StarIs['StarID'], "InfoDate", wl.Date())
+                pi.StarChange(StarIs['StarID'], "InfoIncome", 0)
                 PlayerIs['Statistic']['StarColony'] += 1
         else:
             wl.Error("Не достатній рівень (>30)")
@@ -219,12 +229,24 @@ if CommandInput == "2":
         wl.Skip()
         ControlInfo()
 
-        ControlInput = wl.ChoiceMenu(["Переіменувати станцію"])
+        ControlInput = wl.ChoiceMenu(["Переіменувати станцію", "Служба безпеки системи"])
 
         if ControlInput == "Переіменувати станцію":
             wl.Skip()
             StarIs['StarCivil']['CivilStation']['StationName'] = input("Назва для станції: ")
-            ProjectInfinity.StarChange(StarIs['StarID'], "StarCivil", StarIs['StarCivil'])
+            pi.StarChange(StarIs['StarID'], "StarCivil", StarIs['StarCivil'])
+
+        if ControlInput == "Служба безпеки системи":
+            wl.InfoBlock(
+                titleColore={
+                    'colore': colorama.Back.RED,
+                    'title': "Флот системи"
+                },
+                text=f" ▪ Рівень флоту: {StarIs['StarCivil']['Navy']['NavyLevel']}\n" 
+                     f" ▪ Крейсерів: {StarIs['StarCivil']['Navy']['NavyCruisers']:,}\n"
+                     f" ▪ Кораблів: {StarIs['StarCivil']['Navy']['NavyShips']:,}"
+                )
+            input()
 
     if StarInput == f"Космоносці{Colore.Blue} ⊴{Colore.Reset}":
         wl.Skip()
@@ -253,7 +275,7 @@ if CommandInput == "2":
         FleetChoice = wl.ChoiceMenu(FleetList)
 
         if FleetChoice == "Галактична карта":
-            ProjectInfinity.GalaxyMap("FLEET", FleetIsChoice)
+            pi.GalaxyMap("FLEET", FleetIsChoice)
 
         if FleetChoice == "Грузовий відсік":
             wl.Skip()
@@ -363,16 +385,15 @@ if CommandInput == "2":
                 f" ▪ Досвід флоту: {PlayerIs['Navy']['NavyLevel']}\n"
                 f" ▪ Крейсерів: {PlayerIs['Navy']['NavyCruisers']:,}\n"
                 f" ▪ Кораблів: {PlayerIs['Navy']['NavyShips']:,}\n"
-                f" ▪ Бойовий рейтинг: {int(int(PlayerIs['Navy']['NavyShips'] * (PlayerIs['Navy']['NavyCruisers']*3)) * int(PlayerIs['Navy']['NavyLevel']) * (int(PlayerIs['Navy']['NavyLeader']['LeaderLevel'])/5)):,}\n"
+                f" ▪ Бойовий рейтинг: {int(int(PlayerIs['Navy']['NavyShips'] * (PlayerIs['Navy']['NavyCruisers'])) * int(PlayerIs['Navy']['NavyLevel'])):,}\n"
             )
         
         NavyInfo()
 
-        NavyList = ["Перемістити флот"]
+        NavyList = ["Перемістити флот", "Виділити з флоту"]
 
-        if StarIs.get("StarCivil"):
-            if StarIs['StarCivil']['CivilReputation'] <= 25 and not StarIs.get("StarControled"):
-                NavyList.append(f"{Colore.Red}Завоювати систему{Colore.Reset}")
+        if StarIs.get("StarCivil") and not StarIs.get("StarControled"):
+            NavyList.append(f"{Colore.Red}Завоювати систему{Colore.Reset}")
 
         NavyChoice = wl.ChoiceMenu(NavyList)
 
@@ -386,18 +407,46 @@ if CommandInput == "2":
                 wl.Error("Максимальна дальність стрибка!")
             else:
                 PlayerIs['Navy']['NavyLocation'] += TARGET
+                PlayerIs['Location'] += TARGET
 
         if NavyChoice == f"{Colore.Red}Завоювати систему{Colore.Reset}":
-            StarIs['StarCivil']['CivilReputation'] = 100
-            ProjectInfinity.StarChange(StarIs['StarID'], 'InfoDate', wl.Date())
-            ProjectInfinity.StarChange(StarIs['StarID'], 'Planets', StarIs['Planets'])
-            ProjectInfinity.StarChange(StarIs['StarID'], 'StarControled', True)
-            ProjectInfinity.StarChange(StarIs['StarID'], 'StarCivil', StarIs['StarCivil'])
+            Battle = pi.Navy("Завоювання системи | Війна")
+            if Battle == True:
+                PlayerIs['Statistic']['StarColony'] += 1
+                PlayerIs['Statistic']['StarControled'] += 1
+                pi.StarChange(StarIs['StarID'], 'StarCivil', StarIs['StarCivil'])
+                pi.StarChange(StarIs['StarID'], 'Planets', StarIs['Planets'])
+                pi.StarChange(StarIs['StarID'], 'StarControled', True)
+                pi.StarChange(StarIs['StarID'], 'InfoDate', wl.Date())
+
+        if NavyChoice == "Виділити з флоту":
+            wl.Skip()
+            try:
+                CruisersCount = int(input("Скільки КРЕЙСЕРІВ перемістити: "))
+            except (ValueError, TypeError):
+                CruisersCount = 0
+            
+            try:
+                ShipsCount = int(input("Скільки КОРАБЛІВ перемістити:"))
+            except (ValueError, TypeError):
+                ShipsCount = 0
+
+            SystemTo = input("В яку систему ([ENTER] - В поточну): ")
+            if SystemTo in [" ", ""]: SystemTo = StarIs['StarID']
+
+            Star = GenMap(int(SystemTo))
+
+            if not Star.get("StarControled") and not Star.get("StarCivil"):
+                wl.Error("Система не підкоряється вам!")
+            else:
+                Star['StarCivil']['Navy']['NavyCruisers'] += CruisersCount
+                Star['StarCivil']['Navy']['NavyShips'] += ShipsCount
+                pi.StarChange(Star['StarID'], 'StarCivil', Star['StarCivil'])
 
     if StarInput == "Полювання на піратів":
         BotAccuracy = rwos.randint(30,90)
         BotInterval = rwos.randint(1,7)
-        PirateBattle = ProjectInfinity.Duel(f"Полювання на піратів - Система: {StarIs['Star']}", 
+        PirateBattle = pi.Duel(f"Полювання на піратів - Система: {StarIs['Star']}", 
         {
             "Bot": "Пірат",
             "BotShip": rwos.choice(Ships),
@@ -411,7 +460,7 @@ if CommandInput == "2":
             PlayerIs['XP'] += rwos.randint(100,200)
             StarIs['StarCivil']['CivilStable'] += rwos.randint(5,30)
             StarIs['StarCivil']['CivilReputation'] += rwos.randint(1,5)
-            ProjectInfinity.StarChange(StarIs['StarID'], 'StarCivil', StarIs['StarCivil'])
+            pi.StarChange(StarIs['StarID'], 'StarCivil', StarIs['StarCivil'])
             if rwos.randint(1,100) <= 30: wl.InvAdd(len(ItemsDB)-1,rwos.randint(1,20))
 
     if StarInput == "Піратська діяльність":
@@ -427,7 +476,7 @@ if CommandInput == "2":
         BotAccuracy = rwos.randint(30,90)
         BotInterval = rwos.randint(1,7)
 
-        SystemBattle = ProjectInfinity.Duel(f"Піратська діяльність - Система: {StarIs['Star']}",{
+        SystemBattle = pi.Duel(f"Піратська діяльність - Система: {StarIs['Star']}",{
                                              "Bot": BotName,
                                              "BotShip": BotShip,
                                              "BotModificationSlots": [],
@@ -438,7 +487,7 @@ if CommandInput == "2":
             wl.ScreenTextLable("Перемога")
             StarIs['StarCivil']['CivilStable'] -= rwos.randint(1,5)
             StarIs['StarCivil']['CivilReputation'] -= rwos.randint(5,10)
-            ProjectInfinity.StarChange(StarIs['StarID'], 'StarCivil', StarIs['StarCivil'])
+            pi.StarChange(StarIs['StarID'], 'StarCivil', StarIs['StarCivil'])
             if rwos.randint(1,100) <= 30: wl.InvAdd(len(ItemsDB)-1,rwos.randint(1,20))
 
 # Планети поточної зоряної системи
@@ -472,116 +521,117 @@ if CommandInput == "3":
         wl.Error("Невірне введення")
     else:
         PlanetIs = StarIs['Planets'][PlanetChoice]
-        if PlanetIs['PlanetClass'] == 3:
-            wl.Error("На газових гігантів посадка неможлива")
-        else:
-            def PlanetInfo():
+        def PlanetInfo():
+            print(
+                f"{colorama.Back.BLUE}Інформація планети{colorama.Back.RESET}\n"
+                f" ▪ Планета: {PlanetIs['PlanetName']}\n"
+                f" ▪ Клас: {PlanetClass[PlanetIs['PlanetClass']]}\n"
+                f" ▪ Температура: {PlanetIs['PlanetTemp']} °C\n"
+            )
+
+        def ColonyInfo():
+            print(
+                f"{colorama.Back.BLUE}Колоніальна інформація{colorama.Back.RESET}\n"
+                f" ▪ Колонія: {PlanetIs['PlanetColony']['ColonyName']}\n"
+                f" ▪ Популяція: {PlanetIs['PlanetColony']['ColonyPop']:,}\n"
+                f" ▪ Рівень: {PlanetIs['PlanetColony']['ColonyLevel']}\n"
+            )
+
+            if PlanetIs['PlanetColony']['ColonyBuild']['Enabled'] == True:
                 print(
-                    f"{colorama.Back.BLUE}Інформація планети{colorama.Back.RESET}\n"
-                    f" ▪ Планета: {PlanetIs['PlanetName']}\n"
-                    f" ▪ Клас: {PlanetClass[PlanetIs['PlanetClass']]}\n"
-                    f" ▪ Температура: {PlanetIs['PlanetTemp']} °C\n"
+                    f"\033[A ▪ На будівництві до {wl.DateString(PlanetIs['PlanetColony']['ColonyBuild']['EndBuild'])}\n"
                 )
 
-            def ColonyInfo():
-                print(
-                    f"{colorama.Back.BLUE}Колоніальна інформація{colorama.Back.RESET}\n"
-                    f" ▪ Колонія: {PlanetIs['PlanetColony']['ColonyName']}\n"
-                    f" ▪ Популяція: {PlanetIs['PlanetColony']['ColonyPop']:,}\n"
-                    f" ▪ Рівень: {PlanetIs['PlanetColony']['ColonyLevel']}\n"
-                )
+        wl.Skip()
 
-                if PlanetIs['PlanetColony']['ColonyBuild']['Enabled'] == True:
-                    print(
-                        f"\033[A ▪ На будівництві до {wl.DateString(PlanetIs['PlanetColony']['ColonyBuild']['EndBuild'])}\n"
-                    )
+        PlanetList = []
+        if "PLAYER_MINERTOOL" in PlayerIs['Atribution']:
+            PlanetList.append("Видобуток корисних копалин")
 
+        if not StarIs.get('StarCivil'):
+            PlanetList.append("Зробити поверхневий аналіз")
+
+        if StarIs.get('StarControled') and StarIs['StarControled'] == True:
+            PlanetList.append("Переіменувати планету")
+
+        if "PLAYER_TERRAFORMER_DEVICE" in PlayerIs['Atribution']:
+            if PlanetIs['PlanetTerraform'] == True:
+                if PlanetIs['PlanetLive'] == False:
+                    PlanetList.append(f"Почати тераформінг {Colore.Green}𖤖{Colore.Reset}")
+
+        if len(PlayerIs['Fleet']) != 0:
+            for i in range(len(PlayerIs['Fleet'])):
+                if PlayerIs['Fleet'][i]['Location'] == StarIs['StarID'] and StarIs.get("StarControled") and StarIs.get("StarCivil"):
+                    if Fleets[PlayerIs['Fleet'][i]['FleetID']]['FleetClass'] == 2:
+                        if not PlanetIs.get("PlanetColony"): 
+                            PlanetList.append(f"Побудувати колонію")
+                            break
+        
+        print(f"{colorama.Back.BLUE} Вигляд планети {colorama.Back.RESET}")
+        pi.PlanetView(PlanetIs['PlanetViewSeed'], PlanetIs['PlanetSize'], PlanetIs['PlanetColore'])
+        print()
+
+        PlanetInfo()
+        if PlanetIs.get("PlanetColony"): ColonyInfo()
+        PlanetChoice = wl.ChoiceMenu(PlanetList)
+
+        if PlanetChoice == "Переіменувати планету":
             wl.Skip()
+            NewPlanetName = input("Нова назва: ")
+            if NewPlanetName == "":
+                exit()
+            PlanetIs['PlanetName'] = NewPlanetName
+            pi.StarChange(StarIs['StarID'], "Planets", StarIs['Planets'])
+            wl.Loading("Застосовуємо зміни", 1)
 
-            PlanetList = []
-            if "PLAYER_MINERTOOL" in PlayerIs['Atribution']:
-                PlanetList.append("Видобуток корисних копалин")
-
-            if not StarIs.get('StarCivil'):
-                PlanetList.append("Зробити поверхневий аналіз")
-
-            if StarIs.get('StarControled') and StarIs['StarControled'] == True:
-                PlanetList.append("Переіменувати планету")
-
-            if "PLAYER_TERRAFORMER_DEVICE" in PlayerIs['Atribution']:
-                if PlanetIs['PlanetTerraform'] == True:
-                    if PlanetIs['PlanetLive'] == False:
-                        PlanetList.append(f"Почати тераформінг {Colore.Green}𖤖{Colore.Reset}")
-
-            if len(PlayerIs['Fleet']) != 0:
-                for i in range(len(PlayerIs['Fleet'])):
-                    if PlayerIs['Fleet'][i]['Location'] == StarIs['StarID'] and StarIs.get("StarControled") and StarIs.get("StarCivil"):
-                        if Fleets[PlayerIs['Fleet'][i]['FleetID']]['FleetClass'] == 2:
-                            if not PlanetIs.get("PlanetColony"): 
-                                PlanetList.append(f"Побудувати колонію")
-                                break
-
-            PlanetInfo()
-            if PlanetIs.get("PlanetColony"): ColonyInfo()
-            PlanetChoice = wl.ChoiceMenu(PlanetList)
-
-            if PlanetChoice == "Переіменувати планету":
-                wl.Skip()
-                NewPlanetName = input("Нова назва: ")
-                if NewPlanetName == "":
-                    exit()
-                PlanetIs['PlanetName'] = NewPlanetName
-                ProjectInfinity.StarChange(StarIs['StarID'], "Planets", StarIs['Planets'])
-                wl.Loading("Застосовуємо зміни", 1)
-
-            if PlanetChoice == "Видобуток корисних копалин":
-                wl.Skip()
-                try:
-                    MINE_CYCLE = int(input("Скільки разів: "))
-                except (ValueError): 
-                    MINE_CYCLE = 1
-                for i in range(MINE_CYCLE):
-                    MINE_AMOUNT = rwos.randint(1,10)
-                    MINE_THIS = rwos.choice(range(5,9))
-                    if rwos.randint(1,100) <= 10:
-                        wl.InvAdd(9,MINE_AMOUNT)
-                    else:
-                        wl.InvAdd(MINE_THIS, MINE_AMOUNT)
-                    wl.Loading(f"Видобуваємо {ItemsDB[MINE_THIS]['ItemName']} {Colore.Yellow}(+{MINE_AMOUNT}){Colore.Reset}",3)
-
-            if PlanetChoice == f"Почати тераформінг {Colore.Green}𖤖{Colore.Reset}":
-                PlanetIs['PlanetClass'] = 4
-                PlanetIs['PlanetLive'] = True
-                PlanetIs['PlanetTemp'] = rwos.uniform(-10,30)
-                ItemSec = 0
-                for abs in range(len(PlayerIs['Ship']['Storage'])):
-                    ItemIs = PlayerIs['Ship']['Storage'][abs]
-                    if ItemIs['ItemID'] == 4:
-                        ItemSec += 1
-                    else: ItemSec += 0
-                if ItemSec > 0:
-                    wl.InvRem(4, 1)
-                    ProjectInfinity.StarChange(StarIs['StarID'], "Planets", StarIs['Planets'])
-                    wl.Loading("Тераформуємо планету (Це може заняти кілька тижднів)", 5)
-                    game.world.mature(rwos.randint(7,28))
+        if PlanetChoice == "Видобуток корисних копалин":
+            wl.Skip()
+            try:
+                MINE_CYCLE = int(input("Скільки разів: "))
+            except (ValueError): 
+                MINE_CYCLE = 1
+            for i in range(MINE_CYCLE):
+                MINE_AMOUNT = rwos.randint(1,10)
+                MINE_THIS = rwos.choice(range(5,9))
+                if rwos.randint(1,100) <= 10:
+                    wl.InvAdd(9,MINE_AMOUNT)
                 else:
-                    wl.Error(f"В трюмі відсутній: {ItemsDB[4]['ItemName']}")
+                    wl.InvAdd(MINE_THIS, MINE_AMOUNT)
+                wl.Loading(f"Видобуваємо {ItemsDB[MINE_THIS]['ItemName']} {Colore.Yellow}(+{MINE_AMOUNT}){Colore.Reset}",3)
 
-            if PlanetChoice == "Побудувати колонію":
-                wl.Skip()
-                for i in range(len(PlayerIs['Ship']['Storage'])):
-                    ItemIs = PlayerIs['Ship']['Storage'][i]
-                    if ItemIs['ItemID'] == 1 and ItemIs['ItemCount'] >= 1:
-                        wl.InvRem(1,1)
+        if PlanetChoice == f"Почати тераформінг {Colore.Green}𖤖{Colore.Reset}":
+            PlanetIs['PlanetClass'] = 4
+            PlanetIs['PlanetLive'] = True
+            PlanetIs['PlanetTemp'] = rwos.uniform(-10,30)
+            ItemSec = 0
+            for abs in range(len(PlayerIs['Ship']['Storage'])):
+                ItemIs = PlayerIs['Ship']['Storage'][abs]
+                if ItemIs['ItemID'] == 4:
+                    ItemSec += 1
+                else: ItemSec += 0
+            if ItemSec > 0:
+                wl.InvRem(4, 1)
+                pi.StarChange(StarIs['StarID'], "Planets", StarIs['Planets'])
+                wl.Loading("Тераформуємо планету (Це може заняти кілька тижднів)", 5)
+                game.world.mature(rwos.randint(7,28))
+            else:
+                wl.Error(f"В трюмі відсутній: {ItemsDB[4]['ItemName']}")
 
-                        PlanetIs['PlanetColony'] = {}
-                        PlanetIs['PlanetColony']['ColonyName'] = "Test"
-                        PlanetIs['PlanetColony']['ColonyLevel'] = 1
-                        PlanetIs['PlanetColony']['ColonyPop'] = 0
-                        PlanetIs['PlanetColony']['ColonyBuild'] = {"Enabled": True, "EndBuild": PlayerIs['WorldDay'] + 31}
+        if PlanetChoice == "Побудувати колонію":
+            wl.Skip()
+            for i in range(len(PlayerIs['Ship']['Storage'])):
+                ItemIs = PlayerIs['Ship']['Storage'][i]
+                if ItemIs['ItemID'] == 1 and ItemIs['ItemCount'] >= 1:
+                    wl.InvRem(1,1)
 
-                        ProjectInfinity.StarChange(StarIs['StarID'], 'Planets', StarIs["Planets"])
-                        break
+                    PlanetIs['PlanetColony'] = {}
+                    PlanetIs['PlanetColony']['ColonyName'] = "Test"
+                    PlanetIs['PlanetColony']['ColonyLevel'] = 1
+                    PlanetIs['PlanetColony']['ColonyPop'] = 0
+                    PlanetIs['PlanetColony']['ColonyBuild'] = {"Enabled": True, "EndBuild": PlayerIs['WorldDay'] + 31}
+
+                    pi.StarChange(StarIs['StarID'], 'Planets', StarIs["Planets"])
+                    break
 
 # Станція
 if CommandInput == "4":
@@ -708,7 +758,7 @@ if CommandInput == "4":
                         else:
                             if StarIs['StarCivil']['CivilEco'] > CivilEcoMax:
                                 StarIs['StarCivil']['CivilEco'] = CivilEcoMax
-                        ProjectInfinity.StarChange(StarIs['StarID'], 'StarCivil', StarIs['StarCivil'])
+                        pi.StarChange(StarIs['StarID'], 'StarCivil', StarIs['StarCivil'])
                         PlayerIs['Money'] -= ItemCoust
                         wl.InvAdd(ItemIs, Count)
 
@@ -739,7 +789,7 @@ if CommandInput == "4":
                         else:
                             if StarIs['StarCivil']['CivilEco'] > CivilEcoMax:
                                 StarIs['StarCivil']['CivilEco'] = CivilEcoMax
-                        ProjectInfinity.StarChange(StarIs['StarID'], 'StarCivil', StarIs['StarCivil'])
+                        pi.StarChange(StarIs['StarID'], 'StarCivil', StarIs['StarCivil'])
                         wl.InvRem(ItemIs['ItemID'], int(SellLot))
 
         if StationCom == "Верф крейсерів":
@@ -868,7 +918,7 @@ if CommandInput == "5":
     OtherCom = wl.ChoiceMenu(OtherList)
     if OtherCom == "Статистика":
         wl.Skip()
-        print("Статистика систем")
+        print(f"{colorama.Back.BLUE} Статистика систем {colorama.Back.RESET}")
         print(f" ▪ Вивчено систем: {PlayerIs['Statistic']['StarInteled']:,}")
         print(f" ▪ Систем під контролем: {PlayerIs['Statistic']['StarControled']:,}")
         print(f" ▪ Колоній: {PlayerIs['Statistic']['StarColony']:,}")
@@ -878,7 +928,15 @@ if CommandInput == "5":
         if PlayerIs['Statistic']['IncomeFromColony'] > 0:
             print()
             print(f" ▪ Прибуток з колонії: {PlayerIs['Statistic']['IncomeFromColony']:,} ©")
-        input()
+        
+        print()
+        StatisticList = ["Скинути всі дані статистики"]
+        StatisticChoice = wl.ChoiceMenu(StatisticList)
+
+        if StatisticChoice == "Скинути всі дані статистики":
+            wl.Quation("Ви точно бажаєте видалити всі дані про Вашу статистику? Всі дані будуть видаленні!")
+            for i, k in enumerate(PlayerIs['Statistic']):
+                PlayerIs['Statistic'][k] = 0
 
     if OtherCom == "Мій корабель":
         wl.Skip()
@@ -950,7 +1008,6 @@ if CommandInput == "5":
         print("Флот:")
         print(f" ▪ Досвід флоту: {PlayerIs['Navy']['NavyLevel']}")
         print(f" ▪ Кораблів: {PlayerIs['Navy']['NavyShips']}")
-        print(f" ▪ Лідер: {PlayerIs['Navy']['NavyLeader']['LeaderRank']} {PlayerIs['Navy']['NavyLeader']['LeaderName']} ({PlayerIs['Navy']['NavyLeader']['LeaderLevel']})")
         print(f" ▪ Бойовий рейтинг: {int(int(PlayerIs['Navy']['NavyShips']) * int(PlayerIs['Navy']['NavyLevel']) * (int(PlayerIs['Navy']['NavyLeader']['LeaderLevel'])/5)):,}")
         input()
 
@@ -970,7 +1027,7 @@ if CommandInput == "/":
 PlayerIs['GameUpdate'] += 1
 if PlayerIs['GameUpdate'] == 5:
     PlayerIs['GameUpdate'] = 0
-    ProjectInfinity.Logic()
+    pi.Logic()
 #endregion
 
 # Збереження прогресу через функцію SaveJSON із WhiteEngine

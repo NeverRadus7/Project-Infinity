@@ -1,4 +1,5 @@
 #!/bin/bash
+$CD = pwd
 
 echo "Loading..."
 cd ~
@@ -6,13 +7,15 @@ mkdir .projectinfinity
 echo 'export PATH="~/.projectinfinity:$PATH"' >> .bashrc
 cd .projectinfinity
 touch ProjectInfinity
+
 echo "#!/bin/bash" >> ProjectInfinity
-echo "cd ~/Проєкти/Project-Infinity" >> ProjectInfinity
+echo "cd $CD" >> ProjectInfinity
 echo "source python/bin/activate" >> ProjectInfinity
 echo "while true" >> ProjectInfinity
 echo "do" >> ProjectInfinity
 echo "./game.sh" >> ProjectInfinity
 echo "done" >> ProjectInfinity
+
 chmod +x ProjectInfinity
 source ~/.bashrc
 echo "Done!"
