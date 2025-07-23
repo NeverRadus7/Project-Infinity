@@ -18,11 +18,11 @@
                 "ModificationLevel": 5
             },
             {
-                "ModificationID": 7,
+                "ModificationID": 8,
                 "ModificationLevel": 5
             },
             {
-                "ModificationID": 7,
+                "ModificationID": 8,
                 "ModificationLevel": 5
             },
             {
@@ -33,7 +33,7 @@
         "Storage": [
             {
                 "ItemID": 1,
-                "ItemCount": 996
+                "ItemCount": 994
             },
             {
                 "ItemID": 6,
@@ -57,10 +57,10 @@
             },
             {
                 "ItemID": 10,
-                "ItemCount": 58
+                "ItemCount": 62
             }
         ],
-        "Fuel": 8
+        "Fuel": 16
     },
     "Fleet": [
         {
@@ -134,7 +134,7 @@
         "NavyLevel": 100,
         "NavyCruisers": 160,
         "NavyShips": 3465,
-        "NavyLocation": 20,
+        "NavyLocation": 13,
         "NavyLeader": {
             "LeaderName": "George Smith",
             "LeaderRank": "Grand-Admiral",
@@ -144,26 +144,26 @@
             ]
         }
     },
-    "Money": 397872664589,
-    "IntelBall": 4124317,
-    "BattleScore": 11605418,
-    "XP": 32340683029,
+    "Money": 372383353709,
+    "IntelBall": 4164269,
+    "BattleScore": 16606412,
+    "XP": 32704859994,
     "Reputation": 0,
-    "WorldDay": 165922,
+    "WorldDay": 166026,
     "Atribution": [
         "PLAYER_TERRAFORMER_DEVICE",
         "PLAYER_MINERTOOL"
     ],
     "Statistic": {
-        "StarInteled": 60,
-        "StarControled": 26,
-        "StarColony": 14,
-        "CreditsFromSelled": 430244927205,
-        "CreditsFromScience": 1169960997,
-        "IncomeFromColony": 0
+        "StarInteled": 1,
+        "StarControled": 1,
+        "StarColony": 1,
+        "CreditsFromSelled": 0,
+        "CreditsFromScience": 0,
+        "IncomeFromColony": 227246822
     },
     "MapSettings": {
         "Filter": 0
     },
-    "GameUpdate": 4
+    "GameUpdate": 0
 }

@@ -395,8 +395,6 @@ if CommandInput == "2":
             ProjectInfinity.StarChange(StarIs['StarID'], 'StarCivil', StarIs['StarCivil'])
 
     if StarInput == "Полювання на піратів":
-        BotHP = rwos.randint(100,5000)
-        BotDMG = rwos.randint(10,800)
         BotAccuracy = rwos.randint(30,90)
         BotInterval = rwos.randint(1,7)
         PirateBattle = ProjectInfinity.Duel(f"Полювання на піратів - Система: {StarIs['Star']}", 
@@ -410,7 +408,7 @@ if CommandInput == "2":
         if PirateBattle == True:
             wl.ScreenTextLable("Ви перемогли пірата")
             PlayerIs['BattleScore'] += rwos.randint(100,1500) * wl.Level
-            PlayerIs['XP'] += rwos.randint(100,200) * int(BotHP * BotDMG * (1 + (BotAccuracy/100)))
+            PlayerIs['XP'] += rwos.randint(100,200)
             StarIs['StarCivil']['CivilStable'] += rwos.randint(5,30)
             StarIs['StarCivil']['CivilReputation'] += rwos.randint(1,5)
             ProjectInfinity.StarChange(StarIs['StarID'], 'StarCivil', StarIs['StarCivil'])
@@ -438,8 +436,6 @@ if CommandInput == "2":
         
         if SystemBattle == True:
             wl.ScreenTextLable("Перемога")
-            PlayerIs['Money'] += rwos.randint(50,150) * int(BotHP * BotDMG * (1 + (BotAccuracy/100)))
-            PlayerIs['XP'] += rwos.randint(100,200) * int(BotHP * BotDMG * (1 + (BotAccuracy/100)))
             StarIs['StarCivil']['CivilStable'] -= rwos.randint(1,5)
             StarIs['StarCivil']['CivilReputation'] -= rwos.randint(5,10)
             ProjectInfinity.StarChange(StarIs['StarID'], 'StarCivil', StarIs['StarCivil'])
@@ -464,6 +460,8 @@ if CommandInput == "3":
             ColonySymbol = f"{Colore.Green} ⚑{Colore.Reset}"
 
         print(f"{abs+1}. {PlanetIs['PlanetName']}{TerraformSymbol}{ColonySymbol} - Клас: {PlanetClass[PlanetIs['PlanetClass']]} - Температура: {PlanetIs['PlanetTemp']} °C")
+    
+    print()
     
     try:
         PlanetChoice = int(input("Відправитися: "))-1
@@ -816,6 +814,7 @@ if CommandInput == "4":
 
                 NewCoust = int((ModRegisterIs['ModCoust'] * 0.95) * (1 + ModIs['ModificationLevel']))
                 ModIs['ModificationID'] = None
+                ModIs['ModificationLevel'] = 0
                 PlayerIs['Money'] += NewCoust
                 wl.Loading("Демонтаж модифікації", 3)
 

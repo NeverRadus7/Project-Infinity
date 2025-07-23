@@ -1,3 +1,8 @@
+# Shell settings
+ConsoleSizeX = 112
+ConsoleSizeY = 35
+WallSymbol = "━"
+
 MaxLevel = 999 # Default: 100
 XpToLevel = 10000 # Default: 10000
 FuelRequire = 1 # Default: 1
@@ -19,6 +24,7 @@ CivilEcoMin = 0.1 # Default: 0.1
 CivilEcoMax = 1.5 # Default: 1.5
 MinFulling = 1 # Default: 1
 MaxFulling = 60 # Default: 60
+SymbolFulling = "≡"
 
 # Battle settings
 BattleCooldown = 0.5 # Default: 0.5

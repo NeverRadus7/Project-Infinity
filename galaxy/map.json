@@ -1,30 +1,38 @@
 [
     {
-        "StarID": 11,
+        "StarID": 12,
+        "StarIntel": true,
+        "StarControled": true,
         "StarCivil": {
-            "CivilEconomicType": 5,
-            "CivilEco": 1.5,
-            "CivilReputation": 55,
-            "CivilSecurity": 1,
-            "CivilStable": 58,
+            "CivilEconomicType": 8,
+            "CivilEco": 1.2492257757791791,
+            "CivilStable": 5,
+            "CivilReputation": 100,
+            "CivilSecurity": 0,
             "CivilStation": {
-                "StationName": "Ecicopiv Station",
+                "StationName": "Xesafen Station",
                 "StationType": 0,
                 "StationStoreList": [
-                    5
+                    2,
+                    9,
+                    7,
+                    10
                 ]
             },
             "CivilPop": 0
-        }
+        },
+        "InfoDate": "03.07.3454",
+        "InfoIncome": 0,
+        "Star": "Lox"
     },
     {
         "StarID": 13,
         "StarCivil": {
             "CivilEconomicType": 6,
-            "CivilEco": 0.3620957767798057,
-            "CivilReputation": 62,
+            "CivilEco": 0.36260838279332436,
+            "CivilReputation": 103,
             "CivilSecurity": 2,
-            "CivilStable": 57,
+            "CivilStable": 25,
             "CivilStation": {
                 "StationName": "Jekhishu Station",
                 "StationType": 2,
@@ -35,7 +43,294 @@
                     9
                 ]
             },
-            "CivilPop": 0
-        }
+            "CivilPop": 313108654
+        },
+        "InfoDate": "24.07.3454",
+        "Planets": [
+            {
+                "PlanetID": 1,
+                "PlanetName": "Delta 13-0-N152-1",
+                "PlanetClass": 3,
+                "PlanetEffectiveTemp": 548.2321216091035,
+                "PlanetKelvinTemp": 678.2499171451698,
+                "PlanetTemp": 405.0999171451698,
+                "PlanetMass": 16.14968111829504,
+                "PlanetAtmoAlbedo": 0.8436996394245377,
+                "PlanetAtmoGreenhouse": 0.4989162586724786,
+                "PlanetDistance": 1.1102997374509127,
+                "PlanetTerraform": false,
+                "PlanetLive": false
+            },
+            {
+                "PlanetID": 2,
+                "PlanetName": "Delta 13-0-N152-2",
+                "PlanetClass": 5,
+                "PlanetEffectiveTemp": 342.37498313026833,
+                "PlanetKelvinTemp": 393.6647332293996,
+                "PlanetTemp": 120.51473322939961,
+                "PlanetMass": 1.3144109809819984,
+                "PlanetAtmoAlbedo": 0.15459508826813662,
+                "PlanetAtmoGreenhouse": 0.5932299005391001,
+                "PlanetDistance": 2.846853671885307,
+                "PlanetTerraform": false,
+                "PlanetLive": false
+            },
+            {
+                "PlanetID": 3,
+                "PlanetName": "Delta 13-0-N152-3",
+                "PlanetClass": 5,
+                "PlanetEffectiveTemp": 228.6717040253491,
+                "PlanetKelvinTemp": 281.6746647308113,
+                "PlanetTemp": 8.52466473081131,
+                "PlanetMass": 1.4438294861189231,
+                "PlanetAtmoAlbedo": 0.37988158166978425,
+                "PlanetAtmoGreenhouse": 0.9223098433391599,
+                "PlanetDistance": 6.3818168537694495,
+                "PlanetTerraform": false,
+                "PlanetLive": false,
+                "PlanetColony": {
+                    "ColonyName": "Taqebo Colony",
+                    "ColonyLevel": 54,
+                    "ColonyPop": 30567192,
+                    "ColonyBuild": {
+                        "Enabled": false,
+                        "EndBuild": 0
+                    }
+                }
+            },
+            {
+                "PlanetID": 4,
+                "PlanetName": "Delta 13-0-N152-4",
+                "PlanetClass": 3,
+                "PlanetEffectiveTemp": 151.9571988974415,
+                "PlanetKelvinTemp": 188.65093712323656,
+                "PlanetTemp": -84.49906287676342,
+                "PlanetMass": 17.176685914255813,
+                "PlanetAtmoAlbedo": 0.7321390564506075,
+                "PlanetAtmoGreenhouse": 0.6433375071482521,
+                "PlanetDistance": 14.451956109709792,
+                "PlanetTerraform": false,
+                "PlanetLive": false
+            },
+            {
+                "PlanetID": 5,
+                "PlanetName": "Delta 13-0-N152-5",
+                "PlanetClass": 2,
+                "PlanetEffectiveTemp": 122.98370002911517,
+                "PlanetKelvinTemp": 132.39958842621522,
+                "PlanetTemp": -140.75041157378476,
+                "PlanetMass": 1.1594864053451317,
+                "PlanetAtmoAlbedo": 0.029305738749865307,
+                "PlanetAtmoGreenhouse": 0.3139426266539026,
+                "PlanetDistance": 22.063483537226293,
+                "PlanetTerraform": false,
+                "PlanetLive": false,
+                "PlanetColony": {
+                    "ColonyName": "Seweqe Colony",
+                    "ColonyLevel": 46,
+                    "ColonyPop": 6848058,
+                    "ColonyBuild": {
+                        "Enabled": false,
+                        "EndBuild": 0
+                    }
+                }
+            },
+            {
+                "PlanetID": 6,
+                "PlanetName": "Delta 13-0-N152-6",
+                "PlanetClass": 5,
+                "PlanetEffectiveTemp": 92.83462771846699,
+                "PlanetKelvinTemp": 110.0882839547838,
+                "PlanetTemp": -163.06171604521617,
+                "PlanetMass": 1.02064387482397,
+                "PlanetAtmoAlbedo": 0.7480220530542147,
+                "PlanetAtmoGreenhouse": 0.2295139886275973,
+                "PlanetDistance": 38.72123427652986,
+                "PlanetTerraform": false,
+                "PlanetLive": false,
+                "PlanetColony": {
+                    "ColonyName": "Shizhuxu Colony",
+                    "ColonyLevel": 99,
+                    "ColonyPop": 54968088,
+                    "ColonyBuild": {
+                        "Enabled": false,
+                        "EndBuild": 0
+                    }
+                }
+            },
+            {
+                "PlanetID": 7,
+                "PlanetName": "Delta 13-0-N152-7",
+                "PlanetClass": 2,
+                "PlanetEffectiveTemp": 80.64057990062709,
+                "PlanetKelvinTemp": 102.88054642997054,
+                "PlanetTemp": -170.26945357002944,
+                "PlanetMass": 3.564898819493638,
+                "PlanetAtmoAlbedo": 0.7651653223535622,
+                "PlanetAtmoGreenhouse": 0.8840574542532408,
+                "PlanetDistance": 51.31707666500699,
+                "PlanetTerraform": false,
+                "PlanetLive": false,
+                "PlanetColony": {
+                    "ColonyName": "Lushirela Colony",
+                    "ColonyLevel": 65,
+                    "ColonyPop": 97013570,
+                    "ColonyBuild": {
+                        "Enabled": false,
+                        "EndBuild": 0
+                    }
+                }
+            },
+            {
+                "PlanetID": 8,
+                "PlanetName": "Delta 13-0-N152-8",
+                "PlanetClass": 0,
+                "PlanetEffectiveTemp": 68.7922697850482,
+                "PlanetKelvinTemp": 88.0684933396006,
+                "PlanetTemp": -185.08150666039938,
+                "PlanetMass": 4.951146913932689,
+                "PlanetAtmoAlbedo": 0.7197764035220505,
+                "PlanetAtmoGreenhouse": 0.9663330775110148,
+                "PlanetDistance": 70.5163645806245,
+                "PlanetTerraform": false,
+                "PlanetLive": false,
+                "PlanetColony": {
+                    "ColonyName": "Ofexyd Colony",
+                    "ColonyLevel": 85,
+                    "ColonyPop": 26512091,
+                    "ColonyBuild": {
+                        "Enabled": false,
+                        "EndBuild": 0
+                    }
+                }
+            },
+            {
+                "PlanetID": 9,
+                "PlanetName": "Delta 13-0-N152-9",
+                "PlanetClass": 0,
+                "PlanetEffectiveTemp": 77.18369757049041,
+                "PlanetKelvinTemp": 91.8807002347403,
+                "PlanetTemp": -181.2692997652597,
+                "PlanetMass": 4.818120082850043,
+                "PlanetAtmoAlbedo": 0.8968317472166414,
+                "PlanetAtmoGreenhouse": 0.11131231314088152,
+                "PlanetDistance": 56.016766043915354,
+                "PlanetTerraform": false,
+                "PlanetLive": false,
+                "PlanetColony": {
+                    "ColonyName": "Wychekhikax Colony",
+                    "ColonyLevel": 74,
+                    "ColonyPop": 11467499,
+                    "ColonyBuild": {
+                        "Enabled": false,
+                        "EndBuild": 0
+                    }
+                }
+            },
+            {
+                "PlanetID": 10,
+                "PlanetName": "Delta 13-0-N152-10",
+                "PlanetClass": 3,
+                "PlanetEffectiveTemp": 68.31320556794533,
+                "PlanetKelvinTemp": 82.97058253388741,
+                "PlanetTemp": -190.17941746611257,
+                "PlanetMass": 12.711242712185786,
+                "PlanetAtmoAlbedo": 0.614392301567528,
+                "PlanetAtmoGreenhouse": 0.5617029310193656,
+                "PlanetDistance": 71.50886138404111,
+                "PlanetTerraform": false,
+                "PlanetLive": false
+            },
+            {
+                "PlanetID": 11,
+                "PlanetName": "Delta 13-0-N152-11",
+                "PlanetClass": 5,
+                "PlanetEffectiveTemp": 51.98299500438201,
+                "PlanetKelvinTemp": 60.291582063985786,
+                "PlanetTemp": -212.85841793601418,
+                "PlanetMass": 1.2057145972077206,
+                "PlanetAtmoAlbedo": 0.4547174130312529,
+                "PlanetAtmoGreenhouse": 0.3548781752537358,
+                "PlanetDistance": 123.49421024855192,
+                "PlanetTerraform": false,
+                "PlanetLive": false,
+                "PlanetColony": {
+                    "ColonyName": "Irygikiz Colony",
+                    "ColonyLevel": 8,
+                    "ColonyPop": 43673576,
+                    "ColonyBuild": {
+                        "Enabled": false,
+                        "EndBuild": 0
+                    }
+                }
+            },
+            {
+                "PlanetID": 12,
+                "PlanetName": "Delta 13-0-N152-12",
+                "PlanetClass": 0,
+                "PlanetEffectiveTemp": 41.74067915834031,
+                "PlanetKelvinTemp": 47.01473227485331,
+                "PlanetTemp": -226.13526772514666,
+                "PlanetMass": 3.8887112468954115,
+                "PlanetAtmoAlbedo": 0.40548002797032945,
+                "PlanetAtmoGreenhouse": 0.20404533557845517,
+                "PlanetDistance": 191.5358928217271,
+                "PlanetTerraform": false,
+                "PlanetLive": false
+            },
+            {
+                "PlanetID": 13,
+                "PlanetName": "Delta 13-0-N152-13",
+                "PlanetClass": 0,
+                "PlanetEffectiveTemp": 47.02775575012843,
+                "PlanetKelvinTemp": 56.840772077376634,
+                "PlanetTemp": -216.30922792262334,
+                "PlanetMass": 1.6642958716724494,
+                "PlanetAtmoAlbedo": 0.7699081626589281,
+                "PlanetAtmoGreenhouse": 0.3642316016940156,
+                "PlanetDistance": 150.89007864529455,
+                "PlanetTerraform": false,
+                "PlanetLive": false,
+                "PlanetColony": {
+                    "ColonyName": "Hucezhyry Colony",
+                    "ColonyLevel": 26,
+                    "ColonyPop": 42058580,
+                    "ColonyBuild": {
+                        "Enabled": false,
+                        "EndBuild": 0
+                    }
+                }
+            },
+            {
+                "PlanetID": 14,
+                "PlanetName": "Delta 13-0-N152-14",
+                "PlanetClass": 1,
+                "PlanetEffectiveTemp": 42.12182749203264,
+                "PlanetKelvinTemp": 51.59382301027716,
+                "PlanetTemp": -221.55617698972281,
+                "PlanetMass": 4.5641885548040495,
+                "PlanetAtmoAlbedo": 0.6040947920965898,
+                "PlanetAtmoGreenhouse": 0.6468353529199925,
+                "PlanetDistance": 188.0852689308485,
+                "PlanetTerraform": false,
+                "PlanetLive": false
+            },
+            {
+                "PlanetID": 15,
+                "PlanetName": "Delta 13-0-N152-15",
+                "PlanetClass": 3,
+                "PlanetEffectiveTemp": 35.61568954661388,
+                "PlanetKelvinTemp": 40.68670242880434,
+                "PlanetTemp": -232.46329757119565,
+                "PlanetMass": 10.781309181837731,
+                "PlanetAtmoAlbedo": 0.23469932232836943,
+                "PlanetAtmoGreenhouse": 0.46841790682739703,
+                "PlanetDistance": 263.0791794859076,
+                "PlanetTerraform": false,
+                "PlanetLive": false
+            }
+        ],
+        "StarControled": true,
+        "InfoIncome": 227246822
     }
 ]

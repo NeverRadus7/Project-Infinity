@@ -30,7 +30,6 @@ with open("galaxy/map.json", 'r', encoding="utf-8") as f:
 
 # -- LICENSE
 LICENSE = open("LICENSE", "r", encoding="utf-8")
-GameLogo = open("data//game_logo.wlf", "r", encoding="utf-8")
 
 PlayerIs = save
 StarIs = GenMap(PlayerIs['Location'])
@@ -42,16 +41,13 @@ colorama.init()
 VersionClient = "Dev"
 EngineVersion = "2.16"
 
-ConsoleSizeX = 130
-ConsoleSizeY = 30
 Rconsole = Console()
 
 TimeToday = time.strftime("%d")
 TimeMonth = time.strftime("%m")
 TimeYear = time.strftime("%Y")
 
-rwos = random.Random()
-
+rwos = random.Random() # Random.WithOut.Seed
 
 class Colore():
     Red = colorama.Fore.RED
@@ -64,7 +60,7 @@ class Colore():
 
 
 class wl():   # Main class
-    Wall = "─" * (ConsoleSizeX - 1)
+    Wall = WallSymbol * (ConsoleSizeX - 1)
     DoList = "1. Галактична карта ▪ 2. Зоряна система ▪ 3. Планета ▪ 4. Станція ▪ 5. Інше".center(ConsoleSizeX)
     Player = f"{PlayerIs['Nickname']}"
     Data = f"{TimeToday}.{TimeMonth}.{TimeYear}"
@@ -81,6 +77,17 @@ class wl():   # Main class
 
     def ConsoleSetSize():
         os.system(f"mode con cols={ConsoleSizeX} lines={ConsoleSizeY}")
+
+    def Logo():
+        C = int((ConsoleSizeX/2) - int(83/2))
+        P = " " * C
+        print(
+            f"{P}██████  ██████   ██████       ██ ███████  ██████ ████████     ██ ███    ██ ███████ \n"
+            f"{P}██   ██ ██   ██ ██    ██      ██ ██      ██         ██        ██ ████   ██ ██      \n"
+            f"{P}██████  ██████  ██    ██      ██ █████   ██         ██        ██ ██ ██  ██ █████   \n"
+            f"{P}██      ██   ██ ██    ██ ██   ██ ██      ██         ██        ██ ██  ██ ██ ██      \n"
+            f"{P}██      ██   ██  ██████   █████  ███████  ██████    ██        ██ ██   ████ ██      \n"
+        )
 
     def Icon():
         print(
@@ -119,7 +126,7 @@ class wl():   # Main class
     def CenterTextLable(text):
         wl.Skip()
         print(f"{text}".center(ConsoleSizeX))
-        wl.SkipValue(int(ConsoleSizeY / 2) - 2)
+        wl.SkipValue(int(ConsoleSizeY / 2))
     
     def Skip():
         for Skip_screen in range(ConsoleSizeY*2):
@@ -241,7 +248,7 @@ class wl():   # Main class
     def Wait(second):
         time.sleep(second)
 
-    def Loading(name, ranger):
+    def LegecyLoading(name, ranger):
         wl.Skip()
         for loading in range(ranger):
                 print(f"  {name} ◇",end="\r")
@@ -255,6 +262,14 @@ class wl():   # Main class
         print(f"  {name} ◆",end="\r")
         time.sleep(0.2)
 
+    def Loading(name, ranger):
+        for loading in range(ranger):
+            wl.CenterTextLable(f"{name} ○\r")
+            time.sleep(0.2)
+            wl.CenterTextLable(f"{name} ●\r")
+            time.sleep(0.2)
+        wl.Skip()
+
     def SearchIndex(listing, object , name):
         for index, item in enumerate(listing):
             if item[object] == name:
@@ -264,25 +279,37 @@ class wl():   # Main class
     def TextColore(text, colore):
         textt = f"{colore}{text}{Colore.Reset}"
         print(textt)
+    
+    def TextCenter(text):
+        S = len(text)
+        C = int((ConsoleSizeX/2) - int(S/2))
+        P = " " * C
+        result = f"{P}{text}"
+        print(result)
 
     def Screen():
-        print(GameLogo.read())
-        print(f"Project Infinity ▪ {VersionClient}".center(ConsoleSizeX))
-        print(f"© WhiteLight studio - all rights reserved")
+        n = 24
+
+        wl.Logo()
+        wl.TextCenter(f"Project Infinity ▪ {VersionClient}")
         print(wl.Wall)
-        print(f" ▪ Зірка: {StarIs['Star']}" + wl.Date().center(int(ConsoleSizeX - 25 - len(f" ▪ Зірка: {StarIs['Star']}"))))
+        print(f" ▪ Баланс: {Colore.Yellow}{PlayerIs['Money']:,} ©{Colore.Reset} ▪ {Colore.Blue}{PlayerIs['IntelBall']:,} ◭ {Colore.Reset} ▪ {Colore.Red}{PlayerIs['BattleScore']:,} ⊙{Colore.Reset}  ▪ {PlayerIs['XP']:,} XP {Colore.Gray}| Level: {wl.Level} {Colore.Reset} ▪ {wl.Date()}")
         print(wl.Wall)
+        print(f" ▪ Зірка: {StarIs['Star']}")
         print(f" ▪ Ім'я: {PlayerIs['Nickname']}")
-        print(f" ▪ Кредити: {Colore.Yellow}{PlayerIs['Money']:,} ©{Colore.Reset}")
-        print(f" ▪ Досл. бали: {Colore.Blue}{PlayerIs['IntelBall']:,} ◭{Colore.Reset}")
-        print(f" ▪ Бойові гранти: {Colore.Red}{PlayerIs['BattleScore']:,} ⊙{Colore.Reset}")
-        print(f" ▪ XP: {PlayerIs['XP']:,} XP {Colore.Gray}| Level: {wl.Level} {Colore.Reset}")
-        print(f" ▪ Корабель: {PlayerIs['Ship']['ShipName']}{Colore.Gray} ({Ships[PlayerIs['Ship']['ShipID']]['ShipName']}) | МВС: {TravelDistation} св. р | Паливо: {PlayerIs['Ship']['Fuel']}/{FuelMaxCapacity} тон{Colore.Reset}")
+        print(f" ▪ Ранг: {LevelRangIs}")
+        print(f" ▪ Вивчено систем: {PlayerIs['Statistic']['StarInteled']:,}")
+        print(f" ▪ Систем під контролем: {PlayerIs['Statistic']['StarControled']:,}")
+        print(f" ▪ Кількість колонії: {PlayerIs['Statistic']['StarColony']:,}")
+        print(f" ▪ Прибуток з колонії: {PlayerIs['Statistic']['IncomeFromColony']:,} ©")
+        print(f" ▪ Кількість крейсерів: {len(PlayerIs['Fleet'])}")
         if DebugInfo == True: print(f"{Colore.Red}Debug-інформація: MapSeed: {MapSeed}, StarID: {StarIs['StarID']}{Colore.Reset}")
         print(wl.Wall)
-        print(wl.DoList)
+        print(f" ▪ Корабель: {PlayerIs['Ship']['ShipName']}{Colore.Gray} ({Ships[PlayerIs['Ship']['ShipID']]['ShipName']}) | МВС: {TravelDistation} св. р | Паливо: {PlayerIs['Ship']['Fuel']}/{FuelMaxCapacity} тон{Colore.Reset}")
         print(wl.Wall)
-        for abis in range(6):
+        print(wl.DoList)
+        wl.TextCenter(f"{Colore.Gray}© WhiteLight studio - all rights reserved{Colore.Reset}")
+        for abis in range(int((ConsoleSizeY/2)-n/2)):
             print()
 
     def ReadList(list, a0):
@@ -326,6 +353,11 @@ class wl():   # Main class
             for i in range(StartList,  EndList):
                 elist = list[i]
                 print(f"{i+1}. {elist[item]}")
+
+    def InfoBlock(titleColore={'colore': colorama.Back.BLUE, 'title': "Test"}, text=""):
+        wl.Skip()
+        print(f"{titleColore['colore']} {titleColore['title']} {colorama.Back.RESET}")
+        print(text)
 
     def ReadList(list, puncktuation):
         if puncktuation == True:
@@ -607,7 +639,7 @@ class ProjectInfinity():
                     SelectedFrame = " "
                     SelectedFrameBack = " "
                 starview = f"{SelectedFrame}{PlayerLight}{PlayerSymbol}{StarIs['Star']}{Colore.Reset}{FleetSymbol}{NavySymbol}{SelectedFrameBack}"
-                sp = "⋮" * random.randint(MinFulling, MaxFulling)
+                sp = (Colore.Gray + SymbolFulling + Colore.Reset) * random.randint(MinFulling, MaxFulling)
                 empty_map += f"{sp}{starview}{sp}"
 
             text = "Galaxy Map"
@@ -628,10 +660,12 @@ class ProjectInfinity():
             else:
                 SelectedStar = f"{colorama.Back.WHITE}{colorama.Fore.BLACK}█ Вибрано: {StarIs['Star']} █{colorama.Back.RESET}{colorama.Fore.RESET}"
                 PinnedDescPrint = ""
+            
             if Distation > TravelDistation:
                 SelectedDist = f"{colorama.Back.RED}{colorama.Fore.BLACK}█ Дистанція: /!\\ █{colorama.Back.RESET}{colorama.Fore.RESET}"
             else:
                 SelectedDist = f"{colorama.Back.GREEN}{colorama.Fore.BLACK}█ Дистанція: {Distation} св. р █{colorama.Back.RESET}{colorama.Fore.RESET}"
+            
             if PlayerIs['MapSettings']['Filter'] == 2:
                 SpecularClassBar = f"{colorama.Back.WHITE}{colorama.Fore.BLACK}█ Спек. клас: {StarIs['Class']} █{colorama.Fore.RESET}{colorama.Back.RESET}"
                 if StarIs.get("StarIntel") and StarIs["StarIntel"] is True:
@@ -669,13 +703,14 @@ class ProjectInfinity():
                         if PlayerIs['Ship']['Fuel'] >= FuelRequire:
                             PlayerIs['Location']
                             PlayerIs['Ship']['Fuel'] -= FuelRequire
-                            wl.Loading(f"Подорож до {GenMap(PlayerIs['Location'])['Star']}", 5)
+                            wl.Loading(f" Подорож до {GenMap(PlayerIs['Location'])['Star']}", 5)
                             wl.SaveJSON("save.json", save)
                             wl.Skip()
                             break
                         else:
                             wl.Skip()
                             wl.Error("Невисточає пального")
+
                     if type == "FLEET":
                         if Distation > TravelDistation:
                             wl.Error("Занадто далеко!")
@@ -683,17 +718,21 @@ class ProjectInfinity():
                             PlayerIs['Location']
                             PlayerIs['Fleet'][FleetID]['Location'] = PlayerIs['Location']
                             PlayerIs['Fleet'][FleetID]['Fuel'] -= FuelRequire
-                            wl.Loading(f"Подорож до {GenMap(PlayerIs['Location'])['Star']}", 5)
+                            wl.Loading(f" Подорож до {GenMap(PlayerIs['Location'])['Star']}", 5)
                             wl.SaveJSON("save.json", save)
                             wl.Skip()
                             break
                         else:
                             wl.Skip()
                             wl.Error("Невисточає пального")
+            
+            
             if com == "q" or com == "Q":
                 PlayerIs['MapSettings']['Filter'] = 0
                 wl.Skip()
                 exit()
+            
+            
             if type == "FLEET":
                 if com == "e":
                     StarChoiceFleet = int(input("Пункт призначення: "))
@@ -709,10 +748,14 @@ class ProjectInfinity():
                         StartLoc = StarChoiceFleet
                         wl.Loading(f"Перебуваємо в гіперстрибку до {GenMap(StarChoiceFleet)['Star']}", 10)
                         break
+            
+            
             if com == "f" or com == "F":
                 if PlayerIs['MapSettings']['Filter'] == 0: PlayerIs['MapSettings']['Filter'] = 1
                 elif PlayerIs['MapSettings']['Filter'] == 1: PlayerIs['MapSettings']['Filter'] = 2
                 elif PlayerIs['MapSettings']['Filter'] == 2: PlayerIs['MapSettings']['Filter'] = 0
+            
+            
             if com == "m" or com == "M":
                 wl.Skip()
                 m1 = int(input("Від: "))
@@ -747,6 +790,22 @@ class ProjectInfinity():
                     else: 
                         print(f"{StarColor}StarID: {StarIs['StarID']} {TerraformSymbol} - Система: {StarIs['Star']} - Планет: {len(StarIs['Planets'])}: з життям: {PlanetLive}{colorama.Fore.RESET}")
                 input()
+            if com in ["h","H"]:
+                wl.InfoBlock(
+                    titleColore={
+                        'colore': colorama.Back.GREEN, 
+                        'title': "Допомога в командах"
+                    },
+
+                    text=
+                        "[SPACE] - Відправитися до вибраної зірки\n"
+                        "[WASD] - Вибрати та переміщувати центр\n"
+                        "[F] - Змінити фільтр відображення\n"
+                        "[C] - Назначити центр\n"
+                        "[E] - Гіперпросторовий стрибок (Доступно тільки на крейсерів)\n"
+                        "[Q] - Вийти з мапи без змін")
+                
+                wl.Command()
 
     def Logic():
         PlayerIs["WorldDay"] += 1
@@ -820,7 +879,7 @@ class ProjectInfinity():
             print(wl.Wall)
             print(Title)
             print(wl.Wall)
-            print(f" ▪ {PlayerPrefix} Гравець: {wl.Player} - HP: {PlayerHP:,} - DM: {PlayerDMG:,} | {PlayerMessage}")
+            print(f" ▪ {PlayerPrefix} Гравець: {LevelRangIs} {wl.Player} - HP: {PlayerHP:,} - DM: {PlayerDMG:,} | {PlayerMessage}")
             print(f"     {Colore.Gray} ▪ Корабель: {PlayerIs['Ship']['ShipName']}{Colore.Reset}")
             print(wl.Wall)
             print(f" ▪ {BotPrefix} Опонент: {str(Target['Bot'])} - HP: {BotHP:,} - DM: {BotDMG:,} | {BotMessage}")
@@ -846,9 +905,6 @@ class ProjectInfinity():
             for i, mod in enumerate(BotModificationSlots):
                 if i in [0,1]: mod['ModificationID'] = rwos.choice(ModTypeArmor)
                 else: mod['ModificationID'] = rwos.choice(ModTypeWeapons)
-
-        print(BotModificationSlots)
-        time.sleep(1)
         
         PlayerHP = PlayerShipHP
         
@@ -1043,3 +1099,8 @@ if StarIs.get("StarCivil"):
 
     if StarIs['StarCivil']['CivilReputation'] < 0:
         StarIs['StarCivil']['CivilReputation'] = 0
+
+try:
+    LevelRangIs = LevelRang[wl.Level]
+except (KeyError):
+    LevelRangIs = LevelRang[max(LevelRang)]
