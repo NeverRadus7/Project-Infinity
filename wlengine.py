@@ -22,10 +22,10 @@ from settings import *
 from nickname_generator import generate as ranname
 
 # -- Save import
-with open("save.json",'r', encoding="utf-8") as f:
+with open(SavePath,'r', encoding="utf-8") as f:
     save = json.load(f)
 
-with open("galaxy/map.json", 'r', encoding="utf-8") as f:
+with open(MapPath, 'r', encoding="utf-8") as f:
     CustomStars = json.load(f)
 
 # -- LICENSE
@@ -358,6 +358,9 @@ class wl():   # Main class
         wl.Skip()
         print(f"{titleColore['colore']} {titleColore['title']} {colorama.Back.RESET}")
         print(text)
+    
+    def InfoText(colore=colorama.Back.BLUE, title="Test"):
+        print(f"{colore} {title} {colorama.Back.RESET}")
 
     def ReadList(list, puncktuation):
         if puncktuation == True:
@@ -548,7 +551,7 @@ class pi():
                 )
         # file = open("galaxy/mapchanges.py", "w", encoding="utf-8")
         # file.write(f"CustomStars = {CustomStars}")
-        wl.SaveJSON('galaxy/map.json', CustomStars)
+        wl.SaveJSON('save/map.json', CustomStars)
 
     def GalaxyMap(type, FleetID=None):
         StartLoc = PlayerIs['Location']
@@ -582,11 +585,14 @@ class pi():
                             FleetSymbol = ""
                 else:
                     FleetSymbol = ""
-
-                if PlayerIs['Navy']['NavyLocation'] == StarIs['StarID']:
-                    NavySymbol = f"{Colore.Red} ⟁{Colore.Reset}"
+                
+                if PlayerIs['Navy']['NavyDisable'] == False:
+                    if PlayerIs['Navy']['NavyLocation'] == StarIs['StarID']:
+                        NavySymbol = f"{Colore.Red} ⟁{Colore.Reset}"
+                    else:
+                        NavySymbol = ""
                 else:
-                    NavySymbol = ""
+                        NavySymbol = ""
 
                 if PlayerIs['MapSettings']['Filter'] == 2:
                     if StarIs['Class'] == "O":
@@ -1112,7 +1118,7 @@ class pi():
                 # Перевірка, чи точка знаходиться в колі
                 distance = math.sqrt((x / 2) ** 2 + y ** 2)
                 if distance <= radius:
-                    terrain = random.choices([1, 2, 3], weights=[50, 30, 20])[0]
+                    terrain = planetrand.choices([1, 2, 3], weights=[50, 30, 20])[0]
                     print(symbols[terrain], end='')
                 else:
                     print(' ', end='')
@@ -1136,7 +1142,13 @@ def ChoiceModificationSlot():
         SlotIs = PlayerIs['Ship']['ShipModification'][abs]
         if SlotIs['ModificationID'] != None:
             ModIs = ShipModifications[SlotIs['ModificationID']]
-            ModLabel = f"{Colore.Green}{ModIs['ModName']}{Colore.Reset}"
+            if ModIs['ModType'] == 0: ColoreMod = Colore.Yellow
+            if ModIs['ModType'] == 1: ColoreMod = Colore.Red
+            if ModIs['ModType'] == 2: ColoreMod = Colore.Blue
+            if ModIs['ModType'] == 3: ColoreMod = Colore.LightRed
+            if ModIs['ModType'] == 4: ColoreMod = colorama.Fore.LIGHTYELLOW_EX
+            if ModIs['ModType'] == 5: ColoreMod = colorama.Fore.GREEN
+            ModLabel = f"{ColoreMod}{ModIs['ModName']}{Colore.Reset}"
         else:
             ModLabel = f"{Colore.Gray}Відсутній{Colore.Reset}"
         ModLevel = SlotIs['ModificationLevel']
@@ -1175,10 +1187,10 @@ def ModificationSlots(x):
 AddTravelDistation = 0
 for i in range(len(PlayerIs['Ship']['ShipModification'])):
     ModIs = PlayerIs['Ship']['ShipModification'][i]
-    if ModIs['ModificationID'] != None: 
+    if not ModIs['ModificationID'] == None: 
         Mod = ShipModifications[ModIs['ModificationID']]
         if Mod['ModType'] == 5:
-            AddTravelDistation += (Mod['ModValue'] * ModIs['ModificationLevel'])
+            AddTravelDistation += (Mod['ModValue'] * (1 + ModIs['ModificationLevel']))
 TravelDistation = Ships[PlayerIs['Ship']['ShipID']]['ShipTravelingDist'] + AddTravelDistation + SetTravelDistation
 
 if wl.Level >= MaxLevel:
@@ -1199,13 +1211,14 @@ elif len(PlayerIs['Ship']['ShipModification']) > MaxShipModification:
 
 NewFuel = 0
 for i in range(len(PlayerIs['Ship']['ShipModification'])):
-    if PlayerIs['Ship']['ShipModification'][i]['ModificationID'] == 0:
+    if not PlayerIs['Ship']['ShipModification'][i]['ModificationID'] == None:
         if ShipModifications[PlayerIs['Ship']['ShipModification'][i]['ModificationID']]['ModType'] == 0:
-            NewFuel += (ShipModifications[PlayerIs['Ship']['ShipModification'][i]['ModificationID']]['ModValue'] * (PlayerIs['Ship']['ShipModification'][i]['ModificationLevel'] * ModLevelCoeff))
+            NewFuel += (ShipModifications[PlayerIs['Ship']['ShipModification'][i]['ModificationID']]['ModValue'] * (1 + int(PlayerIs['Ship']['ShipModification'][i]['ModificationLevel'] * ModLevelCoeff)))
 
 FuelNow = PlayerIs['Ship']['Fuel']
 FuelMaxCapacity = Ships[PlayerIs['Ship']['ShipID']]['ShipMaxFuel'] + NewFuel
-if FuelNow > FuelMaxCapacity: PlayerIs['Ship']['Fuel'] = FuelMaxCapacity
+if FuelNow > FuelMaxCapacity: 
+    PlayerIs['Ship']['Fuel'] = FuelMaxCapacity
 
 PlayerShipDMG = 0
 PlayerShipInterval = 0
@@ -1237,3 +1250,8 @@ try:
     LevelRangIs = LevelRang[wl.Level]
 except (KeyError):
     LevelRangIs = LevelRang[max(LevelRang)]
+
+for i, item in enumerate(PlayerIs['Ship']['Storage']):
+    if item['ItemCount'] >= Ships[PlayerIs['Ship']['ShipID']]['ShipMaxItems']:
+        itemget = item['ItemCount'] - Ships[PlayerIs['Ship']['ShipID']]['ShipMaxItems']
+        wl.InvRem(item['ItemID'], itemget)

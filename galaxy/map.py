@@ -7,7 +7,7 @@ import json
 from galaxy.mapchanges_lock import CustomStarsLock
 from nickname_generator import generate as ranname
 
-with open("galaxy/map.json", 'r', encoding="utf-8") as t:
+with open(settings.MapPath, 'r', encoding="utf-8") as t:
     CustomStars = json.load(t)
 
 mapseed = settings.MapSeed
@@ -34,39 +34,6 @@ def GenMap(seed):
             if planet_range <= 5:
                 planet_class = 4
 
-            if planet_class == 0:
-                planet_mass = random.uniform(0.6,5)
-                planet_size = random.randint(2,3)
-                planet_colore = {'main': "yellow", 'second': "l_yellow", 'third': "red"}
-            elif planet_class == 1:
-                planet_mass = random.uniform(0.6,5)
-                planet_size = random.randint(2,3)
-                planet_colore = {'main': "blue", 'second': "l_blue", 'third': "white"}
-            elif planet_class == 2:
-                planet_mass = random.uniform(0.5,4)
-                planet_size = random.randint(1,2)
-                planet_colore = {'main': "yellow", 'second': "gray", 'third': "white"}
-            elif planet_class == 3:
-                planet_mass = random.uniform(9,18)
-                planet_size = random.randint(4,6)
-                planet_colore = {'main': "gray", 'second': "white", 'third': "white"}
-            elif planet_class == 4:
-                planet_mass = random.uniform(0.8,1.5)
-                planet_size = random.randint(2,3)
-                planet_colore = {'main': "green", 'second': "blue", 'third': "white"}
-            elif planet_class == 5:
-                planet_mass = random.uniform(0.8,1.5)
-                planet_size = random.randint(2,4)
-                planet_colore = {'main': "gray", 'second': "l_yellow", 'third': "gray"}
-            elif planet_class == 6:
-                planet_mass = random.uniform(0.6,2)
-                planet_size = random.randint(3,5)
-                planet_colore = {'main': "blue", 'second': "blue", 'third': "white"}
-            elif planet_class == 7:
-                planet_mass = random.uniform(0.6,5)
-                planet_size = random.randint(3,5)
-                planet_colore = {'main': "yellow", 'second': "gray", 'third': "gray"}
-
             planet_atmo_albedo = random.uniform(0,1)
             planet_atmo_greenhouse = random.uniform(0,1)
 
@@ -75,6 +42,44 @@ def GenMap(seed):
             planet_effective_temp = ((solar_luminos * 1e+4)/ (16 * math.pi * 5.67e-8 * (planet_ao**2))) ** (1/4)
             planet_kelvin_temp = planet_effective_temp * ((1 + (planet_atmo_greenhouse + planet_atmo_albedo)) ** (1/4))
             planet_temp = planet_kelvin_temp - 273.15
+
+            if planet_class == 0:
+                planet_mass = random.uniform(0.6,5)
+                planet_size = 5
+                planet_colore = {'main': "yellow", 'second': "l_yellow", 'third': "gray"}
+            elif planet_class == 1:
+                planet_mass = random.uniform(0.6,5)
+                planet_size = 5
+                planet_colore = {'main': "blue", 'second': "l_blue", 'third': "white"}
+            elif planet_class == 2:
+                planet_mass = random.uniform(0.5,4)
+                planet_size = 5
+                planet_colore = {'main': "yellow", 'second': "gray", 'third': "white"}
+            elif planet_class == 3:
+                planet_mass = random.uniform(9,18)
+                planet_size = 7
+                planet_colore = random.choice([
+                        {'main': "red", 'second': "l_red", 'third': "gray"}, 
+                        {'main': "red", 'second': "l_red", 'third': "red"}, 
+                        {'main': "blue", 'second': "l_blue", 'third': "l_blue"}, 
+                        {'main': "yellow", 'second': "l_yellow", 'third': "l_yellow"}
+                ])
+            elif planet_class == 4:
+                planet_mass = random.uniform(0.8,1.5)
+                planet_size = 5
+                planet_colore = {'main': "green", 'second': "blue", 'third': "white"}
+            elif planet_class == 5:
+                planet_mass = random.uniform(0.8,1.5)
+                planet_size = 5
+                planet_colore = {'main': "gray", 'second': "l_yellow", 'third': "gray"}
+            elif planet_class == 6:
+                planet_mass = random.uniform(0.6,2)
+                planet_size = 5
+                planet_colore = {'main': "blue", 'second': "blue", 'third': "white"}
+            elif planet_class == 7:
+                planet_mass = random.uniform(0.6,5)
+                planet_size = 5
+                planet_colore = {'main': "yellow", 'second': "gray", 'third': "gray"}
 
             planet_live = False
             if random.randint(1,4) == 1:
@@ -106,7 +111,7 @@ def GenMap(seed):
                     "PlanetDistance": planet_ao,
                     "PlanetTerraform": planet_terraform_confirm,
                     "PlanetLive": planet_live,
-                    "PlanetViewSeed": random.randint(1,1_000_000_000_000)
+                    "PlanetViewSeed": random.randint(-1_000_000_000_000,1_000_000_000_000)
                 }
             )
         return Planets

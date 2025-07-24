@@ -1,7 +1,9 @@
 # Shell settings
-ConsoleSizeX = 130  # Default: 130
-ConsoleSizeY = 40 # Default: 30
+ConsoleSizeX = 106  # Default: 130
+ConsoleSizeY = 37 # Default: 30
 WallSymbol = "━"
+SavePath = "save/save.json"
+MapPath = "save/map.json"
 
 MaxLevel = 999 # Default: 100
 XpToLevel = 10000 # Default: 10000
@@ -18,12 +20,12 @@ IntelToCredits = 3 # Default: 3
 BattleGrantToCredits = 7 # Default: 7
 
 # Map settings
-MapSeed = 0xB16B00B5
+MapSeed = 0x14b931fd # Default: 14b931fd | /!\ Changing this paramets will break your game
 MapCivilRange = 20 # Default: 20
 CivilEcoMin = 0.1 # Default: 0.1
 CivilEcoMax = 1.5 # Default: 1.5
 MinFulling = 1 # Default: 1
-MaxFulling = 90 # Default: 90
+MaxFulling = 80 # Default: 90
 SymbolFulling = "≡"
 
 # Battle settings

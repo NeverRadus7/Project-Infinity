@@ -97,9 +97,79 @@ ShipModifications = [
         "ModID": 8,
         "ModType": 3,
         "ModName": "Плазмогармата",
-        "ModCoust": 260_000_000,
+        "ModCoust": 200_000_000,
         "ModValue": {'damage': 160, 'interval': 1}
-    }
+    },
+    {
+        "ModID": 9,
+        "ModType": 1,
+        "ModName": "Надміцний сплав",
+        "ModCoust": 10_000_000,
+        "ModValue": 50
+    },
+    {
+        "ModID": 10,
+        "ModType": 3,
+        "ModName": "Автоматичні кулемети",
+        "ModCoust": 160_000,
+        "ModValue": {'damage': 10, 'interval': 8}
+    },
+    {
+        "ModID": 11,
+        "ModType": 3,
+        "ModName": "Автоматичні кулемети MILLYTECH",
+        "ModCoust": 800_000,
+        "ModValue": {'damage': 30, 'interval': 8}
+    },
+    {
+        "ModID": 12,
+        "ModType": 5,
+        "ModName": "Мегапросторовий двигун",
+        "ModCoust": 60_000_000,
+        "ModValue": 5
+    },
+    {
+        "ModID": 13,
+        "ModType": 5,
+        "ModName": "Суперпросторовий двигун",
+        "ModCoust": 250_000_000,
+        "ModValue": 10
+    },
+    {
+        "ModID": 14,
+        "ModType": 5,
+        "ModName": "Гіперпросторовий двигун",
+        "ModCoust": 700_000_000,
+        "ModValue": 20
+    },
+    {
+        "ModID": 15,
+        "ModType": 4,
+        "ModName": "Астросенсори [ASTRA INC.]",
+        "ModCoust": 150_000_000,
+        "ModValue": 10
+    },
+    {
+        "ModID": 16,
+        "ModType": 3,
+        "ModName": "Малий рельсотрон",
+        "ModCoust": 30_000_000,
+        "ModValue": {'damage': 26, 'interval': 1}
+    },
+    {
+        "ModID": 17,
+        "ModType": 3,
+        "ModName": "Рельсотрон",
+        "ModCoust": 70_000_000,
+        "ModValue": {'damage': 40, 'interval': 1}
+    },
+    {
+        "ModID": 18,
+        "ModType": 3,
+        "ModName": "Двох-дуловий рельсотрон",
+        "ModCoust": 40_000_000,
+        "ModValue": {'damage': 20, 'interval': 2}
+    },
 ]
 #                         0            1                2                3                      4                                        5
 ModificationType = ["Паливні баки", "Броня", "Досліднецькі прибори", "Гармати", "Прибори точності та наведення", "Двигуни, варп-двигуни, гіперпросторові двигуни"]
@@ -113,6 +183,7 @@ Ships = [
         "ShipTravelingDist": 5,
         "ShipMaxFuel": 20,
         "ShipMaxModification": 2,
+        "ShipMaxItems": 50,
         "ShipCoust": 10_000
     },
     {
@@ -123,26 +194,29 @@ Ships = [
         "ShipTravelingDist": 8,
         "ShipMaxFuel": 25,
         "ShipMaxModification": 3,
+        "ShipMaxItems": 50,
         "ShipCoust": 250_000
     },
     {
         "ShipID": 2,
-        "ShipName": "EMU Exp-36",
-        "ShipHealth": 125,
-        "ShipClass": 2,
-        "ShipTravelingDist": 10,
-        "ShipMaxFuel": 15,
+        "ShipName": "MILLYTECH QR-I",
+        "ShipHealth": 600,
+        "ShipClass": 3,
+        "ShipTravelingDist": 3,
+        "ShipMaxFuel": 30,
         "ShipMaxModification": 4,
+        "ShipMaxItems": 20,
         "ShipCoust": 3_750_000
     },
     {
         "ShipID": 3,
-        "ShipName": "Anabelus BTL-1",
-        "ShipHealth": 1000,
-        "ShipClass": 3,
+        "ShipName": "Anabelus co. EXP-LUPA",
+        "ShipHealth": 100,
+        "ShipClass": 2,
         "ShipTravelingDist": 15,
         "ShipMaxFuel": 20,
         "ShipMaxModification": 6,
+        "ShipMaxItems": 60,
         "ShipCoust": 15_000_000
     }
 ]
