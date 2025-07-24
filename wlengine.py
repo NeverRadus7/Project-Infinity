@@ -710,7 +710,7 @@ class pi():
                             PlayerIs['Location']
                             PlayerIs['Ship']['Fuel'] -= FuelRequire
                             wl.Loading(f" Подорож до {GenMap(PlayerIs['Location'])['Star']}", 5)
-                            wl.SaveJSON("save.json", save)
+                            wl.SaveJSON(SavePath, save)
                             wl.Skip()
                             break
                         else:
@@ -725,7 +725,7 @@ class pi():
                             PlayerIs['Fleet'][FleetID]['Location'] = PlayerIs['Location']
                             PlayerIs['Fleet'][FleetID]['Fuel'] -= FuelRequire
                             wl.Loading(f" Подорож до {GenMap(PlayerIs['Location'])['Star']}", 5)
-                            wl.SaveJSON("save.json", save)
+                            wl.SaveJSON(SavePath, save)
                             wl.Skip()
                             break
                         else:

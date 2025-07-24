@@ -1,13 +1,13 @@
 {
     "Nickname": "Player",
-    "Location": 260,
+    "Location": 276,
     "Ship": {
         "ShipID": 3,
-        "ShipName": "ИсдедоАНАЛЬЕ",
+        "ShipName": "Найкращій дослідник",
         "ShipModification": [
             {
-                "ModificationID": 4,
-                "ModificationLevel": 1
+                "ModificationID": 14,
+                "ModificationLevel": 0
             },
             {
                 "ModificationID": 2,
@@ -33,10 +33,10 @@
         "Storage": [
             {
                 "ItemID": 0,
-                "ItemCount": 1000
+                "ItemCount": 60
             }
         ],
-        "Fuel": 75
+        "Fuel": 81
     },
     "Fleet": [],
     "Navy": {
@@ -46,12 +46,12 @@
         "NavyShips": 0,
         "NavyLocation": 0
     },
-    "Money": 47869129,
+    "Money": 40397903,
     "IntelBall": 0,
     "BattleScore": 0,
     "XP": 1626772,
     "Reputation": 0,
-    "WorldDay": 61,
+    "WorldDay": 75,
     "Atribution": [],
     "Statistic": {
         "StarInteled": 7,
@@ -64,5 +64,5 @@
     "MapSettings": {
         "Filter": 0
     },
-    "GameUpdate": 0
+    "GameUpdate": 1
 }

@@ -3,7 +3,7 @@
     "Location": 273,
     "Ship": {
         "ShipID": 0,
-        "ShipName": "HER 015",
+        "ShipName": "Ship",
         "ShipModification": [
             {
                 "ModificationID": null,

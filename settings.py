@@ -20,7 +20,7 @@ IntelToCredits = 3 # Default: 3
 BattleGrantToCredits = 7 # Default: 7
 
 # Map settings
-MapSeed = 0x14b931fd # Default: 14b931fd | /!\ Changing this paramets will break your game
+MapSeed = 0x2976579765 # Default: 0x2976579765| /!\ Changing this paramets will break your game
 MapCivilRange = 20 # Default: 20
 CivilEcoMin = 0.1 # Default: 0.1
 CivilEcoMax = 1.5 # Default: 1.5

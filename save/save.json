@@ -1,42 +1,21 @@
 {
     "Nickname": "Player",
-    "Location": 260,
+    "Location": 273,
     "Ship": {
-        "ShipID": 3,
-        "ShipName": "Найкращій дослідник",
+        "ShipID": 0,
+        "ShipName": "Ship",
         "ShipModification": [
             {
-                "ModificationID": 14,
+                "ModificationID": null,
                 "ModificationLevel": 0
             },
             {
-                "ModificationID": 2,
-                "ModificationLevel": 5
-            },
-            {
-                "ModificationID": 2,
-                "ModificationLevel": 5
-            },
-            {
-                "ModificationID": 2,
-                "ModificationLevel": 5
-            },
-            {
-                "ModificationID": 2,
-                "ModificationLevel": 5
-            },
-            {
-                "ModificationID": 0,
-                "ModificationLevel": 5
+                "ModificationID": null,
+                "ModificationLevel": 0
             }
         ],
-        "Storage": [
-            {
-                "ItemID": 0,
-                "ItemCount": 60
-            }
-        ],
-        "Fuel": 83
+        "Storage": [],
+        "Fuel": 20
     },
     "Fleet": [],
     "Navy": {
@@ -46,23 +25,23 @@
         "NavyShips": 0,
         "NavyLocation": 0
     },
-    "Money": 40397903,
+    "Money": 0,
     "IntelBall": 0,
     "BattleScore": 0,
-    "XP": 1626772,
+    "XP": 0,
     "Reputation": 0,
-    "WorldDay": 72,
+    "WorldDay": 1,
     "Atribution": [],
     "Statistic": {
-        "StarInteled": 7,
-        "StarControled": 2,
+        "StarInteled": 0,
+        "StarControled": 0,
         "StarColony": 0,
         "CreditsFromSelled": 0,
-        "CreditsFromScience": 4607994,
+        "CreditsFromScience": 0,
         "IncomeFromColony": 0
     },
     "MapSettings": {
         "Filter": 0
     },
-    "GameUpdate": 4
+    "GameUpdate": 0
 }
