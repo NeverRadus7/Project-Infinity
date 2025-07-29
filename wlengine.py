@@ -11,9 +11,6 @@
 # -- Base import ■ ▪ ∙ •
 import time, random, os, colorama, json, math, getch
 from datetime import datetime, timedelta, date
-from rich.console import Console
-from rich.panel import Panel
-from rich.text import Text
 
 # -- Files import
 from galaxy.map import GenMap
@@ -41,8 +38,6 @@ colorama.init()
 VersionClient = "Dev"
 EngineVersion = "2.16"
 
-Rconsole = Console()
-
 TimeToday = time.strftime("%d")
 TimeMonth = time.strftime("%m")
 TimeYear = time.strftime("%Y")
@@ -57,6 +52,9 @@ class Colore():
     Reset = colorama.Fore.RESET
     Green = colorama.Fore.GREEN
     Blue = colorama.Fore.BLUE
+    Cyan = colorama.Fore.CYAN
+    LightYellow = colorama.Fore.LIGHTYELLOW_EX
+    White = colorama.Fore.WHITE
 
 
 class wl():   # Main class
@@ -128,6 +126,12 @@ class wl():   # Main class
         print(f"{text}".center(ConsoleSizeX))
         wl.SkipValue(int(ConsoleSizeY / 2))
     
+    def CenterText(text):
+        print(f"{text}".center(ConsoleSizeX))
+
+    def CenterTextEnd(x=0):
+        wl.SkipValue(int((ConsoleSizeY-x) / 2))
+
     def Skip():
         for Skip_screen in range(ConsoleSizeY*2):
             print()
@@ -137,7 +141,8 @@ class wl():   # Main class
             print()
     
     def Quation(text):
-        quation = input(f"{text} (1/0): ")
+        print(f"{text} (1/0): ")
+        quation = wl.Command()
         if quation == "1":
             return quation
         else:
@@ -276,9 +281,13 @@ class wl():   # Main class
                 return index
         else: return -1
 
-    def TextColore(text, colore):
+    def TextColorePr(text, colore):
         textt = f"{colore}{text}{Colore.Reset}"
         print(textt)
+
+    def TextColore(text, colore):
+        textt = f"{colore}{text}{Colore.Reset}"
+        return textt
     
     def TextCenter(text):
         S = len(text)
@@ -440,12 +449,15 @@ class wl():   # Main class
             wl.Error(f"Предмет із номером #{itemID} не існує")
         else:
             if len(PlayerIs["Ship"]['Storage']) == 0:
-                PlayerIs["Ship"]['Storage'].append(
-                    {
-                        "ItemID": itemID,
-                        "ItemCount": count
-                    }
-                )
+                if count <= PlayerMaxItems:
+                    PlayerIs["Ship"]['Storage'].append(
+                        {
+                            "ItemID": itemID,
+                            "ItemCount": count
+                        }
+                    )
+                else:
+                    wl.Error("Перевищений максимум!")
             else:
                 FleetID = None
                 for alli in range(len(PlayerIs["Ship"]['Storage'])):
@@ -453,14 +465,19 @@ class wl():   # Main class
                     if ItemIs['ItemID'] == itemID:
                         break
                 if ItemIs['ItemID'] == itemID:
-                    ItemIs['ItemCount'] += count
+                    SecureCount = ItemIs['ItemCount'] + count
+                    if SecureCount <= PlayerMaxItems:
+                        ItemIs['ItemCount'] += count
+                    else:
+                        wl.Error("Перевищений максимум!")
                 else:
-                    PlayerIs["Ship"]['Storage'].append(
-                        {
-                            "ItemID": itemID,
-                            "ItemCount": count
-                        }
-                    )
+                    if count <= PlayerMaxItems:
+                        PlayerIs["Ship"]['Storage'].append(
+                            {
+                                "ItemID": itemID,
+                                "ItemCount": count
+                            }
+                        )
 
     def InvRem(itemID, count):
         if itemID > len(ItemsDB):
@@ -480,7 +497,7 @@ class wl():   # Main class
                     else:
                         ItemIs['ItemCount'] -= count
 
-    def FleetInvAdd(itemID, count, FleetID):
+    def FleetInvAdd(itemID, count, FleetID=None):
         if itemID > len(ItemsDB):
             wl.Error(f"Предмет із номером #{itemID} не існує")
         else:
@@ -492,7 +509,6 @@ class wl():   # Main class
                     }
                 )
             else:
-                FleetID = None
                 for alli in range(len(PlayerIs["Fleet"][FleetID]['Storage'])):
                     ItemIs = PlayerIs["Fleet"][FleetID]['Storage'][alli]
                     if ItemIs['ItemID'] == itemID:
@@ -593,6 +609,27 @@ class pi():
                         NavySymbol = ""
                 else:
                         NavySymbol = ""
+                
+                ecosymbol = ""
+                if PlayerIs['MapSettings']['Filter'] == 3:       
+                    if StarIs.get("StarCivil"):
+                        if StarIs['StarCivil']['CivilEco'] > 1.4:
+                            ecosymbol = wl.TextColore(" ▴▴▴", Colore.Red)
+                            PlayerLight = Colore.Red
+                        if StarIs['StarCivil']['CivilEco'] > 1.1:
+                            ecosymbol = wl.TextColore(" ▴", Colore.Red)
+                            PlayerLight = Colore.Red
+                        if StarIs['StarCivil']['CivilEco'] >= 0.8 and StarIs['StarCivil']['CivilEco'] <= 1.1:
+                            ecosymbol = wl.TextColore(" ▸", Colore.Yellow)
+                            PlayerLight = Colore.Yellow
+                        if StarIs['StarCivil']['CivilEco'] < 0.8:
+                            ecosymbol = wl.TextColore(" ▾", Colore.Green)
+                            PlayerLight = Colore.Green
+                        if StarIs['StarCivil']['CivilEco'] < 0.2:
+                            ecosymbol = wl.TextColore(" ▾▾▾", Colore.Green)
+                            PlayerLight = Colore.Green
+                    else:
+                        PlayerLight = Colore.Gray
 
                 if PlayerIs['MapSettings']['Filter'] == 2:
                     if StarIs['Class'] == "O":
@@ -644,7 +681,7 @@ class pi():
                 else:
                     SelectedFrame = " "
                     SelectedFrameBack = " "
-                starview = f"{SelectedFrame}{PlayerLight}{PlayerSymbol}{StarIs['Star']}{Colore.Reset}{FleetSymbol}{NavySymbol}{SelectedFrameBack}"
+                starview = f"{SelectedFrame}{PlayerLight}{PlayerSymbol}{StarIs['Star']}{Colore.Reset}{ecosymbol}{FleetSymbol}{NavySymbol}{SelectedFrameBack}"
                 sp = (Colore.Gray + SymbolFulling + Colore.Reset) * random.randint(MinFulling, MaxFulling)
                 empty_map += f"{sp}{starview}{sp}"
 
@@ -696,7 +733,7 @@ class pi():
             if com == "w" or com == "W":
                 StartMapLoc -= 1
             if com == "c" or com == "C":
-                StartMapLoc = int(input("Назначити центр: "))
+                StartMapLoc = int(input("Перемістити фокус: "))
             if com == " ":
                 if StartLoc == PlayerIs['Location']:
                     wl.Skip()
@@ -759,8 +796,8 @@ class pi():
             if com == "f" or com == "F":
                 if PlayerIs['MapSettings']['Filter'] == 0: PlayerIs['MapSettings']['Filter'] = 1
                 elif PlayerIs['MapSettings']['Filter'] == 1: PlayerIs['MapSettings']['Filter'] = 2
-                elif PlayerIs['MapSettings']['Filter'] == 2: PlayerIs['MapSettings']['Filter'] = 0
-            
+                elif PlayerIs['MapSettings']['Filter'] == 2: PlayerIs['MapSettings']['Filter'] = 3
+                elif PlayerIs['MapSettings']['Filter'] == 3: PlayerIs['MapSettings']['Filter'] = 0
             
             if com == "m" or com == "M":
                 wl.Skip()
@@ -781,19 +818,31 @@ class pi():
                     else:
                         StarColor = colorama.Fore.LIGHTBLACK_EX
 
+                    if PlayerIs['Location'] == StarIs['StarID']:
+                        StarColor = Colore.White
+
                     for i in range(len(StarIs['Planets'])):
                         if StarIs['Planets'][i]['PlanetTerraform'] == True and StarIs['Planets'][i]['PlanetLive'] == False:
-                            TerraformSymbol = f"{Colore.Red}𖤖{StarColor}"
+                            TerraformSymbol = f"{Colore.Red}⌬{StarColor}"
                             break
                         elif StarIs['Planets'][i]['PlanetLive'] == True:
-                            TerraformSymbol = f"{Colore.Green}𖤖{StarColor}"
+                            TerraformSymbol = f"{Colore.Green}⌬{StarColor}"
                             break
                         else:
                             TerraformSymbol = ""
 
                     if StarIs.get("StarCivil"):
-                        print(f"{StarColor}StarID: {StarIs['StarID']} {TerraformSymbol} - Система: {StarIs['Star']} - Планет: {len(StarIs['Planets'])}: з життям: {PlanetLive} - Цивілізація: Станція: {StarIs['StarCivil']['CivilStation']['StationName']} - Населення: {StarIs['StarCivil']['CivilPop']:,}{colorama.Fore.RESET}")
-                    else: 
+                        print()
+                        print(
+                            f"{StarColor}StarID: {StarIs['StarID']} {TerraformSymbol}\n"
+                            f"- Система: {StarIs['Star']}\n"
+                            f"- Планет: {len(StarIs['Planets'])} з них з життям: {PlanetLive}\n"
+                            f"- Цивілізація:\n"
+                            f"     - Станція: {StarIs['StarCivil']['CivilStation']['StationName']}\n"
+                            f"     - Економіка: {Economics[StarIs['StarCivil']['CivilEconomicType']]}\n"
+                            f"     - Населення: {StarIs['StarCivil']['CivilPop']:,}{colorama.Fore.RESET}")
+                    else:
+                        print()
                         print(f"{StarColor}StarID: {StarIs['StarID']} {TerraformSymbol} - Система: {StarIs['Star']} - Планет: {len(StarIs['Planets'])}: з життям: {PlanetLive}{colorama.Fore.RESET}")
                 input()
             if com in ["h","H"]:
@@ -807,7 +856,7 @@ class pi():
                         "[SPACE] - Відправитися до вибраної зірки\n"
                         "[WASD] - Вибрати та переміщувати центр\n"
                         "[F] - Змінити фільтр відображення\n"
-                        "[C] - Назначити центр\n"
+                        "[C] - Перемістити фокус\n"
                         "[E] - Гіперпросторовий стрибок (Доступно тільки на крейсерів)\n"
                         "[Q] - Вийти з мапи без змін")
                 
@@ -883,6 +932,42 @@ class pi():
                 if StarIs['StarCivil']['Navy']['NavyCruisers'] >= 1 or StarIs['StarCivil']['Navy']['NavyShips'] >= 5: StarIs['StarCivil']['CivilSecurity'] = 1
                 if StarIs['StarCivil']['Navy']['NavyCruisers'] >= 5 or StarIs['StarCivil']['Navy']['NavyShips'] >= 10: StarIs['StarCivil']['CivilSecurity'] = 2
                 pi.StarChange(StarIs['StarID'], 'StarCivil', StarIs['StarCivil'])
+            
+                  
+            if StarIs.get("StarCivil") and StarIs['StarCivil']['CivilStable'] <= 10 and StarIs.get('StarControled') and StarIs['StarControled'] == True:
+                if PlayerIs['Location'] == StarIs['StarID'] and PlayerIs['Navy']['NavyDisable'] == False and PlayerIs['Navy']['NavyLocation'] == StarIs['StarID'] and StarIs['StarCivil']['Navy']['NavyShips'] > 0 and StarIs['StarCivil']['Navy']['NavyCruisers'] >= 0:
+                    if rwos.randint(1,100) <= 10:
+                        battle = pi.NavyBattle(f"Битва за {StarIs['Star']} | Ви захищаєтесь")
+                        if battle == True:
+                            StarIs['StarCivil']['CivilStable'] += 80
+                            pi.StarChange(StarIs['StarID'], 'StarCivil', StarIs['StarCivil'])
+                            PlayerIs['BattleScore'] += rwos.randint(1000,5000) * wl.Level
+                        else:
+                            pi.StarChange(StarIs['StarID'], 'StarControled', False)
+                else:
+                    EnemyCruisers = rwos.randint(0,50)
+                    EnemyShips = rwos.randint(1,200)
+                    EnemyNavyLevel = rwos.randint(1,100)
+
+                    EnemyBattle = EnemyCruisers * EnemyShips * EnemyNavyLevel
+                    
+                    if PlayerIs['Navy']['NavyDisable'] == False and PlayerIs['Navy']['NavyLocation'] == StarIs['StarID'] and StarIs['StarCivil']['Navy']['NavyShips'] > 0 and StarIs['StarCivil']['Navy']['NavyCruisers'] >= 0:
+                        PlayerBattle = PlayerIs['Navy']['NavyCruisers'] * PlayerIs['Navy']['NavyShips'] * PlayerIs['Navy']['NavyLevel']
+                    else:
+                        PlayerBattle = StarIs['StarCivil']['Navy']['NavyCruisers'] * StarIs['StarCivil']['Navy']['NavyShips'] * StarIs['StarCivil']['Navy']['NavyLevel']
+
+                    if EnemyBattle > PlayerBattle:
+                        StarIs['StarCivil']['CivilStable'] = rwos.randint(1,20)
+                        StarIs['StarCivil']['Navy']['NavyCruisers'] = EnemyCruisers
+                        StarIs['StarCivil']['Navy']['NavyShips'] = EnemyShips
+                        StarIs['StarCivil']['Navy']['NavyLevel'] = EnemyNavyLevel
+                        pi.StarChange(StarIs['StarID'], 'StarControled', False)
+                        pi.StarChange(StarIs['StarID'], 'StarCivil', StarIs['StarCivil'])
+                        wl.ScreenTextLable(f"Ви втратали {StarIs['Star']}")
+                    else:
+                        PlayerIs['BattleScore'] += rwos.randint(100,500) * wl.Level
+                        StarIs['StarCivil']['CivilStable'] += 80
+                        pi.StarChange(StarIs['StarID'], 'StarCivil', StarIs['StarCivil'])
 
     def Duel(Title="Test", Target={"Bot": "TestBot", "BotShip": rwos.choice(Ships), "BotModificationSlots": [], "BotAccuracy": 50, "BotInterval": 3}):
         wl.Skip()
@@ -991,6 +1076,76 @@ class pi():
     def Navy(Title="Test"):
         PlayerNavy = PlayerIs['Navy']
         BotNavy = StarIs['StarCivil']['Navy']
+
+        def BattleScreen():
+            wl.Skip()
+            print(
+                f"{wl.Wall}\n"
+                f"{Title}\n"
+                f"{wl.Wall}\n"
+                f"Флот {LevelRangIs} {wl.Player}\n"
+                f"   ▪ Крейсерів: {PlayerNavy['NavyCruisers']:,}\n"
+                f"   ▪ Кораблів: {PlayerNavy['NavyShips']:,}\n"
+                f"   ▪ Рівень кораблів: {PlayerNavy['NavyLevel']}\n"
+                f"   ▪ Бойовий ранг: {int(PlayerNavy['NavyCruisers'] * PlayerNavy['NavyShips'] * PlayerNavy['NavyLevel']):,}\n"
+                f"{PlayerShipHealth:.2f} - {PlayerCruiserHealth:.2f}\n"
+                f"{wl.Wall}\n"
+                f"Флот {StarIs['Star']}\n"
+                f"   ▪ Крейсерів: {BotNavy['NavyCruisers']:,}\n"
+                f"   ▪ Кораблів: {BotNavy['NavyShips']:,}\n"
+                f"   ▪ Рівень кораблів: {BotNavy['NavyLevel']}\n"
+                f"   ▪ Бойовий ранг: {int(BotNavy['NavyCruisers'] * BotNavy['NavyShips'] * BotNavy['NavyLevel']):,}\n"
+                f"{BotShipHealth:.2f} - {BotCruiserHealth:.2f}\n"
+                f"{wl.Wall}\n"
+            )
+        
+        x = 0
+        PlayerShipHealth = 200 * PlayerNavy['NavyLevel']
+        PlayerCruiserHealth = 500 * PlayerNavy['NavyLevel']
+        BotShipHealth = 200 * BotNavy['NavyLevel']
+        BotCruiserHealth = 500 * BotNavy['NavyLevel']
+
+        while True:
+            x += 1
+            
+            for i in range(int((ConsoleSizeY/2) - (15/2))):
+                print()
+
+            PlayerShipHealth -= ((0.6 * BotNavy['NavyLevel'] * BotNavy['NavyShips'] * (1 + (0.133 * BotNavy['NavyCruisers']))))
+            BotShipHealth -= ((0.6 * PlayerNavy['NavyLevel'] * PlayerNavy['NavyShips'] * (1 + (0.133 * PlayerNavy['NavyCruisers']))))
+            PlayerCruiserHealth -= ((0.3 * BotNavy['NavyLevel'] * BotNavy['NavyShips'] * (1 + (0.133 * BotNavy['NavyCruisers']))))
+            BotCruiserHealth -= ((0.3 * PlayerNavy['NavyLevel'] * PlayerNavy['NavyShips'] * (1 + (0.133 * PlayerNavy['NavyCruisers']))))
+
+            if PlayerShipHealth <= 0:
+                PlayerNavy['NavyShips'] -= 1
+                PlayerShipHealth = 200 * PlayerNavy['NavyLevel']
+
+            if BotShipHealth <= 0:
+                BotNavy['NavyShips'] -= 1
+                BotShipHealth = 200 * BotNavy['NavyLevel']
+
+            if PlayerCruiserHealth <= 0:
+                PlayerNavy['NavyCruisers'] -= 1
+                PlayerCruiserHealth = 500 * PlayerNavy['NavyLevel']
+
+            if BotCruiserHealth <= 0:
+                BotNavy['NavyCruisers'] -= 1
+                BotCruiserHealth = 500 * BotNavy['NavyLevel']
+
+            if PlayerNavy['NavyShips'] <= 0: PlayerNavy['NavyShips'] = 0
+            if BotNavy['NavyShips'] <= 0: BotNavy['NavyShips'] = 0
+            if PlayerNavy['NavyCruisers'] <= 0: PlayerNavy['NavyCruisers'] = 0
+            if BotNavy['NavyCruisers'] <= 0: BotNavy['NavyCruisers'] = 0
+            if PlayerNavy['NavyShips'] <= 0 and PlayerNavy['NavyCruisers'] <= 0: return False
+            if BotNavy['NavyShips'] <= 0 and BotNavy['NavyCruisers'] <= 0: return True
+
+            BattleScreen()
+            for i in range(int((ConsoleSizeY/2) - (15/2))): print()
+            time.sleep(0.3)
+
+    def NavyBattle(Title="Test", Navy = {"NavyCruisers": rwos.randint(1,100), "NavyShips": rwos.randint(1,500), "NavyLevel": rwos.randint(1,100)}):
+        PlayerNavy = PlayerIs['Navy']
+        BotNavy = Navy
 
         def BattleScreen():
             wl.Skip()
@@ -1227,7 +1382,7 @@ for i in range(len(PlayerIs['Ship']['ShipModification'])):
     if ModPlayer['ModificationID'] != None:
         ModIs = ShipModifications[ModPlayer['ModificationID']]
         if ModIs['ModType'] == 3:
-            PlayerShipDMG += (ModIs['ModValue']['damage'] * (ModPlayer['ModificationLevel'] * ModLevelCoeff))
+            PlayerShipDMG += (ModIs['ModValue']['damage'] * (1 +ModPlayer['ModificationLevel'] * ModLevelCoeff))
             PlayerShipInterval += ModIs['ModValue']['interval']
 
 PlayerShipHP = Ships[PlayerIs['Ship']['ShipID']]['ShipHealth']
@@ -1237,7 +1392,16 @@ for i in range(len(PlayerIs['Ship']['ShipModification'])):
     if ModPlayerIs != None:
         ModIs = ShipModifications[ModPlayerIs]
         if ModIs['ModType'] == 1:
-            PlayerShipHP += (ModIs['ModValue'] * (ModPlayer['ModificationLevel'] * ModLevelCoeff))
+            PlayerShipHP += (ModIs['ModValue'] * (1 + ModPlayer['ModificationLevel'] * ModLevelCoeff))
+
+PlayerMaxItems = Ships[PlayerIs['Ship']['ShipID']]['ShipMaxItems']
+for i in range(len(PlayerIs['Ship']['ShipModification'])):
+    ModPlayerIs = PlayerIs['Ship']['ShipModification'][i]['ModificationID']
+    ModPlayer = PlayerIs['Ship']['ShipModification'][i]
+    if ModPlayerIs != None:
+        ModIs = ShipModifications[ModPlayerIs]
+        if ModIs['ModType'] == 6:
+            PlayerMaxItems += ModIs['ModValue'] + (5 * ModPlayer['ModificationLevel'])
 
 if StarIs.get("StarCivil"):
     if StarIs['StarCivil']['CivilReputation'] > 100:
@@ -1252,6 +1416,6 @@ except (KeyError):
     LevelRangIs = LevelRang[max(LevelRang)]
 
 for i, item in enumerate(PlayerIs['Ship']['Storage']):
-    if item['ItemCount'] >= Ships[PlayerIs['Ship']['ShipID']]['ShipMaxItems']:
-        itemget = item['ItemCount'] - Ships[PlayerIs['Ship']['ShipID']]['ShipMaxItems']
+    if item['ItemCount'] >= PlayerMaxItems:
+        itemget = item['ItemCount'] - PlayerMaxItems
         wl.InvRem(item['ItemID'], itemget)

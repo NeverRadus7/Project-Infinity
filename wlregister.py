@@ -7,9 +7,10 @@ PlanetClass = [
     "Залізна планета", #5
     "Водна планета", #6
     "Карбонові планети", #7
+    "Крижаний газовий гігант" #8
 ]
 
-MapFilter = ["Досліднецько-політичний", "Територія", "Спектральний"]
+MapFilter = ["Досліднецько-політичний", "Територія", "Спектральний", "Економічний"]
 ShipClasses = ["Малий", "Вантажний", "Досліднецьке судно", "Військовий фрегат"]
 FleetClasses = ["Великий корабель", "Флотоносець", "Конструкторний", "Космічний авантюрист"]
 
@@ -170,9 +171,16 @@ ShipModifications = [
         "ModCoust": 40_000_000,
         "ModValue": {'damage': 20, 'interval': 2}
     },
+    {
+        "ModID": 19,
+        "ModType": 6,
+        "ModName": "Контейнер на +50 предметів",
+        "ModCoust": 100_000,
+        "ModValue": 50
+    }
 ]
-#                         0            1                2                3                      4                                        5
-ModificationType = ["Паливні баки", "Броня", "Досліднецькі прибори", "Гармати", "Прибори точності та наведення", "Двигуни, варп-двигуни, гіперпросторові двигуни"]
+#                         0            1                2                3                      4                                        5                                     6
+ModificationType = ["Паливні баки", "Броня", "Досліднецькі прибори", "Гармати", "Прибори точності та наведення", "Двигуни, варп-двигуни, гіперпросторові двигуни", "Хранилище та контейнери"]
 
 Ships = [
     {
@@ -265,10 +273,10 @@ ItemsType = [
 
 ItemsDB = [
     {"ItemID": 0, "ItemName": 'Ракетне паливо', "ItemType": 0,"ItemEconomicType": 1,"ItemCoust": 200},
-    {"ItemID": 1, "ItemName": 'Будівельні матеріали', "ItemType": 3,"ItemEconomicType": 3,"ItemCoust": 15_000_000},
-    {"ItemID": 2, "ItemName": "Очишений метал: Золото", "ItemType": 1, "ItemEconomicType": 1, "ItemCoust": 15_000},
-    {'ItemID': 3, 'ItemName': 'Реактивна сталь', 'ItemType': 1, 'ItemEconomicType': 3, 'ItemCoust': 90_000_00},
-    {'ItemID': 4, 'ItemName': 'Тераформічні бактерії та хімія', 'ItemType': 3, 'ItemEconomicType': 4, 'ItemCoust': 5_000_000},
+    {"ItemID": 1, "ItemName": 'Будівельні матеріали', "ItemType": 3,"ItemEconomicType": 3,"ItemCoust": 30_000},
+    {"ItemID": 2, "ItemName": "Очишений метал: Золото", "ItemType": 1, "ItemEconomicType": 1, "ItemCoust": 1_000},
+    {'ItemID': 3, 'ItemName': 'Реактивна сталь', 'ItemType': 1, 'ItemEconomicType': 3, 'ItemCoust': 100_000},
+    {'ItemID': 4, 'ItemName': 'Тераформічні бактерії та хімія', 'ItemType': 3, 'ItemEconomicType': 4, 'ItemCoust': 500_000},
     {'ItemID': 5, 'ItemName': 'Копалина: Залізна руда ☆☆☆☆☆', 'ItemType': 1, 'ItemEconomicType': 7, 'ItemCoust': 50},
     {'ItemID': 6, 'ItemName': 'Копалина: Алюмінюєва руда ☆☆☆☆☆', 'ItemType': 1, 'ItemEconomicType': 7, 'ItemCoust': 30},
     {'ItemID': 7, 'ItemName': 'Копалина: Осмієва руда ★☆☆☆☆', 'ItemType': 1, 'ItemEconomicType': 7, 'ItemCoust': 60},

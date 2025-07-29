@@ -5,7 +5,9 @@ WallSymbol = "━"
 SavePath = "save/save.json"
 MapPath = "save/map.json"
 
+# Gameplay settings
 MaxLevel = 999 # Default: 100
+MaxNavyLevel = 100 # Default: 100
 XpToLevel = 10000 # Default: 10000
 FuelRequire = 1 # Default: 1
 DebugInfo = False # Default: False
@@ -19,13 +21,15 @@ SymbolOfStarPinned = "★⚐ "
 IntelToCredits = 3 # Default: 3
 BattleGrantToCredits = 7 # Default: 7
 
-# Map settings
-MapSeed = 0x2976579765 # Default: 0x2976579765| /!\ Changing this paramets will break your game
+# Map settings /!\ Changing this paramets will break your game
+MapSeed = 0x2976579765 # Default: 0x2976579765| 
 MapCivilRange = 20 # Default: 20
+PlanetColonyRange = 75 # Default: 75
 CivilEcoMin = 0.1 # Default: 0.1
 CivilEcoMax = 1.5 # Default: 1.5
 MinFulling = 1 # Default: 1
-MaxFulling = 80 # Default: 90
+MaxFulling = 60 # Default: 60
+StarViewMaxPlanets = 8
 SymbolFulling = "≡"
 
 # Battle settings
@@ -43,6 +47,7 @@ CoefficientsPlanetClasses = {
     5: 0.0, # Default: 0.125
     6: 0.125, # Default: 04
     7: 0.0, # Default: 0.125
+    8: 0.125 # Default: 0.125
 }
 
 CoefficientsPlanetSpecial = {

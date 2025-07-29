@@ -21,65 +21,50 @@ def GenMap(seed):
     
     def PlanetGen(x):
         Planets = []
+        PlanetClassTemplate = {
+            0: {"planet_mass": random.uniform(0.6,5), "planet_size": 5, "planet_colore": {'main': 'yellow', 'second': 'l_yellow', 'third': 'gray'}},
+            1: {"planet_mass": random.uniform(0.6,5), "planet_size": 5, "planet_colore": {'main': "blue", 'second': "l_blue", 'third': "white"}},
+            2: {"planet_mass": random.uniform(0.5,4), "planet_size": 5, "planet_colore": {'main': "yellow", 'second': "gray", 'third': "white"}},
+            3: {"planet_mass": random.uniform(9,21), "planet_size": 7, "planet_colore": random.choice([{'main': "red", 'second': "l_red", 'third': "gray"}, 
+                                                                                                       {'main': "red", 'second': "l_red", 'third': "red"}, 
+                                                                                                       {'main': "blue", 'second': "l_blue", 'third': "l_blue"}, 
+                                                                                                       {'main': "yellow", 'second': "l_yellow", 'third': "l_yellow"}])},
+            4: {"planet_mass": random.uniform(0.8,1.5), "planet_size": 5, "planet_colore": {'main': "green", 'second': "blue", 'third': "white"}},
+            5: {"planet_mass": random.uniform(0.8,1.5), "planet_size": 5, "planet_colore": {'main': "gray", 'second': "l_yellow", 'third': "gray"}},
+            6: {"planet_mass": random.uniform(0.6,2), "planet_size": 5, "planet_colore": {'main': "blue", 'second': "blue", 'third': "white"}},
+            7: {"planet_mass": random.uniform(0.6,5), "planet_size": 5, "planet_colore": {'main': "yellow", 'second': "gray", 'third': "gray"}},
+            8: {"planet_mass": random.uniform(9,21), "planet_size": 7, "planet_colore": {'main': "blue", 'second': "l_blue", 'third': "l_blue"}}
+        }
         for gen in range(x):
             gen += 1
             planet_number = gen
             planet_name = f"{solar_name}-{planet_number}"
             planet_range = random.randint(1,100)
 
+            planet_atmo_albedo = random.uniform(0,1)
+            planet_atmo_greenhouse = random.uniform(0,1)
+
+            #planet_distance = random.uniform(1e+11*planet_number, 2e+11*planet_number) * planet_number
+            planet_distance = random.uniform(1e+11*(planet_number * 0.4), 2e+11*(planet_number * 0.4)) * planet_number
+            planet_ao = planet_distance / (1.496e+11)
+            planet_effective_temp = ((solar_luminos * 1e+5)/ (16 * math.pi * 5.67e-8 * (planet_ao**2))) ** (1/4)
+            planet_kelvin_temp = planet_effective_temp * ((1 + (planet_atmo_greenhouse + planet_atmo_albedo)) ** (1/4))
+            planet_temp = planet_kelvin_temp - 273.15
+
             if planet_range <= 100:
-                planet_class = random.choice([0,1,2,5])
+                planet_class = random.choice([0,2,5])
             if planet_range <= 30:
                 planet_class = 3
             if planet_range <= 5:
                 planet_class = 4
+            if planet_temp <= -80:
+                planet_class = 1
+                if planet_range <= 30:
+                    planet_class = 8
 
-            planet_atmo_albedo = random.uniform(0,1)
-            planet_atmo_greenhouse = random.uniform(0,1)
-
-            planet_distance = random.uniform(1e+11*planet_number, 2e+11*planet_number) * planet_number
-            planet_ao = planet_distance / (1.496e+11)
-            planet_effective_temp = ((solar_luminos * 1e+4)/ (16 * math.pi * 5.67e-8 * (planet_ao**2))) ** (1/4)
-            planet_kelvin_temp = planet_effective_temp * ((1 + (planet_atmo_greenhouse + planet_atmo_albedo)) ** (1/4))
-            planet_temp = planet_kelvin_temp - 273.15
-
-            if planet_class == 0:
-                planet_mass = random.uniform(0.6,5)
-                planet_size = 5
-                planet_colore = {'main': "yellow", 'second': "l_yellow", 'third': "gray"}
-            elif planet_class == 1:
-                planet_mass = random.uniform(0.6,5)
-                planet_size = 5
-                planet_colore = {'main': "blue", 'second': "l_blue", 'third': "white"}
-            elif planet_class == 2:
-                planet_mass = random.uniform(0.5,4)
-                planet_size = 5
-                planet_colore = {'main': "yellow", 'second': "gray", 'third': "white"}
-            elif planet_class == 3:
-                planet_mass = random.uniform(9,18)
-                planet_size = 7
-                planet_colore = random.choice([
-                        {'main': "red", 'second': "l_red", 'third': "gray"}, 
-                        {'main': "red", 'second': "l_red", 'third': "red"}, 
-                        {'main': "blue", 'second': "l_blue", 'third': "l_blue"}, 
-                        {'main': "yellow", 'second': "l_yellow", 'third': "l_yellow"}
-                ])
-            elif planet_class == 4:
-                planet_mass = random.uniform(0.8,1.5)
-                planet_size = 5
-                planet_colore = {'main': "green", 'second': "blue", 'third': "white"}
-            elif planet_class == 5:
-                planet_mass = random.uniform(0.8,1.5)
-                planet_size = 5
-                planet_colore = {'main': "gray", 'second': "l_yellow", 'third': "gray"}
-            elif planet_class == 6:
-                planet_mass = random.uniform(0.6,2)
-                planet_size = 5
-                planet_colore = {'main': "blue", 'second': "blue", 'third': "white"}
-            elif planet_class == 7:
-                planet_mass = random.uniform(0.6,5)
-                planet_size = 5
-                planet_colore = {'main': "yellow", 'second': "gray", 'third': "gray"}
+            planet_mass = PlanetClassTemplate[planet_class]['planet_mass']
+            planet_size = PlanetClassTemplate[planet_class]['planet_size']
+            planet_colore = PlanetClassTemplate[planet_class]['planet_colore']
 
             planet_live = False
             if random.randint(1,4) == 1:
@@ -94,6 +79,10 @@ def GenMap(seed):
                     planet_terraform_confirm = True
                 else:
                     pass
+
+            planet_rings = False
+            if random.randint(1,3) == 1:
+                planet_rings = True
     
             Planets.append(
                 {
@@ -110,6 +99,7 @@ def GenMap(seed):
                     "PlanetAtmoGreenhouse": planet_atmo_greenhouse,
                     "PlanetDistance": planet_ao,
                     "PlanetTerraform": planet_terraform_confirm,
+                    "PlanetRings": planet_rings,
                     "PlanetLive": planet_live,
                     "PlanetViewSeed": random.randint(-1_000_000_000_000,1_000_000_000_000)
                 }
@@ -216,7 +206,7 @@ def GenMap(seed):
     }
 
     # Генератор колонії
-    if random.randint(1,100) <= settings.MapCivilRange:
+    if random.randint(1,100) <= settings.MapCivilRange and Starsystems['Planets']:
         Economic = random.choice(wlregister.Economics)
         
         # Генерація списка товарів
@@ -230,13 +220,14 @@ def GenMap(seed):
         Starsystems['StarCivil'] = {}
 
         for i, planet in enumerate(Starsystems['Planets']):
-            if random.randint(1,100) <= 75:
-                if not planet['PlanetClass'] == 3:
+            if random.randint(1,100) <= settings.PlanetColonyRange:
+                if not planet['PlanetClass'] in [3,8]:
                     planet['PlanetColony'] = {}
                     planet['PlanetColony']['ColonyName'] = ranname() + " Colony"
                     planet['PlanetColony']['ColonyLevel'] = random.randint(1,100)
                     planet['PlanetColony']['ColonyPop'] = random.randint(100,100_000_000)
                     planet['PlanetColony']['ColonyBuild'] = {"Enabled": False, "EndBuild": 0}
+
 
         Pops = 0
         for i, planet in enumerate(Starsystems['Planets']):
@@ -258,6 +249,7 @@ def GenMap(seed):
                 "NavyCruisers": random.randint(0,2),
                 "NavyShips": random.randint(1,20)
             }
+
         if Pops >= 100_000_000:
             CivilSecurity = 1
             CivilStable = random.randint(40,90)
@@ -266,6 +258,7 @@ def GenMap(seed):
                 "NavyCruisers": random.randint(2,10),
                 "NavyShips": random.randint(20,75)
             }
+
         if Pops >= 1_000_000_000:
             CivilSecurity = 2
             CivilStable = random.randint(90,100)
@@ -286,6 +279,10 @@ def GenMap(seed):
             "StationType": random.randint(0,2),
             "StationStoreList": random.sample(range(len(StationStoreList)), int(random.randint(1,len(StationStoreList)))) 
         }
+
+        # Перевіряємо, чи є в цій системі населення?
+        if Pops == 0:
+            Starsystems['StarCivil'] = {}
 
     # Імпорт всіх змін, тепер з заблокованного mapchanges_lock.py
     for abis in range(len(CustomStarsLock)):

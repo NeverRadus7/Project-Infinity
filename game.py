@@ -13,6 +13,96 @@ if CommandInput == "1":
 
 # Зоряна система
 if CommandInput == "2":
+    def StarView():
+        PlanetSymbols = ["●", "●⚑", "―●―", "―●―⚑", 
+                         "⬤", "⬤⚑", "──⬤──", "──⬤──⚑"]
+        PlanetStr = ""
+
+        for i in range(len(StarIs['Planets'])):
+            PlanetIs = StarIs['Planets'][i]
+            PlanetColors = {
+                0: Colore.Yellow,
+                1: Colore.Cyan,
+                2: Colore.LightYellow,
+                3: Colore.White,
+                4: Colore.Green,
+                5: Colore.Gray,
+                6: Colore.Blue,
+                7: Colore.LightRed,
+                8: Colore.Cyan
+            }
+            if PlanetIs['PlanetClass'] in [0,1,2,4,5,6,7]:
+                if PlanetIs['PlanetRings'] == True and PlanetIs.get('PlanetColony'):
+                    PlanetSymbol = wl.TextColore(PlanetSymbols[3], PlanetColors[PlanetIs['PlanetClass']])
+                elif PlanetIs['PlanetRings'] == True:
+                    PlanetSymbol = wl.TextColore(PlanetSymbols[2], PlanetColors[PlanetIs['PlanetClass']])
+                elif PlanetIs.get('PlanetColony'):
+                    PlanetSymbol = wl.TextColore(PlanetSymbols[1], PlanetColors[PlanetIs['PlanetClass']])
+                else:
+                    PlanetSymbol = wl.TextColore(PlanetSymbols[0], PlanetColors[PlanetIs['PlanetClass']])
+            else:
+                if PlanetIs['PlanetRings'] == True:
+                    PlanetSymbol = wl.TextColore(PlanetSymbols[6], PlanetColors[PlanetIs['PlanetClass']])
+                else:
+                    PlanetSymbol = wl.TextColore(PlanetSymbols[4], PlanetColors[PlanetIs['PlanetClass']])
+
+            PlanetStr += f"{Colore.Gray + " - - " + Colore.Reset}{PlanetSymbol}"
+
+            if i >= StarViewMaxPlanets:
+                PlanetStr += f"{Colore.Gray} - - ...{Colore.Reset}"
+                break
+        
+
+        StarSym = 0
+
+
+        if StarIs['Class'] == "O":
+            ColoreStar = Colore.Blue
+        elif StarIs['Class'] == "B":
+            ColoreStar = Colore.Cyan
+        elif StarIs['Class'] == "A":
+            ColoreStar = Colore.White
+        elif StarIs['Class'] == "F":
+            ColoreStar = Colore.LightYellow
+        elif StarIs['Class'] == "G":
+            ColoreStar = Colore.Yellow
+        elif StarIs['Class'] == "K":
+            ColoreStar = Colore.LightRed
+        elif StarIs['Class'] == "M":
+            ColoreStar = Colore.Red
+        elif StarIs['Class'] == "L":
+            ColoreStar = Colore.Red
+        elif StarIs['Class'] == "T":
+            ColoreStar = Colore.Red
+        elif StarIs['Class'] == "NS":
+            ColoreStar = Colore.White
+        elif StarIs['Class'] == "BH":
+            ColoreStar = Colore.Yellow 
+            StarSym = 1
+        else:
+            ColoreStar = Colore.Gray
+
+        
+        if StarSym == 0:
+            print(
+                    f"{ColoreStar}       |{Colore.Reset}\n"
+                    f"{ColoreStar}  \\ ███████ /{Colore.Reset}\n"
+                    f"{ColoreStar}  ███████████{Colore.Reset}\n"
+                    f"{ColoreStar}― ███████████ ―{Colore.Reset}{PlanetStr}\n"
+                    f"{ColoreStar}  ███████████{Colore.Reset}\n"
+                    f"{ColoreStar}  / ███████ \\{Colore.Reset} \n"
+                    f"{ColoreStar}       |{Colore.Reset}\n"
+            )
+            
+        elif StarSym == 1:
+            print(
+                    f"{ColoreStar}   █████████{Colore.Reset}\n"
+                    f"{ColoreStar}  ██       ██{Colore.Reset}\n"
+                    f"{ColoreStar}███████████████{Colore.Reset}{PlanetStr}\n"
+                    f"{ColoreStar}  ██       ██{Colore.Reset}\n"
+                    f"{ColoreStar}   █████████{Colore.Reset} \n"
+            )
+
     def StarInfo():
         print(
             f"{colorama.Back.BLUE} Загальна інформація {colorama.Back.RESET}\n"
@@ -26,6 +116,17 @@ if CommandInput == "2":
         )
     
     def StarPolInfo():
+        if StarIs['StarCivil']['CivilEco'] > 1.4:
+            ecosymbol = wl.TextColore("▲▲▲", Colore.Red)
+        if StarIs['StarCivil']['CivilEco'] > 1.1:
+            ecosymbol = wl.TextColore("▲", Colore.Red)
+        if StarIs['StarCivil']['CivilEco'] >= 0.8 and StarIs['StarCivil']['CivilEco'] <= 1.1:
+            ecosymbol = wl.TextColore("►", Colore.Yellow)
+        if StarIs['StarCivil']['CivilEco'] < 0.8:
+            ecosymbol = wl.TextColore("▼", Colore.Green)
+        if StarIs['StarCivil']['CivilEco'] < 0.2:
+            ecosymbol = wl.TextColore("▼▼▼", Colore.Green)
+
         print(
             f"{colorama.Back.BLUE} Політична інформація {colorama.Back.RESET}\n"
             f" ▪ Економічний устрій: {Economics[StarIs['StarCivil']['CivilEconomicType']]}\n"
@@ -33,7 +134,7 @@ if CommandInput == "2":
             f" ▪ Стабільність: {StarIs['StarCivil']['CivilStable']}%\n"
             f" ▪ Популяція: {StarIs['StarCivil']['CivilPop']:,}\n"
             f" ▪ Станція: {StarIs['StarCivil']['CivilStation']['StationName']}\n"
-            f" ▪ Економічна стала: {StarIs['StarCivil']['CivilEco']}\n"
+            f" ▪ Ціновий рівень: {ecosymbol}\n"
         )
         if StarIs.get("StarControled"):
             print(
@@ -41,7 +142,7 @@ if CommandInput == "2":
             )
     
     def StarPlayerInfo():
-        if StarIs.get("PlayerPinned") or StarIs.get("StarControled") or StarIs.get("StarIntel") or PlayerIs['Navy']['NavyLocation'] == StarIs['StarID']:
+        if StarIs.get("PlayerPinned") or StarIs.get("StarControled") or StarIs.get("StarIntel") or PlayerIs['Navy']['NavyLocation'] == StarIs['StarID'] or StarIs.get('StarCivil'):
             print(f"{colorama.Back.BLUE} Користувацька інформація {colorama.Back.RESET}")
         if StarIs.get("PlayerPinned"):
             print(
@@ -114,6 +215,7 @@ if CommandInput == "2":
         StarList.append("Піратська діяльність")
             
     wl.Skip()
+    StarView()
     if DebugInfo == True: print(f"{Colore.Gray}ID: {StarIs['StarID']}{Colore.Reset}")
     StarInfo()
     if StarIs.get("StarCivil"): StarPolInfo()
@@ -188,7 +290,7 @@ if CommandInput == "2":
                 wl.Menu(Economics)
                 
                 EconomicChoice = int(input("Вибрати: ")) - 1
-                
+                pi.StarChange(StarIs['StarID'], 'Star', StarIs['Star'])
                 pi.StarChange(
                     StarIs['StarID'], 
                     "StarCivil", 
@@ -210,7 +312,6 @@ if CommandInput == "2":
                         "CivilPop": random.randint(100,200)
                     }
                 )
-                wl.Skip()
                 pi.StarChange(StarIs['StarID'], "InfoDate", wl.Date())
                 pi.StarChange(StarIs['StarID'], "InfoIncome", 0)
                 PlayerIs['Statistic']['StarColony'] += 1
@@ -414,12 +515,16 @@ if CommandInput == "2":
         if NavyChoice == f"{Colore.Red}Завоювати систему{Colore.Reset}":
             Battle = pi.Navy("Завоювання системи | Війна")
             if Battle == True:
+                StarIs['StarStable'] = rwos.randint(1,20)
                 PlayerIs['Statistic']['StarColony'] += 1
                 PlayerIs['Statistic']['StarControled'] += 1
+                pi.StarChange(StarIs['StarID'], 'Star', StarIs['Star'])
                 pi.StarChange(StarIs['StarID'], 'StarCivil', StarIs['StarCivil'])
                 pi.StarChange(StarIs['StarID'], 'Planets', StarIs['Planets'])
                 pi.StarChange(StarIs['StarID'], 'StarControled', True)
                 pi.StarChange(StarIs['StarID'], 'InfoDate', wl.Date())
+            else:
+                PlayerIs['Navy']['NavyDisable'] = True
 
         if NavyChoice == "Виділити з флоту":
             wl.Skip()
@@ -441,8 +546,18 @@ if CommandInput == "2":
             if not Star.get("StarControled") and not Star.get("StarCivil"):
                 wl.Error("Система не підкоряється вам!")
             else:
-                Star['StarCivil']['Navy']['NavyCruisers'] += CruisersCount
-                Star['StarCivil']['Navy']['NavyShips'] += ShipsCount
+                if PlayerIs['Navy']['NavyCruisers'] >= CruisersCount:
+                    PlayerIs['Navy']['NavyCruisers'] -= CruisersCount
+                    Star['StarCivil']['Navy']['NavyCruisers'] += CruisersCount
+                else:
+                    wl.Error("Невисточає крейсерів")
+                
+                if PlayerIs['Navy']['NavyShips'] >= ShipsCount:
+                    PlayerIs['Navy']['NavyShips'] -= ShipsCount
+                    Star['StarCivil']['Navy']['NavyShips'] += ShipsCount
+                else:
+                    wl.Error("Невисточає кораблів")
+
                 pi.StarChange(Star['StarID'], 'StarCivil', Star['StarCivil'])
 
     if StarInput == "Полювання на піратів":
@@ -540,7 +655,7 @@ if CommandInput == "3":
                 f" ▪ Діаметр екватора: {(PlanetIs['PlanetSize'] * pran.randint(300,10000)):,} км\n"
                 f" ▪ Альбедо: {PlanetIs['PlanetAtmoAlbedo']}\n"
                 f" ▪ Парниковий ефект: {PlanetIs['PlanetAtmoGreenhouse']}\n"
-                f" ▪ Дистанція до зірки: {PlanetIs['PlanetDistance']:,} а.о\n"
+                f" ▪ Велика піввісь: {PlanetIs['PlanetDistance']:,} а.о\n"
                 
             )
 
@@ -688,7 +803,7 @@ if CommandInput == "4":
                     PlayerIs['Ship']['Fuel'] += FuelMaxCapacity - FuelNow
                     PlayerIs['Money'] -= FuelCoust
                 else:
-                    wl.Error("Не достатньо грошей")
+                    wl.Error("Недостатньо грошей")
             else:
                 wl.Error(f"{PlayerIs['Ship']['ShipName']} вже заправленний")
         
@@ -765,7 +880,7 @@ if CommandInput == "4":
                     ItemCoustClear = int(int(ItemsDB[ItemIs]['ItemCoust']) * StarIs['StarCivil']['CivilEco']) 
                     ItemCoust = int(int(ItemsDB[ItemIs]['ItemCoust']) * StarIs['StarCivil']['CivilEco']) * Count
                     if PlayerIs['Money'] <= ItemCoust:
-                        wl.Error("Не достатньо грошей")
+                        wl.Error("Недостатньо грошей")
                     else:
                         StarIs['StarCivil']['CivilEco'] += (1 - (ItemCoustClear/(ItemCoust)))/10
                         if StarIs['StarCivil']['CivilEco'] < CivilEcoMin:
@@ -774,7 +889,9 @@ if CommandInput == "4":
                             if StarIs['StarCivil']['CivilEco'] > CivilEcoMax:
                                 StarIs['StarCivil']['CivilEco'] = CivilEcoMax
                         pi.StarChange(StarIs['StarID'], 'StarCivil', StarIs['StarCivil'])
+                        pi.StarChange(StarIs['StarID'], 'Planets', StarIs['Planets'])
                         PlayerIs['Money'] -= ItemCoust
+                        wl.Loading("Проводемо транзакцію", 3)
                         wl.InvAdd(ItemIs, Count)
 
             if StationStoreChoice == "Продати":
@@ -805,6 +922,8 @@ if CommandInput == "4":
                             if StarIs['StarCivil']['CivilEco'] > CivilEcoMax:
                                 StarIs['StarCivil']['CivilEco'] = CivilEcoMax
                         pi.StarChange(StarIs['StarID'], 'StarCivil', StarIs['StarCivil'])
+                        pi.StarChange(StarIs['StarID'], 'Planets', StarIs['Planets'])
+                        wl.Loading("Проводемо транзакцію", 3)
                         wl.InvRem(ItemIs['ItemID'], int(SellLot))
 
         if StationCom == "Верф крейсерів":
@@ -867,7 +986,7 @@ if CommandInput == "4":
                         wl.Loading("Встановлюємо модифікацію", 3)
                     else:
                         wl.Error("У вашему кораблі вже встановлена модифікація!")
-                else: wl.Error("Не достатньо грошей!")
+                else: wl.Error("Недостатньо грошей!")
             
             if IsCategories == "Продати модифікацію":
                 wl.Skip()
@@ -906,20 +1025,73 @@ if CommandInput == "4":
 
         if StationCom == "Верф флоту":
             wl.Skip()
-            NavyList = ["Придбати більше кораблів"]
+            NavyList = ["Придбати більше КРЕЙСЕРІВ","Придбати більше КОРАБЛІВ", "Покращити рівень флоту"]
 
             NavyChoice = wl.ChoiceMenu(NavyList)
-            if NavyChoice == "Придбати більше кораблів":
-                wl.Skip()
-                ShipsCount = int(input("Скільки кораблів: "))
 
-                ShipsCoust = (ShipsCount * 1_250_000)
+            if NavyChoice == "Придбати більше КРЕЙСЕРІВ":
+                wl.Skip()
+                ShipsCount = int(input("Скільки крейсерів: "))
+
+                ShipsCoust = (ShipsCount * 100_000_000) * StarIs['StarCivil']['CivilEco']
+                ShipsCoust = int(ShipsCoust)
+                wl.Quation(f"Це буде коштувати за {ShipsCount}: {wl.TextColore(f"{ShipsCoust:,} ©", Colore.Yellow)}{Colore.Gray}, продовжити?{Colore.Reset}")
 
                 if PlayerIs['Money'] >= ShipsCoust:
-                    PlayerIs['Navy']['NavyShips'] += ShipsCount
+                    if PlayerIs['Navy']['NavyCruisers'] == 0 and PlayerIs['Navy']['NavyShips'] == 0:
+                        PlayerIs['Navy']['NavyDisable'] = False
+                        PlayerIs['Navy']['NavyLocation'] = PlayerIs['Location']
+                    PlayerIs['Money'] -= ShipsCoust
+                    PlayerIs['Navy']['NavyCruisers'] += ShipsCount
+                    wl.Loading("Підготовка крейсерів", 3)
                 else:
                     wl.Error("Не висточає грошей!")
 
+            if NavyChoice == "Придбати більше КОРАБЛІВ":
+                wl.Skip()
+                ShipsCount = int(input("Скільки кораблів: "))
+
+                ShipsCoust = (ShipsCount * 1_250_000) * StarIs['StarCivil']['CivilEco']
+                ShipsCoust = int(ShipsCoust)
+                wl.Quation(f"Це буде коштувати за {ShipsCount}: {wl.TextColore(f"{ShipsCoust:,} ©", Colore.Yellow)}{Colore.Gray}, продовжити?{Colore.Reset}")
+
+                if PlayerIs['Money'] >= ShipsCoust:
+                    if PlayerIs['Navy']['NavyCruisers'] == 0 and PlayerIs['Navy']['NavyShips'] == 0:
+                        PlayerIs['Navy']['NavyDisable'] = False
+                        PlayerIs['Navy']['NavyLocation'] = PlayerIs['Location']
+                    PlayerIs['Money'] -= ShipsCoust
+                    PlayerIs['Navy']['NavyShips'] += ShipsCount
+                    wl.Loading("Підготовка кораблів", 3)
+                else:
+                    wl.Error("Не висточає грошей!")
+
+            if NavyChoice == "Покращити рівень флоту":
+                wl.Skip()
+
+                NewNavyLevel = int(PlayerIs['Navy']['NavyLevel']) + 1
+                NewNavyLevelLable = NewNavyLevel
+                CurrentNavyLevel = int(PlayerIs['Navy']['NavyLevel'])
+
+                if NewNavyLevel == MaxNavyLevel:
+                    NewNavyLevelLable = "MAX"
+
+                if NewNavyLevel <= MaxNavyLevel:
+                    Coust = 25_000_000 * NewNavyLevel
+                    Coust *= StarIs['StarCivil']['CivilEco']
+                    Coust = int(Coust)
+                    wl.Skip()
+                    wl.CenterText("Покращення рівня флоту")
+                    wl.CenterText(f"                       {Colore.Green}{CurrentNavyLevel}{Colore.Gray} ━━━━━━━━━━━━━━━━━━━━━━► {Colore.Yellow}{NewNavyLevelLable}{Colore.Reset}")
+                    wl.CenterTextEnd(1)
+                    wl.Quation(f"Ви дійсно хочете покращити рівень флоту? Це буде коштувати: {wl.TextColore(f"{Coust:,} ©", Colore.Yellow)}")
+
+                    if PlayerIs['Money'] >= Coust:
+                        PlayerIs['Navy']['NavyLevel'] += 1
+                        wl.Loading("Вчимо офіцерів та команду", 3)
+                    else:
+                        wl.Error("Недостатньо грошей!")
+                else:
+                    wl.Error("Флот вже має максимальний рівень!")
 # Різне
 if CommandInput == "5":
     wl.Skip()
@@ -927,9 +1099,10 @@ if CommandInput == "5":
 
     if wl.Level >= 30:
         OtherList.append("Ваші колонії")
-    
+
     if wl.Level >= 50:
-        OtherList.append("Флот")
+        if PlayerIs['Navy']['NavyDisable'] == False:
+            OtherList.append("Флот")
 
     OtherCom = wl.ChoiceMenu(OtherList)
     if OtherCom == "Статистика":
@@ -938,11 +1111,9 @@ if CommandInput == "5":
         print(f" ▪ Вивчено систем: {PlayerIs['Statistic']['StarInteled']:,}")
         print(f" ▪ Систем під контролем: {PlayerIs['Statistic']['StarControled']:,}")
         print(f" ▪ Колоній: {PlayerIs['Statistic']['StarColony']:,}")
-        print()
         print(f" ▪ Усього кредитів отримана з торгівлі: {PlayerIs['Statistic']['CreditsFromSelled']:,} ©")
         print(f" ▪ Усього кредитів отримана з досліджень: {PlayerIs['Statistic']['CreditsFromScience']:,} ©")
         if PlayerIs['Statistic']['IncomeFromColony'] > 0:
-            print()
             print(f" ▪ Прибуток з колонії: {PlayerIs['Statistic']['IncomeFromColony']:,} ©")
         
         print()
@@ -956,11 +1127,13 @@ if CommandInput == "5":
 
     if OtherCom == "Мій корабель":
         wl.Skip()
+        wl.InfoText(title="Корабель")
         print(f"Ваш корабель: {PlayerIs['Ship']['ShipName']}")
         print(f"    ▪ Клас: {ShipClasses[Ships[PlayerIs['Ship']['ShipID']]['ShipClass']]}")
         print(f"    ▪ Міцність: {PlayerShipHP:,} HP")
         print(f"    ▪ Урон: {PlayerShipDMG:,} DM")
         print(f"    ▪ Інтервалів: {PlayerShipInterval:,}")
+        print(f"    ▪ Макс. місткість: {PlayerMaxItems:,} (+{PlayerMaxItems-Ships[PlayerIs['Ship']['ShipID']]['ShipMaxItems']})")
         print(f"    ▪ Макс. дистанція стрибка: {Ships[PlayerIs['Ship']['ShipID']]['ShipTravelingDist']} (+{TravelDistation-Ships[PlayerIs['Ship']['ShipID']]['ShipTravelingDist']})")
         print(f"    ▪ Макс. палива: {Ships[PlayerIs['Ship']['ShipID']]['ShipMaxFuel']} (+{FuelMaxCapacity-Ships[PlayerIs['Ship']['ShipID']]['ShipMaxFuel']})")
         print(f"    ▪ Модифікації:")
@@ -1031,10 +1204,12 @@ if CommandInput == "5":
 
     if OtherCom == "Флот":
         wl.Skip()
-        print("Флот:")
+        wl.InfoText(title="Флот")
         print(f" ▪ Досвід флоту: {PlayerIs['Navy']['NavyLevel']}")
-        print(f" ▪ Кораблів: {PlayerIs['Navy']['NavyShips']}")
-        print(f" ▪ Бойовий рейтинг: {int(int(PlayerIs['Navy']['NavyShips']) * int(PlayerIs['Navy']['NavyLevel']) * (int(PlayerIs['Navy']['NavyLeader']['LeaderLevel'])/5)):,}")
+        print(f" ▪ Крейсерів: {PlayerIs['Navy']['NavyCruisers']:,}")
+        print(f" ▪ Кораблів: {PlayerIs['Navy']['NavyShips']:,}")
+        print(f" ▪ Бойовий рейтинг: {int(int(PlayerIs['Navy']['NavyShips'] * PlayerIs['Navy']['NavyCruisers']) * int(PlayerIs['Navy']['NavyLevel'])):,}")
+        print(f" ▪ Координати знаходження: {GenMap(PlayerIs['Navy']['NavyLocation'])['Star']} ({PlayerIs['Navy']['NavyLocation']})")
         input()
 
 # Перезавантажує гру, не зберігає процеси
