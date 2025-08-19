@@ -1,0 +1,11 @@
+#!/bin/bash
+
+$path = pwd
+
+cd pwd
+
+source python/bin/activate
+
+pip install colorama
+pip install pygetch
+pip install nickname_generator

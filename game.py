@@ -14,37 +14,34 @@ if CommandInput == "1":
 # Зоряна система
 if CommandInput == "2":
     def StarView():
-        PlanetSymbols = ["●", "●⚑", "―●―", "―●―⚑", 
-                         "⬤", "⬤⚑", "──⬤──", "──⬤──⚑"]
+        PlanetSymbols = ["●", "●⚑", "-●-", "-●-⚑", 
+                         "⬤", "⬤⚑", "-⬤-", "-⬤-⚑"]
         PlanetStr = ""
 
         for i in range(len(StarIs['Planets'])):
             PlanetIs = StarIs['Planets'][i]
-            PlanetColors = {
-                0: Colore.Yellow,
-                1: Colore.Cyan,
-                2: Colore.LightYellow,
-                3: Colore.White,
-                4: Colore.Green,
-                5: Colore.Gray,
-                6: Colore.Blue,
-                7: Colore.LightRed,
-                8: Colore.Cyan
+            PlanetColore = PlanetIs['PlanetClass']['TypeClass']
+            PlanetColorsClass = {
+                0: Colore.Green,
+                1: Colore.Yellow,
+                2: Colore.Blue,
+                3: Colore.Cyan,
+                4: Colore.Red,
+                5: Colore.LightYellow
             }
-            if PlanetIs['PlanetClass'] in [0,1,2,4,5,6,7]:
-                if PlanetIs['PlanetRings'] == True and PlanetIs.get('PlanetColony'):
-                    PlanetSymbol = wl.TextColore(PlanetSymbols[3], PlanetColors[PlanetIs['PlanetClass']])
-                elif PlanetIs['PlanetRings'] == True:
-                    PlanetSymbol = wl.TextColore(PlanetSymbols[2], PlanetColors[PlanetIs['PlanetClass']])
-                elif PlanetIs.get('PlanetColony'):
-                    PlanetSymbol = wl.TextColore(PlanetSymbols[1], PlanetColors[PlanetIs['PlanetClass']])
+
+            if PlanetIs['PlanetClass']['TypeClass'] in [0,1,2,3,4]:
+                if PlanetIs.get('PlanetColony'):
+                    PlanetSymbol = wl.TextColore(PlanetSymbols[1], PlanetColorsClass[PlanetColore])
                 else:
-                    PlanetSymbol = wl.TextColore(PlanetSymbols[0], PlanetColors[PlanetIs['PlanetClass']])
+                    PlanetSymbol = wl.TextColore(PlanetSymbols[0], PlanetColorsClass[PlanetColore])
+            elif PlanetIs['PlanetClass']['TypeClass'] == 5:
+                if PlanetIs.get('PlanetColony'):
+                    PlanetSymbol = wl.TextColore(PlanetSymbols[5], PlanetColorsClass[PlanetColore])
+                else:
+                    PlanetSymbol = wl.TextColore(PlanetSymbols[4], PlanetColorsClass[PlanetColore])
             else:
-                if PlanetIs['PlanetRings'] == True:
-                    PlanetSymbol = wl.TextColore(PlanetSymbols[6], PlanetColors[PlanetIs['PlanetClass']])
-                else:
-                    PlanetSymbol = wl.TextColore(PlanetSymbols[4], PlanetColors[PlanetIs['PlanetClass']])
+                PlanetSymbol = "NAN"
 
             PlanetStr += f"{Colore.Gray + " - - " + Colore.Reset}{PlanetSymbol}"
 
@@ -236,7 +233,7 @@ if CommandInput == "2":
                 elif PlanetIs['PlanetTerraform'] == True: CoefficientsPlanetSpecialIs = 'Terraform'
                 else: CoefficientsPlanetSpecialIs = 0
                 
-                PlanetIntel = int(random.randint(1000,2000) * (1 + (CoefficientsPlanetClasses[PlanetIs['PlanetClass']] + CoefficientsPlanetSpecial[CoefficientsPlanetSpecialIs] + pi.PlayerShipModificationAll(2))))
+                PlanetIntel = int(random.randint(1000,2000) * (1 + (CoefficientsPlanetClasses[0] + CoefficientsPlanetSpecial[CoefficientsPlanetSpecialIs] + pi.PlayerShipModificationAll(2))))
                 TotalIntel += int(PlanetIntel)
                 wl.Loading(f"Скануємо планету {PlanetIs['PlanetName']} {Colore.Blue}(+{PlanetIntel:,} ◭){Colore.Reset}", 3)
 
@@ -613,14 +610,17 @@ if CommandInput == "2":
 # Планети поточної зоряної системи
 if CommandInput == "3":
     wl.Skip()
-    if not StarIs.get("StarIntel"): wl.Error("Система не досліджена")
+    if not StarIs.get("StarIntel"): 
+        wl.Error("Система не досліджена")
+
     print(f"{colorama.Back.BLUE} Планети {StarIs['Star']} {colorama.Back.RESET}")
+
     for abs in range(len(StarIs['Planets'])):
         PlanetIs = StarIs['Planets'][abs]
 
         TerraformSymbol = ""
         if PlanetIs['PlanetTerraform'] == True:
-            TerraformSymbol = f"{colorama.Fore.GREEN} 𖤖{colorama.Fore.RESET}"
+            TerraformSymbol = f"{colorama.Fore.GREEN} ⌬{colorama.Fore.RESET}"
 
         ColonySymbol = ""
         if PlanetIs.get("PlanetColony") and PlanetIs['PlanetColony']['ColonyBuild']['Enabled'] == True:
@@ -628,7 +628,7 @@ if CommandInput == "3":
         elif PlanetIs.get("PlanetColony") and PlanetIs['PlanetColony']['ColonyBuild']['Enabled'] == False:
             ColonySymbol = f"{Colore.Green} ⚑{Colore.Reset}"
 
-        print(f"{abs+1}. {PlanetIs['PlanetName']}{TerraformSymbol}{ColonySymbol} - Клас: {PlanetClass[PlanetIs['PlanetClass']]} - Температура: {PlanetIs['PlanetTemp']} °C")
+        print(f"{abs+1}. {PlanetIs['PlanetName']}{TerraformSymbol}{ColonySymbol} - Клас: {PlanetClass['LiveClass'][PlanetIs['PlanetClass']['LiveClass']]} {PlanetClass['TempClass'][PlanetIs['PlanetClass']['TempClass']]} {PlanetClass['TypeClass'][PlanetIs['PlanetClass']['TypeClass']]} {PlanetClass['UniqueClass'][PlanetIs['PlanetClass']['UniqueClass']]}")
     
     print()
     
@@ -642,17 +642,15 @@ if CommandInput == "3":
     else:
         PlanetIs = StarIs['Planets'][PlanetChoice]
         def PlanetInfo():
-            pran = random.Random()
-            pran.seed(PlanetIs['PlanetViewSeed'])
             print(
                 f"{colorama.Back.BLUE} Інформація планети {colorama.Back.RESET}\n"
                 f" ▪ Планета: {PlanetIs['PlanetName']}\n"
-                f" ▪ Клас: {PlanetClass[PlanetIs['PlanetClass']]}\n"
+                f" ▪ Клас: {PlanetClass['LiveClass'][PlanetIs['PlanetClass']['LiveClass']]} {PlanetClass['TempClass'][PlanetIs['PlanetClass']['TempClass']]} {PlanetClass['TypeClass'][PlanetIs['PlanetClass']['TypeClass']]} {PlanetClass['UniqueClass'][PlanetIs['PlanetClass']['UniqueClass']]}\n"
                 f" ▪ Маса: {PlanetIs['PlanetMass']:,} M🜨\n"
                 f" ▪ Температура: {PlanetIs['PlanetTemp']} °C\n"
                 f" ▪ Температура (Келвін): {PlanetIs['PlanetKelvinTemp']} K\n"
                 f" ▪ Ефективна температура: {PlanetIs['PlanetEffectiveTemp']} K\n"
-                f" ▪ Діаметр екватора: {(PlanetIs['PlanetSize'] * pran.randint(300,10000)):,} км\n"
+                f" ▪ Діаметр екватора: {(PlanetIs['PlanetSize'] * random.randint(300,10000)):,} км\n"
                 f" ▪ Альбедо: {PlanetIs['PlanetAtmoAlbedo']}\n"
                 f" ▪ Парниковий ефект: {PlanetIs['PlanetAtmoGreenhouse']}\n"
                 f" ▪ Велика піввісь: {PlanetIs['PlanetDistance']:,} а.о\n"
@@ -665,6 +663,7 @@ if CommandInput == "3":
                 f" ▪ Колонія: {PlanetIs['PlanetColony']['ColonyName']}\n"
                 f" ▪ Популяція: {PlanetIs['PlanetColony']['ColonyPop']:,}\n"
                 f" ▪ Рівень: {PlanetIs['PlanetColony']['ColonyLevel']}\n"
+                f" ▪ Будівлей: {len(PlanetIs['PlanetColony']['ColonyBuildings'])}\n"
             )
 
             if PlanetIs['PlanetColony']['ColonyBuild']['Enabled'] == True:
@@ -697,9 +696,9 @@ if CommandInput == "3":
                             PlanetList.append(f"Побудувати колонію")
                             break
         
-        print(f"{colorama.Back.BLUE} Вигляд планети {colorama.Back.RESET}")
-        pi.PlanetView(PlanetIs['PlanetViewSeed'], PlanetIs['PlanetSize'], PlanetIs['PlanetColore'])
-        print()
+        #print(f"{colorama.Back.BLUE} Вигляд планети {colorama.Back.RESET}")
+        #pi.PlanetView(PlanetIs['PlanetViewSeed'], PlanetIs['PlanetSize'], PlanetIs['PlanetColore'])
+        #print()
 
         PlanetInfo()
         if PlanetIs.get("PlanetColony"): ColonyInfo()
@@ -1092,6 +1091,7 @@ if CommandInput == "4":
                         wl.Error("Недостатньо грошей!")
                 else:
                     wl.Error("Флот вже має максимальний рівень!")
+
 # Різне
 if CommandInput == "5":
     wl.Skip()

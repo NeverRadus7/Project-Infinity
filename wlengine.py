@@ -10,7 +10,7 @@
 
 # -- Base import ■ ▪ ∙ •
 import time, random, os, colorama, json, math, getch
-from datetime import datetime, timedelta, date
+from datetime import datetime, timedelta
 
 # -- Files import
 from galaxy.map import GenMap
@@ -1222,62 +1222,6 @@ class pi():
                 if ModIs['ModType'] == ModType:
                     Value += (ModIs['ModValue'] * (ModPlayerIs['ModificationLevel'] * ModLevelCoeff))
         return int(Value)
-    
-    def PlanetView(seed=0, radius=4,colore={}):
-        planetrand = random.Random()
-        planetrand.seed(seed)
-
-        if colore['main'] == "red": main = colorama.Fore.RED
-        if colore['main'] == "yellow": main = colorama.Fore.YELLOW
-        if colore['main'] == "blue": main = colorama.Fore.BLUE
-        if colore['main'] == "green": main = colorama.Fore.GREEN
-        if colore['main'] == "white": main = colorama.Fore.WHITE
-        if colore['main'] == "gray": main = colorama.Fore.LIGHTBLACK_EX
-        if colore['main'] == "l_red": main = colorama.Fore.LIGHTRED_EX
-        if colore['main'] == "l_yellow": main = colorama.Fore.LIGHTYELLOW_EX
-        if colore['main'] == "l_blue": main = colorama.Fore.LIGHTBLUE_EX
-        if colore['main'] == "l_green": main = colorama.Fore.LIGHTGREEN_EX
-
-        if colore['second'] == "red": second = colorama.Fore.RED
-        if colore['second'] == "yellow": second = colorama.Fore.YELLOW
-        if colore['second'] == "blue": second = colorama.Fore.BLUE
-        if colore['second'] == "green": second = colorama.Fore.GREEN
-        if colore['second'] == "white": second = colorama.Fore.WHITE
-        if colore['second'] == "gray": second = colorama.Fore.LIGHTBLACK_EX
-        if colore['second'] == "l_red": second = colorama.Fore.LIGHTRED_EX
-        if colore['second'] == "l_yellow": second = colorama.Fore.LIGHTYELLOW_EX
-        if colore['second'] == "l_blue": second = colorama.Fore.LIGHTBLUE_EX
-        if colore['second'] == "l_green": second = colorama.Fore.LIGHTGREEN_EX
-
-        if colore['third'] == "red": third = colorama.Fore.RED
-        if colore['third'] == "yellow": third = colorama.Fore.YELLOW
-        if colore['third'] == "blue": third = colorama.Fore.BLUE
-        if colore['third'] == "green": third = colorama.Fore.GREEN
-        if colore['third'] == "white": third = colorama.Fore.WHITE
-        if colore['third'] == "gray": third = colorama.Fore.LIGHTBLACK_EX
-        if colore['third'] == "l_red": third = colorama.Fore.LIGHTRED_EX
-        if colore['third'] == "l_yellow": third = colorama.Fore.LIGHTYELLOW_EX
-        if colore['third'] == "l_blue": third = colorama.Fore.LIGHTBLUE_EX
-        if colore['third'] == "l_green": third = colorama.Fore.LIGHTGREEN_EX
-
-
-
-        symbols = {
-            1: f'{main}█{colorama.Fore.RESET}',
-            2: f'{second}█{colorama.Fore.RESET}',
-            3: f'{third}█{colorama.Fore.RESET}'
-        }
-
-        for y in range(-radius, radius + 1):
-            for x in range(-radius * 2, radius * 2 + 1):
-                # Перевірка, чи точка знаходиться в колі
-                distance = math.sqrt((x / 2) ** 2 + y ** 2)
-                if distance <= radius:
-                    terrain = planetrand.choices([1, 2, 3], weights=[50, 30, 20])[0]
-                    print(symbols[terrain], end='')
-                else:
-                    print(' ', end='')
-            print()
 
 class game():
     class player():
@@ -1290,6 +1234,15 @@ class game():
         def mature(cycle):
             for i in range(cycle):
                 pi.Logic()
+
+    class docs():
+        def stars(x,y):
+            file = open("file.txt","w")
+            file.write()
+            file.close()
+
+            file = open("file.txt","a")
+            file.write()
 
 def ChoiceModificationSlot():
     wl.Skip()

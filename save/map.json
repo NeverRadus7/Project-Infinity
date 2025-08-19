@@ -1,1 +1,30 @@
-[]
+[
+    {
+        "StarID": 273,
+        "StarIntel": true
+    },
+    {
+        "StarID": 246,
+        "StarIntel": true
+    },
+    {
+        "StarID": 241,
+        "StarIntel": true
+    },
+    {
+        "StarID": 240,
+        "StarIntel": true
+    },
+    {
+        "StarID": 242,
+        "StarIntel": true
+    },
+    {
+        "StarID": 232,
+        "StarIntel": true
+    },
+    {
+        "StarID": 236,
+        "StarIntel": true
+    }
+]

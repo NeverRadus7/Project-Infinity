@@ -21,20 +21,7 @@ def GenMap(seed):
     
     def PlanetGen(x):
         Planets = []
-        PlanetClassTemplate = {
-            0: {"planet_mass": random.uniform(0.6,5), "planet_size": 5, "planet_colore": {'main': 'yellow', 'second': 'l_yellow', 'third': 'gray'}},
-            1: {"planet_mass": random.uniform(0.6,5), "planet_size": 5, "planet_colore": {'main': "blue", 'second': "l_blue", 'third': "white"}},
-            2: {"planet_mass": random.uniform(0.5,4), "planet_size": 5, "planet_colore": {'main': "yellow", 'second': "gray", 'third': "white"}},
-            3: {"planet_mass": random.uniform(9,21), "planet_size": 7, "planet_colore": random.choice([{'main': "red", 'second': "l_red", 'third': "gray"}, 
-                                                                                                       {'main': "red", 'second': "l_red", 'third': "red"}, 
-                                                                                                       {'main': "blue", 'second': "l_blue", 'third': "l_blue"}, 
-                                                                                                       {'main': "yellow", 'second': "l_yellow", 'third': "l_yellow"}])},
-            4: {"planet_mass": random.uniform(0.8,1.5), "planet_size": 5, "planet_colore": {'main': "green", 'second': "blue", 'third': "white"}},
-            5: {"planet_mass": random.uniform(0.8,1.5), "planet_size": 5, "planet_colore": {'main': "gray", 'second': "l_yellow", 'third': "gray"}},
-            6: {"planet_mass": random.uniform(0.6,2), "planet_size": 5, "planet_colore": {'main': "blue", 'second': "blue", 'third': "white"}},
-            7: {"planet_mass": random.uniform(0.6,5), "planet_size": 5, "planet_colore": {'main': "yellow", 'second': "gray", 'third': "gray"}},
-            8: {"planet_mass": random.uniform(9,21), "planet_size": 7, "planet_colore": {'main': "blue", 'second': "l_blue", 'third': "l_blue"}}
-        }
+
         for gen in range(x):
             gen += 1
             planet_number = gen
@@ -51,39 +38,76 @@ def GenMap(seed):
             planet_kelvin_temp = planet_effective_temp * ((1 + (planet_atmo_greenhouse + planet_atmo_albedo)) ** (1/4))
             planet_temp = planet_kelvin_temp - 273.15
 
-            if planet_range <= 100:
-                planet_class = random.choice([0,2,5])
-            if planet_range <= 30:
-                planet_class = 3
-            if planet_range <= 5:
-                planet_class = 4
-            if planet_temp <= -80:
-                planet_class = 1
-                if planet_range <= 30:
-                    planet_class = 8
+            planet_mass = random.uniform(0.1,44)
+            planet_size = random.choice(
+                [
+                    random.uniform(0.1,0.5), 
+                    random.uniform(0.5,1),
+                    random.uniform(1,5),
+                    random.uniform(5,10),
+                    random.uniform(10,50)
+                ]
+            )
+            planet_colore = random.randint(0,7)
+            planet_living_coef = random.randint(1,100)
 
-            planet_mass = PlanetClassTemplate[planet_class]['planet_mass']
-            planet_size = PlanetClassTemplate[planet_class]['planet_size']
-            planet_colore = PlanetClassTemplate[planet_class]['planet_colore']
+            # Default classification
+            planet_class_live = 2
+            planet_class_unique = 0
+            
+            # Classification of temperature
+            if planet_temp >= -273.15:
+                planet_class_temp = 6
+            if planet_temp >= -100:
+                planet_class_temp = 5
+            if planet_temp >= -50:
+                planet_class_temp = 4
+            if planet_temp >= -10:
+                planet_class_temp = 3
+            if planet_temp >= 30:
+                planet_class_temp = 2
+            if planet_temp >= 100:
+                planet_class_temp = 1
+            if planet_temp >= 300:
+                planet_class_temp = 0
+
+            # Classification of type
+            planet_class_type = random.randint(0, 4)
+            
+            if planet_size >= 11:
+                planet_class_type = 5
 
             planet_live = False
-            if random.randint(1,4) == 1:
-                if planet_temp >= -8 and planet_temp <= 25:
-                    planet_live = True
+            if random.randint(1,100) <= 5:
+                if planet_class_type in [0,1,2,3,4]:
+                    if planet_temp >= -20 and planet_temp <= 40:
+                        planet_live = True
+                        planet_class_live = 0
+                        planet_class_unique = 1
+                    else:
+                        planet_live = False
                 else:
-                    pass
+                    planet_class_live = 2
+                    planet_class_unique = 0
                 
             planet_terraform_confirm = False
-            if planet_class == 4 and planet_live == False:
-                if planet_temp >= -30 and planet_temp <= 50:
-                    planet_terraform_confirm = True
-                else:
-                    pass
+            if random.randint(1,100) <= 20:
+                if planet_class_type in [0,1,2,3,4]:
+                    if planet_living_coef >= 50 and planet_live == False:
+                        planet_terraform_confirm = True
+                        planet_class_live = 1
 
             planet_rings = False
-            if random.randint(1,3) == 1:
+            if random.randint(1,6) == 1:
                 planet_rings = True
     
+            planet_class = {
+                    "TypeClass": planet_class_type,
+                    "TempClass": planet_class_temp,
+                    "LiveClass": planet_class_live,
+                    "UniqueClass": planet_class_unique
+                }
+
             Planets.append(
                 {
                     "PlanetID": gen,
@@ -226,6 +250,7 @@ def GenMap(seed):
                     planet['PlanetColony']['ColonyName'] = ranname() + " Colony"
                     planet['PlanetColony']['ColonyLevel'] = random.randint(1,100)
                     planet['PlanetColony']['ColonyPop'] = random.randint(100,100_000_000)
+                    planet['PlanetColony']['ColonyBuildings'] = [0]
                     planet['PlanetColony']['ColonyBuild'] = {"Enabled": False, "EndBuild": 0}
 
 
