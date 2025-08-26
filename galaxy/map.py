@@ -292,12 +292,21 @@ def GenMap(seed):
                 "NavyCruisers": random.randint(10,100),
                 "NavyShips": random.randint(100,500)
             }
+
+        CivilUpgrade = []
+        if random.randint(1,5) == 1:
+            CivilUpgrade.append("Workshop")
+        if random.randint(1,5) == 1:
+            CivilUpgrade.append("Fleet_Shipyard")
+        if random.randint(1,5) == 1:
+            CivilUpgrade.append("Cruiser_Shipyard")
                 
         Starsystems['StarCivil']['CivilEconomicType'] = random.randint(0, len(wlregister.Economics)-1)
         Starsystems['StarCivil']['CivilEco'] = random.uniform(settings.CivilEcoMin,settings.CivilEcoMax)
         Starsystems['StarCivil']['CivilReputation'] = 50
         Starsystems['StarCivil']['CivilSecurity'] = CivilSecurity
         Starsystems['StarCivil']['CivilStable'] = CivilStable
+        Starsystems['StarCivil']['CivilUpgrade'] = CivilUpgrade
         Starsystems['StarCivil']['Navy'] = Navy
         Starsystems['StarCivil']['CivilStation'] = {
             "StationName": f"{ranname()} Station",

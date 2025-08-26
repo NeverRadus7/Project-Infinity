@@ -1,63 +1,107 @@
 {
     "Nickname": "Player",
-    "Location": 223,
+    "Location": 211,
     "Ship": {
-        "ShipID": 3,
-        "ShipName": "Anabelus co. EXP-LUPA",
+        "ShipID": 2,
+        "ShipName": "MILLYTECH QR-I",
         "ShipModification": [
             {
-                "ModificationID": 2,
-                "ModificationLevel": 0
+                "ModificationID": 17,
+                "ModificationLevel": 5
             },
             {
-                "ModificationID": 14,
-                "ModificationLevel": 0
+                "ModificationID": 9,
+                "ModificationLevel": 5
             },
             {
-                "ModificationID": 14,
-                "ModificationLevel": 0
+                "ModificationID": 17,
+                "ModificationLevel": 5
             },
             {
-                "ModificationID": 0,
-                "ModificationLevel": 0
-            },
-            {
-                "ModificationID": null,
-                "ModificationLevel": 0
-            },
-            {
-                "ModificationID": null,
-                "ModificationLevel": 0
+                "ModificationID": 17,
+                "ModificationLevel": 5
             }
         ],
         "Storage": [],
-        "Fuel": 6
+        "Fuel": 29
     },
-    "Fleet": [],
+    "Fleet": [
+        {
+            "FleetID": 0,
+            "FleetName": "ISC G-160 Booldog",
+            "Ships": [
+                {
+                    "ShipID": 3,
+                    "ShipName": "Anabelus co. EXP-LUPA",
+                    "ShipModification": [
+                        {
+                            "ModificationID": 2,
+                            "ModificationLevel": 0
+                        },
+                        {
+                            "ModificationID": 14,
+                            "ModificationLevel": 0
+                        },
+                        {
+                            "ModificationID": 14,
+                            "ModificationLevel": 0
+                        },
+                        {
+                            "ModificationID": 0,
+                            "ModificationLevel": 0
+                        },
+                        {
+                            "ModificationID": null,
+                            "ModificationLevel": 0
+                        },
+                        {
+                            "ModificationID": null,
+                            "ModificationLevel": 0
+                        }
+                    ],
+                    "Storage": [
+                        {
+                            "ItemID": 3,
+                            "ItemCount": 10
+                        },
+                        {
+                            "ItemID": 1,
+                            "ItemCount": 8
+                        }
+                    ],
+                    "Fuel": 22
+                }
+            ],
+            "Storage": [],
+            "Location": 212,
+            "Modules": {},
+            "Fuel": 199
+        }
+    ],
     "Navy": {
-        "NavyDisable": true,
-        "NavyLevel": 1,
-        "NavyCruisers": 0,
-        "NavyShips": 0,
-        "NavyLocation": 0
+        "NavyDisable": false,
+        "NavyLevel": 11,
+        "NavyCruisers": 16,
+        "NavyShips": 175,
+        "NavyLocation": 212
     },
-    "Money": 121251779,
-    "IntelBall": 137855,
-    "BattleScore": 0,
-    "XP": 217614,
+    "Money": 1e+99,
+    "IntelBall": 143738,
+    "BattleScore": 127156,
+    "XP": 842028,
     "Reputation": 0,
-    "WorldDay": 67,
+    "WorldDay": 5614,
     "Atribution": [],
     "Statistic": {
-        "StarInteled": 7,
-        "StarControled": 0,
-        "StarColony": 0,
+        "StarInteled": 8,
+        "StarControled": 2,
+        "StarColony": 2,
         "CreditsFromSelled": 0,
         "CreditsFromScience": 0,
-        "IncomeFromColony": 0
+        "IncomeFromColony": 26300
     },
     "MapSettings": {
         "Filter": 0
     },
-    "GameUpdate": 0
+    "GameUpdate": 4
 }

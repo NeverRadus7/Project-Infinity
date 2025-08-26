@@ -1,6 +1,6 @@
 # Shell settings
 ConsoleSizeX = 130  # Default: 130
-ConsoleSizeY = 44 # Default: 30
+ConsoleSizeY = 33 # Default: 30
 WallSymbol = "━"
 SavePath = "save/save.json"
 MapPath = "save/map.json"

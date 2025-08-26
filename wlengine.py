@@ -680,6 +680,7 @@ class pi():
                 else:
                     SelectedFrame = " "
                     SelectedFrameBack = " "
+                    
                 starview = f"{SelectedFrame}{PlayerLight}{PlayerSymbol}{StarIs['Star']}{Colore.Reset}{ecosymbol}{FleetSymbol}{NavySymbol}{SelectedFrameBack}"
                 sp = (Colore.Gray + SymbolFulling + Colore.Reset) * random.randint(MinFulling, MaxFulling)
                 empty_map += f"{sp}{starview}{sp}"

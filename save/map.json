@@ -26,5 +26,155 @@
     {
         "StarID": 236,
         "StarIntel": true
+    },
+    {
+        "StarID": 212,
+        "StarIntel": true,
+        "StarControled": true,
+        "Star": "Loxonia-Niznegoria System",
+        "StarCivil": {
+            "CivilEconomicType": 14,
+            "CivilEco": 0.9064531718147023,
+            "CivilStable": 54,
+            "CivilReputation": 100,
+            "CivilSecurity": 2,
+            "CivilUpgrade": [
+                "Workshop",
+                "Cruiser_Shipyard",
+                "Fleet_Shipyard"
+            ],
+            "Navy": {
+                "NavyLevel": 1,
+                "NavyCruisers": 10,
+                "NavyShips": 340
+            },
+            "CivilStation": {
+                "StationName": "Lox Interprise",
+                "StationType": 1,
+                "StationStoreList": [
+                    2,
+                    7,
+                    0,
+                    9,
+                    4,
+                    6,
+                    5,
+                    10,
+                    1,
+                    3
+                ]
+            },
+            "CivilPop": 14512
+        },
+        "InfoDate": "30.01.3015",
+        "InfoIncome": 26300,
+        "Planets": [
+            {
+                "PlanetID": 1,
+                "PlanetName": "Delta 212-10-K445-1",
+                "PlanetClass": {
+                    "TypeClass": 2,
+                    "TempClass": 6,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 74.72776327012652,
+                "PlanetKelvinTemp": 94.39618615368563,
+                "PlanetSize": 0.3790575660017731,
+                "PlanetColore": 4,
+                "PlanetTemp": -178.75381384631436,
+                "PlanetMass": 39.31421830979661,
+                "PlanetAtmoAlbedo": 0.8892621468155752,
+                "PlanetAtmoGreenhouse": 0.6569222891391242,
+                "PlanetDistance": 0.51724766680001,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": -346640175359
+            },
+            {
+                "PlanetID": 2,
+                "PlanetName": "Delta 212-10-K445-2",
+                "PlanetClass": {
+                    "TypeClass": 5,
+                    "TempClass": 6,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 37.544658445597925,
+                "PlanetKelvinTemp": 46.78091011755045,
+                "PlanetSize": 38.49521949992524,
+                "PlanetColore": 4,
+                "PlanetTemp": -226.36908988244954,
+                "PlanetMass": 14.772917450011814,
+                "PlanetAtmoAlbedo": 0.8558494559134611,
+                "PlanetAtmoGreenhouse": 0.5545112328945933,
+                "PlanetDistance": 2.0491143339796367,
+                "PlanetTerraform": false,
+                "PlanetRings": true,
+                "PlanetLive": false,
+                "PlanetViewSeed": -715886136800
+            },
+            {
+                "PlanetID": 3,
+                "PlanetName": "Delta 212-10-K445-3",
+                "PlanetClass": {
+                    "TypeClass": 1,
+                    "TempClass": 6,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 24.58315039064834,
+                "PlanetKelvinTemp": 29.799494278841866,
+                "PlanetSize": 0.6016237049382331,
+                "PlanetColore": 5,
+                "PlanetTemp": -243.3505057211581,
+                "PlanetMass": 25.268727325644665,
+                "PlanetAtmoAlbedo": 0.5004980596318875,
+                "PlanetAtmoGreenhouse": 0.6586649094598499,
+                "PlanetDistance": 4.779554640104235,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 521267357663,
+                "PlanetColony": {
+                    "ColonyName": "Test",
+                    "ColonyLevel": 1,
+                    "ColonyPop": 14512,
+                    "ColonyBuild": {
+                        "Enabled": false,
+                        "EndBuild": 112
+                    },
+                    "ColonyBuildings": [
+                        0
+                    ]
+                }
+            },
+            {
+                "PlanetID": 4,
+                "PlanetName": "Delta 212-10-K445-4",
+                "PlanetClass": {
+                    "TypeClass": 5,
+                    "TempClass": 6,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 23.254441806054885,
+                "PlanetKelvinTemp": 25.26101104470202,
+                "PlanetSize": 29.047708160822438,
+                "PlanetColore": 0,
+                "PlanetTemp": -247.88898895529795,
+                "PlanetMass": 42.60484086081901,
+                "PlanetAtmoAlbedo": 0.3331460913718589,
+                "PlanetAtmoGreenhouse": 0.0593027169854462,
+                "PlanetDistance": 5.341345469390777,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 153046967783
+            }
+        ],
+        "PlayerPinned": true,
+        "PlayerPinnedDesc": "ROMA CAPUT MUNDI"
     }
 ]
