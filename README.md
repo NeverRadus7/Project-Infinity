@@ -9,6 +9,9 @@ Project Infinity - це мій закритий проєкт: консольна
 
 >Щодо графіки, я обрав псевдографіку, тому-що це простіше та універсальніше. Я не маю досвіду у GameDev, тим баче з графікою. Це Python зі своїми простими бібліотеками.
 
+## Мультиплатформи
+Тепер цей проєкт, доступний як для Windows, так і для MacOS та Linux. Треба просто запустити game.bat або game.sh.
+
 ## Бібліотеки
 - [pygetch (linux)](https://pypi.org/project/pygetch/)
 - [nickname-generator](https://pypi.org/project/nickname-generator/)
