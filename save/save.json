@@ -1,107 +1,47 @@
 {
     "Nickname": "Player",
-    "Location": 211,
+    "Location": 273,
     "Ship": {
-        "ShipID": 2,
-        "ShipName": "MILLYTECH QR-I",
+        "ShipID": 0,
+        "ShipName": "Ship",
         "ShipModification": [
             {
-                "ModificationID": 17,
-                "ModificationLevel": 5
+                "ModificationID": null,
+                "ModificationLevel": 0
             },
             {
-                "ModificationID": 9,
-                "ModificationLevel": 5
-            },
-            {
-                "ModificationID": 17,
-                "ModificationLevel": 5
-            },
-            {
-                "ModificationID": 17,
-                "ModificationLevel": 5
+                "ModificationID": null,
+                "ModificationLevel": 0
             }
         ],
         "Storage": [],
-        "Fuel": 29
+        "Fuel": 20
     },
-    "Fleet": [
-        {
-            "FleetID": 0,
-            "FleetName": "ISC G-160 Booldog",
-            "Ships": [
-                {
-                    "ShipID": 3,
-                    "ShipName": "Anabelus co. EXP-LUPA",
-                    "ShipModification": [
-                        {
-                            "ModificationID": 2,
-                            "ModificationLevel": 0
-                        },
-                        {
-                            "ModificationID": 14,
-                            "ModificationLevel": 0
-                        },
-                        {
-                            "ModificationID": 14,
-                            "ModificationLevel": 0
-                        },
-                        {
-                            "ModificationID": 0,
-                            "ModificationLevel": 0
-                        },
-                        {
-                            "ModificationID": null,
-                            "ModificationLevel": 0
-                        },
-                        {
-                            "ModificationID": null,
-                            "ModificationLevel": 0
-                        }
-                    ],
-                    "Storage": [
-                        {
-                            "ItemID": 3,
-                            "ItemCount": 10
-                        },
-                        {
-                            "ItemID": 1,
-                            "ItemCount": 8
-                        }
-                    ],
-                    "Fuel": 22
-                }
-            ],
-            "Storage": [],
-            "Location": 212,
-            "Modules": {},
-            "Fuel": 199
-        }
-    ],
+    "Fleet": [],
     "Navy": {
-        "NavyDisable": false,
-        "NavyLevel": 11,
-        "NavyCruisers": 16,
-        "NavyShips": 175,
-        "NavyLocation": 212
+        "NavyDisable": true,
+        "NavyLevel": 1,
+        "NavyCruisers": 0,
+        "NavyShips": 0,
+        "NavyLocation": 0
     },
-    "Money": 1e+99,
-    "IntelBall": 143738,
-    "BattleScore": 127156,
-    "XP": 842028,
+    "Money": 0,
+    "IntelBall": 0,
+    "BattleScore": 0,
+    "XP": 0,
     "Reputation": 0,
-    "WorldDay": 5614,
+    "WorldDay": 1,
     "Atribution": [],
     "Statistic": {
-        "StarInteled": 8,
-        "StarControled": 2,
-        "StarColony": 2,
+        "StarInteled": 0,
+        "StarControled": 0,
+        "StarColony": 0,
         "CreditsFromSelled": 0,
         "CreditsFromScience": 0,
-        "IncomeFromColony": 26300
+        "IncomeFromColony": 0
     },
     "MapSettings": {
         "Filter": 0
     },
-    "GameUpdate": 4
+    "GameUpdate": 0
 }

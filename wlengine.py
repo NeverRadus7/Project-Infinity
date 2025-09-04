@@ -8,14 +8,20 @@
 # © WhiteLight studio • 2025 • ALL RIGHTS RESERVED • https://sites.google.com/view/whitelight-studio
 
 # -- Base import ■ ▪ ∙ •
-import time, random, os, colorama, json, math, getch
-from datetime import datetime, timedelta
+import time
+import random
+import os 
+import colorama
+import json
+import math
+import getch
 
 # -- Files import
 from galaxy.map import GenMap
 from wlregister import *
 from settings import *
 from nickname_generator import generate as ranname
+from datetime import datetime, timedelta
 
 # -- Save import
 with open(SavePath,'r', encoding="utf-8") as f:
