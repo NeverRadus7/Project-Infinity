@@ -451,16 +451,81 @@ if CommandInput == "2":
                         pi.StarChange(StarIs['StarID'], 'Planets', StarIs['Planets'])
                         wl.Loading("Залучаємо інвестиції",3)
                         game.world.mature(random.randint(7,31))
-# Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено 
-# Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено 
-# Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено 
-# Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено 
-# Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено 
-# Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено 
-# Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено 
-# Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено 
-# Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено 
-# Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено Не закінчено 
+            
+            if PopsChoice == "Створення профсоюзу (+25 000 мігрантів)":
+                wl.Skip()
+                Qe = 80_000_000
+                print(f"Це буде коштувати: {Qe:,} ©")
+
+                wl.Quation("Підтвердить операцію")
+
+                if PlayerIs['Money'] >= Qe:
+                    PlayerIs['Money'] -= Qe
+                    wl.Skip()
+                    for i,planet in enumerate(StarIs['Planets']):
+                        if planet.get("PlanetColony"):
+                            print(f"{i+1}. {planet['PlanetName']}")
+                    
+                    ChoicePlanet = int(input("Вибір планети: ")) - 1
+
+                    if ChoicePlanet <= 0 or ChoicePlanet >= len(StarIs['Planets']):
+                        wl.Error("Неправильний вибір планети")
+                    else:
+                        Planet = StarIs['Planets'][ChoicePlanet]
+                        Planet['PlanetColony']['ColonyPop'] += 25000
+                        pi.StarChange(StarIs['StarID'], 'Planets', StarIs['Planets'])
+                        wl.Loading("Залучаємо інвестиції",3)
+                        game.world.mature(random.randint(7,31))
+            
+            if PopsChoice == "Збільшення ІЛР (+100 000 мігрантів)":
+                wl.Skip()
+                Qe = 500_000_000
+                print(f"Це буде коштувати: {Qe:,} ©")
+
+                wl.Quation("Підтвердить операцію")
+
+                if PlayerIs['Money'] >= Qe:
+                    PlayerIs['Money'] -= Qe
+                    wl.Skip()
+                    for i,planet in enumerate(StarIs['Planets']):
+                        if planet.get("PlanetColony"):
+                            print(f"{i+1}. {planet['PlanetName']}")
+                    
+                    ChoicePlanet = int(input("Вибір планети: ")) - 1
+
+                    if ChoicePlanet <= 0 or ChoicePlanet >= len(StarIs['Planets']):
+                        wl.Error("Неправильний вибір планети")
+                    else:
+                        Planet = StarIs['Planets'][ChoicePlanet]
+                        Planet['PlanetColony']['ColonyPop'] += 100000
+                        pi.StarChange(StarIs['StarID'], 'Planets', StarIs['Planets'])
+                        wl.Loading("Залучаємо інвестиції",3)
+                        game.world.mature(random.randint(7,31))
+
+            if PopsChoice == "Гранти для безробітним та мігрантів (+250 000)":
+                wl.Skip()
+                Qe = 2_000_000_000
+                print(f"Це буде коштувати: {Colore.Yellow}{Qe:,} ©{Colore.Reset}")
+
+                wl.Quation("Підтвердить операцію")
+
+                if PlayerIs['Money'] >= Qe:
+                    PlayerIs['Money'] -= Qe
+                    wl.Skip()
+                    for i,planet in enumerate(StarIs['Planets']):
+                        if planet.get("PlanetColony"):
+                            print(f"{i+1}. {planet['PlanetName']}")
+                    
+                    ChoicePlanet = int(input("Вибір планети: ")) - 1
+
+                    if ChoicePlanet <= 0 or ChoicePlanet >= len(StarIs['Planets']):
+                        wl.Error("Неправильний вибір планети")
+                    else:
+                        Planet = StarIs['Planets'][ChoicePlanet]
+                        Planet['PlanetColony']['ColonyPop'] += 250000
+                        pi.StarChange(StarIs['StarID'], 'Planets', StarIs['Planets'])
+                        wl.Loading("Залучаємо інвестиції",3)
+                        game.world.mature(random.randint(7,31))
 
     if StarInput == f"Космоносці{Colore.Blue} ⊴{Colore.Reset}":
         wl.Skip()
@@ -809,6 +874,9 @@ if CommandInput == "3":
                         PlanetList.append(f"Побудувати колонію")
                         break
         
+        if StarIs.get('StarCivil') and StarIs.get("StarControled") and StarIs['StarControled'] == True and PlanetIs.get('PlanetColony'):
+            PlanetList.append("Управа колоніями")
+        
         #print(f"{colorama.Back.BLUE} Вигляд планети {colorama.Back.RESET}")
         #pi.PlanetView(PlanetIs['PlanetViewSeed'], PlanetIs['PlanetSize'], PlanetIs['PlanetColore'])
         #print()
@@ -876,11 +944,50 @@ if CommandInput == "3":
                     pi.StarChange(StarIs['StarID'], 'Planets', StarIs["Planets"])
                     break
 
+        if PlanetChoice == "Управа колоніями":
+            wl.Skip()
+            ColonyMenu = [
+                "Покращення колонії",
+                "Будівництво",
+                "Населення",
+                "Логістика та торгівля",
+                "Інші"
+            ]
+
+            ColonyChoice = wl.ChoiceMenu(ColonyMenu)
+
+            if ColonyChoice == "Покращення колонії":
+                upgrade = wlengine.level_upgrade(PlanetIs['PlanetColony']['ColonyLevel'], 
+                                                 parametrs={'coust': True, 'coust_par': 1000, 'coust_type': 'money'})
+                
+                level = upgrade[0]
+                coust = upgrade[1]
+
+                if PlayerIs['Money'] >= coust:
+                    PlayerIs['Money'] -= coust
+                    PlanetIs['PlanetColony']['ColonyLevel'] = level
+                    wl.Loading("Покращення колоній", 3)
+                    pi.StarChange(StarIs['StarID'], 'Planets', StarIs['Planets'])
+                else:
+                    wl.Error("Недостатньо грошей!")
+            
+            if ColonyChoice == "Будівництво":
+                wl.Skip()
+
+                print(f"{colorama.Back.BLUE} Архітектура колонії {colorama.Back.RESET}")
+                for i,a in enumerate(PlanetIs['PlanetColony']['ColonyBuildings']):
+                    print(" ▪ " + Buildings[a])
+
+                input()
+
 # Станція
 if CommandInput == "4":
     if StarIs.get("StarCivil"):
-        if StarIs['StarCivil']['CivilReputation'] <= 25: wl.Error("До станції доступ заборонений (<25% Репутація)")
+        if StarIs['StarCivil']['CivilReputation'] <= 25:
+            wl.Error("До станції доступ заборонений (<25% Репутація)")
+
         wl.Skip()
+
         print(f"{colorama.Back.BLUE} Станція {colorama.Back.RESET}")
         print(f" ▪ Станція: {StarIs['StarCivil']['CivilStation']['StationName']}")
         print(f" ▪ Економічна стала: {StarIs['StarCivil']['CivilEco']}")
@@ -1182,30 +1289,68 @@ if CommandInput == "4":
             if NavyChoice == "Покращити рівень флоту":
                 wl.Skip()
 
-                NewNavyLevel = int(PlayerIs['Navy']['NavyLevel']) + 1
-                NewNavyLevelLable = NewNavyLevel
-                CurrentNavyLevel = int(PlayerIs['Navy']['NavyLevel'])
+                menu = ["Мій флот", "Флот поточної системи"]
 
-                if NewNavyLevel == MaxNavyLevel:
-                    NewNavyLevelLable = "MAX"
+                choicemenu = wl.ChoiceMenu(menu)
 
-                if NewNavyLevel <= MaxNavyLevel:
-                    Coust = 25_000_000 * NewNavyLevel
-                    Coust *= StarIs['StarCivil']['CivilEco']
-                    Coust = int(Coust)
+                if choicemenu == "Мій флот":
+                    Format = 1
+                if choicemenu == "Флот поточної системи":
+                    Format = 2
+
+                message = ""
+
+                if Format == 1:
+                    Fleet = PlayerIs
+                if Format == 2:
+                    Fleet = StarIs['StarCivil']
+
+                CurrentPlayerNavyLevel = int(Fleet['Navy']['NavyLevel'])
+                while True:
                     wl.Skip()
-                    wl.CenterText("Покращення рівня флоту")
-                    wl.CenterText(f"                       {Colore.Green}{CurrentNavyLevel}{Colore.Gray} ━━━━━━━━━━━━━━━━━━━━━━► {Colore.Yellow}{NewNavyLevelLable}{Colore.Reset}")
-                    wl.CenterTextEnd(1)
-                    wl.Quation(f"Ви дійсно хочете покращити рівень флоту? Це буде коштувати: {wl.TextColore(f"{Coust:,} ©", Colore.Yellow)}")
 
-                    if PlayerIs['Money'] >= Coust:
-                        PlayerIs['Navy']['NavyLevel'] += 1
-                        wl.Loading("Вчимо офіцерів та команду", 3)
+                    NewNavyLevel = int(Fleet['Navy']['NavyLevel']) + 1
+                    NewNavyLevelLable = NewNavyLevel
+                    CurrentNavyLevel = int(Fleet['Navy']['NavyLevel'])
+
+                    if NewNavyLevel == MaxNavyLevel:
+                        NewNavyLevelLable = "MAX"
+
+                    if NewNavyLevel <= MaxNavyLevel:
+                        Coust = 6_000 * NewNavyLevel
+                        Coust *= StarIs['StarCivil']['CivilEco']
+                        Coust = int(Coust)
+
+                        wl.Skip()
+                        wl.CenterText("Покращення рівня флоту")
+                        wl.CenterText(f"                       {Colore.Green}{CurrentNavyLevel}{Colore.Gray} ━━━━━━━━━━━━━━━━━━━━━━► {Colore.Yellow}{NewNavyLevelLable}{Colore.Reset}")
+                        wl.CenterTextEnd(1)
+                        print(f"Це буде коштувати: {wl.TextColore(f"{Coust:,} ⊙", Colore.Red)} {wl.TextColore(message, Colore.Red)}")
+                        wl.TextColorePr("[SPACE] для підтвердження", Colore.Gray)
+
+                        Command = wl.Command()
+
+                        if Command in ["d", "D"] and Fleet['Navy']['NavyLevel'] < MaxNavyLevel-1:
+                            Fleet['Navy']['NavyLevel'] += 1
+                            message = ""
+                        if Command in ["a", "A"] and Fleet['Navy']['NavyLevel'] > 1 and Fleet['Navy']['NavyLevel'] > CurrentPlayerNavyLevel:
+                            Fleet['Navy']['NavyLevel'] -= 1
+                            message = ""
+                        if Command in ['e', ' ']:
+                            if Fleet['Navy']['NavyLevel'] == CurrentPlayerNavyLevel:
+                                exit()
+                            if PlayerIs['BattleScore'] >= Coust:
+                                PlayerIs['BattleScore'] -= Coust
+                                if Format == 2:
+                                    pi.StarChange(StarIs['StarID'], "StarCivil", StarIs['StarCivil'])
+                                wl.Loading("Навчаємо екіпаж", 5)
+                                break
+                            else:
+                                message = "━━► Недостатньо грошей"
+                        if Command in ['q']:
+                            exit()
                     else:
-                        wl.Error("Недостатньо грошей!")
-                else:
-                    wl.Error("Флот вже має максимальний рівень!")
+                        wl.Error("Флот вже має максимальний рівень!")
 
 # Різне
 if CommandInput == "5":

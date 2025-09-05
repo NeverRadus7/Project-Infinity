@@ -1244,6 +1244,64 @@ class game():
             file = open("file.txt","a")
             file.write()
 
+class wlengine():
+    def level_upgrade(
+            x,
+            maxlevel=100,
+            parametrs={
+                'coust': False,
+                'coust_par': 1000,
+                'coust_type': 'money' # [money] [intelball] [battlescore]
+            }
+        ):
+
+        wl.Skip()
+
+        CurrentLevel = x
+        while True:
+            wl.Skip()
+
+            NewLevel = int(x) + 1
+            NewLevelLable = NewLevel
+            Level = int(x)
+
+            if NewLevel == maxlevel:
+                NewLevelLable = "MAX"
+
+            if NewLevel <= maxlevel:
+                wl.Skip()
+                
+                wl.CenterText("Покращення рівня")
+                wl.CenterText(f"                       {Colore.Green}{Level}{Colore.Gray} ━━━━━━━━━━━━━━━━━━━━━━► {Colore.Yellow}{NewLevelLable}{Colore.Reset}")
+                wl.CenterTextEnd(1)
+                if parametrs['coust'] == True:
+                    coust = parametrs['coust_par'] * NewLevel
+                    if parametrs['coust_type'] == 'money':
+                        print(f"Це буде коштувати: {wl.TextColore(f"{coust:,} ©", Colore.Yellow)}")
+                    if parametrs['coust_type'] == 'intelball':
+                        print(f"Це буде коштувати: {wl.TextColore(f"{coust:,} ◭", Colore.Blue)}")
+                    if parametrs['coust_type'] == 'battlescore':
+                        print(f"Це буде коштувати: {wl.TextColore(f"{coust:,} ⊙", Colore.Red)}")
+                wl.TextColorePr("[SPACE] для підтвердження", Colore.Gray)
+
+                Command = wl.Command()
+
+                if Command in ["d", "D"] and x < MaxNavyLevel-1:
+                    x += 1
+                if Command in ["a", "A"] and x > 1 and x > CurrentLevel:
+                    x -= 1
+                if Command in ['e', ' ']:
+                    if x == CurrentLevel:
+                        exit()
+                    else:
+                        if parametrs['coust'] == False:
+                            return x
+                        else:
+                            return x, coust
+                if Command in ['q']:
+                    exit()
+
+
 def ChoiceModificationSlot():
     wl.Skip()
     for abs in range(MaxShipModification):

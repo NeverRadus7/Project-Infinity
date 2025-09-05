@@ -1,29 +1,46 @@
 {
     "Nickname": "Player",
-    "Location": 211,
+    "Location": 212,
     "Ship": {
-        "ShipID": 2,
-        "ShipName": "MILLYTECH QR-I",
+        "ShipID": 3,
+        "ShipName": "Anabelus co. EXP-LUPA",
         "ShipModification": [
             {
-                "ModificationID": 17,
+                "ModificationID": 2,
                 "ModificationLevel": 5
             },
             {
-                "ModificationID": 9,
-                "ModificationLevel": 5
+                "ModificationID": 14,
+                "ModificationLevel": 0
             },
             {
-                "ModificationID": 17,
-                "ModificationLevel": 5
+                "ModificationID": 14,
+                "ModificationLevel": 0
             },
             {
-                "ModificationID": 17,
-                "ModificationLevel": 5
+                "ModificationID": 0,
+                "ModificationLevel": 0
+            },
+            {
+                "ModificationID": null,
+                "ModificationLevel": 0
+            },
+            {
+                "ModificationID": null,
+                "ModificationLevel": 0
             }
         ],
-        "Storage": [],
-        "Fuel": 29
+        "Storage": [
+            {
+                "ItemID": 3,
+                "ItemCount": 10
+            },
+            {
+                "ItemID": 1,
+                "ItemCount": 60
+            }
+        ],
+        "Fuel": 18
     },
     "Fleet": [
         {
@@ -31,45 +48,33 @@
             "FleetName": "ISC G-160 Booldog",
             "Ships": [
                 {
-                    "ShipID": 3,
-                    "ShipName": "Anabelus co. EXP-LUPA",
+                    "ShipID": 2,
+                    "ShipName": "MILLYTECH QR-I",
                     "ShipModification": [
                         {
-                            "ModificationID": 2,
-                            "ModificationLevel": 0
+                            "ModificationID": 17,
+                            "ModificationLevel": 5
                         },
                         {
-                            "ModificationID": 14,
-                            "ModificationLevel": 0
+                            "ModificationID": 9,
+                            "ModificationLevel": 5
                         },
                         {
-                            "ModificationID": 14,
-                            "ModificationLevel": 0
+                            "ModificationID": 17,
+                            "ModificationLevel": 5
                         },
                         {
-                            "ModificationID": 0,
-                            "ModificationLevel": 0
-                        },
-                        {
-                            "ModificationID": null,
-                            "ModificationLevel": 0
-                        },
-                        {
-                            "ModificationID": null,
-                            "ModificationLevel": 0
+                            "ModificationID": 17,
+                            "ModificationLevel": 5
                         }
                     ],
                     "Storage": [
                         {
-                            "ItemID": 3,
-                            "ItemCount": 10
-                        },
-                        {
-                            "ItemID": 1,
-                            "ItemCount": 8
+                            "ItemID": 2,
+                            "ItemCount": 20
                         }
                     ],
-                    "Fuel": 22
+                    "Fuel": 26
                 }
             ],
             "Storage": [],
@@ -80,28 +85,28 @@
     ],
     "Navy": {
         "NavyDisable": false,
-        "NavyLevel": 11,
-        "NavyCruisers": 16,
+        "NavyLevel": 99,
+        "NavyCruisers": 17,
         "NavyShips": 175,
         "NavyLocation": 212
     },
-    "Money": 1e+99,
-    "IntelBall": 143738,
-    "BattleScore": 127156,
-    "XP": 842028,
+    "Money": 94530985,
+    "IntelBall": 0,
+    "BattleScore": 3873710,
+    "XP": 842128,
     "Reputation": 0,
-    "WorldDay": 5614,
+    "WorldDay": 5703,
     "Atribution": [],
     "Statistic": {
         "StarInteled": 8,
         "StarControled": 2,
         "StarColony": 2,
-        "CreditsFromSelled": 0,
-        "CreditsFromScience": 0,
-        "IncomeFromColony": 26300
+        "CreditsFromSelled": 14946680,
+        "CreditsFromScience": 431214,
+        "IncomeFromColony": 903448
     },
     "MapSettings": {
-        "Filter": 0
+        "Filter": 1
     },
     "GameUpdate": 4
 }

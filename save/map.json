@@ -34,7 +34,7 @@
         "Star": "Loxonia-Niznegoria System",
         "StarCivil": {
             "CivilEconomicType": 14,
-            "CivilEco": 0.9064531718147023,
+            "CivilEco": 1.092403326442988,
             "CivilStable": 54,
             "CivilReputation": 100,
             "CivilSecurity": 2,
@@ -44,7 +44,7 @@
                 "Fleet_Shipyard"
             ],
             "Navy": {
-                "NavyLevel": 1,
+                "NavyLevel": 99,
                 "NavyCruisers": 10,
                 "NavyShips": 340
             },
@@ -64,10 +64,10 @@
                     3
                 ]
             },
-            "CivilPop": 14512
+            "CivilPop": 413776
         },
         "InfoDate": "30.01.3015",
-        "InfoIncome": 26300,
+        "InfoIncome": 903448,
         "Planets": [
             {
                 "PlanetID": 1,
@@ -139,8 +139,8 @@
                 "PlanetViewSeed": 521267357663,
                 "PlanetColony": {
                     "ColonyName": "Test",
-                    "ColonyLevel": 1,
-                    "ColonyPop": 14512,
+                    "ColonyLevel": 99,
+                    "ColonyPop": 413776,
                     "ColonyBuild": {
                         "Enabled": false,
                         "EndBuild": 112
@@ -175,6 +175,429 @@
             }
         ],
         "PlayerPinned": true,
-        "PlayerPinnedDesc": "ROMA CAPUT MUNDI"
+        "PlayerPinnedDesc": "ROMA CAPUT MUNDI",
+        "": {
+            "StarID": 212,
+            "Star": "Loxonia-Niznegoria System",
+            "StarSister": [],
+            "Class": "T",
+            "Temp": 536,
+            "Mass": 0.005128220453400703,
+            "Size": 0.01947097152417912,
+            "Luminos": 0.0002377814264141418,
+            "Planets": [
+                {
+                    "PlanetID": 1,
+                    "PlanetName": "Delta 212-10-K445-1",
+                    "PlanetClass": {
+                        "TypeClass": 2,
+                        "TempClass": 6,
+                        "LiveClass": 2,
+                        "UniqueClass": 0
+                    },
+                    "PlanetEffectiveTemp": 74.72776327012652,
+                    "PlanetKelvinTemp": 94.39618615368563,
+                    "PlanetSize": 0.3790575660017731,
+                    "PlanetColore": 4,
+                    "PlanetTemp": -178.75381384631436,
+                    "PlanetMass": 39.31421830979661,
+                    "PlanetAtmoAlbedo": 0.8892621468155752,
+                    "PlanetAtmoGreenhouse": 0.6569222891391242,
+                    "PlanetDistance": 0.51724766680001,
+                    "PlanetTerraform": false,
+                    "PlanetRings": false,
+                    "PlanetLive": false,
+                    "PlanetViewSeed": -346640175359
+                },
+                {
+                    "PlanetID": 2,
+                    "PlanetName": "Delta 212-10-K445-2",
+                    "PlanetClass": {
+                        "TypeClass": 5,
+                        "TempClass": 6,
+                        "LiveClass": 2,
+                        "UniqueClass": 0
+                    },
+                    "PlanetEffectiveTemp": 37.544658445597925,
+                    "PlanetKelvinTemp": 46.78091011755045,
+                    "PlanetSize": 38.49521949992524,
+                    "PlanetColore": 4,
+                    "PlanetTemp": -226.36908988244954,
+                    "PlanetMass": 14.772917450011814,
+                    "PlanetAtmoAlbedo": 0.8558494559134611,
+                    "PlanetAtmoGreenhouse": 0.5545112328945933,
+                    "PlanetDistance": 2.0491143339796367,
+                    "PlanetTerraform": false,
+                    "PlanetRings": true,
+                    "PlanetLive": false,
+                    "PlanetViewSeed": -715886136800
+                },
+                {
+                    "PlanetID": 3,
+                    "PlanetName": "Delta 212-10-K445-3",
+                    "PlanetClass": {
+                        "TypeClass": 1,
+                        "TempClass": 6,
+                        "LiveClass": 2,
+                        "UniqueClass": 0
+                    },
+                    "PlanetEffectiveTemp": 24.58315039064834,
+                    "PlanetKelvinTemp": 29.799494278841866,
+                    "PlanetSize": 0.6016237049382331,
+                    "PlanetColore": 5,
+                    "PlanetTemp": -243.3505057211581,
+                    "PlanetMass": 25.268727325644665,
+                    "PlanetAtmoAlbedo": 0.5004980596318875,
+                    "PlanetAtmoGreenhouse": 0.6586649094598499,
+                    "PlanetDistance": 4.779554640104235,
+                    "PlanetTerraform": false,
+                    "PlanetRings": false,
+                    "PlanetLive": false,
+                    "PlanetViewSeed": 521267357663,
+                    "PlanetColony": {
+                        "ColonyName": "Test",
+                        "ColonyLevel": 1,
+                        "ColonyPop": 364756,
+                        "ColonyBuild": {
+                            "Enabled": false,
+                            "EndBuild": 112
+                        },
+                        "ColonyBuildings": [
+                            0
+                        ]
+                    }
+                },
+                {
+                    "PlanetID": 4,
+                    "PlanetName": "Delta 212-10-K445-4",
+                    "PlanetClass": {
+                        "TypeClass": 5,
+                        "TempClass": 6,
+                        "LiveClass": 2,
+                        "UniqueClass": 0
+                    },
+                    "PlanetEffectiveTemp": 23.254441806054885,
+                    "PlanetKelvinTemp": 25.26101104470202,
+                    "PlanetSize": 29.047708160822438,
+                    "PlanetColore": 0,
+                    "PlanetTemp": -247.88898895529795,
+                    "PlanetMass": 42.60484086081901,
+                    "PlanetAtmoAlbedo": 0.3331460913718589,
+                    "PlanetAtmoGreenhouse": 0.0593027169854462,
+                    "PlanetDistance": 5.341345469390777,
+                    "PlanetTerraform": false,
+                    "PlanetRings": false,
+                    "PlanetLive": false,
+                    "PlanetViewSeed": 153046967783
+                }
+            ],
+            "MapPosition": 3061,
+            "StarIntel": true,
+            "StarControled": true,
+            "StarCivil": {
+                "CivilEconomicType": 14,
+                "CivilEco": 1.0937679666449411,
+                "CivilStable": 55,
+                "CivilReputation": 100,
+                "CivilSecurity": 2,
+                "CivilUpgrade": [
+                    "Workshop",
+                    "Cruiser_Shipyard",
+                    "Fleet_Shipyard"
+                ],
+                "Navy": {
+                    "NavyLevel": 99,
+                    "NavyCruisers": 10,
+                    "NavyShips": 340
+                },
+                "CivilStation": {
+                    "StationName": "Lox Interprise",
+                    "StationType": 1,
+                    "StationStoreList": [
+                        2,
+                        7,
+                        0,
+                        9,
+                        4,
+                        6,
+                        5,
+                        10,
+                        1,
+                        3
+                    ]
+                },
+                "CivilPop": 364756
+            },
+            "InfoDate": "30.01.3015",
+            "InfoIncome": 798152,
+            "PlayerPinned": true,
+            "PlayerPinnedDesc": "ROMA CAPUT MUNDI"
+        }
+    },
+    {
+        "StarID": 216,
+        "StarCivil": {
+            "CivilPop": 216849784,
+            "CivilEconomicType": 14,
+            "CivilEco": 1.3946675182701989,
+            "CivilReputation": 50,
+            "CivilSecurity": 2,
+            "CivilStable": 74,
+            "CivilUpgrade": [],
+            "Navy": {
+                "NavyLevel": 35,
+                "NavyCruisers": 7,
+                "NavyShips": 31
+            },
+            "CivilStation": {
+                "StationName": "Uravusho Station",
+                "StationType": 0,
+                "StationStoreList": [
+                    0,
+                    6,
+                    10,
+                    2,
+                    3,
+                    9,
+                    7,
+                    8,
+                    4,
+                    5
+                ]
+            }
+        },
+        "Planets": [
+            {
+                "PlanetID": 1,
+                "PlanetName": "Delta 216-10-R312-1",
+                "PlanetClass": {
+                    "TypeClass": 0,
+                    "TempClass": 0,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 635.9262354262727,
+                "PlanetKelvinTemp": 730.630128564282,
+                "PlanetSize": 8.194273477673331,
+                "PlanetColore": 0,
+                "PlanetTemp": 457.48012856428204,
+                "PlanetMass": 16.600623387101326,
+                "PlanetAtmoAlbedo": 0.5434294633180989,
+                "PlanetAtmoGreenhouse": 0.19903262816885015,
+                "PlanetDistance": 0.5336065531949231,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 960051459946,
+                "PlanetColony": {
+                    "ColonyName": "Gosekhat Colony",
+                    "ColonyLevel": 46,
+                    "ColonyPop": 74237183,
+                    "ColonyBuildings": [
+                        0
+                    ],
+                    "ColonyBuild": {
+                        "Enabled": false,
+                        "EndBuild": 0
+                    }
+                }
+            },
+            {
+                "PlanetID": 2,
+                "PlanetName": "Delta 216-10-R312-2",
+                "PlanetClass": {
+                    "TypeClass": 3,
+                    "TempClass": 1,
+                    "LiveClass": 1,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 372.5486442251866,
+                "PlanetKelvinTemp": 487.6120978025692,
+                "PlanetSize": 0.5354292633721486,
+                "PlanetColore": 4,
+                "PlanetTemp": 214.46209780256925,
+                "PlanetMass": 14.958738924099773,
+                "PlanetAtmoAlbedo": 0.9538332894498602,
+                "PlanetAtmoGreenhouse": 0.9808817602733805,
+                "PlanetDistance": 1.5547789950606585,
+                "PlanetTerraform": true,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": -484737845880,
+                "PlanetColony": {
+                    "ColonyName": "Ehedoqu Colony",
+                    "ColonyLevel": 30,
+                    "ColonyPop": 93818396,
+                    "ColonyBuildings": [
+                        0
+                    ],
+                    "ColonyBuild": {
+                        "Enabled": false,
+                        "EndBuild": 0
+                    }
+                }
+            },
+            {
+                "PlanetID": 3,
+                "PlanetName": "Delta 216-10-R312-3",
+                "PlanetClass": {
+                    "TypeClass": 5,
+                    "TempClass": 4,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 213.3175361605338,
+                "PlanetKelvinTemp": 243.962083605633,
+                "PlanetSize": 21.848103957017297,
+                "PlanetColore": 4,
+                "PlanetTemp": -29.187916394366965,
+                "PlanetMass": 43.49141365176691,
+                "PlanetAtmoAlbedo": 0.5944259334535501,
+                "PlanetAtmoGreenhouse": 0.11631048153676726,
+                "PlanetDistance": 4.742218074263201,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 206053144769
+            },
+            {
+                "PlanetID": 4,
+                "PlanetName": "Delta 216-10-R312-4",
+                "PlanetClass": {
+                    "TypeClass": 0,
+                    "TempClass": 5,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 167.33935646124743,
+                "PlanetKelvinTemp": 205.71392670385788,
+                "PlanetSize": 0.773353154413291,
+                "PlanetColore": 6,
+                "PlanetTemp": -67.4360732961421,
+                "PlanetMass": 5.274358625398578,
+                "PlanetAtmoAlbedo": 0.8192715695890486,
+                "PlanetAtmoGreenhouse": 0.4645512008154944,
+                "PlanetDistance": 7.706167601701605,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 52064043215,
+                "PlanetColony": {
+                    "ColonyName": "Owushoxe Colony",
+                    "ColonyLevel": 56,
+                    "ColonyPop": 48794205,
+                    "ColonyBuildings": [
+                        0
+                    ],
+                    "ColonyBuild": {
+                        "Enabled": false,
+                        "EndBuild": 0
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "StarID": 225,
+        "StarCivil": {
+            "CivilPop": 100424900,
+            "CivilEconomicType": 8,
+            "CivilEco": 0.46959449510884826,
+            "CivilReputation": 50,
+            "CivilSecurity": 2,
+            "CivilStable": 43,
+            "CivilUpgrade": [
+                "Fleet_Shipyard"
+            ],
+            "Navy": {
+                "NavyLevel": 36,
+                "NavyCruisers": 6,
+                "NavyShips": 45
+            },
+            "CivilStation": {
+                "StationName": "Yxozhixij Station",
+                "StationType": 0,
+                "StationStoreList": [
+                    9,
+                    0,
+                    5,
+                    1,
+                    8,
+                    10
+                ]
+            }
+        },
+        "Planets": [
+            {
+                "PlanetID": 1,
+                "PlanetName": "Alpha 225-11-D40 A-1",
+                "PlanetClass": {
+                    "TypeClass": 2,
+                    "TempClass": 6,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 6.342135274047005e-07,
+                "PlanetKelvinTemp": 7.782439373463314e-07,
+                "PlanetSize": 0.3689495640170435,
+                "PlanetColore": 2,
+                "PlanetTemp": -273.14999922175605,
+                "PlanetMass": 33.1453627079915,
+                "PlanetAtmoAlbedo": 0.9685458946948532,
+                "PlanetAtmoGreenhouse": 0.29881671420789513,
+                "PlanetDistance": 0.465696035533046,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": -536486633760,
+                "PlanetColony": {
+                    "ColonyName": "Xamybachy Colony",
+                    "ColonyLevel": 15,
+                    "ColonyPop": 42263509,
+                    "ColonyBuildings": [
+                        0
+                    ],
+                    "ColonyBuild": {
+                        "Enabled": false,
+                        "EndBuild": 0
+                    }
+                }
+            },
+            {
+                "PlanetID": 2,
+                "PlanetName": "Alpha 225-11-D40 A-2",
+                "PlanetClass": {
+                    "TypeClass": 5,
+                    "TempClass": 6,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 3.3329927891173676e-07,
+                "PlanetKelvinTemp": 4.2836730297157895e-07,
+                "PlanetSize": 27.261968745908547,
+                "PlanetColore": 5,
+                "PlanetTemp": -273.1499995716327,
+                "PlanetMass": 18.469460935568772,
+                "PlanetAtmoAlbedo": 0.8310733983474817,
+                "PlanetAtmoGreenhouse": 0.8974504851229199,
+                "PlanetDistance": 1.6861833427532416,
+                "PlanetTerraform": false,
+                "PlanetRings": true,
+                "PlanetLive": false,
+                "PlanetViewSeed": 334953087384,
+                "PlanetColony": {
+                    "ColonyName": "Uhochoha Colony",
+                    "ColonyLevel": 52,
+                    "ColonyPop": 58161391,
+                    "ColonyBuildings": [
+                        0
+                    ],
+                    "ColonyBuild": {
+                        "Enabled": false,
+                        "EndBuild": 0
+                    }
+                }
+            }
+        ]
     }
 ]
