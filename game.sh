@@ -1,6 +1,6 @@
 #!/bin/bash
-source python/bin/activate
+source python3/bin/activate
 while true
 do
-	python game.py
+	python3 game.py
 done

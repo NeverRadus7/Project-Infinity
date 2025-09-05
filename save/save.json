@@ -1,13 +1,13 @@
 {
     "Nickname": "Player",
-    "Location": 273,
+    "Location": 53919,
     "Ship": {
         "ShipID": 0,
         "ShipName": "Ship",
         "ShipModification": [
             {
-                "ModificationID": null,
-                "ModificationLevel": 0
+                "ModificationID": 0,
+                "ModificationLevel": 5
             },
             {
                 "ModificationID": null,
@@ -15,9 +15,19 @@
             }
         ],
         "Storage": [],
-        "Fuel": 20
+        "Fuel": 18
     },
-    "Fleet": [],
+    "Fleet": [
+        {
+            "FleetID": 0,
+            "FleetName": "ISC G-160 Booldog",
+            "Ships": [],
+            "Storage": [],
+            "Location": 53919,
+            "Modules": {},
+            "Fuel": 200
+        }
+    ],
     "Navy": {
         "NavyDisable": true,
         "NavyLevel": 1,
@@ -25,16 +35,16 @@
         "NavyShips": 0,
         "NavyLocation": 0
     },
-    "Money": 0,
-    "IntelBall": 0,
-    "BattleScore": 0,
-    "XP": 0,
+    "Money": 5951597395331,
+    "IntelBall": 31922,
+    "BattleScore": 74329,
+    "XP": 421998239,
     "Reputation": 0,
-    "WorldDay": 1,
+    "WorldDay": 12,
     "Atribution": [],
     "Statistic": {
-        "StarInteled": 0,
-        "StarControled": 0,
+        "StarInteled": 2,
+        "StarControled": 1,
         "StarColony": 0,
         "CreditsFromSelled": 0,
         "CreditsFromScience": 0,
@@ -43,5 +53,5 @@
     "MapSettings": {
         "Filter": 0
     },
-    "GameUpdate": 0
+    "GameUpdate": 1
 }

@@ -546,7 +546,6 @@ class wl():   # Main class
                     else:
                         ItemIs['ItemCount'] -= count
 
-
 class pi():
     def StarChange(StarID, ElementTag, ElementValue):
         if len(CustomStars) == 0:

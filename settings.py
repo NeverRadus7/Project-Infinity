@@ -1,6 +1,6 @@
 # Shell settings
 ConsoleSizeX = 130  # Default: 130
-ConsoleSizeY = 33 # Default: 30
+ConsoleSizeY = 30 # Default: 30
 WallSymbol = "━"
 SavePath = "save/save.json"
 MapPath = "save/map.json"
@@ -28,7 +28,7 @@ PlanetColonyRange = 75 # Default: 75
 CivilEcoMin = 0.1 # Default: 0.1
 CivilEcoMax = 1.5 # Default: 1.5
 MinFulling = 1 # Default: 1
-MaxFulling = 80 # Default: 60
+MaxFulling = 60 # Default: 60
 StarViewMaxPlanets = 8
 SymbolFulling = "≡"
 
