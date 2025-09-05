@@ -13,7 +13,7 @@ Project Infinity - це мій закритий проєкт: консольна
 Тепер цей проєкт, доступний як для Windows, так і для MacOS та Linux. Треба просто запустити game.bat або game.sh.
 
 ## Бібліотеки
-- [pygetch (linux)](https://pypi.org/project/pygetch/)
+- [getch (linux)](https://pypi.org/project/getch/)
 - [nickname-generator](https://pypi.org/project/nickname-generator/)
 - [colorama](https://pypi.org/project/colorama/)
 - wlengine (рідна бібліотека)
