@@ -1,0 +1,56 @@
+{
+    "Nickname": "Player",
+    "Location": 227,
+    "Ship": {
+        "ShipID": 1,
+        "ShipName": "Excalibur EXP-10",
+        "ShipModification": [
+            {
+                "ModificationID": 19,
+                "ModificationLevel": 0
+            },
+            {
+                "ModificationID": 19,
+                "ModificationLevel": 0
+            },
+            {
+                "ModificationID": 19,
+                "ModificationLevel": 0
+            }
+        ],
+        "ShipFlags": [],
+        "Storage": [
+            {
+                "ItemID": 0,
+                "ItemCount": 30
+            }
+        ],
+        "Fuel": 2,
+        "ItemsCount": 30
+    },
+    "Exo": {
+        "ExoClass": 0,
+        "ExoLevel": 1,
+        "ExoMod": []
+    },
+    "Money": 3650229,
+    "IntelBall": 0,
+    "BattleScore": 0,
+    "SocialScore": 0,
+    "XP": 8380434,
+    "Reputation": 0,
+    "WorldDay": 58,
+    "Atribution": [],
+    "Statistic": {
+        "StarInteled": 19,
+        "StarControled": 0,
+        "StarColony": 0,
+        "CreditsFromSelled": 5817206,
+        "CreditsFromScience": 1298184,
+        "IncomeFromColony": 0
+    },
+    "MapSettings": {
+        "Filter": 0
+    },
+    "GameUpdate": 0
+}

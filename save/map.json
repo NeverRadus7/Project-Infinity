@@ -1,0 +1,1610 @@
+[
+    {
+        "StarID": 211,
+        "Star": "Khuluxybo",
+        "StarCivil": {
+            "CivilPop": 98489539,
+            "CivilEconomicType": 12,
+            "CivilEco": 1.5431543997193748,
+            "CivilReputation": 50,
+            "CivilSecurity": 0,
+            "CivilStable": 30,
+            "CivilUpgrade": [
+                "Cruiser_Shipyard",
+                "Workshop",
+                "Cruiser_Shipyard"
+            ],
+            "CivilStation": {
+                "StationName": "Zhyjyvup Station",
+                "StationType": 0,
+                "StationStoreList": [
+                    8,
+                    3,
+                    7,
+                    5,
+                    0,
+                    4
+                ],
+                "StationHangar": []
+            }
+        },
+        "Planets": [
+            {
+                "PlanetID": 1,
+                "PlanetName": "Gamma 211-10-P956-1",
+                "PlanetClass": {
+                    "TypeClass": 2,
+                    "TempClass": 0,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 663.4597049122153,
+                "PlanetKelvinTemp": 817.5042708040049,
+                "PlanetSize": 7.5991984598542395,
+                "PlanetColore": 6,
+                "PlanetTemp": 544.354270804005,
+                "PlanetMass": 35.17412695705328,
+                "PlanetAtmoAlbedo": 0.8442123133036351,
+                "PlanetAtmoGreenhouse": 0.4609521501372804,
+                "PlanetDistance": 0.4878566148554314,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 2,
+                "PlanetName": "Gamma 211-10-P956-2",
+                "PlanetClass": {
+                    "TypeClass": 1,
+                    "TempClass": 1,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 365.31325880453534,
+                "PlanetKelvinTemp": 448.91866437271767,
+                "PlanetSize": 2.190799354472123,
+                "PlanetColore": 7,
+                "PlanetTemp": 175.7686643727177,
+                "PlanetMass": 7.412611936179842,
+                "PlanetAtmoAlbedo": 0.41894487710741124,
+                "PlanetAtmoGreenhouse": 0.8614439726422863,
+                "PlanetDistance": 1.6091274019814896,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 3,
+                "PlanetName": "Gamma 211-10-P956-3",
+                "PlanetClass": {
+                    "TypeClass": 4,
+                    "TempClass": 4,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 211.23656499940654,
+                "PlanetKelvinTemp": 250.64337272383034,
+                "PlanetSize": 0.35124124102094545,
+                "PlanetColore": 2,
+                "PlanetTemp": -22.506627276169638,
+                "PlanetMass": 12.689357370959994,
+                "PlanetAtmoAlbedo": 0.4644331630560423,
+                "PlanetAtmoGreenhouse": 0.5177716074999446,
+                "PlanetDistance": 4.812637016495528,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 4,
+                "PlanetName": "Gamma 211-10-P956-4",
+                "PlanetClass": {
+                    "TypeClass": 5,
+                    "TempClass": 5,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 168.13094373368742,
+                "PlanetKelvinTemp": 206.79053593597735,
+                "PlanetSize": 46.81335886469026,
+                "PlanetColore": 6,
+                "PlanetTemp": -66.35946406402263,
+                "PlanetMass": 7.099482189313057,
+                "PlanetAtmoAlbedo": 0.5743648287164171,
+                "PlanetAtmoGreenhouse": 0.7140356619822661,
+                "PlanetDistance": 7.596717892294896,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 5,
+                "PlanetName": "Gamma 211-10-P956-5",
+                "PlanetClass": {
+                    "TypeClass": 3,
+                    "TempClass": 6,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 130.7372214715358,
+                "PlanetKelvinTemp": 141.51048990359638,
+                "PlanetSize": 3.472002828123999,
+                "PlanetColore": 0,
+                "PlanetTemp": -131.6395100964036,
+                "PlanetMass": 20.637779632788515,
+                "PlanetAtmoAlbedo": 0.0050859942153290705,
+                "PlanetAtmoGreenhouse": 0.3675568009305986,
+                "PlanetDistance": 12.563851624746654,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 6,
+                "PlanetName": "Gamma 211-10-P956-6",
+                "PlanetClass": {
+                    "TypeClass": 4,
+                    "TempClass": 6,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 108.84115124471153,
+                "PlanetKelvinTemp": 132.05135975896985,
+                "PlanetSize": 3.566216331246922,
+                "PlanetColore": 4,
+                "PlanetTemp": -141.09864024103013,
+                "PlanetMass": 3.7516045286982633,
+                "PlanetAtmoAlbedo": 0.31591372364860215,
+                "PlanetAtmoGreenhouse": 0.8507873731149221,
+                "PlanetDistance": 18.127380332349816,
+                "PlanetTerraform": false,
+                "PlanetRings": true,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 7,
+                "PlanetName": "Gamma 211-10-P956-7",
+                "PlanetClass": {
+                    "TypeClass": 1,
+                    "TempClass": 6,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 105.28932940254148,
+                "PlanetKelvinTemp": 135.4937592274924,
+                "PlanetSize": 6.5389476244577,
+                "PlanetColore": 7,
+                "PlanetTemp": -137.65624077250757,
+                "PlanetMass": 10.62154686506794,
+                "PlanetAtmoAlbedo": 0.8941302835682533,
+                "PlanetAtmoGreenhouse": 0.8483261089326589,
+                "PlanetDistance": 19.3710240863203,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 8,
+                "PlanetName": "Gamma 211-10-P956-8",
+                "PlanetClass": {
+                    "TypeClass": 2,
+                    "TempClass": 6,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 80.19814925032901,
+                "PlanetKelvinTemp": 92.72497129338961,
+                "PlanetSize": 3.9228251682140605,
+                "PlanetColore": 5,
+                "PlanetTemp": -180.42502870661036,
+                "PlanetMass": 23.725668090455798,
+                "PlanetAtmoAlbedo": 0.03183560378550998,
+                "PlanetAtmoGreenhouse": 0.7551845309257923,
+                "PlanetDistance": 33.38816939391548,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 9,
+                "PlanetName": "Gamma 211-10-P956-9",
+                "PlanetClass": {
+                    "TypeClass": 1,
+                    "TempClass": 6,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 85.3085863511908,
+                "PlanetKelvinTemp": 109.5635047198022,
+                "PlanetSize": 0.3969188048762584,
+                "PlanetColore": 2,
+                "PlanetTemp": -163.58649528019777,
+                "PlanetMass": 33.21082315183423,
+                "PlanetAtmoAlbedo": 0.7262516771168916,
+                "PlanetAtmoGreenhouse": 0.9945236637918926,
+                "PlanetDistance": 29.50773059891374,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 10,
+                "PlanetName": "Gamma 211-10-P956-10",
+                "PlanetClass": {
+                    "TypeClass": 5,
+                    "TempClass": 6,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 73.57419571643206,
+                "PlanetKelvinTemp": 93.93199868090042,
+                "PlanetSize": 39.74385006339343,
+                "PlanetColore": 3,
+                "PlanetTemp": -179.21800131909956,
+                "PlanetMass": 39.30871098013753,
+                "PlanetAtmoAlbedo": 0.7398042836001756,
+                "PlanetAtmoGreenhouse": 0.9169547152522708,
+                "PlanetDistance": 39.67073563297055,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0,
+                "PlanetColony": {
+                    "ColonyName": "Buvasyl Colony",
+                    "ColonyLevel": 46,
+                    "ColonyPop": 98489539,
+                    "ColonyBuildings": [
+                        1
+                    ],
+                    "ColonyBuild": {
+                        "Enabled": false,
+                        "EndBuild": 0
+                    },
+                    "ColonyMaxBuildings": 8,
+                    "ColonyMaxPops": 50000
+                }
+            },
+            {
+                "PlanetID": 11,
+                "PlanetName": "Gamma 211-10-P956-11",
+                "PlanetClass": {
+                    "TypeClass": 2,
+                    "TempClass": 6,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 70.68150420043693,
+                "PlanetKelvinTemp": 80.49088714576759,
+                "PlanetSize": 0.7481246838111717,
+                "PlanetColore": 2,
+                "PlanetTemp": -192.65911285423238,
+                "PlanetMass": 5.032600820907481,
+                "PlanetAtmoAlbedo": 0.21772687377733924,
+                "PlanetAtmoGreenhouse": 0.46403198108121413,
+                "PlanetDistance": 42.98428764001997,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 12,
+                "PlanetName": "Gamma 211-10-P956-12",
+                "PlanetClass": {
+                    "TypeClass": 2,
+                    "TempClass": 6,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 62.11486608072382,
+                "PlanetKelvinTemp": 77.34058083193628,
+                "PlanetSize": 3.9788950505580845,
+                "PlanetColore": 1,
+                "PlanetTemp": -195.8094191680637,
+                "PlanetMass": 11.364207846282756,
+                "PlanetAtmoAlbedo": 0.48389299821497156,
+                "PlanetAtmoGreenhouse": 0.9196256962744923,
+                "PlanetDistance": 55.65833289001309,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 13,
+                "PlanetName": "Gamma 211-10-P956-13",
+                "PlanetClass": {
+                    "TypeClass": 1,
+                    "TempClass": 6,
+                    "LiveClass": 1,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 52.51683499688579,
+                "PlanetKelvinTemp": 62.102929496941464,
+                "PlanetSize": 9.606343550090383,
+                "PlanetColore": 6,
+                "PlanetTemp": -211.0470705030585,
+                "PlanetMass": 10.495782859408811,
+                "PlanetAtmoAlbedo": 0.9496694332426667,
+                "PlanetAtmoGreenhouse": 0.005814125646041113,
+                "PlanetDistance": 77.86175899713469,
+                "PlanetTerraform": true,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 14,
+                "PlanetName": "Gamma 211-10-P956-14",
+                "PlanetClass": {
+                    "TypeClass": 3,
+                    "TempClass": 6,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 50.72142682691645,
+                "PlanetKelvinTemp": 60.12867765799774,
+                "PlanetSize": 0.5084142263718183,
+                "PlanetColore": 3,
+                "PlanetTemp": -213.02132234200224,
+                "PlanetMass": 22.77529268743683,
+                "PlanetAtmoAlbedo": 0.7318102332353751,
+                "PlanetAtmoGreenhouse": 0.2431609529668537,
+                "PlanetDistance": 83.4715304453547,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 15,
+                "PlanetName": "Gamma 211-10-P956-15",
+                "PlanetClass": {
+                    "TypeClass": 1,
+                    "TempClass": 6,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 44.69710070964606,
+                "PlanetKelvinTemp": 52.73550490015639,
+                "PlanetSize": 0.933665946776209,
+                "PlanetColore": 5,
+                "PlanetTemp": -220.41449509984358,
+                "PlanetMass": 27.53149810561703,
+                "PlanetAtmoAlbedo": 0.8929175597110482,
+                "PlanetAtmoGreenhouse": 0.0448202789550769,
+                "PlanetDistance": 107.48864633032565,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            }
+        ]
+    },
+    {
+        "StarID": 220,
+        "Star": "Qomylikhiv",
+        "StarCivil": {
+            "CivilPop": 495176,
+            "CivilEconomicType": 7,
+            "CivilEco": 1.5869214562477925,
+            "CivilReputation": 50,
+            "CivilSecurity": 0,
+            "CivilStable": 28,
+            "CivilUpgrade": [
+                "Workshop",
+                "Cruiser_Shipyard",
+                "Cruiser_Shipyard"
+            ],
+            "CivilStation": {
+                "StationName": "Ehidod Station",
+                "StationType": 2,
+                "StationStoreList": [
+                    7,
+                    6,
+                    3
+                ],
+                "StationHangar": []
+            }
+        },
+        "Planets": [
+            {
+                "PlanetID": 1,
+                "PlanetName": "Beta 220-11-W330-1",
+                "PlanetClass": {
+                    "TypeClass": 3,
+                    "TempClass": 0,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 3985.0642015240433,
+                "PlanetKelvinTemp": 5179.56154517248,
+                "PlanetSize": 9.190501563598598,
+                "PlanetColore": 2,
+                "PlanetTemp": 4906.41154517248,
+                "PlanetMass": 27.89740640914317,
+                "PlanetAtmoAlbedo": 0.8822246557119988,
+                "PlanetAtmoGreenhouse": 0.9716224450740929,
+                "PlanetDistance": 0.32859915242337423,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 2,
+                "PlanetName": "Beta 220-11-W330-2",
+                "PlanetClass": {
+                    "TypeClass": 5,
+                    "TempClass": 0,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 1882.738684091579,
+                "PlanetKelvinTemp": 2224.7626167346075,
+                "PlanetSize": 31.700657740797045,
+                "PlanetColore": 6,
+                "PlanetTemp": 1951.6126167346074,
+                "PlanetMass": 11.102932299347163,
+                "PlanetAtmoAlbedo": 0.6619444991926332,
+                "PlanetAtmoGreenhouse": 0.2877857486815004,
+                "PlanetDistance": 1.4721667067072337,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 3,
+                "PlanetName": "Beta 220-11-W330-3",
+                "PlanetClass": {
+                    "TypeClass": 5,
+                    "TempClass": 0,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 1119.6970041669567,
+                "PlanetKelvinTemp": 1315.8419771098652,
+                "PlanetSize": 27.787933917608328,
+                "PlanetColore": 6,
+                "PlanetTemp": 1042.691977109865,
+                "PlanetMass": 12.805043957064013,
+                "PlanetAtmoAlbedo": 0.3716436755498608,
+                "PlanetAtmoGreenhouse": 0.5356294198562268,
+                "PlanetDistance": 4.16232561299548,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 4,
+                "PlanetName": "Beta 220-11-W330-4",
+                "PlanetClass": {
+                    "TypeClass": 1,
+                    "TempClass": 0,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 830.9370938335993,
+                "PlanetKelvinTemp": 972.5388479372289,
+                "PlanetSize": 0.7321477734111457,
+                "PlanetColore": 3,
+                "PlanetTemp": 699.3888479372289,
+                "PlanetMass": 37.67924762326797,
+                "PlanetAtmoAlbedo": 0.6649824744571102,
+                "PlanetAtmoGreenhouse": 0.21154637604635007,
+                "PlanetDistance": 7.557893892858851,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 5,
+                "PlanetName": "Beta 220-11-W330-5",
+                "PlanetClass": {
+                    "TypeClass": 3,
+                    "TempClass": 0,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 680.5235299710017,
+                "PlanetKelvinTemp": 790.156121699929,
+                "PlanetSize": 0.2536515008960455,
+                "PlanetColore": 7,
+                "PlanetTemp": 517.006121699929,
+                "PlanetMass": 27.009892349859886,
+                "PlanetAtmoAlbedo": 0.35424919494178186,
+                "PlanetAtmoGreenhouse": 0.4632701925596656,
+                "PlanetDistance": 11.268102574125567,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0,
+                "PlanetColony": {
+                    "ColonyName": "Oluruwy Colony",
+                    "ColonyLevel": 87,
+                    "ColonyPop": 495176,
+                    "ColonyBuildings": [
+                        1
+                    ],
+                    "ColonyBuild": {
+                        "Enabled": false,
+                        "EndBuild": 0
+                    },
+                    "ColonyMaxBuildings": 3,
+                    "ColonyMaxPops": 50000
+                }
+            },
+            {
+                "PlanetID": 6,
+                "PlanetName": "Beta 220-11-W330-6",
+                "PlanetClass": {
+                    "TypeClass": 5,
+                    "TempClass": 0,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 635.6662749654826,
+                "PlanetKelvinTemp": 724.3977383561422,
+                "PlanetSize": 40.779526494709465,
+                "PlanetColore": 1,
+                "PlanetTemp": 451.24773835614224,
+                "PlanetMass": 36.893673044681016,
+                "PlanetAtmoAlbedo": 0.5336282979912953,
+                "PlanetAtmoGreenhouse": 0.15289234020736586,
+                "PlanetDistance": 12.91453407448738,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 7,
+                "PlanetName": "Beta 220-11-W330-7",
+                "PlanetClass": {
+                    "TypeClass": 1,
+                    "TempClass": 0,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 545.5084569218956,
+                "PlanetKelvinTemp": 652.4523421195734,
+                "PlanetSize": 9.682419826608104,
+                "PlanetColore": 6,
+                "PlanetTemp": 379.3023421195734,
+                "PlanetMass": 14.502744633020074,
+                "PlanetAtmoAlbedo": 0.701317443972931,
+                "PlanetAtmoGreenhouse": 0.345076428735827,
+                "PlanetDistance": 17.536144213881848,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 8,
+                "PlanetName": "Beta 220-11-W330-8",
+                "PlanetClass": {
+                    "TypeClass": 4,
+                    "TempClass": 1,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 393.22309122441374,
+                "PlanetKelvinTemp": 483.6720680714257,
+                "PlanetSize": 0.2814568097443396,
+                "PlanetColore": 2,
+                "PlanetTemp": 210.52206807142574,
+                "PlanetMass": 1.4914686290908292,
+                "PlanetAtmoAlbedo": 0.42409949741867525,
+                "PlanetAtmoGreenhouse": 0.8649120260846762,
+                "PlanetDistance": 33.748856157873995,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 9,
+                "PlanetName": "Beta 220-11-W330-9",
+                "PlanetClass": {
+                    "TypeClass": 3,
+                    "TempClass": 0,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 478.497248399727,
+                "PlanetKelvinTemp": 600.4254555991387,
+                "PlanetSize": 5.5809932386020265,
+                "PlanetColore": 3,
+                "PlanetTemp": 327.2754555991387,
+                "PlanetMass": 10.74458353881225,
+                "PlanetAtmoAlbedo": 0.6219405682113563,
+                "PlanetAtmoGreenhouse": 0.8572996379498351,
+                "PlanetDistance": 22.79177739244487,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 10,
+                "PlanetName": "Beta 220-11-W330-10",
+                "PlanetClass": {
+                    "TypeClass": 3,
+                    "TempClass": 2,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 315.1062720650428,
+                "PlanetKelvinTemp": 329.7009931170288,
+                "PlanetSize": 0.24967035160610884,
+                "PlanetColore": 6,
+                "PlanetTemp": 56.55099311702884,
+                "PlanetMass": 38.49671051429092,
+                "PlanetAtmoAlbedo": 0.1573492164114284,
+                "PlanetAtmoGreenhouse": 0.041191605051315805,
+                "PlanetDistance": 52.556082835474385,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 11,
+                "PlanetName": "Beta 220-11-W330-11",
+                "PlanetClass": {
+                    "TypeClass": 1,
+                    "TempClass": 1,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 365.5951102585419,
+                "PlanetKelvinTemp": 426.8203801985933,
+                "PlanetSize": 2.2551042842229414,
+                "PlanetColore": 1,
+                "PlanetTemp": 153.6703801985933,
+                "PlanetMass": 21.720398921127664,
+                "PlanetAtmoAlbedo": 0.31130140805634887,
+                "PlanetAtmoGreenhouse": 0.5464135552405522,
+                "PlanetDistance": 39.042383841503145,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 12,
+                "PlanetName": "Beta 220-11-W330-12",
+                "PlanetClass": {
+                    "TypeClass": 2,
+                    "TempClass": 2,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 293.57290438264494,
+                "PlanetKelvinTemp": 352.9921362927656,
+                "PlanetSize": 0.20772771085115013,
+                "PlanetColore": 6,
+                "PlanetTemp": 79.84213629276564,
+                "PlanetMass": 41.014008402165906,
+                "PlanetAtmoAlbedo": 0.3690245585734627,
+                "PlanetAtmoGreenhouse": 0.721215875842134,
+                "PlanetDistance": 60.54874487998005,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 13,
+                "PlanetName": "Beta 220-11-W330-13",
+                "PlanetClass": {
+                    "TypeClass": 4,
+                    "TempClass": 3,
+                    "LiveClass": 1,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 258.64328865278605,
+                "PlanetKelvinTemp": 273.0293658352654,
+                "PlanetSize": 0.10122511832914478,
+                "PlanetColore": 6,
+                "PlanetTemp": -0.1206341647345539,
+                "PlanetMass": 14.025205202365756,
+                "PlanetAtmoAlbedo": 0.1721769986742936,
+                "PlanetAtmoGreenhouse": 0.06956847788602327,
+                "PlanetDistance": 78.00719406358458,
+                "PlanetTerraform": true,
+                "PlanetRings": true,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 14,
+                "PlanetName": "Beta 220-11-W330-14",
+                "PlanetClass": {
+                    "TypeClass": 3,
+                    "TempClass": 2,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 300.5162140456736,
+                "PlanetKelvinTemp": 317.84671802597387,
+                "PlanetSize": 0.4803756703875628,
+                "PlanetColore": 1,
+                "PlanetTemp": 44.696718025973894,
+                "PlanetMass": 22.640525098669205,
+                "PlanetAtmoAlbedo": 0.19681273212634565,
+                "PlanetAtmoGreenhouse": 0.054596314174825245,
+                "PlanetDistance": 57.78315702274415,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 15,
+                "PlanetName": "Beta 220-11-W330-15",
+                "PlanetClass": {
+                    "TypeClass": 4,
+                    "TempClass": 2,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 252.8110324966484,
+                "PlanetKelvinTemp": 308.62968265778613,
+                "PlanetSize": 2.6088320366284488,
+                "PlanetColore": 6,
+                "PlanetTemp": 35.47968265778616,
+                "PlanetMass": 0.3308204627478032,
+                "PlanetAtmoAlbedo": 0.9459469663035334,
+                "PlanetAtmoGreenhouse": 0.2751457085636756,
+                "PlanetDistance": 81.64790379179482,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            }
+        ]
+    },
+    {
+        "StarID": 212,
+        "StarIntel": true
+    },
+    {
+        "StarID": 213,
+        "StarIntel": true
+    },
+    {
+        "StarID": 214,
+        "StarIntel": true
+    },
+    {
+        "StarID": 215,
+        "StarIntel": true
+    },
+    {
+        "StarID": 216,
+        "StarIntel": true
+    },
+    {
+        "StarID": 222,
+        "Star": "Weroqik",
+        "StarCivil": {
+            "CivilPop": 71588,
+            "CivilEconomicType": 15,
+            "CivilEco": 2.0125852336008334,
+            "CivilReputation": 50,
+            "CivilSecurity": 0,
+            "CivilStable": 3,
+            "CivilUpgrade": [
+                "Cruiser_Shipyard",
+                "Fleet_Shipyard",
+                "Workshop"
+            ],
+            "CivilStation": {
+                "StationName": "Oqoduquce Station",
+                "StationType": 1,
+                "StationStoreList": [
+                    5,
+                    3,
+                    4
+                ],
+                "StationHangar": []
+            }
+        },
+        "Planets": [
+            {
+                "PlanetID": 1,
+                "PlanetName": "Gamma 222-11-E753-1",
+                "PlanetClass": {
+                    "TypeClass": 5,
+                    "TempClass": 0,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 946.0058177688902,
+                "PlanetKelvinTemp": 1078.7472536408713,
+                "PlanetSize": 38.67507815066888,
+                "PlanetColore": 5,
+                "PlanetTemp": 805.5972536408714,
+                "PlanetMass": 36.74539660742798,
+                "PlanetAtmoAlbedo": 0.4596055944336094,
+                "PlanetAtmoGreenhouse": 0.2312385711963696,
+                "PlanetDistance": 0.35737323884381955,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 2,
+                "PlanetName": "Gamma 222-11-E753-2",
+                "PlanetClass": {
+                    "TypeClass": 1,
+                    "TempClass": 0,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 470.7802824411774,
+                "PlanetKelvinTemp": 602.0428355293135,
+                "PlanetSize": 0.39764422377554454,
+                "PlanetColore": 5,
+                "PlanetTemp": 328.8928355293135,
+                "PlanetMass": 9.003156430343363,
+                "PlanetAtmoAlbedo": 0.9096410546285051,
+                "PlanetAtmoGreenhouse": 0.7648214261588181,
+                "PlanetDistance": 1.4430225319355954,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 3,
+                "PlanetName": "Gamma 222-11-E753-3",
+                "PlanetClass": {
+                    "TypeClass": 0,
+                    "TempClass": 2,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 293.8473742302307,
+                "PlanetKelvinTemp": 366.4905249522217,
+                "PlanetSize": 6.444975248153639,
+                "PlanetColore": 6,
+                "PlanetTemp": 93.3405249522217,
+                "PlanetMass": 41.61406880410654,
+                "PlanetAtmoAlbedo": 0.9534466633314111,
+                "PlanetAtmoGreenhouse": 0.4662657211738561,
+                "PlanetDistance": 3.7039576638143865,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 4,
+                "PlanetName": "Gamma 222-11-E753-4",
+                "PlanetClass": {
+                    "TypeClass": 0,
+                    "TempClass": 5,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 194.48838351242307,
+                "PlanetKelvinTemp": 221.80017721946584,
+                "PlanetSize": 4.307034058722316,
+                "PlanetColore": 3,
+                "PlanetTemp": -51.34982278053414,
+                "PlanetMass": 32.6994811876269,
+                "PlanetAtmoAlbedo": 0.20130566457394417,
+                "PlanetAtmoGreenhouse": 0.49019778750339493,
+                "PlanetDistance": 8.455169323607407,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0,
+                "PlanetColony": {
+                    "ColonyName": "Wobizhow Colony",
+                    "ColonyLevel": 21,
+                    "ColonyPop": 71588,
+                    "ColonyBuildings": [
+                        1
+                    ],
+                    "ColonyBuild": {
+                        "Enabled": false,
+                        "EndBuild": 0
+                    },
+                    "ColonyMaxBuildings": 7,
+                    "ColonyMaxPops": 50000
+                }
+            },
+            {
+                "PlanetID": 5,
+                "PlanetName": "Gamma 222-11-E753-5",
+                "PlanetClass": {
+                    "TypeClass": 2,
+                    "TempClass": 5,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 176.2603115920076,
+                "PlanetKelvinTemp": 196.26185976287752,
+                "PlanetSize": 6.659242697432913,
+                "PlanetColore": 7,
+                "PlanetTemp": -76.88814023712246,
+                "PlanetMass": 0.446833272814558,
+                "PlanetAtmoAlbedo": 0.2512274303564437,
+                "PlanetAtmoGreenhouse": 0.285955330685571,
+                "PlanetDistance": 10.29438900975752,
+                "PlanetTerraform": false,
+                "PlanetRings": true,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 6,
+                "PlanetName": "Gamma 222-11-E753-6",
+                "PlanetClass": {
+                    "TypeClass": 3,
+                    "TempClass": 5,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 178.42389090262787,
+                "PlanetKelvinTemp": 188.06354791179817,
+                "PlanetSize": 3.415923343219943,
+                "PlanetColore": 2,
+                "PlanetTemp": -85.08645208820181,
+                "PlanetMass": 5.41365612363323,
+                "PlanetAtmoAlbedo": 0.08035815392902224,
+                "PlanetAtmoGreenhouse": 0.15390134087995078,
+                "PlanetDistance": 10.04624189536513,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 7,
+                "PlanetName": "Gamma 222-11-E753-7",
+                "PlanetClass": {
+                    "TypeClass": 3,
+                    "TempClass": 6,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 129.9318995554711,
+                "PlanetKelvinTemp": 158.17481219380076,
+                "PlanetSize": 7.0874266273538655,
+                "PlanetColore": 0,
+                "PlanetTemp": -114.97518780619922,
+                "PlanetMass": 6.419063578763304,
+                "PlanetAtmoAlbedo": 0.31522084319820787,
+                "PlanetAtmoGreenhouse": 0.8810513297753225,
+                "PlanetDistance": 18.944278392668327,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 8,
+                "PlanetName": "Gamma 222-11-E753-8",
+                "PlanetClass": {
+                    "TypeClass": 4,
+                    "TempClass": 6,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 98.10678880562344,
+                "PlanetKelvinTemp": 127.24259963415918,
+                "PlanetSize": 5.09020402876968,
+                "PlanetColore": 3,
+                "PlanetTemp": -145.9074003658408,
+                "PlanetMass": 6.718982814267836,
+                "PlanetAtmoAlbedo": 0.9585482719416464,
+                "PlanetAtmoGreenhouse": 0.8711093484364244,
+                "PlanetDistance": 33.22856000448054,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 9,
+                "PlanetName": "Gamma 222-11-E753-9",
+                "PlanetClass": {
+                    "TypeClass": 0,
+                    "TempClass": 6,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 101.38846533131034,
+                "PlanetKelvinTemp": 120.2172432765247,
+                "PlanetSize": 2.0184355609089875,
+                "PlanetColore": 4,
+                "PlanetTemp": -152.93275672347528,
+                "PlanetMass": 32.06709475603395,
+                "PlanetAtmoAlbedo": 0.16565386776301483,
+                "PlanetAtmoGreenhouse": 0.8109191470440623,
+                "PlanetDistance": 31.112330518047024,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 10,
+                "PlanetName": "Gamma 222-11-E753-10",
+                "PlanetClass": {
+                    "TypeClass": 4,
+                    "TempClass": 6,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 108.02368592705936,
+                "PlanetKelvinTemp": 124.33919654063108,
+                "PlanetSize": 0.17855758786632553,
+                "PlanetColore": 5,
+                "PlanetTemp": -148.8108034593689,
+                "PlanetMass": 7.844837492932446,
+                "PlanetAtmoAlbedo": 0.49923904760600013,
+                "PlanetAtmoGreenhouse": 0.25608078170339343,
+                "PlanetDistance": 27.40764110515397,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 11,
+                "PlanetName": "Gamma 222-11-E753-11",
+                "PlanetClass": {
+                    "TypeClass": 4,
+                    "TempClass": 6,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 79.74946351954999,
+                "PlanetKelvinTemp": 97.45371001115338,
+                "PlanetSize": 0.3099778436936649,
+                "PlanetColore": 6,
+                "PlanetTemp": -175.69628998884662,
+                "PlanetMass": 6.839365571666859,
+                "PlanetAtmoAlbedo": 0.7048693062789869,
+                "PlanetAtmoGreenhouse": 0.5250154963784849,
+                "PlanetDistance": 50.28681181511559,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 12,
+                "PlanetName": "Gamma 222-11-E753-12",
+                "PlanetClass": {
+                    "TypeClass": 3,
+                    "TempClass": 6,
+                    "LiveClass": 1,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 73.68441451343361,
+                "PlanetKelvinTemp": 86.88452203121085,
+                "PlanetSize": 5.027261208147063,
+                "PlanetColore": 0,
+                "PlanetTemp": -186.26547796878913,
+                "PlanetMass": 20.41440535017306,
+                "PlanetAtmoAlbedo": 0.04277874458587683,
+                "PlanetAtmoGreenhouse": 0.8903782144822165,
+                "PlanetDistance": 58.90584205566939,
+                "PlanetTerraform": true,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 13,
+                "PlanetName": "Gamma 222-11-E753-13",
+                "PlanetClass": {
+                    "TypeClass": 4,
+                    "TempClass": 6,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 68.60962204682046,
+                "PlanetKelvinTemp": 78.52781561211131,
+                "PlanetSize": 5.083373032077365,
+                "PlanetColore": 4,
+                "PlanetTemp": -194.62218438788867,
+                "PlanetMass": 15.338334685702629,
+                "PlanetAtmoAlbedo": 0.4790805455801047,
+                "PlanetAtmoGreenhouse": 0.23706437878059827,
+                "PlanetDistance": 67.9421974007649,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 14,
+                "PlanetName": "Gamma 222-11-E753-14",
+                "PlanetClass": {
+                    "TypeClass": 0,
+                    "TempClass": 6,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 62.65910291116441,
+                "PlanetKelvinTemp": 70.64141614813099,
+                "PlanetSize": 0.51667153335672,
+                "PlanetColore": 2,
+                "PlanetTemp": -202.508583851869,
+                "PlanetMass": 15.173841226906026,
+                "PlanetAtmoAlbedo": 0.4333164935947992,
+                "PlanetAtmoGreenhouse": 0.18216094300434738,
+                "PlanetDistance": 81.45941690166022,
+                "PlanetTerraform": false,
+                "PlanetRings": true,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 15,
+                "PlanetName": "Gamma 222-11-E753-15",
+                "PlanetClass": {
+                    "TypeClass": 1,
+                    "TempClass": 6,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 52.474223156948966,
+                "PlanetKelvinTemp": 68.1323471489787,
+                "PlanetSize": 0.6024949523636012,
+                "PlanetColore": 3,
+                "PlanetTemp": -205.0176528510213,
+                "PlanetMass": 0.19652545746031613,
+                "PlanetAtmoAlbedo": 0.8456616514014659,
+                "PlanetAtmoGreenhouse": 0.9963727514535868,
+                "PlanetDistance": 116.14957014269007,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            }
+        ]
+    },
+    {
+        "StarID": 227,
+        "Star": "Uramiga",
+        "StarCivil": {
+            "CivilPop": 629634,
+            "CivilEconomicType": 13,
+            "CivilEco": 2.136702114665435,
+            "CivilReputation": 50,
+            "CivilSecurity": 0,
+            "CivilStable": 21,
+            "CivilUpgrade": [
+                "Fleet_Shipyard",
+                "Cruiser_Shipyard",
+                "Workshop"
+            ],
+            "CivilStation": {
+                "StationName": "Lalukash Station",
+                "StationType": 0,
+                "StationStoreList": [
+                    10,
+                    2,
+                    9,
+                    3,
+                    7,
+                    5,
+                    0,
+                    8,
+                    6,
+                    1,
+                    4
+                ],
+                "StationHangar": []
+            }
+        },
+        "Planets": [
+            {
+                "PlanetID": 1,
+                "PlanetName": "Alpha 227-11-F980-1",
+                "PlanetClass": {
+                    "TypeClass": 5,
+                    "TempClass": 6,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 7.542727770561604e-07,
+                "PlanetKelvinTemp": 9.843267033083884e-07,
+                "PlanetSize": 16.48330582883785,
+                "PlanetColore": 4,
+                "PlanetTemp": -273.1499990156733,
+                "PlanetMass": 2.6657248196515364,
+                "PlanetAtmoAlbedo": 0.9005297389283005,
+                "PlanetAtmoGreenhouse": 0.9997730065817401,
+                "PlanetDistance": 0.32924309509737615,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 2,
+                "PlanetName": "Alpha 227-11-F980-2",
+                "PlanetClass": {
+                    "TypeClass": 5,
+                    "TempClass": 6,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 3.09653584084126e-07,
+                "PlanetKelvinTemp": 3.6052452130527463e-07,
+                "PlanetSize": 22.525033832784068,
+                "PlanetColore": 3,
+                "PlanetTemp": -273.1499996394755,
+                "PlanetMass": 3.4858414772393918,
+                "PlanetAtmoAlbedo": 0.5292836078799176,
+                "PlanetAtmoGreenhouse": 0.30824788495619815,
+                "PlanetDistance": 1.9535355582042322,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 3,
+                "PlanetName": "Alpha 227-11-F980-3",
+                "PlanetClass": {
+                    "TypeClass": 5,
+                    "TempClass": 6,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 2.2153694221906756e-07,
+                "PlanetKelvinTemp": 2.808563132573248e-07,
+                "PlanetSize": 47.67437936686174,
+                "PlanetColore": 0,
+                "PlanetTemp": -273.14999971914364,
+                "PlanetMass": 30.889450696778642,
+                "PlanetAtmoAlbedo": 0.7009861946250164,
+                "PlanetAtmoGreenhouse": 0.8821787269117668,
+                "PlanetDistance": 3.8166402745183077,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 4,
+                "PlanetName": "Alpha 227-11-F980-4",
+                "PlanetClass": {
+                    "TypeClass": 2,
+                    "TempClass": 6,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 1.5357538071183884e-07,
+                "PlanetKelvinTemp": 1.7110444924728683e-07,
+                "PlanetSize": 1.8701104708685161,
+                "PlanetColore": 4,
+                "PlanetTemp": -273.14999982889555,
+                "PlanetMass": 23.650521345131374,
+                "PlanetAtmoAlbedo": 0.47785269464629265,
+                "PlanetAtmoGreenhouse": 0.06299179064600446,
+                "PlanetDistance": 7.942008392725744,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 5,
+                "PlanetName": "Alpha 227-11-F980-5",
+                "PlanetClass": {
+                    "TypeClass": 1,
+                    "TempClass": 6,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 1.404673706448235e-07,
+                "PlanetKelvinTemp": 1.7918223754228342e-07,
+                "PlanetSize": 0.12615505297386287,
+                "PlanetColore": 2,
+                "PlanetTemp": -273.14999982081775,
+                "PlanetMass": 8.769017743939802,
+                "PlanetAtmoAlbedo": 0.653437281658291,
+                "PlanetAtmoGreenhouse": 0.9943190166654697,
+                "PlanetDistance": 9.493418725044638,
+                "PlanetTerraform": false,
+                "PlanetRings": true,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0,
+                "PlanetColony": {
+                    "ColonyName": "Birifyshizh Colony",
+                    "ColonyLevel": 37,
+                    "ColonyPop": 350069,
+                    "ColonyBuildings": [
+                        1
+                    ],
+                    "ColonyBuild": {
+                        "Enabled": false,
+                        "EndBuild": 0
+                    },
+                    "ColonyMaxBuildings": 4,
+                    "ColonyMaxPops": 50000
+                }
+            },
+            {
+                "PlanetID": 6,
+                "PlanetName": "Alpha 227-11-F980-6",
+                "PlanetClass": {
+                    "TypeClass": 3,
+                    "TempClass": 6,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 1.1071376049613128e-07,
+                "PlanetKelvinTemp": 1.3609163457492234e-07,
+                "PlanetSize": 1.207184130811401,
+                "PlanetColore": 0,
+                "PlanetTemp": -273.14999986390836,
+                "PlanetMass": 32.67472471622015,
+                "PlanetAtmoAlbedo": 0.7262357819783066,
+                "PlanetAtmoGreenhouse": 0.5568346653392878,
+                "PlanetDistance": 15.281653156936322,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 7,
+                "PlanetName": "Alpha 227-11-F980-7",
+                "PlanetClass": {
+                    "TypeClass": 5,
+                    "TempClass": 6,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 9.503941957527129e-08,
+                "PlanetKelvinTemp": 1.0916434227862132e-07,
+                "PlanetSize": 18.257107350265823,
+                "PlanetColore": 3,
+                "PlanetTemp": -273.14999989083566,
+                "PlanetMass": 1.213929424672878,
+                "PlanetAtmoAlbedo": 0.47570255477185275,
+                "PlanetAtmoGreenhouse": 0.2649340351122589,
+                "PlanetDistance": 20.737958079098558,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 8,
+                "PlanetName": "Alpha 227-11-F980-8",
+                "PlanetClass": {
+                    "TypeClass": 2,
+                    "TempClass": 6,
+                    "LiveClass": 1,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 8.969129531520363e-08,
+                "PlanetKelvinTemp": 1.061739271225311e-07,
+                "PlanetSize": 9.54104105747241,
+                "PlanetColore": 4,
+                "PlanetTemp": -273.1499998938261,
+                "PlanetMass": 8.043102132928913,
+                "PlanetAtmoAlbedo": 0.5736582849880064,
+                "PlanetAtmoGreenhouse": 0.3900200122390821,
+                "PlanetDistance": 23.284823518733905,
+                "PlanetTerraform": true,
+                "PlanetRings": true,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 9,
+                "PlanetName": "Alpha 227-11-F980-9",
+                "PlanetClass": {
+                    "TypeClass": 3,
+                    "TempClass": 6,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 8.122732069224081e-08,
+                "PlanetKelvinTemp": 8.977261196513197e-08,
+                "PlanetSize": 7.630354528767494,
+                "PlanetColore": 5,
+                "PlanetTemp": -273.1499999102274,
+                "PlanetMass": 42.19284242677027,
+                "PlanetAtmoAlbedo": 0.018990330811451073,
+                "PlanetAtmoGreenhouse": 0.4730031747503085,
+                "PlanetDistance": 28.39025455875984,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0,
+                "PlanetColony": {
+                    "ColonyName": "Kebothe Colony",
+                    "ColonyLevel": 50,
+                    "ColonyPop": 279565,
+                    "ColonyBuildings": [
+                        1
+                    ],
+                    "ColonyBuild": {
+                        "Enabled": false,
+                        "EndBuild": 0
+                    },
+                    "ColonyMaxBuildings": 1,
+                    "ColonyMaxPops": 50000
+                }
+            },
+            {
+                "PlanetID": 10,
+                "PlanetName": "Alpha 227-11-F980-10",
+                "PlanetClass": {
+                    "TypeClass": 3,
+                    "TempClass": 6,
+                    "LiveClass": 1,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 6.918513382425692e-08,
+                "PlanetKelvinTemp": 7.843514507493829e-08,
+                "PlanetSize": 0.45313635883510084,
+                "PlanetColore": 2,
+                "PlanetTemp": -273.1499999215648,
+                "PlanetMass": 0.7644844146809238,
+                "PlanetAtmoAlbedo": 0.580168920112973,
+                "PlanetAtmoGreenhouse": 0.07176121323866491,
+                "PlanetDistance": 39.13343515802259,
+                "PlanetTerraform": true,
+                "PlanetRings": true,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 11,
+                "PlanetName": "Alpha 227-11-F980-11",
+                "PlanetClass": {
+                    "TypeClass": 0,
+                    "TempClass": 6,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 6.910119666377411e-08,
+                "PlanetKelvinTemp": 8.013509562472663e-08,
+                "PlanetSize": 3.2896359123363026,
+                "PlanetColore": 4,
+                "PlanetTemp": -273.14999991986485,
+                "PlanetMass": 43.779651131753866,
+                "PlanetAtmoAlbedo": 0.1438632723572072,
+                "PlanetAtmoGreenhouse": 0.6647627060575787,
+                "PlanetDistance": 39.22856359506427,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 12,
+                "PlanetName": "Alpha 227-11-F980-12",
+                "PlanetClass": {
+                    "TypeClass": 0,
+                    "TempClass": 6,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 5.8164294341439204e-08,
+                "PlanetKelvinTemp": 7.366393655454762e-08,
+                "PlanetSize": 8.972761957912528,
+                "PlanetColore": 3,
+                "PlanetTemp": -273.149999926336,
+                "PlanetMass": 27.891485981296047,
+                "PlanetAtmoAlbedo": 0.6558151122525097,
+                "PlanetAtmoGreenhouse": 0.916912692236617,
+                "PlanetDistance": 55.36822687881166,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 13,
+                "PlanetName": "Alpha 227-11-F980-13",
+                "PlanetClass": {
+                    "TypeClass": 0,
+                    "TempClass": 6,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 5.2315946471345426e-08,
+                "PlanetKelvinTemp": 6.62164614122897e-08,
+                "PlanetSize": 1.4996237401743233,
+                "PlanetColore": 4,
+                "PlanetTemp": -273.14999993378353,
+                "PlanetMass": 8.534240949931542,
+                "PlanetAtmoAlbedo": 0.6074118874061413,
+                "PlanetAtmoGreenhouse": 0.9590069061976347,
+                "PlanetDistance": 68.43927013433778,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            }
+        ]
+    },
+    {
+        "StarID": 210,
+        "StarIntel": true
+    },
+    {
+        "StarID": 209,
+        "StarIntel": true
+    },
+    {
+        "StarID": 208,
+        "StarIntel": true
+    },
+    {
+        "StarID": 207,
+        "StarIntel": true
+    },
+    {
+        "StarID": 206,
+        "StarIntel": true
+    },
+    {
+        "StarID": 205,
+        "StarIntel": true,
+        "StarControled": true
+    },
+    {
+        "StarID": 204,
+        "StarIntel": true
+    },
+    {
+        "StarID": 203,
+        "StarIntel": true
+    },
+    {
+        "StarID": 202,
+        "StarIntel": true
+    },
+    {
+        "StarID": 201,
+        "StarIntel": true
+    },
+    {
+        "StarID": 200,
+        "StarIntel": true
+    },
+    {
+        "StarID": 217,
+        "StarIntel": true
+    },
+    {
+        "StarID": 218,
+        "StarIntel": true
+    },
+    {
+        "StarID": 219,
+        "StarIntel": true
+    }
+]

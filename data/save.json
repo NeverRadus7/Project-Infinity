@@ -1,0 +1,47 @@
+{
+    "Nickname": "Player",
+    "Location": 273,
+    "Ship": {
+        "ShipID": 0,
+        "ShipName": "Ship",
+        "ShipModification": [
+            {
+                "ModificationID": null,
+                "ModificationLevel": 0
+            },
+            {
+                "ModificationID": null,
+                "ModificationLevel": 0
+            }
+        ],
+        "Storage": [],
+        "Fuel": 20
+    },
+    "Fleet": [],
+    "Navy": {
+        "NavyDisable": true,
+        "NavyLevel": 1,
+        "NavyCruisers": 0,
+        "NavyShips": 0,
+        "NavyLocation": 0
+    },
+    "Money": 0,
+    "IntelBall": 0,
+    "BattleScore": 0,
+    "XP": 0,
+    "Reputation": 0,
+    "WorldDay": 1,
+    "Atribution": [],
+    "Statistic": {
+        "StarInteled": 0,
+        "StarControled": 0,
+        "StarColony": 0,
+        "CreditsFromSelled": 0,
+        "CreditsFromScience": 0,
+        "IncomeFromColony": 0
+    },
+    "MapSettings": {
+        "Filter": 0
+    },
+    "GameUpdate": 0
+}

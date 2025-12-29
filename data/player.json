@@ -1,0 +1,63 @@
+{
+    "Nickname": "Player",
+    "Location": 211,
+    "Ship": {
+        "ShipID": 0,
+        "ShipName": "Started ship",
+        "ShipModification": [
+            {
+                "ModificationID": null,
+                "ModificationLevel": 0
+            },
+            {
+                "ModificationID": null,
+                "ModificationLevel": 0
+            },
+            {
+                "ModificationID": null,
+                "ModificationLevel": 0
+            },
+            {
+                "ModificationID": null,
+                "ModificationLevel": 0
+            },
+            {
+                "ModificationID": null,
+                "ModificationLevel": 0
+            },
+            {
+                "ModificationID": null,
+                "ModificationLevel": 0
+            }
+        ],
+        "ShipFlags": ["STARTED_SHIP"],
+        "Storage": [],
+        "Fuel": 20,
+        "ItemsCount": 0
+    },
+    "Exo": {
+        "ExoClass": 0,
+        "ExoLevel": 1,
+        "ExoMod": []
+    },
+    "Money": 1000,
+    "IntelBall": 0,
+    "BattleScore": 0,
+    "SocialScore": 0,
+    "XP": 0,
+    "Reputation": 0,
+    "WorldDay": 0,
+    "Atribution": [],
+    "Statistic": {
+        "StarInteled": 0
+        "StarControled": 0,
+        "StarColony": 0,
+        "CreditsFromSelled": 0,
+        "CreditsFromScience": 0,
+        "IncomeFromColony": 0
+    },
+    "MapSettings": {
+        "Filter": 0
+    },
+    "GameUpdate": 1
+}

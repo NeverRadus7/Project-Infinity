@@ -1,0 +1,17 @@
+#!/bin/bash
+
+$path = pwd
+
+cd path
+
+rm -r python/
+
+python3 -m venv python
+
+source python/bin/activate
+
+pip install colorama
+pip install getch
+pip install pygetch
+pip install nickname_generator
+pip install curses
