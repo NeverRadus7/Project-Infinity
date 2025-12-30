@@ -5,6 +5,10 @@ WallSymbol = "━"
 SavePath = "save/player.json"
 MapPath = "save/map.json"
 
+# Date settings
+CustomToday = False
+SetDate = [30,6,2026]
+
 # Gameplay settings
 MaxLevel = 999 # Default: 100
 MaxNavyLevel = 100 # Default: 100

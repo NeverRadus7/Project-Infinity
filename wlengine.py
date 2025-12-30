@@ -17,7 +17,7 @@ import math
 import getch
 import curses
 
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 
 # -- Files import
 from galaxy.map import GenMap
@@ -497,7 +497,6 @@ class wl():   # Main class
             if item['ItemID'] == itemID and item['ItemCount'] >= count:
                 flag = i
         return flag
-
 
     def FleetInvAdd(itemID, count, FleetID=None):
         if itemID > len(ItemsDB):
@@ -1007,7 +1006,7 @@ class pi():
                         PlanetIs = StarIs['Planets'][i]
                         if PlanetIs.get("PlanetColony"):
                             if PlanetIs['PlanetColony']['ColonyBuild']['Enabled'] == True:
-                                if PlanetIs['PlanetColony']['ColonyBuild']['EndBuild'] <= PlayerIs['WorldDay']:
+                                if wlengine.DateCheck(wlengine.DateRead(PlanetIs['PlanetColony']['ColonyBuild']['EndBuild'])):
                                     PlanetIs['PlanetColony']['ColonyBuild']['Enabled'] = False
 
                         if PlanetIs.get("PlanetColony"):
@@ -1362,6 +1361,39 @@ class wlengine():
                             return x, coust
                 if Command in ['q']:
                     exit()
+    
+    def Date():
+        if CustomToday:
+            dat = date(SetDate[2], SetDate[1], SetDate[0])
+            return dat
+        else:
+            return date.today()
+
+    def DateCheck(other_date):
+        today = wlengine.Date()
+        if today >= other_date:
+            return True
+        else:
+            return False
+
+    def DiffDate(other_date):
+        return abs((wlengine.Date() - other_date).days)
+
+    def DateStr():
+        dat = wlengine.Date()
+        return f"{dat.strftime("%d.%m.%Y")}"
+    
+    def DateOtherStr(other_date):
+        dat = other_date
+        return f"{dat.strftime("%d.%m.%Y")}"
+    
+    def DateSave(other_date):
+        return [other_date.day, other_date.month, other_date.year]
+    
+    def DateRead(table):
+        return date(day=table[0], month=table[1], year=table[2])
+    
+    PlayerDate = DateRead(PlayerIs['NextDate'])
 
 class Colore():
     Red = colorama.Fore.RED

@@ -1,12 +1,12 @@
 {
     "Nickname": "Player",
-    "Location": 227,
+    "Location": 208,
     "Ship": {
         "ShipID": 1,
-        "ShipName": "Excalibur EXP-10",
+        "ShipName": "Lox",
         "ShipModification": [
             {
-                "ModificationID": 19,
+                "ModificationID": 14,
                 "ModificationLevel": 0
             },
             {
@@ -25,7 +25,7 @@
                 "ItemCount": 30
             }
         ],
-        "Fuel": 2,
+        "Fuel": 23,
         "ItemsCount": 30
     },
     "Exo": {
@@ -33,24 +33,34 @@
         "ExoLevel": 1,
         "ExoMod": []
     },
-    "Money": 3650229,
+    "Money": 182838212783,
     "IntelBall": 0,
     "BattleScore": 0,
     "SocialScore": 0,
-    "XP": 8380434,
+    "XP": 10487432,
     "Reputation": 0,
-    "WorldDay": 58,
+    "WorldDay": 25432,
     "Atribution": [],
     "Statistic": {
-        "StarInteled": 19,
+        "StarInteled": 21,
         "StarControled": 0,
         "StarColony": 0,
         "CreditsFromSelled": 5817206,
-        "CreditsFromScience": 1298184,
-        "IncomeFromColony": 0
+        "CreditsFromScience": 1468158,
+        "IncomeFromColony": 3153
     },
     "MapSettings": {
         "Filter": 0
     },
-    "GameUpdate": 0
+    "NextDate": [
+        31,
+        12,
+        2025
+    ],
+    "CreateDate": [
+        12,
+        6,
+        2015
+    ],
+    "GameUpdate": 4
 }

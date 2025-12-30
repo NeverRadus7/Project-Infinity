@@ -57,8 +57,8 @@ def infoscreen(stdscr, StarIs):
         stat_y, stat_x = statistic.getmaxyx()
         statistic.box()
         statistic.addstr(0, int((ship_x-len("Statistic"))/2), "Statistic")
-        statistic.addstr(1, 1, f"Data: {wl.Date()}")
-        statistic.addstr(2, 1, f"Day: {PlayerIs['WorldDay']:,}")
+        statistic.addstr(1, 1, f"Data: {wlengine.DateStr()}")
+        statistic.addstr(2,1,f"Next update: {wlengine.DateOtherStr(wlengine.DateRead(PlayerIs['NextDate']))}")
         for i,k in enumerate(PlayerIs['Statistic']):
             statistic.addstr(int(i+3),1, f"{k}: {PlayerIs['Statistic'][k]:,}")
         statistic.refresh()
@@ -447,6 +447,8 @@ if CommandInput == "3":
                     colony_is.addstr(5,1,f"Information: ")
                     colony_is.addstr(6,1,f"     - Max buildings: {PlanetIs['PlanetColony']['ColonyMaxBuildings']}")
                     colony_is.addstr(7,1,f"     - Max popul.: {PlanetIs['PlanetColony']['ColonyMaxPops']:,}")
+                    if PlanetIs['PlanetColony']['ColonyBuild']['Enabled'] == True:
+                        colony_is.addstr(8,1,f"End building: {wlengine.DateOtherStr(wlengine.DateRead(PlanetIs['PlanetColony']['ColonyBuild']['EndBuild']))}")
                     colony_is.refresh()
 
                 planet_is.refresh()
@@ -467,6 +469,7 @@ if CommandInput == "3":
                         # Check in inventory player
 
                         if wl.InvCheak(1,10) != None:
+                            DateEnd = wlengine.Date() + timedelta(days=rwos.randint(1,7))
                             PlanetColony = {
                                 "ColonyName": "You're colony",
                                 "ColonyLevel": 1,
@@ -474,7 +477,7 @@ if CommandInput == "3":
                                 "ColonyBuildings": [1],
                                 "ColonyBuild": {
                                     "Enabled": True,
-                                    "EndBuild": (PlayerIs['WorldDay'] + rwos.randint(30,60))
+                                    "EndBuild": wlengine.DateSave(DateEnd)
                                 },
                                 "ColonyMaxBuildings": 4,
                                 "ColonyMaxPops": 50_000
@@ -1133,10 +1136,12 @@ if DebugInfo == True and CommandInput == "/":
         exit()
     input("Нажміть ENTER щоб продовжити")
 
-PlayerIs['GameUpdate'] += 1
-if PlayerIs['GameUpdate'] == 5:
-    PlayerIs['GameUpdate'] = 0
-    pi.Logic()
+if wlengine.DateCheck(wlengine.PlayerDate):
+    NewPlayerDate = wlengine.Date() + timedelta(days=1)
+    days = wlengine.DiffDate(wlengine.PlayerDate)
+    PlayerIs['NextDate'] = wlengine.DateSave(NewPlayerDate)
+    for i in range(days):
+        pi.Logic()
 
 # Збереження прогресу через функцію SaveJSON із WhiteEngine
 wl.SaveJSON(SavePath, save)
