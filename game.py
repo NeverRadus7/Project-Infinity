@@ -463,9 +463,12 @@ if CommandInput == "3":
                         if StarIs.get("StarControled") and StarIs['StarControled'] == True:
                             if not PlanetIs.get("PlanetColony"):
                                 menu.append("Build surface colony")
+                    
                     choice = pi.menuscreen(stdscr, "Planet menu", menu)
+
                     if choice == "Build surface colony":
-                        pi.message(stdscr, 6,40, "Require", "       10 Buildings resources")
+                        pi.message(stdscr, 4,40, "Require", "10 Buildings resources")
+                        
                         # Check in inventory player
 
                         if wl.InvCheak(1,10) != None:
@@ -494,8 +497,7 @@ if CommandInput == "3":
     if StarIs.get("StarIntel") and StarIs['StarIntel'] == True:
         curses.wrapper(planet)
     else:
-        curses.wrapper(lambda stdscr: pi.error_stdscr(stdscr, "System not inteled!", "Research system in [2" \
-        "]"))
+        curses.wrapper(lambda stdscr: pi.error_stdscr(stdscr, "System not inteled!", "Research system."))
 
 if CommandInput == "4":
     def station(stdscr):

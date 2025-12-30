@@ -3,7 +3,7 @@
         "StarID": 208,
         "StarIntel": true,
         "StarControled": true,
-        "Star": "Gamma 208-10-Z674",
+        "Star": "Lox",
         "StarCivil": {
             "CivilPop": 1608,
             "CivilEconomicType": 5,
@@ -438,6 +438,8 @@
                 "PlanetViewSeed": 0
             }
         ],
-        "InfoIncome": 3153
+        "InfoIncome": 3153,
+        "PlayerPinned": true,
+        "PlayerPinnedDesc": "Lox"
     }
 ]
