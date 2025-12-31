@@ -201,10 +201,22 @@ def GenMap(seed):
     else:
         planet_count = random.randint(1,15)
 
-    if solar_class in ["A,F,G,K,M,L,T"] and random.randint(1,100) <= 20:
-        asteroid_name = f"{solar_name} Ast.Belt {ranname()}"
-        asteroid_type = random.randint(0,len(wlregister.AsteroidsType))
-        asteroid_rate = float(random.uniform(0.01,1))
+    asteroid = []
+    if random.randint(1,100) <= 20:
+        for i in range(random.randint(1,8)):
+            asteroid_name = f"{solar_name} Ast.Belt {ranname()}"
+            asteroid_type = random.randint(0,len(wlregister.AsteroidsType))
+            asteroid_rate = float(random.uniform(0.01,1))
+            asteroid_mass = random.randint(5000,20000) * asteroid_rate 
+
+            asteroid_table = {
+                "AsteroidName": asteroid_name,
+                "AsteroidType": asteroid_type,
+                "AsteroidRate": asteroid_rate,
+                "AsteroidMass": asteroid_mass
+            }
+
+            asteroid.append(asteroid_table)
 
     Starsystems = {
         "StarID": seed,
@@ -215,7 +227,7 @@ def GenMap(seed):
         "Size": solar_size,
         "Luminos": solar_luminos,
         "Planets": PlanetGen(planet_count),
-        "Astreroids": []
+        "Asteroids": asteroid
     }
 
     # Генератор колонії
@@ -234,29 +246,22 @@ def GenMap(seed):
 
         for i, planet in enumerate(Starsystems['Planets']):
             if random.randint(1,100) <= settings.PlanetColonyRange:
-                if not planet['PlanetClass'] in [3,8]:
-                    planet['PlanetColony'] = {}
-                    planet['PlanetColony']['ColonyName'] = ranname() + " Colony"
-                    planet['PlanetColony']['ColonyLevel'] = random.randint(1,100)
-                    planet['PlanetColony']['ColonyPop'] = random.choice(
-                                        [random.randint(100,1000), random.randint(1000,100000),
-                                         random.randint(100000,1000000), random.randint(1000000,100000000)])
-                    planet['PlanetColony']['ColonyBuildings'] = [1]
-                    planet['PlanetColony']['ColonyBuild'] = {"Enabled": False, "EndBuild": 0}
-                    planet['PlanetColony']['ColonyMaxBuildings'] = random.randint(1,settings.MaxColonyBuildings)
-                    planet['PlanetColony']['ColonyMaxPops'] = 50000
+                planet['PlanetColony'] = {}
+                planet['PlanetColony']['ColonyName'] = ranname() + " Colony"
+                planet['PlanetColony']['ColonyLevel'] = random.randint(1,100)
+                planet['PlanetColony']['ColonyPop'] = random.choice(
+                                    [random.randint(100,1000), random.randint(1000,100000),
+                                     random.randint(100000,1000000), random.randint(1000000,100000000)])
+                planet['PlanetColony']['ColonyBuildings'] = [1]
+                planet['PlanetColony']['ColonyBuild'] = {"Enabled": False, "EndBuild": 0}
+                planet['PlanetColony']['ColonyMaxBuildings'] = random.randint(1,settings.MaxColonyBuildings)
+                planet['PlanetColony']['ColonyMaxPops'] = 50000
 
         Pops = 0
         for i, planet in enumerate(Starsystems['Planets']):
             if planet.get("PlanetColony"):
                 Pops += planet['PlanetColony']['ColonyPop']
         Starsystems['StarCivil']['CivilPop'] = Pops
-
-        for i in range(len(Starsystems['Planets'])):
-            PlanetIs = Starsystems['Planets'][i]
-            if PlanetIs['PlanetLive'] == True:
-                Starsystems['Star'] = ranname()
-                break
 
         if Pops >= 0:
             CivilSecurity = 0
@@ -292,6 +297,8 @@ def GenMap(seed):
         if Pops == 0:
             Starsystems.pop('StarCivil')
             Starsystems.pop('StarIntel')
+        else:
+            Starsystems['Star'] = ranname()
 
     # Імпорт всіх змін, тепер з заблокованного mapchanges_lock.py
     for abis in range(len(CustomStarsLock)):

@@ -14,7 +14,6 @@ import os
 import colorama
 import json
 import math
-import getch
 import curses
 
 from datetime import datetime, timedelta, date
@@ -63,10 +62,6 @@ class wl():   # Main class
     SquereSymbol = "▪"
     Latters = [chr(i) for i in range(65, 91)]
     LowerLatters = [chr(i) for i in range(97, 123)]
-
-    def Command():
-        key = getch.getch()
-        return key
 
     def ConsoleSetSize():
         os.system(f"mode con cols={ConsoleSizeX} lines={ConsoleSizeY}")
@@ -593,6 +588,7 @@ class pi():
                 sel.box()
                 sel.addstr(1,1,"Input: ")
                 str = sel.getstr(1,8)
+                curses.curs_set(0)
                 return str
             except:
                 break
@@ -631,6 +627,7 @@ class pi():
         loading.addstr(1,int((30-len(title))/2),title)
         loading.move(loading_y-1,loading_x-1)
         loading.refresh()
+        curses.curs_set(0)
         curses.napms(t*1000)
 
     def error_stdscr(stdscr,text,text2):
@@ -906,7 +903,7 @@ class pi():
                     if error("Too far to flight!", "Upgrade your ship's engine!") == 0:
                         break
                 if PlayerIs['Ship']['Fuel'] >= FuelRequire:
-                    loading(5)
+                    loading(3)
                     PlayerIs['Location'] = selected
                     PlayerIs['Ship']['Fuel'] -= FuelRequire
                     break
@@ -919,9 +916,9 @@ class pi():
             if keyname == "KEY_LEFT":
                 selected += -1
             if keyname == "KEY_UP":
-                selecLock += -border*2
-            if keyname == "KEY_DOWN":
                 selecLock += border*2
+            if keyname == "KEY_DOWN":
+                selecLock += -border*2
             stdscr.clear()
 
     def ship_cargo(stdscr):
@@ -980,7 +977,7 @@ class pi():
                     PlayerIs['Statistic']['IncomeFromColony'] += int((int(StarIs['StarCivil']['CivilPop'] * 2) * (4 * PlanetLiveCount+1)) * StarIs['StarCivil']['CivilEco'])
                     pi.StarChange(StarIs['StarID'], 'InfoIncome', int((int(StarIs['StarCivil']['CivilPop']* 2) * (4 * PlanetLiveCount+1)) * StarIs['StarCivil']['CivilEco']))
                     PlayerIs['Money'] += int((int(StarIs['StarCivil']['CivilPop'] * 2) * (4 * PlanetLiveCount+1)) * StarIs['StarCivil']['CivilEco'])
-                    PlayerIs['XP'] += int(StarIs['StarCivil']['CivilPop'] / 12) * (3 * PlanetLiveCount)
+                    
             # Civil Eco changes
             if StarIs.get("StarCivil"):
                 if rwos.randint(1,2) == 1:

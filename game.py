@@ -4,6 +4,7 @@ wl.Skip()
 
 def infoscreen(stdscr, StarIs):
     curses.use_default_colors()
+    curses.curs_set(0)
     max_colors = curses.COLORS
     if max_colors > 8:
         curses.use_default_colors()
@@ -124,6 +125,7 @@ if CommandInput == "1":
 
 if CommandInput == "2":
     def starinfoscr(pattern):
+        curses.init_pair(100, curses.COLOR_RED, curses.COLOR_BLACK)
         while True:
             pattern.clear()
             size_y, size_x = pattern.getmaxyx()
@@ -190,11 +192,22 @@ if CommandInput == "2":
             planetinfo = pattern.derwin(((size_y-2)), ((size_x-44)), 1, 42)
             p_y, p_x = planetinfo.getmaxyx()
             planetinfo.box()
-            planetinfo.addstr(0,int((p_x-len("Planets"))/2), "Planets")
+            planetinfo.addstr(0,int((p_x-len("Architectory"))/2), "Architectory")
+            
             if StarIs.get("StarIntel") and StarIs['StarIntel'] == True:
-                for i,k in enumerate(StarIs['Planets']):
-                    if i >= 0 and i < p_y-2:
-                        planetinfo.addstr(i+1, 1, f"{k['PlanetName']} - {PlanetClass["TypeClass"][k['PlanetClass']['TypeClass']]}"[:p_x-2])
+                if StarIs['Planets'] != []:
+                    planetinfo.addstr(1,1,"Planets:")
+                    for i,k in enumerate(StarIs['Planets']):
+                        if i >= 0 and i < p_y-2:
+                            planetinfo.addstr(i+2, 1, f" - {k['PlanetName']} - {PlanetClass["TypeClass"][k['PlanetClass']['TypeClass']]}"[:p_x-2])
+                else:
+                    planetinfo.addstr(1,1,"/!\\ There are no planets in this system.", curses.color_pair(100))
+                if StarIs['Asteroids'] != []:
+                    planetinfo.addstr(3+len(StarIs['Planets']), 1, f"Asteroid belts:")
+                    for i, astr in enumerate(StarIs['Asteroids']):
+                        planetinfo.addstr(4+i+len(StarIs['Planets']), 1, f" - Asteroid: {astr['AsteroidName']}")
+                else:
+                    planetinfo.addstr(3+len(StarIs['Planets']), 1, "/!\\ There are no asteroids in this system.", curses.color_pair(100))
             else:
                 planetinfo.addstr(int((p_y-1)/2), int((p_x-len("Not inteled"))/2), "Not inteled")
             planetinfo.refresh()
@@ -211,6 +224,9 @@ if CommandInput == "2":
                     menu.append("Make favorite")
                 else:
                     menu.append("Disable favorite")
+
+                if StarIs['Asteroids'] != [] and Ships[PlayerIs['Ship']['ShipID']]['ShipClass'] == 4:
+                    menu.append("Mining in asteroid belt")
 
                 if StarIs.get("StarIntel") and StarIs['StarIntel'] == True:
                     if StarIs.get("StarControled") and StarIs['StarControled'] == True:
@@ -254,7 +270,7 @@ if CommandInput == "2":
 
             PlayerIs['IntelBall'] += intel_balls
             PlayerIs['Statistic']['StarInteled'] += 1
-            PlayerIs['XP'] += rwos.randint(10,50) * intel_balls
+            PlayerIs['XP'] += rwos.randint(IncCoefXP[0],IncCoefXP[1]) * (1 + int((intel_balls)/100))
         
         curses.wrapper(intel_lo)
         pi.StarChange(StarIs['StarID'], "StarIntel", True)
@@ -280,7 +296,8 @@ if CommandInput == "2":
             lox = curses.wrapper(station_build)
             if lox == 1:
                 PlayerIs['Money'] -= 250_000_000
-                StationStoreList =ItemsDB
+                PlayerIs['XP'] += random.randint(IncCoefXP[0], IncCoefXP[1]) * 100
+                StationStoreList = ItemsDB
                 StarCivil = {
                     "CivilPop": 0,
                     "CivilEconomicType": rwos.randint(0, len(Economics)-1),
@@ -488,6 +505,7 @@ if CommandInput == "3":
 
                             wl.InvRem(1, 10)
 
+                            PlayerIs['XP'] += random.randint(IncCoefXP[0], IncCoefXP[1]) * 3
                             PlanetIs['PlanetColony'] = PlanetColony
                             pi.StarChange(StarIs['StarID'], 'Planets', StarIs['Planets'])
                             break
@@ -699,6 +717,7 @@ if CommandInput == "4":
                                     keyname2 = buyscr.getkey()
                                     if keyname2 == "\n":
                                         if PlayerIs['Money'] >= ItemCoust:
+                                            pi.loading(stdscr, title="Uploading to storage...")
                                             wl.InvAdd(ItemIs, count)
                                             PlayerIs['Money'] -= ItemCoust
                                             ItemCoustClear = int(ItemsDB[ItemIs]['ItemCoust'])
@@ -978,7 +997,8 @@ if CommandInput == "4":
                                         if PlayerIs['Money'] >= Price:
                                             PlayerIs['Ship']['ShipModification'][select]['ModificationID'] = ModIs['ModID']
                                             PlayerIs['Ship']['ShipModification'][select]['ModificationLevel'] = 0
-                                            pi.message(stdscr,title="Success",message="New mod is complete placed.")
+                                            pi.loading(stdscr, title="Installation...")
+                                            pi.message(stdscr,title="Success",message="Done.")
                                         else:
                                             pi.error_stdscr(stdscr, "Error", "Not enough money!")
 
@@ -1009,7 +1029,8 @@ if CommandInput == "4":
                                                 if PlayerIs['Money'] >= Price:
                                                     PlayerIs['Ship']['ShipModification'][select]['ModificationLevel'] = CellLevel
                                                     PlayerIs['Money'] -= Price
-                                                    pi.message(stdscr, title="Success", message="Modification has been updated!")
+                                                    pi.loading(stdscr, title="Upgrading...")
+                                                    pi.message(stdscr, title="Success", message="Modif. has been updated!")
                                                     break
                                                 else:
                                                     pi.error_stdscr(stdscr, "Error", "Not enough money!")

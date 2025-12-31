@@ -13,6 +13,7 @@ SetDate = [30,6,2026]
 MaxLevel = 999 # Default: 100
 MaxNavyLevel = 100 # Default: 100
 XpToLevel = 10000 # Default: 10000
+IncCoefXP = [10,50] # Default: [10,50]
 FuelRequire = 1 # Default: 1
 DebugInfo = True # Default: False
 SetTravelDistation = 0 # Default: 0
@@ -28,7 +29,7 @@ BattleGrantToCredits = 7 # Default: 7
 # Map settings /!\ Changing this paramets will break your game
 MapSeed = 0x2976579765 # Default: 0x2976579765| 
 MapCivilRange = 20 # Default: 20
-PlanetColonyRange = 2 # Default: 75
+PlanetColonyRange = 75 # Default: 75
 CivilEcoMin = 0.1 # Default: 0.1
 CivilEcoMax = 3 # Default: 1.5
 MinFulling = 1 # Default: 1

@@ -1,18 +1,27 @@
-{
+from wlengine import wlengine
+from datetime import timedelta
+import settings
+import json
+import random
+
+Date = wlengine.Date() + timedelta(days=1)
+writeDate = wlengine.DateSave(Date)
+
+Player = {
     "Nickname": "Player",
-    "Location": 239,
+    "Location": random.randint(-500,500),
     "Ship": {
         "ShipID": 0,
         "ShipName": "Rookie",
         "ShipModification": [
             {
-                "ModificationID": null,
+                "ModificationID": None,
                 "ModificationLevel": 0
             },
             {
-                "ModificationID": null,
+                "ModificationID": None,
                 "ModificationLevel": 0
-            }
+            },
         ],
         "ShipFlags": [],
         "Storage": [],
@@ -43,10 +52,14 @@
     "MapSettings": {
         "Filter": 0
     },
-    "NextDate": [
-        1,
-        1,
-        2026
-    ],
+    "NextDate": writeDate,
     "GameUpdate": 4
 }
+
+file = open(settings.SavePath, "w", encoding="utf-8")
+json.dump(Player, file, ensure_ascii=False, indent=4)
+file.close()
+
+file = open(settings.MapPath, "w", encoding="utf-8")
+file.write("[]")
+file.close()
