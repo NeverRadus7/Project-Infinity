@@ -13,7 +13,7 @@ PlanetClass = {
 }
 
 MapFilter = ["Досліднецько-політичний", "Територія", "Спектральний", "Економічний"]
-ShipClasses = ["Малий", "Вантажний", "Досліднецьке судно", "Військовий фрегат"]
+ShipClasses = ["Small", "Cargo", "Explorer", "Military", "Miner"]
 FleetClasses = ["Великий корабель", "Флотоносець", "Конструкторний", "Космічний авантюрист"]
 StationType = ["Linear Station", "Modular Station", "Wheel Station", "Ring Station"]
 
@@ -42,7 +42,7 @@ LevelRang = {
     21: "Досвідчений пілот ІІІ",
     22: "Досвідчений пілот IV",
     23: "Досвідчений пілот -=V=-", 
-    999: "Галактичний імператор [MAX]"
+    999: "⏴MAXIMA⏵"
 }
 
 # Economics = [
@@ -239,13 +239,29 @@ ShipModifications = [
     {
         "ModID": 19,
         "ModType": 6,
-        "ModName": "Контейнер на +50 предметів",
+        "ModName": "Storage cell 50+",
         "ModCoust": 100_000,
         "ModValue": 50
+    },
+    {
+        "ModID": 20,
+        "ModType": 7,
+        "ModName": "Asteroid-level bur",
+        "ModCoust": 30_000,
+        "ModValue": 1
     }
 ]
-#                         0            1                2                3                      4                                        5                                     6
-ModificationType = ["Паливні баки", "Броня", "Досліднецькі прибори", "Гармати", "Прибори точності та наведення", "Двигуни", "Хранилище та контейнери"]
+
+ModificationType = [
+    "Fuel tanks", 
+    "Armorplates",
+    "Intel technologi", 
+    "Military technologi", 
+    "Precision instruments", 
+    "Engines", 
+    "Storage",
+    "Mining technologi",
+]
 
 Ships = [
     {
@@ -272,6 +288,17 @@ Ships = [
     },
     {
         "ShipID": 2,
+        "ShipName": "LSPM Enrue",
+        "ShipHealth": 120,
+        "ShipClass": 4,
+        "ShipTravelingDist": 3,
+        "ShipMaxFuel": 25,
+        "ShipMaxModification": 4,
+        "ShipMaxItems": 75,
+        "ShipCoust": 1_000_000
+    },
+    {
+        "ShipID": 3,
         "ShipName": "MILLYTECH QR-I",
         "ShipHealth": 600,
         "ShipClass": 3,
@@ -282,7 +309,7 @@ Ships = [
         "ShipCoust": 3_750_000
     },
     {
-        "ShipID": 3,
+        "ShipID": 4,
         "ShipName": "Anabelus co. EXP-LUPA",
         "ShipHealth": 100,
         "ShipClass": 2,
@@ -349,3 +376,5 @@ ItemsDB = [
     {'ItemID': 9, 'ItemName': 'Копалина: Мідна руда ★☆☆☆☆', 'ItemType': 1, 'ItemEconomicType': 7, 'ItemCoust': 40},
     {'ItemID': 10, 'ItemName': 'Копалина: Золота руда ★★★☆☆', 'ItemType': 1, 'ItemEconomicType': 7, 'ItemCoust': 250}
 ]
+
+AsteroidsType = ["Rocky", "Ice", "Ice-Rocky", "Diamonds", "Crystals", "Rocky+"]

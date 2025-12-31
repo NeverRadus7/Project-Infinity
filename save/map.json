@@ -11,14 +11,42 @@
             "CivilReputation": 100,
             "CivilSecurity": 0,
             "CivilStable": 10,
-            "CivilUpgrade": [],
+            "CivilUpgrade": ["Workshop"],
             "CivilStation": {
                 "StationName": "You're station",
                 "StationType": 0,
                 "StationStoreList": [
                     1
                 ],
-                "StationHangar": []
+                "StationHangar": [
+                    {
+                        "ShipID": 1,
+                        "ShipName": "Lox",
+                        "ShipModification": [
+                            {
+                                "ModificationID": 14,
+                                "ModificationLevel": 0
+                            },
+                            {
+                                "ModificationID": 19,
+                                "ModificationLevel": 0
+                            },
+                            {
+                                "ModificationID": 19,
+                                "ModificationLevel": 0
+                            }
+                        ],
+                        "ShipFlags": [],
+                        "Storage": [
+                            {
+                                "ItemID": 0,
+                                "ItemCount": 30
+                            }
+                        ],
+                        "Fuel": 21,
+                        "ItemsCount": 30
+                    }
+                ]
             }
         },
         "Planets": [
@@ -441,5 +469,9 @@
         "InfoIncome": 3153,
         "PlayerPinned": true,
         "PlayerPinnedDesc": "Lox"
+    },
+    {
+        "StarID": 202,
+        "StarIntel": true
     }
 ]

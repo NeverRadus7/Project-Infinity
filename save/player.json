@@ -2,51 +2,50 @@
     "Nickname": "Player",
     "Location": 208,
     "Ship": {
-        "ShipID": 1,
-        "ShipName": "Lox",
+        "ShipID": 2,
+        "ShipName": "Loxonoid",
         "ShipModification": [
             {
-                "ModificationID": 14,
-                "ModificationLevel": 0
+                "ModificationID": 20,
+                "ModificationLevel": 5
             },
             {
                 "ModificationID": 19,
-                "ModificationLevel": 0
+                "ModificationLevel": 5
+            },
+            {
+                "ModificationID": 4,
+                "ModificationLevel": 5
             },
             {
                 "ModificationID": 19,
-                "ModificationLevel": 0
+                "ModificationLevel": 5
             }
         ],
         "ShipFlags": [],
-        "Storage": [
-            {
-                "ItemID": 0,
-                "ItemCount": 30
-            }
-        ],
-        "Fuel": 23,
-        "ItemsCount": 30
+        "Storage": [],
+        "Fuel": 25,
+        "ItemsCount": 0
     },
     "Exo": {
         "ExoClass": 0,
         "ExoLevel": 1,
         "ExoMod": []
     },
-    "Money": 182838212783,
+    "Money": 182222113399,
     "IntelBall": 0,
     "BattleScore": 0,
     "SocialScore": 0,
-    "XP": 10487432,
+    "XP": 10519732,
     "Reputation": 0,
     "WorldDay": 25432,
     "Atribution": [],
     "Statistic": {
-        "StarInteled": 21,
+        "StarInteled": 22,
         "StarControled": 0,
         "StarColony": 0,
         "CreditsFromSelled": 5817206,
-        "CreditsFromScience": 1468158,
+        "CreditsFromScience": 1473003,
         "IncomeFromColony": 3153
     },
     "MapSettings": {

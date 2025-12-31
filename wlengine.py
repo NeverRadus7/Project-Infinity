@@ -565,7 +565,7 @@ class pi():
             keyname = other_win.getkey()
 
             if keyname == "q":
-                break
+                return "QUIT"
             if keyname == "A":
                 if sel > 0:
                     sel -= 1

@@ -945,7 +945,7 @@ if CommandInput == "4":
                                     for i, sh in enumerate(ModificationType):
                                         menu_cat.append(sh)
                                     choice = pi.menuscreen(stdscr, "Mods", menu_cat)
-                                    
+
                                     menu = []
                                     for i, mod in enumerate(ShipModifications):
                                         if ModificationType[mod['ModType']] == choice:
@@ -981,6 +981,47 @@ if CommandInput == "4":
                                             pi.message(stdscr,title="Success",message="New mod is complete placed.")
                                         else:
                                             pi.error_stdscr(stdscr, "Error", "Not enough money!")
+
+                                if do == "Upgrade cell":
+                                    CellIs = PlayerIs['Ship']['ShipModification'][select]                
+                                    CellLevelTemp = CellIs['ModificationLevel']
+                                    select2 = CellLevelTemp
+                                    if CellIs['ModificationID'] == None:
+                                        pi.error_stdscr(stdscr, "Error", "Cell not found!")
+                                    else:
+                                        while True:
+                                            CellLevel = select2
+                                            Price = int(ShipModifications[CellIs['ModificationID']]['ModCoust'] * (ModLevelCoeff * select2 * (1 + StarIs['StarCivil']['CivilEco'])))
+                                            upgr = curses.newwin(10,45,int((sz_y-10)/2), int((sz_x-45)/2))
+                                            upgr.box()
+                                            u_y, u_x = upgr.getmaxyx()
+                                            upgr.addstr(0,int((u_x-len("Upgrade"))/2), "Upgrade")
+                                            upgr.addstr(1,int((u_x-len(ShipModifications[CellIs['ModificationID']]['ModName']))/2),f"{ShipModifications[CellIs['ModificationID']]['ModName']}")
+                                            upgr.addstr(2,int((u_x-len(f"Price: {Price:,} ©"))/2), f"Price: {Price:,} ©")
+                                            upgr.addstr(4,int((u_x-1)/2), "↑")
+                                            upgr.addstr(5,int((u_x-1)/2), str(CellLevel))
+                                            upgr.addstr(6,int((u_x-1)/2), "↓")
+                                            upgr.addstr(8,int((u_x-len(f"Balance: {PlayerIs['Money']:,} ©"))/2),f"Balance: {PlayerIs['Money']:,} ©")
+                                            keyname2 = upgr.getkey()
+                                            if keyname2 == "\n":
+                                                if select2 == CellLevelTemp:
+                                                    break
+                                                if PlayerIs['Money'] >= Price:
+                                                    PlayerIs['Ship']['ShipModification'][select]['ModificationLevel'] = CellLevel
+                                                    PlayerIs['Money'] -= Price
+                                                    pi.message(stdscr, title="Success", message="Modification has been updated!")
+                                                    break
+                                                else:
+                                                    pi.error_stdscr(stdscr, "Error", "Not enough money!")
+                                                    break
+                                            if keyname2 == "A":
+                                                if select2 < ModMaxLevel:
+                                                    select2 += 1
+                                            if keyname2 == "B":
+                                                if select2 > CellLevelTemp:
+                                                    select2 -= 1
+                                            if keyname2 == "q":
+                                                break
 
                             if keyname == "q":
                                 break

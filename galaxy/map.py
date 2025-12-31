@@ -132,7 +132,7 @@ def GenMap(seed):
     
     solar_name = f"{random.choice(Articl)} {abs(seed)}-{abs(int(seed/20))}-{random.choice(Latters)}{random.randint(1,999)}"
 
-    standart_solar_class = ["O", "B", "A", "F", "G", "K", "M", "L", "T", "NS", "BH"]
+    standart_solar_class = ["O", "B", "A", "F", "G", "K", "M", "L", "T"]
     exotic_solar_class = ["NS","BH"]
 
     if random.randint(1,20) == 1:
@@ -201,6 +201,11 @@ def GenMap(seed):
     else:
         planet_count = random.randint(1,15)
 
+    if solar_class in ["A,F,G,K,M,L,T"] and random.randint(1,100) <= 20:
+        asteroid_name = f"{solar_name} Ast.Belt {ranname()}"
+        asteroid_type = random.randint(0,len(wlregister.AsteroidsType))
+        asteroid_rate = float(random.uniform(0.01,1))
+
     Starsystems = {
         "StarID": seed,
         "Star": solar_name,
@@ -210,6 +215,7 @@ def GenMap(seed):
         "Size": solar_size,
         "Luminos": solar_luminos,
         "Planets": PlanetGen(planet_count),
+        "Astreroids": []
     }
 
     # Генератор колонії
@@ -240,7 +246,6 @@ def GenMap(seed):
                     planet['PlanetColony']['ColonyMaxBuildings'] = random.randint(1,settings.MaxColonyBuildings)
                     planet['PlanetColony']['ColonyMaxPops'] = 50000
 
-
         Pops = 0
         for i, planet in enumerate(Starsystems['Planets']):
             if planet.get("PlanetColony"):
@@ -249,7 +254,7 @@ def GenMap(seed):
 
         for i in range(len(Starsystems['Planets'])):
             PlanetIs = Starsystems['Planets'][i]
-            if PlanetIs['PlanetLive'] == True or Pops >= 1_000_000:
+            if PlanetIs['PlanetLive'] == True:
                 Starsystems['Star'] = ranname()
                 break
 
@@ -267,10 +272,9 @@ def GenMap(seed):
 
         CivilUpgrade = []
         for i in range(3):
-            elementChoice = random.choice(["Workshop", "Fleet_Shipyard", "Cruiser_Shipyard"])
+            elementChoice = random.choice(["","Workshop", "Fleet_Shipyard", "Cruiser_Shipyard"])
             CivilUpgrade.append(elementChoice)
         
-        Starsystems['Star'] = ranname()
         Starsystems['StarCivil']['CivilEconomicType'] = random.randint(0, len(wlregister.Economics)-1)
         Starsystems['StarCivil']['CivilEco'] = random.uniform(settings.CivilEcoMin,settings.CivilEcoMax)
         Starsystems['StarCivil']['CivilReputation'] = 50
@@ -286,7 +290,6 @@ def GenMap(seed):
 
         # Перевіряємо, чи є в цій системі населення?
         if Pops == 0:
-            Starsystems['Star'] = f"{random.choice(Articl)} {abs(seed)}-{abs(int(seed/20))}-{random.choice(Latters)}{random.randint(1,999)}"
             Starsystems.pop('StarCivil')
             Starsystems.pop('StarIntel')
 
