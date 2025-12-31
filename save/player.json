@@ -1,10 +1,26 @@
 {
     "Nickname": "Player",
-    "Location": 239,
+    "Location": 41,
     "Ship": {
-        "ShipID": 0,
-        "ShipName": "Rookie",
+        "ShipID": 4,
+        "ShipName": "Anabelus co. EXP-LUPA",
         "ShipModification": [
+            {
+                "ModificationID": 14,
+                "ModificationLevel": 1
+            },
+            {
+                "ModificationID": 19,
+                "ModificationLevel": 5
+            },
+            {
+                "ModificationID": 2,
+                "ModificationLevel": 0
+            },
+            {
+                "ModificationID": 0,
+                "ModificationLevel": 5
+            },
             {
                 "ModificationID": null,
                 "ModificationLevel": 0
@@ -16,7 +32,7 @@
         ],
         "ShipFlags": [],
         "Storage": [],
-        "Fuel": 20,
+        "Fuel": 83,
         "ItemsCount": 0
     },
     "Exo": {
@@ -24,7 +40,7 @@
         "ExoLevel": 1,
         "ExoMod": []
     },
-    "Money": 0,
+    "Money": 91801940390,
     "IntelBall": 0,
     "BattleScore": 0,
     "SocialScore": 0,

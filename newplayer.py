@@ -23,7 +23,7 @@ Player = {
                 "ModificationLevel": 0
             },
         ],
-        "ShipFlags": [],
+        "ShipFlags": ["STARTED_SHIP"],
         "Storage": [],
         "Fuel": 20,
         "ItemsCount": 0
