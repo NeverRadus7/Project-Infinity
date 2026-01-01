@@ -869,7 +869,7 @@ class pi():
                     selecLock = selecLock
 
             if keyname == "i":
-                if DebugInfo == True or staris.get("StarInteled") and staris['StarInteled'] == True:
+                if DebugInfo == True or (staris.get("StarIntel") and staris['StarIntel'] == True):
                     infostar = curses.newwin(25,40,int((y-25)/2),(x-40)-1)
                     infostar.box()
                     infostar.addstr(1,int((40-len("Star system information"))/2),"Star system information")
@@ -896,7 +896,7 @@ class pi():
                         infostar.addstr(21,1,f"Favorite: {staris['PlayerPinnedDesc']}", curses.color_pair(103))
                     infostar.getch()
                 else:
-                    wl.Error("Do not find information.")
+                    pi.error_stdscr(stdscr, "Error", "Do not find information.")
             
             if keyname == "\n":
                 if selected == StartLoc: break

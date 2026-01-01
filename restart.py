@@ -1,4 +1,3 @@
-#from wlengine import wlengine
 from datetime import timedelta
 import datetime
 import settings
@@ -10,7 +9,7 @@ writeDate = [Date.day, Date.month, Date.year]
 
 Player = {
     "Nickname": "Player",
-    "Location": random.randint(-500,500),
+    "Location": random.randint(-1000,1000),
     "Ship": {
         "ShipID": 0,
         "ShipName": "Rookie",
@@ -24,7 +23,7 @@ Player = {
                 "ModificationLevel": 0
             },
         ],
-        "ShipFlags": ["STARTED_SHIP"],
+        "ShipFlags": [],
         "Storage": [],
         "Fuel": 20,
         "ItemsCount": 0

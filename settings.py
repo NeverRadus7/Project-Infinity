@@ -15,7 +15,7 @@ MaxNavyLevel = 100 # Default: 100
 XpToLevel = 10000 # Default: 10000
 IncCoefXP = [10,50] # Default: [10,50]
 FuelRequire = 1 # Default: 1
-DebugInfo = True # Default: False
+DebugInfo = False # Default: False
 SetTravelDistation = 0 # Default: 0
 AddShipModification = 0 # Default: 0
 
