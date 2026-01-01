@@ -1,30 +1,22 @@
-#from wlengine import wlengine
-from datetime import timedelta
-import datetime
-import settings
-import json
-import random
-
-Date = datetime.date.today() + timedelta(days=1)
-writeDate = [Date.day, Date.month, Date.year]
-
-Player = {
+{
     "Nickname": "Player",
-    "Location": random.randint(-500,500),
+    "Location": -59,
     "Ship": {
         "ShipID": 0,
         "ShipName": "Rookie",
         "ShipModification": [
             {
-                "ModificationID": None,
+                "ModificationID": null,
                 "ModificationLevel": 0
             },
             {
-                "ModificationID": None,
+                "ModificationID": null,
                 "ModificationLevel": 0
-            },
+            }
         ],
-        "ShipFlags": ["STARTED_SHIP"],
+        "ShipFlags": [
+            "STARTED_SHIP"
+        ],
         "Storage": [],
         "Fuel": 20,
         "ItemsCount": 0
@@ -35,15 +27,15 @@ Player = {
         "ExoMod": []
     },
     "Money": 10000,
-    "IntelBall": 0,
+    "IntelBall": 13581,
     "BattleScore": 0,
     "SocialScore": 0,
-    "XP": 0,
+    "XP": 4080,
     "Reputation": 0,
     "WorldDay": 0,
     "Atribution": [],
     "Statistic": {
-        "StarInteled": 0,
+        "StarInteled": 1,
         "StarControled": 0,
         "StarColony": 0,
         "CreditsFromSelled": 0,
@@ -53,14 +45,10 @@ Player = {
     "MapSettings": {
         "Filter": 0
     },
-    "NextDate": writeDate,
+    "NextDate": [
+        2,
+        1,
+        2026
+    ],
     "GameUpdate": 4
 }
-
-file = open(settings.SavePath, "w", encoding="utf-8")
-json.dump(Player, file, ensure_ascii=False, indent=4)
-file.close()
-
-file = open(settings.MapPath, "w", encoding="utf-8")
-file.write("[]")
-file.close()

@@ -1541,6 +1541,7 @@ PlayerIs['Ship']['ItemsCount'] = ShipTotalItems
 
 MiningRate = 0
 for i, mod in enumerate(PlayerIs['Ship']['ShipModification']):
-    ModIs = ShipModifications[mod['ModificationID']]
-    if ModIs['ModType'] == 7:
-        MiningRate += ModIs['ModValue'] * (1 + mod['ModificationLevel'])
+    if mod['ModificationID'] != None:
+        ModIs = ShipModifications[mod['ModificationID']]
+        if ModIs['ModType'] == 7:
+            MiningRate += ModIs['ModValue'] * (1 + mod['ModificationLevel'])
