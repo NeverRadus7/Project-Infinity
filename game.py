@@ -225,9 +225,6 @@ if CommandInput == "2":
                 else:
                     menu.append("Disable favorite")
 
-                if StarIs['Asteroids'] != [] and Ships[PlayerIs['Ship']['ShipID']]['ShipClass'] == 4:
-                    menu.append("Mining in asteroid belt")
-
                 if StarIs.get("StarIntel") and StarIs['StarIntel'] == True:
                     if StarIs.get("StarControled") and StarIs['StarControled'] == True:
                         menu.append("Rename system")
@@ -238,6 +235,8 @@ if CommandInput == "2":
                     else:
                         if not StarIs.get("StarCivil"):
                             menu.append("Take control")
+                    if StarIs['Asteroids'] != [] and Ships[PlayerIs['Ship']['ShipID']]['ShipClass'] == 4:
+                        menu.append("Mining in asteroids")
                 else:
                     menu.append("Research this the system")
 
@@ -345,6 +344,92 @@ if CommandInput == "2":
             name = curses.wrapper(pi.selectscr)
             StarIs['StarCivil']['CivilStation']['StationName'] = name.decode()
             pi.StarChange(StarIs['StarID'], 'StarCivil', StarIs['StarCivil'])
+
+    if choice == "Mining in asteroids":
+        def astscr(stdscr):
+            curses.init_pair(111, curses.COLOR_BLACK, curses.COLOR_WHITE)
+            select = 0
+            while True:
+                stdscr.clear()
+                stdscr.box()
+                sz_y, sz_x = stdscr.getmaxyx()
+                stdscr.addstr(0, int((sz_x-len("Asteroids"))/2), "Asteroids")
+                stdscr.addstr(1, 1, "Asteroids")
+                stdscr.addstr(1, int((sz_x-len("Class"))/2), "Class")
+                stdscr.addstr(1, int((sz_x-len("Amount"))-10), "Amount")
+                stdscr.hline(2,1,curses.ACS_HLINE, sz_x-2)
+                for i, ast in enumerate(StarIs['Asteroids']):
+                    if select == i:
+                        color = 111
+                    else:
+                        color = 0
+
+                    stdscr.addstr(i+3, 1, f"{ast['AsteroidName']}", curses.color_pair(color))
+                    stdscr.addstr(i+3, int((sz_x-len("Class"))/2), f"{AsteroidsType[ast['AsteroidType']]}")
+                    stdscr.addstr(i+3, int((sz_x-len("Amount"))-10), f"{ast['AsteroidMass']:,}")
+
+                keyname = stdscr.getkey()
+
+                if keyname == "\n":
+                    flag = False
+                    for i, mod in enumerate(PlayerIs['Ship']['ShipModification']):
+                        if mod['ModificationID'] == 19:
+                            flag = True
+                            break
+                    
+                    if flag == True:
+                        AstIs = StarIs['Asteroids'][select]
+                        Amount = rwos.randint(1, 99) * MiningRate
+                        if ShipTotalItems == PlayerMaxItems:
+                            pi.error_stdscr(stdscr, "Error", "Max capacity in cargo!")
+                            break
+                        if Amount >= (PlayerMaxItems-ShipTotalItems):
+                            Amount = PlayerMaxItems-ShipTotalItems
+                        if Amount >= AstIs['AsteroidMass']:
+                            Amount = AstIs['AsteroidMass']
+                        pi.loading(stdscr, title="Destroing...")
+                        if rwos.randint(1,100) <= (AstIs['AsteroidRate']+25 + (MiningRate * 10)):
+                            if AstIs['AsteroidType'] == 0:
+                                wl.InvAdd(rwos.choice([5,6,9]), Amount)
+                            if AstIs['AsteroidType'] == 1:
+                                wl.InvAdd(rwos.choice([5,6,7,8]), Amount)
+                            if AstIs['AsteroidType'] == 2:
+                                wl.InvAdd(rwos.choice([5,6,9,7,8]), Amount)
+                            if AstIs['AsteroidType'] == 3:
+                                wl.InvAdd(rwos.choice([11,5,5,5,6,6,6,6]))
+                            if AstIs['AsteroidType'] == 4:
+                                wl.InvAdd(rwos.choice([12]), Amount)
+                            if AstIs['AsteroidType'] == 5:
+                                wl.InvAdd(rwos.choice([5,6,7,8,9,10]), Amount)
+                            AstIs['AsteroidMass'] -= Amount
+                            if AstIs['AsteroidMass'] <= 0:
+                                StarIs['Asteroids'].pop(select)
+                            massage = curses.newwin(7,50,int((sz_y-7)/2), int((sz_x-50)/2))
+                            massage.box()
+                            mas_y, mas_x = massage.getmaxyx()
+                            massage.addstr(0,int((mas_x-len("Mining"))/2), "Mining")
+                            massage.addstr(1,1,f"In: {AstIs['AsteroidName']}")
+                            massage.addstr(2,1,f"Mined: {Amount}")
+                            massage.addstr(3,1,f"Cargo: {(ShipTotalItems):,}")
+                            massage.refresh()
+                            massage.getch()
+                            pi.StarChange(StarIs['StarID'], 'Asteroids', StarIs['Asteroids'])
+                            break
+                        else:
+                            pi.error_stdscr(stdscr, text="Nothing found.", text2="There were no materials in the asteroid.")
+                    else:
+                        pi.error_stdscr(stdscr, "Error", "In ship not found bur!")
+                        break
+                if keyname == "q":
+                    break
+                if keyname == "KEY_UP":
+                    if select > 0:
+                        select -= 1
+                if keyname == "KEY_DOWN":
+                    if select < len(StarIs['Asteroids']) - 1:
+                        select += 1
+        
+        curses.wrapper(astscr)
 
 if CommandInput == "3":
     def planet(stdscr):
@@ -822,14 +907,20 @@ if CommandInput == "4":
                                             pi.error_stdscr(stdscr, "Error", "Not pass this trans.")
                                             break
                                     if keyname2 == "A":
+                                        if count == ItemIs['ItemCount']:
+                                            count = 0
                                         if count < ItemIs['ItemCount']:
                                             count += 1
                                     if keyname2 == "B":
+                                        if count == 1:
+                                            count = ItemIs['ItemCount']+1
                                         if count > 1:
                                             count -= 1
                                     if keyname2 == "c":
                                         try:
                                             count = int(pi.selectscr(stdscr))
+                                            if abs(count) > ItemIs['ItemCount']:
+                                                count = ItemIs['ItemCount']
                                         except: pass
                                     if keyname2 == "q":
                                         break
@@ -964,12 +1055,16 @@ if CommandInput == "4":
                                     for i, sh in enumerate(ModificationType):
                                         menu_cat.append(sh)
                                     choice = pi.menuscreen(stdscr, "Mods", menu_cat)
+                                    if choice == "QUIT":
+                                        continue
 
                                     menu = []
                                     for i, mod in enumerate(ShipModifications):
                                         if ModificationType[mod['ModType']] == choice:
                                             menu.append(mod['ModName'])
                                     choice2 = pi.menuscreen(stdscr, "Mods", menu)
+                                    if choice2 == "QUIT":
+                                        continue
 
                                     ModIndex = None
                                     for i, mod in enumerate(ShipModifications):

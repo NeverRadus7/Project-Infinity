@@ -203,11 +203,17 @@ def GenMap(seed):
 
     asteroid = []
     if random.randint(1,100) <= 20:
-        for i in range(random.randint(1,8)):
+        for i in range(random.randint(1,3)):
             asteroid_name = f"{solar_name} Ast.Belt {ranname()}"
-            asteroid_type = random.randint(0,len(wlregister.AsteroidsType))
+            asteroid_chance = random.randint(1,100)
+            if asteroid_chance <= 5:
+                asteroid_type = random.choice([3,4])
+            elif asteroid_chance <= 20:
+                asteroid_type = 5
+            else:
+                asteroid_type = random.choice([0,1,2])
             asteroid_rate = float(random.uniform(0.01,1))
-            asteroid_mass = random.randint(5000,20000) * asteroid_rate 
+            asteroid_mass = int(random.randint(1,30) * (asteroid_rate * 100) )
 
             asteroid_table = {
                 "AsteroidName": asteroid_name,

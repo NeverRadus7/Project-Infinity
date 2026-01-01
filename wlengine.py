@@ -882,17 +882,18 @@ class pi():
                     infostar.addstr(9,1,f"    - Size: {staris['Size']:,} ☉")
                     infostar.addstr(10,1,f"    - Lum: {staris['Luminos']:,} ☉")
                     infostar.addstr(11,1,f"Planets: {len(staris['Planets']):,}")
-                    infostar.addstr(12,1,f"Inteled: {str(staris.get("StarIntel"))}")
+                    infostar.addstr(12,1,f"Asteroids: {len(staris['Asteroids'])}")
+                    infostar.addstr(13,1,f"Inteled: {str(staris.get("StarIntel"))}")
                     if staris.get("StarCivil") and staris["StarCivil"] != []:
-                        infostar.addstr(13,1,f"Civilization:", curses.color_pair(101))
-                        infostar.addstr(14,1,f"    - Station: {staris['StarCivil']['CivilStation']['StationName']}", curses.color_pair(101))
-                        infostar.addstr(15,1,f"    - Population: {staris['StarCivil']['CivilPop']:,}", curses.color_pair(101))
-                        infostar.addstr(16,1,f"    - Stable: {staris['StarCivil']['CivilStable']}%", curses.color_pair(101))
-                        infostar.addstr(17,1,f"    - Economic: {Economics[staris['StarCivil']['CivilEconomicType']]}", curses.color_pair(101))
-                        infostar.addstr(18,1,f"    - ECO: {staris['StarCivil']['CivilEco']}", curses.color_pair(101))
-                        infostar.addstr(19,1,f"    - Secure: {StarSecurityType[staris['StarCivil']['CivilSecurity']]}", curses.color_pair(101))
+                        infostar.addstr(14,1,f"Civilization:", curses.color_pair(101))
+                        infostar.addstr(15,1,f"    - Station: {staris['StarCivil']['CivilStation']['StationName']}", curses.color_pair(101))
+                        infostar.addstr(16,1,f"    - Population: {staris['StarCivil']['CivilPop']:,}", curses.color_pair(101))
+                        infostar.addstr(17,1,f"    - Stable: {staris['StarCivil']['CivilStable']}%", curses.color_pair(101))
+                        infostar.addstr(18,1,f"    - Economic: {Economics[staris['StarCivil']['CivilEconomicType']]}", curses.color_pair(101))
+                        infostar.addstr(19,1,f"    - ECO: {staris['StarCivil']['CivilEco']}", curses.color_pair(101))
+                        infostar.addstr(20,1,f"    - Secure: {StarSecurityType[staris['StarCivil']['CivilSecurity']]}", curses.color_pair(101))
                     if staris.get("PlayerPinned") and staris["PlayerPinned"] == True:
-                        infostar.addstr(20,1,f"Favorite: {staris['PlayerPinnedDesc']}", curses.color_pair(103))
+                        infostar.addstr(21,1,f"Favorite: {staris['PlayerPinnedDesc']}", curses.color_pair(103))
                     infostar.getch()
                 else:
                     wl.Error("Do not find information.")
@@ -1537,3 +1538,9 @@ ShipTotalItems = 0
 for i, k in enumerate(PlayerIs['Ship']['Storage']):
     ShipTotalItems += k['ItemCount']
 PlayerIs['Ship']['ItemsCount'] = ShipTotalItems
+
+MiningRate = 0
+for i, mod in enumerate(PlayerIs['Ship']['ShipModification']):
+    ModIs = ShipModifications[mod['ModificationID']]
+    if ModIs['ModType'] == 7:
+        MiningRate += ModIs['ModValue'] * (1 + mod['ModificationLevel'])

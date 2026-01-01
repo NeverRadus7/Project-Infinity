@@ -374,7 +374,9 @@ ItemsDB = [
     {'ItemID': 7, 'ItemName': 'Копалина: Осмієва руда ★☆☆☆☆', 'ItemType': 1, 'ItemEconomicType': 7, 'ItemCoust': 60},
     {'ItemID': 8, 'ItemName': 'Копалина: Багата осмієва руда ★★☆☆☆', 'ItemType': 1, 'ItemEconomicType': 7, 'ItemCoust': 150},
     {'ItemID': 9, 'ItemName': 'Копалина: Мідна руда ★☆☆☆☆', 'ItemType': 1, 'ItemEconomicType': 7, 'ItemCoust': 40},
-    {'ItemID': 10, 'ItemName': 'Копалина: Золота руда ★★★☆☆', 'ItemType': 1, 'ItemEconomicType': 7, 'ItemCoust': 250}
+    {'ItemID': 10, 'ItemName': 'Копалина: Золота руда ★★★☆☆', 'ItemType': 1, 'ItemEconomicType': 7, 'ItemCoust': 250},
+    {'ItemID': 11, 'ItemName': 'High-tension diamonds ★★★★★', 'ItemType': 1, 'ItemEconomicType': 7, 'ItemCoust': 50_000},
+    {'ItemID': 12, 'ItemName': 'Vibrocrystals', 'ItemType': 1, 'ItemEconomicType': 7, 'ItemCoust': 200_000}
 ]
 
 AsteroidsType = ["Rocky", "Ice", "Ice-Rocky", "Diamonds", "Crystals", "Rocky+"]

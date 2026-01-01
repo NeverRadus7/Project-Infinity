@@ -33,7 +33,7 @@ Player = {
         "ExoLevel": 1,
         "ExoMod": []
     },
-    "Money": 0,
+    "Money": 10000,
     "IntelBall": 0,
     "BattleScore": 0,
     "SocialScore": 0,
