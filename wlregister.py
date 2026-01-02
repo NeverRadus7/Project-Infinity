@@ -1,81 +1,69 @@
 PlanetClass = {
-    "LiveClass": ["Придатний", "Напівпридатний", "Непридатний", "Мертвий"],
-    
-    "TypeClass": ["Землеподібний світ", "Пустельний світ", "Океанічний світ",
-                   "Льодовий світ", "Вулканічний світ", "Газовий гігант",],
+    "LiveClass": ["Liveable", "Semi-Liveable", "Unliveable", "Dead"],
 
-    "TempClass": ["Розпечений", "Гарячий", "Теплий", 
-                  "Помірний", 
-                  "Прохолодний", "Холодний", "Крижаний"],
+    "TypeClass": ["Terrestrial", "Desert", "Ocean",
+                 "Ice", "Volcanic", "Gas Giant",],
 
-    "UniqueClass": ["", "з життям", "з цивілізацією", 
-                    "з колоніями", "з унікальним сигналом"]
+    "TempClass": ["Hot", "Hot", "Warm",
+                  "Moderate",
+                  "Cool", "Cold", "Icy"],
+
+    "UniqueClass": ["", "with life", "with civilization",
+                    "with colonies", "with unique signal"]
+
 }
 
-MapFilter = ["Досліднецько-політичний", "Територія", "Спектральний", "Економічний"]
+MapFilter = ["Research-Political", "Territory", "Spectral", "Economic"]
 ShipClasses = ["Small", "Cargo", "Explorer", "Military", "Miner"]
-FleetClasses = ["Великий корабель", "Флотоносець", "Конструкторний", "Космічний авантюрист"]
+FleetClasses = ["Large Ship", "Fleet Carrier", "Construction", "Space Adventurer"]
 StationType = ["Linear Station", "Modular Station", "Wheel Station", "Ring Station"]
 
 LevelRang = {
-    0: "Пілот-новачок",
-    1: "Пілот-новачок І",
-    2: "Пілот-новачок ІІ",
-    3: "Пілот-новачок ІІІ",
-    4: "Пілот-новачок ІV",
-    5: "Пілот-новачок -=V=-",
-    6: "Продвинутий пілот",
-    7: "Продвинутий пілот І",
-    8: "Продвинутий пілот ІІ",
-    9: "Продвинутий пілот ІІІ",
-    10: "Продвинутий пілот IV",
-    11: "Продвинутий пілот -=V=-",
-    12: "Експерт",
-    13: "Експерт І",
-    14: "Експерт ІІ",
-    15: "Експерт ІІІ",
-    16: "Експерт ІV",
-    17: "Експерт -=V=-",
-    18: "Досвідчений пілот",
-    19: "Досвідчений пілот І",
-    20: "Досвідчений пілот ІІ",
-    21: "Досвідчений пілот ІІІ",
-    22: "Досвідчений пілот IV",
-    23: "Досвідчений пілот -=V=-", 
+    0: "Novice Pilot",
+    1: "Novice Pilot I",
+    2: "Novice Pilot II",
+    3: "Novice Pilot III",
+    4: "Novice Pilot IV",
+    5: "Novice Pilot -=V=-",
+    6: "Advanced Pilot",
+    7: "Advanced Pilot I",
+    8: "Advanced Pilot II",
+    9: "Advanced Pilot III",
+    10: "Advanced Pilot IV",
+    11: "Advanced Pilot -=V=-",
+    12: "Expert",
+    13: "Expert I",
+    14: "Expert II",
+    15: "Expert III",
+    16: "Expert IV",
+    17: "Expert -=V=-",
+    18: "Experienced pilot",
+    19: "Experienced Pilot I",
+    20: "Experienced Pilot II",
+    21: "Experienced Pilot III",
+    22: "Experienced Pilot IV",
+    23: "Experienced Pilot -=V=-",
     999: "⏴MAXIMA⏵"
 }
 
-# Economics = [
-#     "Відсутнє", # 0
-#     "Змішене", # 1
-#     "Сільське господарство", # 2
-#     "Технології", # 3
-#     "Важка промисловість", # 4
-#     "Хімічна промисловість", # 5
-#     "Переробна", # 6
-#     "Видобувна", # 7
-#     "Військове", # 8
-#     "Фінанси" # 9
-# ]
-
 Economics = [
-    "Відсутнє",
-    "Аграрна",
-    "Мінеральна",
-    "Енергетична",
-    "Біосировинна",
-    "Індустріальна",
-    "Технологічна",
-    "Військова",
-    "Торгівельна",
-    "Фінансова",
-    "Туристична"
-    "Наукова",
-    "Піратська",
-    "Релігійна",
-    "Постапокаліптична",
-    "Мегакорпоративна",
-    "Залежна колонія"
+    "Anarchy",
+    "Agricultural",
+    "Mineral",
+    "Energy",
+    "Bio-resources",
+    "Industrial",
+    "Technological",
+    "Military",
+    "Trade",
+    "Financial",
+    "Tourist",
+    "Scientific",
+    "Pirate",
+    "Religious",
+    "Post-apocalyptic",
+    "Mega-corporate",
+    "Dependent colony"
 ]
 
 EconomicsDesc = [
@@ -88,13 +76,13 @@ EconomicsDesc = [
 
 Buildings = {
     0: {
-            "BuildingName": "Житловий блок",
+            "BuildingName": "Residential block",
             "BuildingType": 0,
             "BuildingValue": 150_000,
             "BuildingCoust": 800_000_000
         },
     1: {
-            "BuildingName": "Склади",
+            "BuildingName": "Storages",
             "BuildingType": 1,
             "BuildingValue": 30_000,
             "BuildingCoust": 200_000_000
@@ -110,133 +98,133 @@ ShipModifications = [
     {
         "ModID": 0,
         "ModType": 0,
-        "ModName": "Додаткові паливні баки",
+        "ModName": "Addtional fuel tanks",
         "ModCoust": 200_000,
         "ModValue": 3 # + Fuel maximum capacity
     },
     {
         "ModID": 1,
         "ModType": 1,
-        "ModName": "Легкоповерхневий сплав",
+        "ModName": "Light surface alloy",
         "ModCoust": 180_000,
         "ModValue": 10 # + Health ship
     },
     {
         "ModID": 2,
         "ModType": 2,
-        "ModName": "Покращені досліднецьки сенсори",
+        "ModName": "Improved research sensors",
         "ModCoust": 500_000,
         "ModValue": 2 # + Coefficient intel
     },
     {
         "ModID": 3,
         "ModType": 1,
-        "ModName": "Реактивна поверхня",
+        "ModName": "Reactive surface",
         "ModCoust": 2_000_000,
         "ModValue": 30 # + Health ship
     },
     {
         "ModID": 4,
         "ModType": 5,
-        "ModName": "Зменшувач мас",
+        "ModName": "Mass reducer",
         "ModCoust": 15_000_000,
         "ModValue": 5 # + Warp distance
     },
     {
         "ModID": 5,
         "ModType": 3,
-        "ModName": "Лазерна мала гармата",
+        "ModName": "Laser small cannon",
         "ModCoust": 35_000,
         "ModValue": {'damage': 3, 'interval': 1}
     },
     {
         "ModID": 6,
         "ModType": 3,
-        "ModName": "Автоматичні гармати",
+        "ModName": "Automatic guns",
         "ModCoust": 60_000,
         "ModValue": {'damage': 1, 'interval': 4}
     },
     {
         "ModID": 7,
         "ModType": 3,
-        "ModName": "Артилерійна установа",
+        "ModName": "Artillery establishment",
         "ModCoust": 4_000_000,
         "ModValue": {'damage': 5, 'interval': 4}
     },
     {
         "ModID": 8,
         "ModType": 3,
-        "ModName": "Плазмогармата",
+        "ModName": "Plasma gun",
         "ModCoust": 200_000_000,
         "ModValue": {'damage': 160, 'interval': 1}
     },
     {
         "ModID": 9,
         "ModType": 1,
-        "ModName": "Надміцний сплав",
+        "ModName": "High-strength alloy",
         "ModCoust": 10_000_000,
         "ModValue": 50
     },
     {
         "ModID": 10,
         "ModType": 3,
-        "ModName": "Автоматичні кулемети",
+        "ModName": "Automatic machine guns",
         "ModCoust": 160_000,
         "ModValue": {'damage': 10, 'interval': 8}
     },
     {
         "ModID": 11,
         "ModType": 3,
-        "ModName": "Автоматичні кулемети MILLYTECH",
+        "ModName": "AMG-100 [MILLYTECH]",
         "ModCoust": 800_000,
         "ModValue": {'damage': 30, 'interval': 8}
     },
     {
         "ModID": 12,
         "ModType": 5,
-        "ModName": "Мегапросторовий двигун",
+        "ModName": "Megaspace engine",
         "ModCoust": 60_000_000,
         "ModValue": 5
     },
     {
         "ModID": 13,
         "ModType": 5,
-        "ModName": "Суперпросторовий двигун",
+        "ModName": "Superspace engine",
         "ModCoust": 250_000_000,
         "ModValue": 10
     },
     {
         "ModID": 14,
         "ModType": 5,
-        "ModName": "Гіперпросторовий двигун",
+        "ModName": "Hyperspace engine",
         "ModCoust": 700_000_000,
         "ModValue": 20
     },
     {
         "ModID": 15,
         "ModType": 4,
-        "ModName": "Астросенсори [ASTRA INC.]",
+        "ModName": "Astrosensory [ASTRA INC.]",
         "ModCoust": 150_000_000,
         "ModValue": 10
     },
     {
         "ModID": 16,
         "ModType": 3,
-        "ModName": "Малий рельсотрон",
+        "ModName": "Small railgun",
         "ModCoust": 30_000_000,
         "ModValue": {'damage': 26, 'interval': 1}
     },
     {
         "ModID": 17,
         "ModType": 3,
-        "ModName": "Рельсотрон",
+        "ModName": "Railgun",
         "ModCoust": 70_000_000,
         "ModValue": {'damage': 40, 'interval': 1}
     },
     {
         "ModID": 18,
         "ModType": 3,
-        "ModName": "Двох-дуловий рельсотрон",
+        "ModName": "Double-barreled railgun",
         "ModCoust": 40_000_000,
         "ModValue": {'damage': 20, 'interval': 2}
     },
@@ -355,30 +343,30 @@ Fleets = [
     }
 ]
 
-StarSecurityType = ["Дрібні патрулі", "Часті патрулі", "Повна безпека"]
+StarSecurityType = ["Small patrols", "Frequent patrols", "Complete security"]
 
 ItemsType = [
-    "Паливні", # 0
-    "Метали", # 1
-    "Техніка", # 2
-    "Хімічні препарати", # 3
-    "Наукові зразки", # 4
-    "Харчові продукти", # 5
-    "Екзотичні" # 6
+    "Fuel", # 0
+    "Metals", # 1
+    "Technology", # 2
+    "Chemicals", # 3
+    "Scientific samples", # 4
+    "Food", # 5
+    "Exotic" # 6
 ]
 
 ItemsDB = [
-    {"ItemID": 0, "ItemName": 'Ракетне паливо', "ItemType": 0,"ItemEconomicType": 1,"ItemCoust": 200},
-    {"ItemID": 1, "ItemName": 'Будівельні матеріали', "ItemType": 3,"ItemEconomicType": 3,"ItemCoust": 30_000},
-    {"ItemID": 2, "ItemName": "Очишений метал: Золото", "ItemType": 1, "ItemEconomicType": 1, "ItemCoust": 1_000},
-    {'ItemID': 3, 'ItemName': 'Реактивна сталь', 'ItemType': 1, 'ItemEconomicType': 3, 'ItemCoust': 100_000},
-    {'ItemID': 4, 'ItemName': 'Тераформічні бактерії та хімія', 'ItemType': 3, 'ItemEconomicType': 4, 'ItemCoust': 500_000},
-    {'ItemID': 5, 'ItemName': 'Копалина: Залізна руда ☆☆☆☆☆', 'ItemType': 1, 'ItemEconomicType': 7, 'ItemCoust': 50},
-    {'ItemID': 6, 'ItemName': 'Копалина: Алюмінюєва руда ☆☆☆☆☆', 'ItemType': 1, 'ItemEconomicType': 7, 'ItemCoust': 30},
-    {'ItemID': 7, 'ItemName': 'Копалина: Осмієва руда ★☆☆☆☆', 'ItemType': 1, 'ItemEconomicType': 7, 'ItemCoust': 60},
-    {'ItemID': 8, 'ItemName': 'Копалина: Багата осмієва руда ★★☆☆☆', 'ItemType': 1, 'ItemEconomicType': 7, 'ItemCoust': 150},
-    {'ItemID': 9, 'ItemName': 'Копалина: Мідна руда ★☆☆☆☆', 'ItemType': 1, 'ItemEconomicType': 7, 'ItemCoust': 40},
-    {'ItemID': 10, 'ItemName': 'Копалина: Золота руда ★★★☆☆', 'ItemType': 1, 'ItemEconomicType': 7, 'ItemCoust': 250},
+    {"ItemID": 0, "ItemName": 'Rocket Fuel', "ItemType": 0,"ItemEconomicType": 1,"ItemCoust": 200},
+    {"ItemID": 1, "ItemName": 'Building Materials', "ItemType": 3,"ItemEconomicType": 3,"ItemCoust": 30_000},
+    {"ItemID": 2, "ItemName": "Refined Metal: Gold", "ItemType": 1, "ItemEconomicType": 1, "ItemCoust": 1_000},
+    {'ItemID': 3, 'ItemName': 'Reactive Steel', 'ItemType': 1, 'ItemEconomicType': 3, 'ItemCoust': 100_000},
+    {'ItemID': 4, 'ItemName': 'Terraforming Bacteria and Chemistry', 'ItemType': 3, 'ItemEconomicType': 4, 'ItemCoust': 500_000},
+    {'ItemID': 5, 'ItemName': 'Mineral: Iron Ore ☆☆☆☆☆', 'ItemType': 1, 'ItemEconomicType': 7, 'ItemCoust': 50},
+    {'ItemID': 6, 'ItemName': 'Mineral: Aluminum Ore ☆☆☆☆☆', 'ItemType': 1, 'ItemEconomicType': 7, 'ItemCoust': 30},
+    {'ItemID': 7, 'ItemName': 'Mineral: Osmium Ore ★☆☆☆☆', 'ItemType': 1, 'ItemEconomicType': 7, 'ItemCoust': 60},
+    {'ItemID': 8, 'ItemName': 'Mineral: Rich Osmium Ore ★★☆☆☆', 'ItemType': 1, 'ItemEconomicType': 7, 'ItemCoust': 150},
+    {'ItemID': 9, 'ItemName': 'Mineral: Copper Ore ★☆☆☆☆', 'ItemType': 1, 'ItemEconomicType': 7, 'ItemCoust': 40},
+    {'ItemID': 10, 'ItemName': 'Mineral: Gold Ore ★★★☆☆', 'ItemType': 1, 'ItemEconomicType': 7, 'ItemCoust': 250},
     {'ItemID': 11, 'ItemName': 'High-tension diamonds ★★★★★', 'ItemType': 1, 'ItemEconomicType': 7, 'ItemCoust': 50_000},
     {'ItemID': 12, 'ItemName': 'Vibrocrystals', 'ItemType': 1, 'ItemEconomicType': 7, 'ItemCoust': 200_000}
 ]
