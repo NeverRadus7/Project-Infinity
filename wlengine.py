@@ -42,7 +42,7 @@ PlayerAtribution = PlayerIs['Atribution']
 colorama.init()
 
 GameName = "Project Infinity"
-VersionClient = "Dev"
+VersionClient = "1.0"
 EngineVersion = "2.16"
 
 TimeToday = time.strftime("%d")
