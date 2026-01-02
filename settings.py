@@ -6,8 +6,8 @@ SavePath = "save/player.json"
 MapPath = "save/map.json"
 
 # Date settings
-CustomToday = False
-SetDate = [30,6,2026]
+CustomToday = True
+SetDate = [9,2,2026]
 
 # Gameplay settings
 MaxLevel = 999 # Default: 100
@@ -15,7 +15,7 @@ MaxNavyLevel = 100 # Default: 100
 XpToLevel = 10000 # Default: 10000
 IncCoefXP = [10,50] # Default: [10,50]
 FuelRequire = 1 # Default: 1
-DebugInfo = False # Default: False
+DebugInfo = True # Default: False
 SetTravelDistation = 0 # Default: 0
 AddShipModification = 0 # Default: 0
 
@@ -69,8 +69,8 @@ ModMaxLevel = 5 # Default: 5
 ModLevelCoeff = 4 # Default: 4
 
 # Colony/Civil settings
-sett_pop_include = [0,3] # Default: [1,5]
-sett_eco_include = [0.0001,0.001] # Default: [0.0001,0.001]
+sett_pop_include = [0,1000] # Default: [1,5]
+sett_eco_include = [-0.25,0.25] # Default: [0.0001,0.001]
 MaxColonyBuildings = 10
 
 #Research settings

@@ -975,9 +975,9 @@ class pi():
                         if Star['Planets'][ii]['PlanetClass'] == 4:
                             if Star['Planets'][ii]['PlanetLive'] == True:
                                 PlanetLiveCount += 1
-                    PlayerIs['Statistic']['IncomeFromColony'] += int((int(StarIs['StarCivil']['CivilPop'] * 2) * (4 * PlanetLiveCount+1)) * StarIs['StarCivil']['CivilEco'])
-                    pi.StarChange(StarIs['StarID'], 'InfoIncome', int((int(StarIs['StarCivil']['CivilPop']* 2) * (4 * PlanetLiveCount+1)) * StarIs['StarCivil']['CivilEco']))
-                    PlayerIs['Money'] += int((int(StarIs['StarCivil']['CivilPop'] * 2) * (4 * PlanetLiveCount+1)) * StarIs['StarCivil']['CivilEco'])
+                    PlayerIs['Statistic']['IncomeFromColony'] += int((int(StarIs['StarCivil']['CivilPop'] * 3) * (4 * PlanetLiveCount+1)) * StarIs['StarCivil']['CivilEco'])
+                    pi.StarChange(StarIs['StarID'], 'InfoIncome', int((int(StarIs['StarCivil']['CivilPop']* 3) * (4 * PlanetLiveCount+1)) * StarIs['StarCivil']['CivilEco']))
+                    PlayerIs['Money'] += int((int(StarIs['StarCivil']['CivilPop'] * 3) * (4 * PlanetLiveCount+1)) * StarIs['StarCivil']['CivilEco'])
                     
             # Civil Eco changes
             if StarIs.get("StarCivil"):

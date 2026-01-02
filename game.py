@@ -100,7 +100,7 @@ def infoscreen(stdscr, StarIs):
                 if StarIs.get("StarControled") and StarIs['StarControled'] == True:
                     n += 1
                     if n >= 0 and n <= col_y-2:
-                        colonies.addstr(int(n),1,f"{n}. {StarIs['Star']}({StarIs['StarID']}) - Pops: {StarIs['StarCivil']['CivilPop']:,} - ECO: {StarIs['StarCivil']['CivilEco']} - Station: {StarIs['StarCivil']['CivilStation']['StationName']}"[:col_x-2], color)
+                        colonies.addstr(int(n),1,f"{StarIs['Star']} ({StarIs['StarID']}) - Pops: {StarIs['StarCivil']['CivilPop']:,} - ECO: {StarIs['StarCivil']['CivilEco']} - Station: {StarIs['StarCivil']['CivilStation']['StationName']}"[:col_x-2], color)
         colonies.refresh()
 
         stdscr.addstr(size_y-2,size_x-len("© Kaluhin's studio - 2025")-2, "© Kaluhin's studio - 2025", curses.color_pair(0) | curses.A_DIM)
@@ -373,7 +373,7 @@ if CommandInput == "2":
                 if keyname == "\n":
                     flag = False
                     for i, mod in enumerate(PlayerIs['Ship']['ShipModification']):
-                        if mod['ModificationID'] == 19:
+                        if mod['ModificationID'] == 20:
                             flag = True
                             break
                     
@@ -390,26 +390,27 @@ if CommandInput == "2":
                         pi.loading(stdscr, title="Destroing...")
                         if rwos.randint(1,100) <= (AstIs['AsteroidRate']+25 + (MiningRate * 10)):
                             if AstIs['AsteroidType'] == 0:
-                                wl.InvAdd(rwos.choice([5,6,9]), Amount)
+                                item = rwos.choice([5,6,9])
                             if AstIs['AsteroidType'] == 1:
-                                wl.InvAdd(rwos.choice([5,6,7,8]), Amount)
+                                item = rwos.choice([5,6,7,8])
                             if AstIs['AsteroidType'] == 2:
-                                wl.InvAdd(rwos.choice([5,6,9,7,8]), Amount)
+                                item = rwos.choice([5,6,9,7,8])
                             if AstIs['AsteroidType'] == 3:
-                                wl.InvAdd(rwos.choice([11,5,5,5,6,6,6,6]))
+                                item = rwos.choice([11,5,5,5,6,6,6,6])
                             if AstIs['AsteroidType'] == 4:
-                                wl.InvAdd(rwos.choice([12]), Amount)
+                                item = rwos.choice([12])
                             if AstIs['AsteroidType'] == 5:
-                                wl.InvAdd(rwos.choice([5,6,7,8,9,10]), Amount)
+                                item = rwos.choice([5,6,7,8,9,10])
                             AstIs['AsteroidMass'] -= Amount
                             if AstIs['AsteroidMass'] <= 0:
                                 StarIs['Asteroids'].pop(select)
+                            wl.InvAdd(item, Amount)
                             massage = curses.newwin(7,50,int((sz_y-7)/2), int((sz_x-50)/2))
                             massage.box()
                             mas_y, mas_x = massage.getmaxyx()
                             massage.addstr(0,int((mas_x-len("Mining"))/2), "Mining")
                             massage.addstr(1,1,f"In: {AstIs['AsteroidName']}")
-                            massage.addstr(2,1,f"Mined: {Amount}")
+                            massage.addstr(2,1,f"Mined: {Amount} {ItemsDB[item]['ItemName']}")
                             massage.addstr(3,1,f"Cargo: {(ShipTotalItems):,}")
                             massage.refresh()
                             massage.getch()
@@ -1297,7 +1298,7 @@ if DebugInfo == True and CommandInput == "/":
 
 if wlengine.DateCheck(wlengine.PlayerDate):
     NewPlayerDate = wlengine.Date() + timedelta(days=1)
-    days = wlengine.DiffDate(wlengine.PlayerDate)
+    days = wlengine.DiffDate(wlengine.PlayerDate)+1
     PlayerIs['NextDate'] = wlengine.DateSave(NewPlayerDate)
     for i in range(days):
         pi.Logic()
