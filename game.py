@@ -714,6 +714,7 @@ if CommandInput == "4":
                             if keyname in ["m", "\n"]:
                                 menu = ["Store ship", "Bring back", "Sell ship"]
                                 choice = pi.menuscreen(stdscr, "Hangar", menu)
+                                
                                 if choice == "Store ship":
                                     if "STARTED_SHIP" in PlayerIs['Ship']['ShipFlags']:
                                         pi.error_stdscr(stdscr, "Error", "Cannot store started ship")
@@ -732,6 +733,7 @@ if CommandInput == "4":
                                         }
                                         pi.message(stdscr, title="Success", message="Success stored ship.")
                                         break
+                                
                                 if choice == "Bring back":
                                     if "STARTED_SHIP" in PlayerIs['Ship']['ShipFlags']:
                                         PlayerIs['Ship'] = StarIs['StarCivil']['CivilStation']['StationHangar'][select]
@@ -744,6 +746,22 @@ if CommandInput == "4":
                                     pi.StarChange(StarIs['StarID'], "StarCivil", StarIs['StarCivil'])
                                     pi.message(stdscr, title="Success", message="Success bring back.")
                                     break
+                            
+                                if choice == "Sell ship":
+                                    Price = int(Ships[StarIs['StarCivil']['CivilStation']['StationHangar'][select]['ShipID']]['ShipCoust'] * StarIs['StarCivil']['CivilEco'])
+                                    for i,k in enumerate(StarIs['StarCivil']['CivilStation']['StationHangar'][select]['ShipModification']):
+                                        if k['ModificationID'] != None:
+                                            ModIs = ShipModifications[k['ModificationID']]
+                                            Price += int((ModIs['ModCoust'] * (1 + k['ModificationLevel'])) * StarIs['StarCivil']['CivilEco'])
+
+                                    menu = [f"Price: {Price:,} ©", "Yes", "No"]
+                                    choice = pi.menuscreen(stdscr, title="Selling", menu=menu)
+                                    if choice == "Yes":
+                                        PlayerIs['Money'] += Price
+                                        StarIs['StarCivil']['CivilStation']['StationHangar'].pop(select)
+                                        pi.message(stdscr, title="Success", message="You have sold the ship.")
+                                        pi.StarChange(StarIs['StarID'], 'StarCivil', StarIs['StarCivil'])
+
                             if keyname == "q":
                                 break
                     
@@ -1091,6 +1109,7 @@ if CommandInput == "4":
                                     
                                     if choice3 == "y":
                                         if PlayerIs['Money'] >= Price:
+                                            PlayerIs['Money'] -= Price
                                             PlayerIs['Ship']['ShipModification'][select]['ModificationID'] = ModIs['ModID']
                                             PlayerIs['Ship']['ShipModification'][select]['ModificationLevel'] = 0
                                             pi.loading(stdscr, title="Installation...")

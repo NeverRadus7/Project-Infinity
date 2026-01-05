@@ -53,6 +53,7 @@ Player = {
         "Filter": 0
     },
     "NextDate": writeDate,
+    "MapFilter": 0,
     "GameUpdate": 4
 }
 

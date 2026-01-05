@@ -265,7 +265,7 @@ Ships = [
         "ShipMaxFuel": 20,
         "ShipMaxModification": 2,
         "ShipMaxItems": 50,
-        "ShipCoust": 10_000
+        "ShipCoust": 5_000
     },
     {
         "ShipID": 1,
@@ -276,7 +276,7 @@ Ships = [
         "ShipMaxFuel": 25,
         "ShipMaxModification": 3,
         "ShipMaxItems": 50,
-        "ShipCoust": 250_000
+        "ShipCoust": 25_000
     },
     {
         "ShipID": 2,
@@ -287,7 +287,7 @@ Ships = [
         "ShipMaxFuel": 25,
         "ShipMaxModification": 4,
         "ShipMaxItems": 75,
-        "ShipCoust": 1_000_000
+        "ShipCoust": 30_000
     },
     {
         "ShipID": 3,
@@ -298,7 +298,7 @@ Ships = [
         "ShipMaxFuel": 30,
         "ShipMaxModification": 4,
         "ShipMaxItems": 20,
-        "ShipCoust": 3_750_000
+        "ShipCoust": 180_000
     },
     {
         "ShipID": 4,
@@ -309,7 +309,7 @@ Ships = [
         "ShipMaxFuel": 20,
         "ShipMaxModification": 6,
         "ShipMaxItems": 60,
-        "ShipCoust": 15_000_000
+        "ShipCoust": 300_000
     }
 ]
 

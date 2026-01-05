@@ -1,6 +1,6 @@
 echo off
 
-pip install --update pip
+pip install --upgrade pip
 
 pip install wincurses
 pip install colorama

@@ -1,6 +1,6 @@
 # Shell settings
 ConsoleSizeX = 130  # Default: 130
-ConsoleSizeY = 33 # Default: 30
+ConsoleSizeY = 30 # Default: 30
 WallSymbol = "━"
 SavePath = "save/player.json"
 MapPath = "save/map.json"
@@ -27,11 +27,12 @@ IntelToCredits = 3 # Default: 3
 BattleGrantToCredits = 7 # Default: 7
 
 # Map settings /!\ Changing this paramets will break your game
-MapSeed = 0x2976579765 # Default: 0x2976579765| 
+MapSeed = 0x2976579765 # Default: 0x2976579765
 MapCivilRange = 20 # Default: 20
 PlanetColonyRange = 75 # Default: 75
-CivilEcoMin = 0.1 # Default: 0.1
-CivilEcoMax = 3 # Default: 1.5
+CivilEcoMin = 0.5 # Default: 0.5
+CivilEcoMax = 1.5 # Default: 1.5
+EcoFilter = [1.4,1,0.7]
 MinFulling = 1 # Default: 1
 MaxFulling = 80 # Default: 60
 BorderMap = 10
@@ -69,8 +70,8 @@ ModMaxLevel = 5 # Default: 5
 ModLevelCoeff = 4 # Default: 4
 
 # Colony/Civil settings
-sett_pop_include = [0,1000] # Default: [1,5]
-sett_eco_include = [-0.25,0.25] # Default: [0.0001,0.001]
+sett_pop_include = [0,1000] # Default: [0,1000]
+sett_eco_include = [-0.25,0.25] # Default: [-0.25,0.25]
 MaxColonyBuildings = 10
 
 #Research settings

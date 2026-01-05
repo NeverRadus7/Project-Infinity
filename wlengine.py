@@ -42,7 +42,7 @@ PlayerAtribution = PlayerIs['Atribution']
 colorama.init()
 
 GameName = "Project Infinity"
-VersionClient = "1.0"
+VersionClient = "1.0.1"
 EngineVersion = "2.16"
 
 TimeToday = time.strftime("%d")
@@ -705,7 +705,7 @@ class pi():
             curses.init_pair(4, curses.COLOR_BLACK, curses.COLOR_GREEN)
             curses.init_pair(5, curses.COLOR_BLACK, curses.COLOR_RED)
 
-        filt = 0
+        filt = PlayerIs['MapFilter']
         selected = star
         location = selected / BorderMap
         location = int(location) * BorderMap
@@ -781,13 +781,13 @@ class pi():
                         dim = curses.A_DIM
                 elif filt == 3:
                     if staris.get('StarCivil'):
-                        if staris['StarCivil']['CivilEco'] >= 1.5:
+                        if staris['StarCivil']['CivilEco'] >= EcoFilter[0]:
                             symbol = "▲+ "
                             color = 102
-                        elif staris['StarCivil']['CivilEco'] >= 1:
+                        elif staris['StarCivil']['CivilEco'] >= EcoFilter[1]:
                             symbol = "▲ "
                             color = 101
-                        elif staris['StarCivil']['CivilEco'] >= 0.5:
+                        elif staris['StarCivil']['CivilEco'] >= EcoFilter[2]:
                             symbol = "= "
                             color = 103
                         else:
@@ -840,10 +840,15 @@ class pi():
             keyname = stdscr.getkey()
 
             if keyname == "f":
-                if filt == len(MapFilter) - 1:
-                    filt = 0
-                else:
-                    filt += 1
+                menu = MapFilter
+
+                choice = pi.menuscreen(stdscr, "Filters", menu)
+
+                for i,k in enumerate(MapFilter):
+                    if choice == k:
+                        filt = i
+            
+            PlayerIs['MapFilter'] = filt
             
             if keyname == "q":
                 break
