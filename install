@@ -1,6 +1,7 @@
 #!/bin/bash
 cat data/logo.txt
 rm -r python/
+mkdir save/
 python3 -m venv python
 
 source python/bin/activate
