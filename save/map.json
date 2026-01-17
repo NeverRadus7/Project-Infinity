@@ -1,0 +1,57 @@
+[
+    {
+        "StarID": 728,
+        "StarCivil": {
+            "CivilPop": 248447245,
+            "CivilEconomicType": 1,
+            "CivilEco": 1.0032309873833753,
+            "CivilReputation": 50,
+            "CivilSecurity": 1,
+            "CivilStable": 81,
+            "CivilUpgrade": [
+                "Fleet_Shipyard",
+                "Fleet_Shipyard",
+                "Cruiser_Shipyard"
+            ],
+            "CivilStation": {
+                "StationName": "Geqothyzh Station",
+                "StationType": 1,
+                "StationStoreList": [
+                    12,
+                    7,
+                    0,
+                    6,
+                    1,
+                    8,
+                    11,
+                    2,
+                    10,
+                    4,
+                    3,
+                    5,
+                    9
+                ],
+                "StationHangar": [
+                    {
+                        "ShipID": 0,
+                        "ShipName": "Rookie",
+                        "ShipModification": [
+                            {
+                                "ModificationID": null,
+                                "ModificationLevel": 0
+                            },
+                            {
+                                "ModificationID": null,
+                                "ModificationLevel": 0
+                            }
+                        ],
+                        "ShipFlags": [],
+                        "Storage": [],
+                        "Fuel": 20,
+                        "ItemsCount": 0
+                    }
+                ]
+            }
+        }
+    }
+]

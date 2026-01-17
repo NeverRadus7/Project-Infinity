@@ -1,0 +1,61 @@
+{
+    "Nickname": "Player",
+    "Location": 720,
+    "Ship": {
+        "ShipID": 3,
+        "ShipName": "MILLYTECH QR-I",
+        "ShipModification": [
+            {
+                "ModificationID": 8,
+                "ModificationLevel": 0
+            },
+            {
+                "ModificationID": null,
+                "ModificationLevel": 0
+            },
+            {
+                "ModificationID": null,
+                "ModificationLevel": 0
+            },
+            {
+                "ModificationID": null,
+                "ModificationLevel": 0
+            }
+        ],
+        "ShipFlags": [],
+        "Storage": [],
+        "Fuel": 30,
+        "ItemsCount": 0
+    },
+    "Exo": {
+        "ExoClass": 0,
+        "ExoLevel": 1,
+        "ExoMod": []
+    },
+    "Money": 423667346,
+    "IntelBall": 0,
+    "BattleScore": 0,
+    "SocialScore": 0,
+    "XP": 0,
+    "Reputation": 0,
+    "WorldDay": 29,
+    "Atribution": [],
+    "Statistic": {
+        "StarInteled": 0,
+        "StarControled": 0,
+        "StarColony": 0,
+        "CreditsFromSelled": 0,
+        "CreditsFromScience": 0,
+        "IncomeFromColony": 0
+    },
+    "MapSettings": {
+        "Filter": 0
+    },
+    "NextDate": [
+        10,
+        2,
+        2026
+    ],
+    "MapFilter": 0,
+    "GameUpdate": 4
+}

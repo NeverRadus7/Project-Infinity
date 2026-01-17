@@ -15,6 +15,7 @@ import colorama
 import json
 import math
 import curses
+import numpy
 
 from datetime import datetime, timedelta, date
 
@@ -42,7 +43,7 @@ PlayerAtribution = PlayerIs['Atribution']
 colorama.init()
 
 GameName = "Project Infinity"
-VersionClient = "1.0.1"
+VersionClient = "1.1 Beta"
 EngineVersion = "2.16"
 
 TimeToday = time.strftime("%d")
@@ -538,6 +539,9 @@ class wl():   # Main class
                         ItemIs['ItemCount'] -= count
 
 class pi():
+    def reitingPrint(x, max_x):
+        return f"{(ModLevelSym*x)[:max_x]}{ModLevelEmptySym*(max_x-x)}"
+
     def menuscreen(stdscr, title, menu):
         curses.start_color()
         curses.init_pair(1,curses.COLOR_BLACK, curses.COLOR_WHITE)
@@ -1286,6 +1290,131 @@ class pi():
                 if ModIs['ModType'] == ModType:
                     Value += (ModIs['ModValue'] * (ModPlayerIs['ModificationLevel'] * ModLevelCoeff))
         return int(Value)
+
+    def Battle(title="Test", sub=["Simple text.", "Target: Sol (3170)"], Enemy={"Enemy": "Test", "BotShip": 1, "ShipMods": 5, "Level": 1}):
+        BotMods = []
+        ModsWeapon = []
+        for i, k in enumerate(ShipModifications):
+            if k['ModType'] == 3:
+                ModsWeapon.append(k['ModID'])
+
+        for i in range(Enemy['ShipMods']):
+            if i == 0:
+                BotMods.append(
+                    {
+                        "ModificationID": rwos.choice(ModsWeapon),
+                        "ModificationLevel": rwos.randint(0,ModMaxLevel)
+                    }
+                )
+            else:
+                BotMods.append(
+                    {
+                        "ModificationID": rwos.randint(0, len(ShipModifications)-1),
+                        "ModificationLevel": rwos.randint(0,ModMaxLevel)
+                    }
+                )
+        
+        EnemyHP = Ships[Enemy['BotShip']]['ShipHealth']
+        EnemyDM = 0
+        for i,k in enumerate(BotMods):
+            if ShipModifications[k['ModificationID']]['ModType'] == 1:
+                EnemyHP += int(ShipModifications[k['ModificationID']]['ModValue'] * k['ModificationLevel'])
+            if ShipModifications[k['ModificationID']]['ModType'] == 3:
+                EnemyDM += int(ShipModifications[k['ModificationID']]['ModValue']['damage'] * k['ModificationLevel'])
+        def screen(stdscr, EnemyHP, EnemyDM, PlayerHP, PlayerDM):
+            sz_y, sz_x = stdscr.getmaxyx()
+            zone = stdscr.derwin(sz_y-11-len(sub),sz_x-5, len(sub)+1,int((sz_x-(sz_x-5))/2))
+            z_y, z_x = zone.getmaxyx()
+            
+            player_pos = rwos.randint(1,z_y-2)
+            bot_pos = rwos.randint(1,z_y-2)
+            while True:
+                stdscr.clear()
+                stdscr.box()
+
+                stdscr.addstr(0,int((sz_x-len(title))/2), title)
+                
+                for i,k in enumerate(sub):
+                    stdscr.addstr(1+i, 1, k)
+
+                player = stdscr.derwin(9,40,int((sz_y-10)), 1)
+                bot = stdscr.derwin(9,40,int((sz_y-10)), int(sz_x-41))
+
+                player.box()
+                bot.box()
+
+                player.addstr(1,1,f"You: {PlayerIs['Nickname']}")
+                player.addstr(2,1,f"Ship: {Ships[PlayerIs['Ship']['ShipID']]['ShipName']}")
+                player.addstr(3,1,f"HP: {PlayerHP:,} HP")
+                player.addstr(4,1,f"DM: {PlayerDM:,} DM")
+                player.addstr(5,1,f"INT: {PlayerShipInterval:,}")
+                player.addstr(6,1,f"RET: ({pi.reitingPrint(int(PlayerHP/100), 5)})")
+
+                bot.addstr(1,1,f"Enemy: {Enemy['Enemy']}")
+                bot.addstr(2,1,f"Ship: {Ships[Enemy['BotShip']]['ShipName']}")
+                bot.addstr(3,1,f"HP: {EnemyHP:,} HP")
+                bot.addstr(4,1,f"DM: {EnemyDM:,} DM")
+                bot.addstr(5,1,f"INT: 2")
+                bot.addstr(6,1,f"LVL: {Enemy['Level']} ({pi.reitingPrint(int(Enemy['Level']/33),5)})")
+
+                zone.clear()
+                zone.box()
+
+                player_pos += rwos.randint(-5,5)
+                if player_pos <= 2:
+                    player_pos = 2
+                if player_pos >= z_y-2:
+                    player_pos = z_y-2
+                
+                bot_pos += rwos.randint(-5,5)
+                if bot_pos <= 2:
+                    bot_pos = 2
+                if bot_pos >= z_y-2:
+                    bot_pos = z_y-2
+
+                if rwos.randint(1,100) <= 10:
+                    bot_pos = player_pos
+
+                zone.addstr(player_pos,2,">")
+                zone.addstr(bot_pos,z_x-3, "<")
+
+                zone.addstr(player_pos-1,1,"YOU")
+                zone.addstr(bot_pos-1,z_x-4, "ENE")
+
+                if rwos.randint(1,100) <= 75 and player_pos == bot_pos:
+                    for i in range(z_x-5):
+                        zone.addstr(player_pos, 3, f"{" "*i}-")
+                        zone.refresh()
+                        curses.napms(30)
+                    zone.addstr(bot_pos, z_x-3, "✷")
+                    zone.refresh()
+                    curses.napms(300)
+                    EnemyHP -= PlayerDM
+
+                if EnemyHP <= 0:
+                    pi.message(stdscr, title="Win", message="You win.")
+                    return 1
+
+                if rwos.randint(1,100) <= 75 and bot_pos == player_pos:
+                    for i in range(z_x-5):
+                        zone.addstr(player_pos, z_x-4-i, f"-{" "*i}")
+                        zone.refresh()
+                        curses.napms(30)
+                    zone.addstr(player_pos, 2, "✷")
+                    zone.refresh()
+                    curses.napms(300)
+                    PlayerHP -= EnemyDM
+                
+                if PlayerHP <= 0:
+                    pi.message(stdscr, title="Lose", message="You lose.")
+                    return 0
+
+                zone.refresh()
+                stdscr.refresh()
+                curses.napms(500)
+
+
+        curses.wrapper(lambda stdscr: screen(stdscr, EnemyHP, EnemyDM, PlayerShipHP, PlayerShipDMG))
 
 class game():
     class player():

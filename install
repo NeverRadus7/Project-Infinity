@@ -9,5 +9,6 @@ source python/bin/activate
 pip install colorama
 pip install nickname_generator
 pip install curses
+pip install numpy
 
 python3 restart.py

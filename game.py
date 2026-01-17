@@ -104,7 +104,10 @@ def infoscreen(stdscr, StarIs):
         colonies.refresh()
 
         stdscr.addstr(size_y-2,size_x-len("© Kaluhin's studio - 2025")-2, "© Kaluhin's studio - 2025", curses.color_pair(0) | curses.A_DIM)
-        stdscr.addstr(size_y-2,3,f"Version {VersionClient}", curses.color_pair(0) | curses.A_DIM)
+        if UnstableVersion == False:
+            stdscr.addstr(size_y-2,3,f"Version {VersionClient}", curses.color_pair(0) | curses.A_DIM)
+        else:
+            stdscr.addstr(size_y-2,3,f"| /!\\ UNSTABLE | Version {VersionClient}", curses.color_pair(0) | curses.A_DIM)
         menu = "| [1]-Galaxy | [2]-Star | [3]-Planets | [4]-Station | [5]-Other |"
         stdscr.addstr(size_y-1, int((size_x-len(menu))/2), menu)
         stdscr.move(size_y-1, size_x-1)

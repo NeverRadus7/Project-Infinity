@@ -1,4 +1,5 @@
 # Shell settings
+UnstableVersion = True
 ConsoleSizeX = 130  # Default: 130
 ConsoleSizeY = 30 # Default: 30
 WallSymbol = "━"

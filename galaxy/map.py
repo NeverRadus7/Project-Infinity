@@ -130,6 +130,11 @@ def GenMap(seed):
             )
         return Planets
     
+    def EventGen():
+        event = {
+            "EventID": random.randint(0, len(wlregister.Events)-1)
+        }
+
     solar_name = f"{random.choice(Articl)} {abs(seed)}-{abs(int(seed/20))}-{random.choice(Latters)}{random.randint(1,999)}"
 
     standart_solar_class = ["O", "B", "A", "F", "G", "K", "M", "L", "T"]
