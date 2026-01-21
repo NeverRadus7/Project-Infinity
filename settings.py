@@ -19,6 +19,7 @@ FuelRequire = 1 # Default: 1
 DebugInfo = True # Default: False
 SetTravelDistation = 0 # Default: 0
 AddShipModification = 0 # Default: 0
+Language = "en" # en / ua / ru
 
 SymbolOfStar = "★ "
 SymbolOfStarPinned = "★⚐ "

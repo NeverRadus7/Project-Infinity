@@ -241,18 +241,32 @@ ShipModifications = [
         "ModName": "Asteroid-level bur",
         "ModCoust": 30_000,
         "ModValue": 1
+    },
+    {
+        "ModID": 21,
+        "ModType": 2,
+        "ModName": "Signal scanner",
+        "ModCoust": 120_000,
+        "ModValue": 0
+    },
+    {
+        "ModID": 22,
+        "ModType": 5,
+        "ModName": "DEV ENGINE (DELETE)",
+        "ModCoust": 0,
+        "ModValue": 999999
     }
 ]
 
 ModificationType = [
-    "Fuel tanks", 
-    "Armorplates",
-    "Intel technologi", 
-    "Military technologi", 
-    "Precision instruments", 
-    "Engines", 
-    "Storage",
-    "Mining technologi",
+    "Fuel tanks", # 0 
+    "Armorplates", # 1
+    "Intel technologi", # 2
+    "Military technologi",  # 3
+    "Precision instruments", # 4
+    "Engines", # 5
+    "Storage", # 6
+    "Mining technologi", # 7
 ]
 
 Ships = [
@@ -446,15 +460,22 @@ TypeEvents = [
 
 
 
-EventDataTextUA = {
-    0x0:["Нічого цікавого з сигналу не виявлено."],
-    0x00000001:["Кимось був залишенний зонд інформації, він нам приніс цінні дані про цю систему.", "+ 500 ◭"],
-    0x00000002:["Брухт та пил кружляє по орбіті зірки, можна вважати цей брухт іншим астероїдним поясом.", "Можливо тут була битва, або хтось в щось врізився, замало інформації"],
-    0x00000003:["Залишенний корабель, виглядає дуже пошкодженним. Біосигналу не виявленно, всі мертві."],
-    0x00000004:["Дрони когось, вони виконують команди з комп'ютера корабля, він десь має бути поряд"]
-}
+EventDataText = { 
+     "en": {
+        0x0:["Nothing interesting detected from the signal."],
+        0x00000001:["Initializing...", "", "Lost data of AGS scientist #205-162.", "Opening databank...", "Will be uploaded to host ship [1,631 kB ]", "", "You find: [500 ◭]"],
+        0x00000002:["Establishing communication with object #2163-163-742", "Network confidential!", "", "Object: AGS Observatory", "Communication status: Stable", "", "Taking public data...", "NOTICE: THIS OBJECT BELONGS TO", "ASSOCIATION OF GALACTIC SCIENTISTIC", "", "You find: [500 ◭]"],
+        0x00000003:["Observation", "", "Judging by the human waste, dust, and shipwrecks present, there was", "a conflict here, probably pirates or even war.", "", "You find: [500 ◭]"],
+        0x00000004:["Observation", "", "Small drones drift around the planet, they are useful against illegals", "who use scanner camouflage, which these drones can ignore.", "", "Drones are manufactured by only one company, MILITARUM, but it is", "almost an interstellar corporation, as it claims complete control of the", "systems."],
+        0x00000005:['We got code:', '', 'SW4gdGhlIEFTRyBsYWJvcmF0b3JpZXMsIHRoZXkgY3JlYX', 'RlIGh1bWFucy4gTWFuIGhhcyBjZWFzZWQgdG8gYmUgYWxpdmUu'],
+        0x00000006:['']
+    },
+    
+    "ru": {
+        0x0:["Ничего интересного из сигнала не обнаружено"]
+    },
 
-EventDataTextEN = {
-    0x0:["Nothing interesting was detected from this signal."],
-    0x00000001:[""]
+    "ua": {
+        0x0:["Нічого цікавого з сигналу не виявлено."]
+    }
 }

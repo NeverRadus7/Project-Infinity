@@ -131,9 +131,38 @@ def GenMap(seed):
         return Planets
     
     def EventGen():
+        EventChance = random.randint(1,100)
+        if EventChance <= 100:
+            eventid = random.choice([0,1,2])
+        elif EventChance <= 30:
+            eventid = random.choice([3,4,5,6,7,8])
+        elif EventChance < 5:
+            eventid = random.choice([9,10,11])
+
+        eventmessage = 0x0
+        if eventid in [0,1,2]:
+            eventmessage = random.choice([0x00000001,0x00000002,0x00000003,0x00000004])
+        if eventid == 11:
+            eventmessage = random.choice([0x00000005])
+
+        eventfreq = random.randint(0,64)
+        if eventid == 0:
+            eventfreq = random.randint(0,21)
+        if eventid == 1:
+            eventfreq = random.randint(22,42)
+        if eventid == 2:
+            eventfreq = random.randint(43,64)
+
         event = {
-            "EventID": random.randint(0, len(wlregister.Events)-1)
+            "EventID": eventid,
+            "EventMessage": eventmessage,
+            "EventFREQ": eventfreq,
+            "EventEnable": True,
+            "EventInteled": False,
+            "EventDate": None
         }
+
+        return event
 
     solar_name = f"{random.choice(Articl)} {abs(seed)}-{abs(int(seed/20))}-{random.choice(Latters)}{random.randint(1,999)}"
 
@@ -228,6 +257,11 @@ def GenMap(seed):
             }
 
             asteroid.append(asteroid_table)
+        
+    events = []
+    if random.randint(1,100) <= 60:
+        for i in range(random.randint(1,4)):
+            events.append(EventGen())
 
     Starsystems = {
         "StarID": seed,
@@ -238,12 +272,16 @@ def GenMap(seed):
         "Size": solar_size,
         "Luminos": solar_luminos,
         "Planets": PlanetGen(planet_count),
-        "Asteroids": asteroid
+        "Asteroids": asteroid,
+        "Events": events
     }
 
     # Генератор колонії
     if random.randint(1,100) <= settings.MapCivilRange and Starsystems.get('Planets'):
         Economic = random.choice(wlregister.Economics)
+
+        for i in range(random.randint(4,7)):
+            events.append(EventGen())
         
         # Генерація списка товарів
         StationStoreList = []

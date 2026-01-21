@@ -1,57 +1,679 @@
 [
     {
-        "StarID": 728,
+        "StarID": 702,
         "StarCivil": {
-            "CivilPop": 248447245,
-            "CivilEconomicType": 1,
-            "CivilEco": 1.0032309873833753,
+            "CivilPop": 241730871,
+            "CivilEconomicType": 3,
+            "CivilEco": 0.6333141787110568,
             "CivilReputation": 50,
             "CivilSecurity": 1,
-            "CivilStable": 81,
+            "CivilStable": 80,
             "CivilUpgrade": [
-                "Fleet_Shipyard",
-                "Fleet_Shipyard",
+                "Cruiser_Shipyard",
+                "Workshop",
                 "Cruiser_Shipyard"
             ],
             "CivilStation": {
-                "StationName": "Geqothyzh Station",
-                "StationType": 1,
+                "StationName": "Rymapym Station",
+                "StationType": 0,
                 "StationStoreList": [
-                    12,
-                    7,
-                    0,
-                    6,
-                    1,
-                    8,
-                    11,
-                    2,
-                    10,
-                    4,
                     3,
-                    5,
-                    9
+                    10,
+                    8,
+                    1,
+                    12,
+                    6,
+                    7
                 ],
                 "StationHangar": [
                     {
-                        "ShipID": 0,
-                        "ShipName": "Rookie",
-                        "ShipModification": [
-                            {
-                                "ModificationID": null,
-                                "ModificationLevel": 0
-                            },
-                            {
-                                "ModificationID": null,
-                                "ModificationLevel": 0
-                            }
-                        ],
+                        "ShipID": 2,
+                        "ShipName": "LSPM Enrue",
+                        "ShipModification": [],
                         "ShipFlags": [],
                         "Storage": [],
-                        "Fuel": 20,
+                        "Fuel": 25,
                         "ItemsCount": 0
                     }
                 ]
             }
+        },
+        "Events": [
+            {
+                "EventID": 0,
+                "EventMessage": 2,
+                "EventFREQ": 13,
+                "EventEnable": true,
+                "EventInteled": false,
+                "EventDate": null
+            },
+            {
+                "EventID": 11,
+                "EventMessage": 0,
+                "EventFREQ": 40,
+                "EventEnable": true,
+                "EventInteled": false,
+                "EventDate": null
+            },
+            {
+                "EventID": 1,
+                "EventMessage": 4,
+                "EventFREQ": 32,
+                "EventEnable": true,
+                "EventInteled": false,
+                "EventDate": null
+            },
+            {
+                "EventID": 0,
+                "EventMessage": 1,
+                "EventFREQ": 12,
+                "EventEnable": true,
+                "EventInteled": false,
+                "EventDate": null
+            },
+            {
+                "EventID": 1,
+                "EventMessage": 2,
+                "EventFREQ": 39,
+                "EventEnable": true,
+                "EventInteled": false,
+                "EventDate": null
+            },
+            {
+                "EventID": 1,
+                "EventMessage": 3,
+                "EventFREQ": 37,
+                "EventEnable": true,
+                "EventInteled": false,
+                "EventDate": null
+            },
+            {
+                "EventID": 1,
+                "EventMessage": 2,
+                "EventFREQ": 23,
+                "EventEnable": false,
+                "EventInteled": false,
+                "EventDate": null
+            },
+            {
+                "EventID": 0,
+                "EventMessage": 1,
+                "EventFREQ": 2,
+                "EventEnable": true,
+                "EventInteled": true,
+                "EventDate": null
+            }
+        ],
+        "PlayerPinned": true,
+        "PlayerPinnedDesc": "Lox"
+    },
+    {
+        "StarID": 708,
+        "PlayerPinned": true,
+        "PlayerPinnedDesc": "Lox pidor"
+    },
+    {
+        "StarID": 710,
+        "PlayerPinned": true,
+        "PlayerPinnedDesc": "Lox pidor nahui",
+        "Events": [
+            {
+                "EventID": 2,
+                "EventMessage": 3,
+                "EventFREQ": 52,
+                "EventEnable": true,
+                "EventInteled": true,
+                "EventDate": null
+            },
+            {
+                "EventID": 3,
+                "EventMessage": 0,
+                "EventFREQ": 23,
+                "EventEnable": true,
+                "EventInteled": true,
+                "EventDate": null
+            },
+            {
+                "EventID": 2,
+                "EventMessage": 3,
+                "EventFREQ": 55,
+                "EventEnable": true,
+                "EventInteled": true,
+                "EventDate": null
+            },
+            {
+                "EventID": 2,
+                "EventMessage": 2,
+                "EventFREQ": 55,
+                "EventEnable": true,
+                "EventInteled": true,
+                "EventDate": null
+            },
+            {
+                "EventID": 1,
+                "EventMessage": 3,
+                "EventFREQ": 27,
+                "EventEnable": true,
+                "EventInteled": true,
+                "EventDate": null
+            },
+            {
+                "EventID": 1,
+                "EventMessage": 4,
+                "EventFREQ": 24,
+                "EventEnable": false,
+                "EventInteled": true,
+                "EventDate": null
+            },
+            {
+                "EventID": 0,
+                "EventMessage": 3,
+                "EventFREQ": 12,
+                "EventEnable": true,
+                "EventInteled": true,
+                "EventDate": null
+            }
+        ],
+        "StarCivil": {
+            "CivilPop": 50784,
+            "CivilEconomicType": 1,
+            "CivilEco": 0.5339254203843632,
+            "CivilReputation": 50,
+            "CivilSecurity": 0,
+            "CivilStable": 22,
+            "CivilUpgrade": [
+                "Fleet_Shipyard",
+                "",
+                ""
+            ],
+            "CivilStation": {
+                "StationName": "Neqizyp Station",
+                "StationType": 2,
+                "StationStoreList": [
+                    10,
+                    1,
+                    2,
+                    4,
+                    7,
+                    11,
+                    0
+                ],
+                "StationHangar": []
+            }
         }
+    },
+    {
+        "StarID": 682,
+        "Star": "Oshazith",
+        "StarCivil": {
+            "CivilPop": 104680844,
+            "CivilEconomicType": 2,
+            "CivilEco": 1.3917467140010984,
+            "CivilReputation": 50,
+            "CivilSecurity": 1,
+            "CivilStable": 82,
+            "CivilUpgrade": [
+                "Cruiser_Shipyard",
+                "Fleet_Shipyard",
+                "Workshop"
+            ],
+            "CivilStation": {
+                "StationName": "Kaqywih Station",
+                "StationType": 2,
+                "StationStoreList": [
+                    11,
+                    4,
+                    0,
+                    9,
+                    6,
+                    12,
+                    5,
+                    1,
+                    3,
+                    2
+                ],
+                "StationHangar": []
+            }
+        },
+        "Planets": [
+            {
+                "PlanetID": 1,
+                "PlanetName": "Delta 682-34-E23-1",
+                "PlanetClass": {
+                    "TypeClass": 0,
+                    "TempClass": 2,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 257.9913095920447,
+                "PlanetKelvinTemp": 323.946191746902,
+                "PlanetSize": 0.3264796145711711,
+                "PlanetColore": 1,
+                "PlanetTemp": 50.796191746902025,
+                "PlanetMass": 7.859647305255711,
+                "PlanetAtmoAlbedo": 0.6008244123363505,
+                "PlanetAtmoGreenhouse": 0.8850043406835159,
+                "PlanetDistance": 0.277159560038716,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0,
+                "PlanetColony": {
+                    "ColonyName": "Ithumydy Colony",
+                    "ColonyLevel": 68,
+                    "ColonyPop": 266419,
+                    "ColonyBuildings": [
+                        1
+                    ],
+                    "ColonyBuild": {
+                        "Enabled": false,
+                        "EndBuild": 0
+                    },
+                    "ColonyMaxBuildings": 1,
+                    "ColonyMaxPops": 50000
+                }
+            },
+            {
+                "PlanetID": 2,
+                "PlanetName": "Delta 682-34-E23-2",
+                "PlanetClass": {
+                    "TypeClass": 3,
+                    "TempClass": 6,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 102.35275022106595,
+                "PlanetKelvinTemp": 120.27030197996028,
+                "PlanetSize": 0.22235863345036969,
+                "PlanetColore": 1,
+                "PlanetTemp": -152.8796980200397,
+                "PlanetMass": 25.332628744961724,
+                "PlanetAtmoAlbedo": 0.7756257233794375,
+                "PlanetAtmoGreenhouse": 0.13086869894481168,
+                "PlanetDistance": 1.7609255061460247,
+                "PlanetTerraform": false,
+                "PlanetRings": true,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0,
+                "PlanetColony": {
+                    "ColonyName": "Chichurezhe Colony",
+                    "ColonyLevel": 49,
+                    "ColonyPop": 16874,
+                    "ColonyBuildings": [
+                        1
+                    ],
+                    "ColonyBuild": {
+                        "Enabled": false,
+                        "EndBuild": 0
+                    },
+                    "ColonyMaxBuildings": 4,
+                    "ColonyMaxPops": 50000
+                }
+            },
+            {
+                "PlanetID": 3,
+                "PlanetName": "Delta 682-34-E23-3",
+                "PlanetClass": {
+                    "TypeClass": 0,
+                    "TempClass": 6,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 69.08598981793808,
+                "PlanetKelvinTemp": 78.81550841177238,
+                "PlanetSize": 0.7695005268799419,
+                "PlanetColore": 7,
+                "PlanetTemp": -194.3344915882276,
+                "PlanetMass": 24.86946584634179,
+                "PlanetAtmoAlbedo": 0.4387164814737674,
+                "PlanetAtmoGreenhouse": 0.2551796981737505,
+                "PlanetDistance": 3.8650938961489083,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0,
+                "PlanetColony": {
+                    "ColonyName": "Khupuloduzh Colony",
+                    "ColonyLevel": 31,
+                    "ColonyPop": 66526428,
+                    "ColonyBuildings": [
+                        1
+                    ],
+                    "ColonyBuild": {
+                        "Enabled": false,
+                        "EndBuild": 0
+                    },
+                    "ColonyMaxBuildings": 2,
+                    "ColonyMaxPops": 50000
+                }
+            },
+            {
+                "PlanetID": 4,
+                "PlanetName": "Delta 682-34-E23-4",
+                "PlanetClass": {
+                    "TypeClass": 1,
+                    "TempClass": 6,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 60.90290878805672,
+                "PlanetKelvinTemp": 70.44467537584272,
+                "PlanetSize": 2.225956500510781,
+                "PlanetColore": 6,
+                "PlanetTemp": -202.70532462415724,
+                "PlanetMass": 17.351433656871855,
+                "PlanetAtmoAlbedo": 0.5183116191952187,
+                "PlanetAtmoGreenhouse": 0.2716369255780938,
+                "PlanetDistance": 4.973520889379228,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0,
+                "PlanetColony": {
+                    "ColonyName": "Ufawejan Colony",
+                    "ColonyLevel": 16,
+                    "ColonyPop": 7944,
+                    "ColonyBuildings": [
+                        1
+                    ],
+                    "ColonyBuild": {
+                        "Enabled": false,
+                        "EndBuild": 0
+                    },
+                    "ColonyMaxBuildings": 6,
+                    "ColonyMaxPops": 50000
+                }
+            },
+            {
+                "PlanetID": 5,
+                "PlanetName": "Delta 682-34-E23-5",
+                "PlanetClass": {
+                    "TypeClass": 1,
+                    "TempClass": 6,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 37.681163965822535,
+                "PlanetKelvinTemp": 47.152865028586525,
+                "PlanetSize": 0.2251122724299134,
+                "PlanetColore": 5,
+                "PlanetTemp": -225.99713497141346,
+                "PlanetMass": 33.24543916659131,
+                "PlanetAtmoAlbedo": 0.9244488423383642,
+                "PlanetAtmoGreenhouse": 0.5276338090906328,
+                "PlanetDistance": 12.992460289808715,
+                "PlanetTerraform": false,
+                "PlanetRings": true,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0,
+                "PlanetColony": {
+                    "ColonyName": "Otachetyq Colony",
+                    "ColonyLevel": 76,
+                    "ColonyPop": 267129,
+                    "ColonyBuildings": [
+                        1
+                    ],
+                    "ColonyBuild": {
+                        "Enabled": false,
+                        "EndBuild": 0
+                    },
+                    "ColonyMaxBuildings": 4,
+                    "ColonyMaxPops": 50000
+                }
+            },
+            {
+                "PlanetID": 6,
+                "PlanetName": "Delta 682-34-E23-6",
+                "PlanetClass": {
+                    "TypeClass": 5,
+                    "TempClass": 6,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 32.187502559876975,
+                "PlanetKelvinTemp": 37.647114395402504,
+                "PlanetSize": 22.164407139459303,
+                "PlanetColore": 2,
+                "PlanetTemp": -235.50288560459748,
+                "PlanetMass": 9.005147329190097,
+                "PlanetAtmoAlbedo": 0.1572799037139978,
+                "PlanetAtmoGreenhouse": 0.7141676080317018,
+                "PlanetDistance": 17.805962545655923,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0,
+                "PlanetColony": {
+                    "ColonyName": "Vinapyleth Colony",
+                    "ColonyLevel": 83,
+                    "ColonyPop": 37499188,
+                    "ColonyBuildings": [
+                        1
+                    ],
+                    "ColonyBuild": {
+                        "Enabled": false,
+                        "EndBuild": 0
+                    },
+                    "ColonyMaxBuildings": 5,
+                    "ColonyMaxPops": 50000
+                }
+            },
+            {
+                "PlanetID": 7,
+                "PlanetName": "Delta 682-34-E23-7",
+                "PlanetClass": {
+                    "TypeClass": 4,
+                    "TempClass": 6,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 33.343575106137976,
+                "PlanetKelvinTemp": 42.23569519530441,
+                "PlanetSize": 9.59592030567402,
+                "PlanetColore": 3,
+                "PlanetTemp": -230.91430480469558,
+                "PlanetMass": 3.435243886538664,
+                "PlanetAtmoAlbedo": 0.874755818147353,
+                "PlanetAtmoGreenhouse": 0.6996080744884486,
+                "PlanetDistance": 16.592647656134588,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0
+            },
+            {
+                "PlanetID": 8,
+                "PlanetName": "Delta 682-34-E23-8",
+                "PlanetClass": {
+                    "TypeClass": 3,
+                    "TempClass": 6,
+                    "LiveClass": 2,
+                    "UniqueClass": 0
+                },
+                "PlanetEffectiveTemp": 23.22893121722488,
+                "PlanetKelvinTemp": 27.543567234668174,
+                "PlanetSize": 0.4411275115363963,
+                "PlanetColore": 3,
+                "PlanetTemp": -245.60643276533182,
+                "PlanetMass": 24.776524495544482,
+                "PlanetAtmoAlbedo": 0.23869618488459754,
+                "PlanetAtmoGreenhouse": 0.7381088220600617,
+                "PlanetDistance": 34.188619228796725,
+                "PlanetTerraform": false,
+                "PlanetRings": false,
+                "PlanetLive": false,
+                "PlanetViewSeed": 0,
+                "PlanetColony": {
+                    "ColonyName": "Nurabaxoh Colony",
+                    "ColonyLevel": 3,
+                    "ColonyPop": 96862,
+                    "ColonyBuildings": [
+                        1
+                    ],
+                    "ColonyBuild": {
+                        "Enabled": false,
+                        "EndBuild": 0
+                    },
+                    "ColonyMaxBuildings": 10,
+                    "ColonyMaxPops": 50000
+                }
+            }
+        ],
+        "Events": [
+            {
+                "EventID": 0,
+                "EventMessage": 1,
+                "EventFREQ": 9,
+                "EventEnable": true,
+                "EventInteled": true,
+                "EventDate": null
+            },
+            {
+                "EventID": 1,
+                "EventMessage": 1,
+                "EventFREQ": 42,
+                "EventEnable": true,
+                "EventInteled": true,
+                "EventDate": null
+            },
+            {
+                "EventID": 2,
+                "EventMessage": 4,
+                "EventFREQ": 54,
+                "EventEnable": true,
+                "EventInteled": true,
+                "EventDate": null
+            },
+            {
+                "EventID": 1,
+                "EventMessage": 2,
+                "EventFREQ": 33,
+                "EventEnable": true,
+                "EventInteled": true,
+                "EventDate": null
+            },
+            {
+                "EventID": 1,
+                "EventMessage": 3,
+                "EventFREQ": 27,
+                "EventEnable": true,
+                "EventInteled": true,
+                "EventDate": null
+            },
+            {
+                "EventID": 2,
+                "EventMessage": 1,
+                "EventFREQ": 49,
+                "EventEnable": true,
+                "EventInteled": true,
+                "EventDate": null
+            },
+            {
+                "EventID": 0,
+                "EventMessage": 4,
+                "EventFREQ": 14,
+                "EventEnable": true,
+                "EventInteled": true,
+                "EventDate": null
+            }
+        ]
+    },
+    {
+        "StarID": 681,
+        "StarIntel": true
+    },
+    {
+        "StarID": 683,
+        "StarIntel": true
+    },
+    {
+        "StarID": 684,
+        "StarIntel": true,
+        "Events": [
+            {
+                "EventID": 5,
+                "EventMessage": 0,
+                "EventFREQ": 50,
+                "EventEnable": true,
+                "EventInteled": true,
+                "EventDate": null
+            }
+        ]
+    },
+    {
+        "StarID": 685,
+        "StarIntel": true,
+        "Events": [
+            {
+                "EventID": 0,
+                "EventMessage": 3,
+                "EventFREQ": 9,
+                "EventEnable": true,
+                "EventInteled": true,
+                "EventDate": null
+            },
+            {
+                "EventID": 1,
+                "EventMessage": 1,
+                "EventFREQ": 31,
+                "EventEnable": true,
+                "EventInteled": true,
+                "EventDate": null
+            },
+            {
+                "EventID": 2,
+                "EventMessage": 1,
+                "EventFREQ": 51,
+                "EventEnable": true,
+                "EventInteled": true,
+                "EventDate": null
+            },
+            {
+                "EventID": 2,
+                "EventMessage": 3,
+                "EventFREQ": 51,
+                "EventEnable": true,
+                "EventInteled": true,
+                "EventDate": null
+            }
+        ]
+    },
+    {
+        "StarID": 686,
+        "StarIntel": true,
+        "Events": [
+            {
+                "EventID": 1,
+                "EventMessage": 4,
+                "EventFREQ": 24,
+                "EventEnable": true,
+                "EventInteled": true,
+                "EventDate": null
+            },
+            {
+                "EventID": 11,
+                "EventMessage": 5,
+                "EventFREQ": 35,
+                "EventEnable": true,
+                "EventInteled": true,
+                "EventDate": null
+            },
+            {
+                "EventID": 0,
+                "EventMessage": 2,
+                "EventFREQ": 11,
+                "EventEnable": true,
+                "EventInteled": true,
+                "EventDate": null
+            },
+            {
+                "EventID": 0,
+                "EventMessage": 1,
+                "EventFREQ": 19,
+                "EventEnable": true,
+                "EventInteled": true,
+                "EventDate": null
+            }
+        ]
     }
 ]

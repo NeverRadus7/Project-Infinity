@@ -621,7 +621,22 @@ class pi():
                 )
         # file = open("galaxy/mapchanges.py", "w", encoding="utf-8")
         # file.write(f"CustomStars = {CustomStars}")
-        wl.SaveJSON('save/map.json', CustomStars)
+        wl.SaveJSON(MapPath, CustomStars)
+
+    def LocalSave():
+        if len(CustomStars) == 0:
+            CustomStars.append(StarIs)
+        else:
+            for i in range(len(CustomStars)):
+                CustomStarIs = CustomStars[i]
+                if CustomStarIs['StarID'] == StarIs['StarID']:
+                    break
+            if CustomStarIs['StarID'] == StarIs['StarID']:
+                CustomStarIs = StarIs
+            else:
+                CustomStars.append(StarIs)
+        
+        wl.SaveJSON(MapPath, CustomStars)
     
     def loading(stdscr, t=5, title="Simple"):
         y, x = stdscr.getmaxyx()

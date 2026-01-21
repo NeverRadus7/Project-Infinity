@@ -229,6 +229,7 @@ if CommandInput == "2":
                     menu.append("Disable favorite")
 
                 if StarIs.get("StarIntel") and StarIs['StarIntel'] == True:
+                    menu.append("Search signals")
                     if StarIs.get("StarControled") and StarIs['StarControled'] == True:
                         menu.append("Rename system")
                         if StarIs.get("StarCivil") and StarIs['StarCivil'] != []:
@@ -434,6 +435,130 @@ if CommandInput == "2":
                         select += 1
         
         curses.wrapper(astscr)
+
+    if choice == "Search signals":
+        def main(stdscr):
+            FREQ = 0
+            SELECT = 0
+            curses.init_pair(2,curses.COLOR_WHITE, curses.COLOR_BLACK)
+            curses.init_pair(3,curses.COLOR_RED, curses.COLOR_BLACK)
+            curses.init_pair(4,curses.COLOR_GREEN, curses.COLOR_BLACK)
+            curses.init_pair(5,curses.COLOR_YELLOW, curses.COLOR_BLACK)
+            curses.init_pair(6,curses.COLOR_BLACK, curses.COLOR_WHITE)
+            while True:
+                stdscr.clear()
+                stdscr.box()
+
+                s_y, s_x = stdscr.getmaxyx()
+
+                stdscr.addstr(0, int((s_x-len(f"Signals | {StarIs['Star']}"))/2), f"Signals | {StarIs['Star']}")
+                menu = "| [←→]-Frequence | [ENTER]-Execute | [F]-Search | [Q]-Quit |"
+
+                stdscr.addstr(s_y-1, int((s_x-len(menu))/2), menu)
+
+                stdscr.addstr(1,int((s_x-64)/2),"↓--------LOW---------↓---------MID---------↓---------HIG--------↓")
+
+                for i in range(65):
+                    stdscr.addstr(2,i+int((s_x-64)/2), "■", curses.color_pair(2) | curses.A_DIM)
+                    for ii, elem in enumerate(StarIs['Events']):
+                        if elem['EventFREQ'] == i:
+                            if elem['EventEnable'] == False:
+                                color = 5
+                            elif elem['EventInteled'] == True:
+                                color = 4
+                            else:
+                                color = 3
+                            
+                            stdscr.addstr(2,i+int((s_x-64)/2),"■", curses.color_pair(color))
+
+                stdscr.addstr(3, FREQ+int((s_x-64)/2), "▲")
+                stdscr.addstr(4,int((s_x-64)/2),f"FREQ: {FREQ*32}.0")
+
+                sig = stdscr.derwin(s_y-6,s_x-2,5,1)
+                sig.box()
+                sig_y, sig_x = sig.getmaxyx()
+                for i, elem in enumerate(StarIs['Events']):
+                    if SELECT == i:
+                        color = 6
+                    elif elem['EventEnable'] == False:
+                        color = 3
+                    else:
+                        color = 0
+                    if elem['EventInteled'] == True:
+                        sig.addstr(i+1,1,f"SIGNAL: {TypeEvents[elem['EventID']]} | FREQ: {elem['EventFREQ']*32}.0", curses.color_pair(color))
+                        if elem['EventEnable'] == False:
+                            sig.addstr(i+1, sig_x-len("CLOSSED")-2, "CLOSSED", curses.color_pair(3))
+                    else:
+                        sig.addstr(i+1,1,f"{" -"*int((s_x-4)/2)}", curses.color_pair(2) | curses.A_DIM)
+                sig.addstr(sig_y-2,(sig_x-len(str(SELECT)))-8,f" SEL: {SELECT} ", curses.color_pair(5))
+
+                stdscr.refresh()
+                keyname = stdscr.getkey()
+
+                if keyname == "KEY_RIGHT":
+                    FREQ += 1
+                    if FREQ >= 64:
+                        FREQ = 64
+                
+                if keyname == "KEY_LEFT":
+                    FREQ -= 1
+                    if FREQ < 1:
+                        FREQ = 0
+
+                if keyname == "KEY_UP":
+                    SELECT -= 1
+                    if SELECT < 1:
+                        SELECT = 0
+                
+                if keyname == "KEY_DOWN":
+                    SELECT += 1
+                    if SELECT > len(StarIs['Events'])-1:
+                        SELECT = len(StarIs['Events'])-1
+
+                if keyname == "f":
+                    signal_message = stdscr.derwin(15,60, int((s_y-15)/2), int((s_x-60)/2))
+                    signal_message.box()
+                    signal_y, signal_x = signal_message.getmaxyx()
+                    signal_message.addstr(0,int((signal_x-len("Information"))/2), "Information")
+                    menu = "| [Q]-Exit |"
+                    signal_message.addstr(signal_y-1, int((signal_x-len(menu))/2), menu)
+
+                    for i, elem in enumerate(StarIs['Events']):
+                        if elem['EventInteled'] == False and elem['EventFREQ'] == FREQ:
+                            pi.loading(stdscr, title="Scanning...")
+                            elem['EventInteled'] = True
+                            for i, text in enumerate(EventDataText[Language][elem['EventMessage']]):
+                                signal_message.addstr(i+1, 1, text[:55])
+                            signal_message.refresh()
+                            signal_message.getkey()
+                            pi.StarChange(StarIs['StarID'], 'Events', StarIs['Events'])
+                        elif elem['EventInteled'] == True and elem['EventFREQ'] == FREQ:
+                            #pi.message(stdscr, s_x=100, s_y=15, title="Result", message=EventDataTextEN[elem['EventMessage']][0])
+                            for i, text in enumerate(EventDataText[Language][elem['EventMessage']]):
+                                signal_message.addstr(i+1, 1, text[:55])
+                            signal_message.refresh()
+                            signal_message.getkey()
+                            pi.StarChange(StarIs['StarID'], 'Events', StarIs['Events'])
+
+                if keyname == "\n":
+                    EventIs = StarIs['Events'][SELECT]
+                    if EventIs['EventInteled'] == False or EventIs['EventEnable'] == False:
+                        pass
+                    else:
+                        return EventIs['EventID']
+                
+                if keyname == "q":
+                    break
+        
+        flag = False
+        for i, mod in enumerate(PlayerIs['Ship']['ShipModification']):
+            if mod['ModificationID'] == 21:
+                flag = True
+        
+        if flag == False:
+            curses.wrapper(lambda stdscr: pi.error_stdscr(stdscr, "Not available", "Signal scanner not installed"))
+        else:        
+            curses.wrapper(main)
 
 if CommandInput == "3":
     def planet(stdscr):
@@ -962,6 +1087,7 @@ if CommandInput == "4":
 
                 if choice == "Shipyard":
                     def main(stdscr):
+                        curses.init_pair(2,curses.COLOR_YELLOW, curses.COLOR_BLACK)
                         max_colors = curses.COLORS
                         if max_colors > 8:
                             curses.init_pair(1, curses.COLOR_BLACK, curses.COLOR_WHITE)
@@ -977,7 +1103,7 @@ if CommandInput == "4":
                             stdscr.addstr(1,1,"Ship")
                             stdscr.addstr(1,30, "Class")
                             stdscr.addstr(1,50, "Modifi.")
-                            stdscr.addstr(1,70, "TD.")
+                            stdscr.addstr(1,70, "Tr.Dist.")
                             stdscr.addstr(1,int((sz_x-len("Coust"))-15), "Coust")
 
                             stdscr.hline(2,1,curses.ACS_HLINE, sz_x-2)
@@ -989,6 +1115,10 @@ if CommandInput == "4":
                                     color = 0
                                 
                                 stdscr.addstr(i+3, 1, sh['ShipName'], curses.color_pair(color))
+                                stdscr.addstr(i+3, 30, ShipClasses[sh['ShipClass']])
+                                stdscr.addstr(i+3, 50, str(sh['ShipMaxModification']))
+                                stdscr.addstr(i+3, 70, str(sh['ShipTravelingDist']))
+                                stdscr.addstr(i+3, int((sz_x-len("Coust"))-15), f"{int(sh['ShipCoust'] * StarIs['StarCivil']['CivilEco']):,} ©", curses.color_pair(2))
 
                             keyname = stdscr.getkey()
 
@@ -1305,6 +1435,34 @@ if CommandInput == "5":
         #     if NewName == "" or NewName == " ": exit()
         #     PlayerIs['Ship']['ShipName'] = NewName
         #     wl.Loading("Застосовуємо зміни", 1)
+
+    if other == "Favorite system":
+        def main(stdscr):
+            while True:
+                stdscr.clear()
+                stdscr.box()
+                s_y, s_x = stdscr.getmaxyx()
+                stdscr.addstr(0,int((s_x-len("Favorite"))/2), "Favorite")
+
+                stdscr.addstr(1,1,"Star")
+                stdscr.addstr(1,int((s_x-2)/2),f"ID")
+                stdscr.addstr(1,int((s_x-16)),f"Descr.")
+
+                for i, fav in enumerate(CustomStars):
+                    if fav['PlayerPinned'] == True:
+                        stdscr.addstr(i+2, 1, f"{GenMap(fav['StarID'])['Star']}")
+                        stdscr.addstr(i+2, int((s_x-2)/2), f"{fav['StarID']}")
+                        stdscr.addstr(i+2, int((s_x-16)), f"{fav['PlayerPinnedDesc'][:24]}")
+
+                menu = "| [Q]-Exit |"
+                stdscr.addstr(s_y-1, int((s_x-len(menu))/2), menu)
+                stdscr.refresh()
+                keyname = stdscr.getkey()
+
+                if keyname == "q":
+                    break
+        
+        curses.wrapper(main)
 
 # Перезавантажує гру, не зберігає процеси
 if CommandInput == "*":

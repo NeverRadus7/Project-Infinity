@@ -1,51 +1,56 @@
 {
     "Nickname": "Player",
-    "Location": 720,
+    "Location": 686,
     "Ship": {
         "ShipID": 3,
-        "ShipName": "MILLYTECH QR-I",
+        "ShipName": "Loxonoid",
         "ShipModification": [
             {
-                "ModificationID": 8,
+                "ModificationID": 22,
+                "ModificationLevel": 5
+            },
+            {
+                "ModificationID": 11,
                 "ModificationLevel": 0
             },
             {
-                "ModificationID": null,
+                "ModificationID": 9,
                 "ModificationLevel": 0
             },
             {
-                "ModificationID": null,
-                "ModificationLevel": 0
-            },
-            {
-                "ModificationID": null,
+                "ModificationID": 21,
                 "ModificationLevel": 0
             }
         ],
         "ShipFlags": [],
-        "Storage": [],
-        "Fuel": 30,
-        "ItemsCount": 0
+        "Storage": [
+            {
+                "ItemID": 11,
+                "ItemCount": 20
+            }
+        ],
+        "Fuel": 10,
+        "ItemsCount": 20
     },
     "Exo": {
         "ExoClass": 0,
         "ExoLevel": 1,
         "ExoMod": []
     },
-    "Money": 423667346,
-    "IntelBall": 0,
+    "Money": 9535802800,
+    "IntelBall": 33582,
     "BattleScore": 0,
     "SocialScore": 0,
-    "XP": 0,
+    "XP": 40261,
     "Reputation": 0,
-    "WorldDay": 29,
+    "WorldDay": 23,
     "Atribution": [],
     "Statistic": {
-        "StarInteled": 0,
+        "StarInteled": 12,
         "StarControled": 0,
         "StarColony": 0,
         "CreditsFromSelled": 0,
-        "CreditsFromScience": 0,
+        "CreditsFromScience": 388992,
         "IncomeFromColony": 0
     },
     "MapSettings": {
@@ -56,6 +61,6 @@
         2,
         2026
     ],
-    "MapFilter": 0,
+    "MapFilter": 3,
     "GameUpdate": 4
 }
